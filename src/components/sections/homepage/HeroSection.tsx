@@ -10,20 +10,19 @@
  * Requirements: 2.1, 2.2, 2.3, 2.4, 2.5
  */
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { heroData, type HeroData, type TrustBadge } from "@/data/homepage";
-import BookingModal from "@/components/BookingModal";
 
 interface HeroSectionProps {
   data?: HeroData;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ data = heroData }) => {
-  const [showBookingModal, setShowBookingModal] = useState(false);
+  const navigate = useNavigate();
 
   // Animation variants for staggered entrance
   const containerVariants = {
@@ -47,9 +46,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data = heroData }) => {
   };
 
   const handlePrimaryCTA = () => {
-    if (data.primaryCTA.href === "/contact") {
-      setShowBookingModal(true);
-    }
+    navigate("/contact");
   };
 
   return (
@@ -172,14 +169,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data = heroData }) => {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Booking Modal */}
-      <BookingModal
-        open={showBookingModal}
-        onOpenChange={setShowBookingModal}
-        title="Schedule a Consultation"
-        description="Book a free consultation to discuss your AI and data transformation needs. Our experts will help you identify opportunities and create a roadmap for success."
-      />
     </section>
   );
 };

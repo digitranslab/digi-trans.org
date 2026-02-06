@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Logo } from "./ui/logo";
 import { GradientButton } from "./ui/gradient-button";
 import { MainNav } from "./navigation/MainNav";
 import { MobileNav } from "./navigation/MobileNav";
 import { navigationItems, navigationConfig } from "@/data/navigation";
-import BookingModal from "./BookingModal";
 
 interface NavbarProps {
   logo?: string;
@@ -19,7 +19,7 @@ const Navbar = ({
   onRegisterInterest = () => console.log("Register Interest clicked"),
 }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showBookingModal, setShowBookingModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +31,7 @@ const Navbar = ({
   }, []);
 
   const handleCTAClick = () => {
-    setShowBookingModal(true);
+    navigate("/contact");
   };
 
   return (
@@ -73,13 +73,6 @@ const Navbar = ({
           />
         </div>
       </div>
-
-      <BookingModal
-        open={showBookingModal}
-        onOpenChange={setShowBookingModal}
-        title="Schedule a Demo"
-        description="Experience our drag-and-drop interface for creating sophisticated financial AI applications. See how you can build multi-agent systems without code."
-      />
     </div>
   );
 };

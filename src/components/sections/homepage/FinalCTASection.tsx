@@ -4,19 +4,18 @@
  * The final call-to-action section at the end of the homepage:
  * - Compelling headline encouraging engagement
  * - Two CTAs: "Schedule Consultation" and "Explore Products"
- * - "Schedule Consultation" navigates to /contact or opens booking modal
+ * - "Schedule Consultation" navigates to /contact
  * - "Explore Products" navigates to /products/allama
  * 
  * Requirements: 8.1, 8.2, 8.3, 8.4
  */
 
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Package } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { finalCTAData } from "@/data/homepage";
-import BookingModal from "@/components/BookingModal";
 
 interface FinalCTASectionProps {
   headline?: string;
@@ -37,12 +36,10 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
   primaryCTA = finalCTAData.primaryCTA,
   secondaryCTA = finalCTAData.secondaryCTA,
 }) => {
-  const [showBookingModal, setShowBookingModal] = useState(false);
+  const navigate = useNavigate();
 
   const handlePrimaryCTA = () => {
-    if (primaryCTA.href === "/contact") {
-      setShowBookingModal(true);
-    }
+    navigate("/contact");
   };
 
   return (
@@ -143,14 +140,6 @@ const FinalCTASection: React.FC<FinalCTASectionProps> = ({
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Booking Modal */}
-      <BookingModal
-        open={showBookingModal}
-        onOpenChange={setShowBookingModal}
-        title="Schedule a Consultation"
-        description="Book a free consultation to discuss your AI and data transformation needs. Our experts will help you identify opportunities and create a roadmap for success."
-      />
     </section>
   );
 };

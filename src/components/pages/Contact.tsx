@@ -9,22 +9,17 @@
  * - Netlify Forms for contact submissions (free tier: 100/month)
  * - Honeypot field for spam prevention
  * - AJAX submission with proper encoding
- * - Cal.com for calendar booking (free tier)
  */
 
 import React, { useState } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { 
-  MapPin, 
-  Phone, 
-  Mail, 
   Send, 
   Calendar, 
   MessageCircle, 
   CheckCircle,
   Loader2,
-  ExternalLink,
   Clock,
   Users,
   Globe,
@@ -412,21 +407,8 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* Cal.com Booking Link - Free tier */}
-                  <GradientButton className="w-full mb-4" asChild>
-                    <a 
-                      href="https://cal.com/digitransinc/consultation-digitrans" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Schedule Free Consultation
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </a>
-                  </GradientButton>
-
-                  <p className="text-xs text-gray-500 text-center">
-                    Opens Cal.com scheduling page
+                  <p className="text-sm text-gray-400 text-center">
+                    Fill out the contact form and we'll schedule a consultation with you.
                   </p>
                 </GlassCard>
               </AnimatedWrapper>

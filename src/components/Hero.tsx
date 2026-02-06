@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UniverseLights from "./UniverseLights";
 import { motion } from "framer-motion";
 import { Card } from "./ui/card";
@@ -12,7 +13,6 @@ import {
   DialogDescription,
 } from "./ui/dialog";
 import { BarChart, Cloud, Bot, AppWindow, ArrowRight } from "lucide-react";
-import BookingModal from "./BookingModal";
 
 interface ServiceCardStory {
   title: string;
@@ -110,13 +110,13 @@ const Hero = ({
   showCards = true,
   showBookCallButton = false,
 }: HeroProps) => {
+  const navigate = useNavigate();
   const [headline, setHeadline] = React.useState<string | JSX.Element>(
     initialHeadline,
   );
   const [selectedCard, setSelectedCard] = React.useState<ServiceCard | null>(
     null,
   );
-  const [showCalPopup, setShowCalPopup] = React.useState(false);
 
   React.useEffect(() => {
     // Only run the headline animation on the home page
@@ -260,7 +260,7 @@ Building Tomorrow's<br />
           <GradientButton
             size="lg"
             variant="secondary"
-            onClick={() => setShowCalPopup(true)}
+            onClick={() => navigate("/contact")}
             rightIcon={<ArrowRight className="h-5 w-5" />}
           >
             Schedule a Demo
@@ -312,7 +312,7 @@ Building Tomorrow's<br />
           >
             <GradientButton
               size="lg"
-              onClick={() => setShowCalPopup(true)}
+              onClick={() => navigate("/contact")}
               rightIcon={<ArrowRight className="w-5 h-5" />}
             >
               <span className="animate-pulse bg-white rounded-full w-2 h-2 mr-2"></span>
@@ -361,14 +361,6 @@ Building Tomorrow's<br />
           )}
         </DialogContent>
       </Dialog>
-
-      {/* Booking Modal for Schedule a Demo */}
-      <BookingModal
-        open={showCalPopup}
-        onOpenChange={setShowCalPopup}
-        title="Schedule a Demo"
-        description="Book a free 30-minute consultation to discuss your SaaS idea. We'll provide expert feedback on product strategy, technical requirements, and development timeline."
-      />
     </div>
   );
 };
