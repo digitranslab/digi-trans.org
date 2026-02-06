@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card } from "../../ui/card";
-import { Button } from "../../ui/button";
+import { GradientButton } from "../../ui/gradient-button";
 import { ProgressBar } from "../../ui/progress-bar";
 import { BackToTop } from "../../ui/back-to-top";
 import { StickyCTA } from "../../ui/sticky-cta";
@@ -372,20 +372,18 @@ export default function FullStackDevelopment() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button
+              <GradientButton
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-6 text-lg"
+                rightIcon={<ArrowRight className="h-5 w-5" />}
               >
                 Start Development
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
+              </GradientButton>
+              <GradientButton
                 size="lg"
-                variant="outline"
-                className="border-green-500/30 text-green-300 hover:bg-green-900/20 px-8 py-6 text-lg"
+                variant="secondary"
               >
                 View Technical Examples
-              </Button>
+              </GradientButton>
             </div>
 
             {/* Technical Highlights */}
@@ -724,13 +722,12 @@ export default function FullStackDevelopment() {
                 <p className="text-gray-300 mb-6">
                   Get a full-stack application that scales, performs, and delights your users
                 </p>
-                <Button
+                <GradientButton
                   size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8 py-6 text-lg"
+                  rightIcon={<ArrowRight className="h-5 w-5" />}
                 >
                   Start Development Project
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                </GradientButton>
               </div>
             </Card>
           </motion.div>

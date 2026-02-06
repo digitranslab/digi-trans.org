@@ -4,6 +4,7 @@ import Footer from "../Footer";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import SEO from "../SEO";
 import {
   ArrowRight,
@@ -430,13 +431,13 @@ export default function SolutionsHub() {
             <p className="text-gray-300 mb-8">
               Can't find the perfect solution? Let our experts create a custom accelerator tailored to your unique requirements.
             </p>
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg"
+            <GradientButton
+              size="lg"
+              rightIcon={<ArrowRight className="h-5 w-5" />}
               onClick={() => (window.location.href = "/contact")}
             >
               Request Custom Solution
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </section>

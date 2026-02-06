@@ -11,10 +11,6 @@
       name="description"
       content="Digitrans delivers enterprise-grade technology solutions and SaaS products that transform businesses through data analytics, cloud computing, and AI innovation."
     />
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
-    ></script>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -29,6 +25,31 @@
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Hidden form for Netlify Forms detection (required for React/SPA) -->
+    <!-- Per Netlify docs: JavaScript-rendered forms need a plain HTML form with matching fields -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="tel" name="phone" />
+      <input type="text" name="subject" />
+      <textarea name="message"></textarea>
+      <!-- Email subject for notifications -->
+      <input type="hidden" name="subject-line" data-remove-prefix value="New Contact from DigitransLab Website" />
+    </form>
+    
+    <form name="demo-request" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <input type="tel" name="phone" />
+      <input type="text" name="projectType" />
+      <textarea name="projectDescription"></textarea>
+    </form>
+    
     <script type="module" src="/src/main.tsx"></script>
     <script src="https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/error-handling.js"></script>
   </body>

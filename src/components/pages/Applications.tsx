@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import UniverseLights from "../UniverseLights";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import SEO from "../SEO";
 import { OrganizationSchema } from "../JsonLd";
@@ -106,19 +106,20 @@ export default function Applications() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-wrap justify-center gap-4"
             >
-              <Button
-                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 text-lg rounded-lg"
+              <GradientButton
+                size="lg"
                 onClick={() => window.location.href = "/contact"}
+                rightIcon={<ArrowRight className="h-5 w-5" />}
               >
                 Request a Demo
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                className="bg-transparent border border-white/30 hover:bg-white/10 text-white px-6 py-3 text-lg rounded-lg"
+              </GradientButton>
+              <GradientButton
+                size="lg"
+                variant="secondary"
                 onClick={() => window.location.href = "/pricing"}
               >
                 View Pricing
-              </Button>
+              </GradientButton>
             </motion.div>
           </div>
         </div>
@@ -177,13 +178,14 @@ export default function Applications() {
                         </div>
                       ))}
                     </div>
-                    <Button
-                      className="w-full bg-gray-800 hover:bg-purple-700 text-white transition-colors mt-auto"
+                    <GradientButton
+                      className="w-full"
+                      variant="ghost"
                       onClick={() => window.location.href = app.href}
+                      rightIcon={<ArrowRight className="h-4 w-4" />}
                     >
                       Learn More
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    </GradientButton>
                   </div>
                 </Card>
               </motion.div>
@@ -204,19 +206,20 @@ export default function Applications() {
                 Experience the power of visual workflows for your business applications
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button
-                  className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-3 text-lg rounded-lg"
+                <GradientButton
+                  size="lg"
                   onClick={() => window.location.href = "/contact"}
+                  rightIcon={<ArrowRight className="h-5 w-5" />}
                 >
                   Schedule a Demo
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  className="bg-transparent border border-white/30 hover:bg-white/10 text-white px-8 py-3 text-lg rounded-lg"
+                </GradientButton>
+                <GradientButton
+                  size="lg"
+                  variant="secondary"
                   onClick={() => window.location.href = "/contact"}
                 >
                   Try for Free
-                </Button>
+                </GradientButton>
               </div>
             </div>
           </div>

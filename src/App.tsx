@@ -75,6 +75,31 @@ import TechnicalCofounder from "./components/pages/solutions/TechnicalCofounder"
 import SaaSConsulting from "./components/pages/solutions/SaaSConsulting";
 import LegacyModernization from "./components/pages/solutions/LegacyModernization";
 
+// New Product Pages
+import AllamaPage from "./components/pages/products/AllamaPage";
+import DBlockPage from "./components/pages/products/DBlockPage";
+
+// New Service Pages (redesign)
+import AIConsultingPage from "./components/pages/services/AIConsultingPage";
+import DataEngineeringPage from "./components/pages/services/DataEngineeringPage";
+import CloudSolutionsPage from "./components/pages/services/CloudSolutionsPage";
+import CustomDevelopmentPage from "./components/pages/services/CustomDevelopmentPage";
+
+// New Solution Pages (redesign)
+import FinancialServicesPage from "./components/pages/solutions/FinancialServicesPage";
+import HealthcarePage from "./components/pages/solutions/HealthcarePage";
+import TechnologyPage from "./components/pages/solutions/TechnologyPage";
+
+// New Homepage
+import HomePage from "./components/pages/HomePage";
+
+// University Pages
+import UniversityHubPage from "./components/pages/university/UniversityHubPage";
+import TutorialsPage from "./components/pages/university/TutorialsPage";
+import LiveDemosPage from "./components/pages/university/LiveDemosPage";
+import TechTalksPage from "./components/pages/university/TechTalksPage";
+import WebinarsPage from "./components/pages/university/WebinarsPage";
+
 function App() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
@@ -165,6 +190,29 @@ function App() {
         <Route path="/products/godash" element={<GoDash />} />
         <Route path="/products/bigbytes" element={<BigBytes />} />
         <Route path="/products/kozmo-ai" element={<KozmoAI />} />
+        
+        {/* New Product Routes (redesign) */}
+        <Route path="/products/allama" element={<AllamaPage />} />
+        <Route path="/products/dblock" element={<DBlockPage />} />
+        
+        {/* New Service Routes (redesign) */}
+        <Route path="/services/ai-consulting" element={<AIConsultingPage />} />
+        <Route path="/services/data-engineering" element={<DataEngineeringPage />} />
+        <Route path="/services/cloud-solutions" element={<CloudSolutionsPage />} />
+        <Route path="/services/custom-development" element={<CustomDevelopmentPage />} />
+        
+        {/* New Solution Routes (redesign) */}
+        <Route path="/solutions/financial-services" element={<FinancialServicesPage />} />
+        <Route path="/solutions/healthcare" element={<HealthcarePage />} />
+        <Route path="/solutions/technology" element={<TechnologyPage />} />
+        
+        {/* University Routes */}
+        <Route path="/university" element={<UniversityHubPage />} />
+        <Route path="/university/tutorials" element={<TutorialsPage />} />
+        <Route path="/university/live-demos" element={<LiveDemosPage />} />
+        <Route path="/university/tech-talks" element={<TechTalksPage />} />
+        <Route path="/university/webinars" element={<WebinarsPage />} />
+        
         <Route path="/calendar" element={<CalendarPage />} />
         <Route path="/simple-calendar" element={<SimpleCalendarTest />} />
         <Route

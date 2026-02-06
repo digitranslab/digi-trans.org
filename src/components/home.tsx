@@ -6,7 +6,6 @@ import ProcessSection from "./sections/ProcessSection";
 import TestimonialsSection from "./sections/TestimonialsSection";
 import ValuePropositionSection from "./sections/ValuePropositionSection";
 import SaaSTestimonialsSection from "./sections/SaaSTestimonialsSection";
-import ProjectsSection from "./sections/ProjectsSection";
 import Footer from "./Footer";
 
 import { StickyCTA } from "./ui/sticky-cta";
@@ -56,7 +55,6 @@ export default function Home() {
       <TestimonialsSection />
       <ValuePropositionSection />
       <SaaSTestimonialsSection />
-      <ProjectsSection />
       <Footer />
 
       <StickyCTA />

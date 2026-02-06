@@ -31,7 +31,7 @@ import { ProgressBar } from "../../ui/progress-bar";
 import { BackToTop } from "../../ui/back-to-top";
 import { StickyCTA } from "../../ui/sticky-cta";
 import { RelatedContent } from "../../ui/related-content";
-import { Button } from "../../ui/button";
+import { GradientButton } from "../../ui/gradient-button";
 import SEO from "../../SEO";
 import { ArticleSchema } from "../../JsonLd";
 
@@ -498,13 +498,12 @@ export default function MultiAgentOrchestration() {
                   <p className="text-gray-300 mb-6">
                     At Digitrans, we specialize in designing and implementing cutting-edge multi-agent systems tailored to your specific business challenges. Our team of experts can help you navigate the complexities of agent orchestration and unlock the full potential of your data.
                   </p>
-                  <Button
-                    className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
+                  <GradientButton
+                    rightIcon={<ArrowRight className="h-5 w-5" />}
                     onClick={() => window.location.href = "/contact"}
                   >
                     Contact Us for a Consultation
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  </GradientButton>
                 </div>
               </section>
             </div>

@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import UniverseLights from "../UniverseLights";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { ProgressBar } from "../ui/progress-bar";
 import { BackToTop } from "../ui/back-to-top";
 import { StickyCTA } from "../ui/sticky-cta";
@@ -97,15 +97,16 @@ export default function DataSecurity() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-3 text-lg rounded-lg"
+            <GradientButton
+              size="lg"
+              rightIcon={<ArrowRight className="h-5 w-5" />}
               onClick={() => (window.location.href = "/contact")}
             >
               Request a Security Assessment
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-3 text-lg rounded-lg"
+            </GradientButton>
+            <GradientButton
+              size="lg"
+              variant="secondary"
               onClick={() =>
                 document
                   .getElementById("understanding")
@@ -113,7 +114,7 @@ export default function DataSecurity() {
               }
             >
               Learn More
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </div>
@@ -917,13 +918,13 @@ export default function DataSecurity() {
               Contact us to discuss how our data security solutions can help
               protect your most valuable assets.
             </p>
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-3 text-lg rounded-lg"
+            <GradientButton
+              size="lg"
+              rightIcon={<ArrowRight className="h-5 w-5" />}
               onClick={() => (window.location.href = "/contact")}
             >
               Schedule a Security Assessment
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </section>

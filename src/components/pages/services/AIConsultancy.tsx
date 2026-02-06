@@ -3,7 +3,7 @@ import Navbar from "../../Navbar";
 import Footer from "../../Footer";
 import { motion } from "framer-motion";
 import { Card } from "../../ui/card";
-import { Button } from "../../ui/button";
+import { GradientButton } from "../../ui/gradient-button";
 import SEO from "../../SEO";
 import {
   ArrowRight,
@@ -172,19 +172,19 @@ export default function AIConsultancy() {
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <Button
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3"
+                <GradientButton
+                  size="lg"
+                  rightIcon={<ArrowRight className="h-5 w-5" />}
                   onClick={() => (window.location.href = "/contact")}
                 >
                   Start AI Transformation
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3"
+                </GradientButton>
+                <GradientButton
+                  size="lg"
+                  variant="secondary"
                 >
                   View Case Studies
-                </Button>
+                </GradientButton>
               </div>
             </motion.div>
             
@@ -383,13 +383,13 @@ export default function AIConsultancy() {
             <p className="text-xl text-gray-300 mb-8">
               Let's discuss how our AI consultancy can unlock the value in your data and accelerate your digital transformation.
             </p>
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg"
+            <GradientButton
+              size="lg"
+              rightIcon={<ArrowRight className="h-5 w-5" />}
               onClick={() => (window.location.href = "/contact")}
             >
               Schedule Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </section>

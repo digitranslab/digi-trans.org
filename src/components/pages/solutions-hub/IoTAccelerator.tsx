@@ -4,6 +4,7 @@ import Footer from "../../Footer";
 import { motion } from "framer-motion";
 import { Card } from "../../ui/card";
 import { Button } from "../../ui/button";
+import { GradientButton } from "../../ui/gradient-button";
 import SEO from "../../SEO";
 import {
   ArrowRight,
@@ -136,19 +137,17 @@ export default function IoTAccelerator() {
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <Button
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3"
+                <GradientButton
+                  rightIcon={<ArrowRight className="h-5 w-5" />}
                   onClick={() => (window.location.href = "/contact")}
                 >
                   Request a demo
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3"
+                </GradientButton>
+                <GradientButton
+                  variant="secondary"
                 >
                   View Documentation
-                </Button>
+                </GradientButton>
               </div>
             </motion.div>
             
@@ -366,13 +365,12 @@ export default function IoTAccelerator() {
             <p className="text-xl text-gray-300 mb-8">
               Acquire a detailed walkthrough of the IoT accelerator, complete with a use case that mirrors the specificities of your business operation.
             </p>
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg"
+            <GradientButton
+              rightIcon={<ArrowRight className="h-5 w-5" />}
               onClick={() => (window.location.href = "/contact")}
             >
               Request a demo
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </section>

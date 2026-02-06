@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { Star, TrendingUp, Users, DollarSign, ArrowRight, Download, Share2 } from "lucide-react";
 
 const salesAssets = [
@@ -134,14 +135,14 @@ export default function SalesEnablement() {
                   </div>
                   
                   <div className="flex gap-2">
-                    <Button 
+                    <GradientButton 
                       size="sm" 
-                      className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                      className="flex-1"
                       onClick={() => window.open(asset.downloadUrl, '_blank')}
+                      rightIcon={<Download className="w-4 h-4" />}
                     >
                       Download
-                      <Download className="w-4 h-4 ml-2" />
-                    </Button>
+                    </GradientButton>
                     <Button size="sm" variant="outline" className="border-purple-500/20">
                       <Share2 className="w-4 h-4" />
                     </Button>
@@ -246,10 +247,9 @@ export default function SalesEnablement() {
                   </div>
                 </div>
                 
-                <Button className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700">
+                <GradientButton rightIcon={<ArrowRight className="w-4 h-4" />}>
                   Use ROI Calculator
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                </GradientButton>
               </div>
               
               <div className="bg-black/30 rounded-lg p-6">

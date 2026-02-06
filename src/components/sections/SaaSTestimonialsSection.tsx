@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 
 const saasTestimonials = [
   {
@@ -219,15 +219,12 @@ export default function SaaSTestimonialsSection() {
                       </button>
                     </div>
                     
-                    <Button
-                      className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] relative group"
+                    <GradientButton
+                      rightIcon={<ArrowRight className="h-4 w-4" />}
                       onClick={() => window.open("/contact", "_self")}
                     >
-                      <span className="relative flex items-center">
-                        Start Your Success Story
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </Button>
+                      Start Your Success Story
+                    </GradientButton>
                   </div>
                 </div>
               </div>
@@ -289,17 +286,13 @@ export default function SaaSTestimonialsSection() {
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
             Book a free consultation to discuss how we can help you build and scale your SaaS product.
           </p>
-          <Button
+          <GradientButton
             size="lg"
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] relative group"
+            rightIcon={<ArrowRight className="h-5 w-5" />}
             onClick={() => window.open("/contact", "_self")}
           >
-            <span className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></span>
-            <span className="relative flex items-center">
-              Get Your Free Consultation
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </Button>
+            Get Your Free Consultation
+          </GradientButton>
         </motion.div>
       </div>
     </section>

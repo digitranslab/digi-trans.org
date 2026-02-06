@@ -3,7 +3,7 @@ import Navbar from "../../Navbar";
 import Footer from "../../Footer";
 import { motion } from "framer-motion";
 import { Card } from "../../ui/card";
-import { Button } from "../../ui/button";
+import { GradientButton } from "../../ui/gradient-button";
 import { Calendar, User, Clock, Share2, ArrowRight, Code, Database, Cloud, Zap, Users, TrendingUp } from "lucide-react";
 import SEO from "../../SEO";
 
@@ -576,14 +576,13 @@ app.use((req, res, next) => {
                   Our team has helped 50+ SaaS companies scale from MVP to enterprise. 
                   Let's discuss your scaling challenges and build a roadmap for growth.
                 </p>
-                <Button
+                <GradientButton
                   size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3"
+                  rightIcon={<ArrowRight className="h-5 w-5" />}
                   onClick={() => window.open("/contact", "_self")}
                 >
                   Book Free Architecture Review
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                </GradientButton>
               </Card>
             </div>
           </motion.div>

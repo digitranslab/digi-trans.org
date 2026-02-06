@@ -1,8 +1,20 @@
+/**
+ * TestimonialsSection Component
+ * 
+ * Displays client testimonials in a carousel format.
+ * Shows quote, client name, title, and company.
+ * Supports placeholder data format for future integration with real client data.
+ * Animates testimonial cards with entrance effects when in view.
+ * 
+ * Requirements: 7.1, 7.2, 7.3, 7.4
+ */
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 
-const testimonials = [
+// Default testimonials for backward compatibility
+const defaultTestimonials = [
   {
     name: "Marcus Weber",
     position: "CEO & Founder",
@@ -35,16 +47,55 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialsSection() {
+// Extended testimonial type that includes optional fields for backward compatibility
+interface ExtendedTestimonial {
+  quote: string;
+  name?: string;
+  author?: string;
+  position?: string;
+  title?: string;
+  company: string;
+  image?: string;
+  avatar?: string;
+  rating?: number;
+  industry?: string;
+  results?: string[];
+}
+
+interface TestimonialsSectionProps {
+  /** Custom testimonials data - supports both old and new formats */
+  testimonials?: ExtendedTestimonial[];
+  /** Section title */
+  title?: string;
+  /** Section description */
+  description?: string;
+  /** Section badge text */
+  badge?: string;
+}
+
+export default function TestimonialsSection({
+  testimonials,
+  title = "What Our Clients Say",
+  description = "Hear from the teams and founders who have transformed their businesses with our solutions.",
+  badge = "Client Success",
+}: TestimonialsSectionProps) {
+  // Use provided testimonials or fall back to defaults
+  const displayTestimonials = testimonials || defaultTestimonials;
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const nextTestimonial = () => {
-    setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    setActiveTestimonial((prev) => (prev + 1) % displayTestimonials.length);
   };
 
   const prevTestimonial = () => {
-    setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setActiveTestimonial((prev) => (prev - 1 + displayTestimonials.length) % displayTestimonials.length);
   };
+
+  // Helper to get name from either format
+  const getName = (t: ExtendedTestimonial) => t.name || t.author || "Anonymous";
+  const getTitle = (t: ExtendedTestimonial) => t.position || t.title || "";
+  const getImage = (t: ExtendedTestimonial) => t.image || t.avatar;
+  const currentTestimonial = displayTestimonials[activeTestimonial];
 
   return (
     <section className="py-24 bg-black text-white relative overflow-hidden">
@@ -60,12 +111,12 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block mb-3 px-4 py-1 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">Client Success</span>
+          <span className="inline-block mb-3 px-4 py-1 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">{badge}</span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-400">
-            Trusted by SaaS Founders Across EMEA
+            {title}
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what founders say about working with us.
+            {description}
           </p>
         </motion.div>
 
@@ -89,32 +140,45 @@ export default function TestimonialsSection() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 {/* Founder Info */}
                 <div className="flex flex-col items-center lg:items-start">
-                  <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-purple-500/30">
-                    <img 
-                      src={testimonials[activeTestimonial].image} 
-                      alt={testimonials[activeTestimonial].name} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  {getImage(currentTestimonial) && (
+                    <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-purple-500/30">
+                      <img 
+                        src={getImage(currentTestimonial)} 
+                        alt={getName(currentTestimonial)} 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  {!getImage(currentTestimonial) && (
+                    <div className="w-24 h-24 rounded-full mb-4 border-2 border-purple-500/30 bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center">
+                      <span className="text-3xl font-bold text-purple-300">
+                        {getName(currentTestimonial).charAt(0)}
+                      </span>
+                    </div>
+                  )}
                   <div className="text-center lg:text-left mb-4">
                     <h4 className="text-xl font-bold text-white mb-1">
-                      {testimonials[activeTestimonial].name}
+                      {getName(currentTestimonial)}
                     </h4>
                     <p className="text-purple-300 mb-1">
-                      {testimonials[activeTestimonial].position}
+                      {getTitle(currentTestimonial)}
                     </p>
                     <p className="text-gray-400">
-                      {testimonials[activeTestimonial].company}
+                      {currentTestimonial.company}
                     </p>
                   </div>
-                  <div className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg px-3 py-1 mb-3 text-sm text-gray-300">
-                    {testimonials[activeTestimonial].industry}
-                  </div>
-                  <div className="flex">
-                    {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                    ))}
-                  </div>
+                  {currentTestimonial.industry && (
+                    <div className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg px-3 py-1 mb-3 text-sm text-gray-300">
+                      {currentTestimonial.industry}
+                    </div>
+                  )}
+                  {currentTestimonial.rating && (
+                    <div className="flex">
+                      {[...Array(currentTestimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                      ))}
+                    </div>
+                  )}
                 </div>
                 
                 {/* Testimonial Content */}
@@ -126,20 +190,22 @@ export default function TestimonialsSection() {
                     transition={{ duration: 0.5 }}
                     className="text-xl md:text-2xl text-white mb-8 font-light leading-relaxed"
                   >
-                    "{testimonials[activeTestimonial].quote}"
+                    "{currentTestimonial.quote}"
                   </motion.blockquote>
                   
-                  {/* Results */}
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    {testimonials[activeTestimonial].results.map((result, index) => (
-                      <div 
-                        key={index}
-                        className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-lg p-3 text-center border border-blue-500/10"
-                      >
-                        <p className="text-purple-300 font-bold text-sm">{result}</p>
-                      </div>
-                    ))}
-                  </div>
+                  {/* Results - only show if available */}
+                  {currentTestimonial.results && currentTestimonial.results.length > 0 && (
+                    <div className="grid grid-cols-3 gap-4 mb-6">
+                      {currentTestimonial.results.map((result, index) => (
+                        <div 
+                          key={index}
+                          className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 rounded-lg p-3 text-center border border-blue-500/10"
+                        >
+                          <p className="text-purple-300 font-bold text-sm">{result}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   
                   {/* Navigation */}
                   <div className="flex items-center justify-between">
@@ -162,7 +228,7 @@ export default function TestimonialsSection() {
                     
                     {/* Indicators */}
                     <div className="flex space-x-2">
-                      {testimonials.map((_, index) => (
+                      {displayTestimonials.map((_, index) => (
                         <button
                           key={index}
                           onClick={() => setActiveTestimonial(index)}

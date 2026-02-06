@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import UniverseLights from "../UniverseLights";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { ProgressBar } from "../ui/progress-bar";
 import { BackToTop } from "../ui/back-to-top";
 import { StickyCTA } from "../ui/sticky-cta";
@@ -306,15 +306,16 @@ export default function BigDataAnalytics() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <Button
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg rounded-lg"
+            <GradientButton
+              size="lg"
               onClick={() => (window.location.href = "/contact")}
+              rightIcon={<ArrowRight className="h-5 w-5" />}
             >
               Request a Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-3 text-lg rounded-lg"
+            </GradientButton>
+            <GradientButton
+              size="lg"
+              variant="secondary"
               onClick={() =>
                 document
                   .getElementById("case-studies")
@@ -322,7 +323,7 @@ export default function BigDataAnalytics() {
               }
             >
               View Case Studies
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </div>
@@ -931,13 +932,13 @@ export default function BigDataAnalytics() {
               Let's discuss how our Big Data Analytics solutions can help you
               achieve your business goals.
             </p>
-            <Button
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg rounded-lg"
+            <GradientButton
+              size="lg"
               onClick={() => (window.location.href = "/contact")}
+              rightIcon={<ArrowRight className="h-5 w-5" />}
             >
               Schedule a Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </section>

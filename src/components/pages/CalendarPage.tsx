@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { motion } from "framer-motion";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import CalendarWindow from "../CalendarWindow";
 import Cal, { getCalApi } from "@calcom/embed-react";
 
@@ -111,12 +111,11 @@ export default function CalendarPage() {
           </div>
 
           <div className="mt-12 text-center">
-            <Button
+            <GradientButton
               onClick={() => setShowCalendar(true)}
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-3 text-lg"
             >
               Open Calendar in Modal
-            </Button>
+            </GradientButton>
           </div>
         </div>
       </section>

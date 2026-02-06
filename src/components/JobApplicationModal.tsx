@@ -8,7 +8,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "./ui/dialog";
-import { Button } from "./ui/button";
+import { GradientButton } from "./ui/gradient-button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
@@ -215,12 +215,12 @@ export default function JobApplicationModal({
             />
 
             <DialogFooter>
-              <Button
+              <GradientButton
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="w-full"
               >
                 Submit Application
-              </Button>
+              </GradientButton>
             </DialogFooter>
           </form>
         </Form>

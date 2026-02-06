@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { ArrowRight, CheckCircle, Clock, Users, Shield, Zap } from "lucide-react";
 
 const valueProps = [
@@ -93,17 +93,13 @@ export default function ValuePropositionSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <Button
+              <GradientButton
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] relative group"
+                rightIcon={<ArrowRight className="h-5 w-5" />}
                 onClick={() => window.open("/contact", "_self")}
               >
-                <span className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></span>
-                <span className="relative flex items-center">
-                  Start Your Project Today
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Button>
+                Start Your Project Today
+              </GradientButton>
             </motion.div>
           </motion.div>
 
@@ -142,14 +138,7 @@ export default function ValuePropositionSection() {
                 ))}
               </div>
 
-              <div className="mt-8 p-6 bg-gradient-to-r from-purple-900/30 to-blue-900/30 rounded-lg border border-blue-800/30">
-                <div className="text-center">
-                  <p className="text-purple-300 font-semibold mb-2">Risk-Free Guarantee</p>
-                  <p className="text-sm text-gray-300">
-                    Not satisfied with our work? We'll refund your project within the first 30 days.
-                  </p>
-                </div>
-              </div>
+
             </Card>
           </motion.div>
         </div>

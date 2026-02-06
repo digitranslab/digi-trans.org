@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { ArrowRight, ExternalLink, TrendingUp, Users, DollarSign, Calendar, Star, Award, Zap } from "lucide-react";
 import SEO from "../SEO";
 
@@ -408,10 +408,9 @@ export default function Portfolio() {
                     </div>
                     
                     {/* CTA */}
-                    <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white transition-all duration-300 group">
+                    <GradientButton className="w-full" rightIcon={<ArrowRight className="w-4 h-4" />}>
                       View Case Study
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                    </GradientButton>
                   </div>
                 </Card>
               </motion.div>
@@ -437,17 +436,13 @@ export default function Portfolio() {
               Join 50+ successful SaaS founders who've transformed their ideas into thriving businesses. 
               Book a free consultation to discuss your project.
             </p>
-            <Button
+            <GradientButton
               size="lg"
-              className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] relative group"
+              rightIcon={<ArrowRight className="h-5 w-5" />}
               onClick={() => window.open("/contact", "_self")}
             >
-              <span className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></span>
-              <span className="relative flex items-center">
-                Start Your Success Story
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Button>
+              Start Your Success Story
+            </GradientButton>
           </motion.div>
         </div>
       </section>

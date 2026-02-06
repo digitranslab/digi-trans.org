@@ -1,330 +1,509 @@
+/**
+ * Contact Page Component
+ * 
+ * Implements Netlify Forms according to official documentation:
+ * - https://docs.netlify.com/manage/forms/setup/
+ * - https://docs.netlify.com/manage/forms/spam-filters/
+ * 
+ * Features:
+ * - Netlify Forms for contact submissions (free tier: 100/month)
+ * - Honeypot field for spam prevention
+ * - AJAX submission with proper encoding
+ * - Cal.com for calendar booking (free tier)
+ */
+
 import React, { useState } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { motion } from "framer-motion";
-import { Card } from "../ui/card";
-import { Button } from "../ui/button";
-import { MapPin, Phone, Mail, ArrowRight, Calendar, MessageCircle, Rocket, Clock, CheckCircle, Star } from "lucide-react";
-import BookingModal from "../BookingModal";
+import { 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Send, 
+  Calendar, 
+  MessageCircle, 
+  CheckCircle,
+  Loader2,
+  ExternalLink,
+  Clock,
+  Users,
+  Globe,
+  AlertCircle
+} from "lucide-react";
+import { GlassCard } from "../ui/glass-card";
+import { GradientButton } from "../ui/gradient-button";
+import { SectionHeader } from "../ui/section-header";
+import { AnimatedWrapper } from "../ui/animated-wrapper";
 import SEO from "../SEO";
 
+// Office locations
 const locations = [
   {
     city: "Dubai",
     country: "UAE",
-    address: "Downtown Dubai, UAE",
     phone: "+971 50 205 5733",
     email: "info@digi-trans.org",
-    image: "/assets/offices/dubai.webp",
-  },
-  {
-    city: "Paris",
-    country: "France",
-    address: "Paris, France",
-    phone: "+33 6 13 70 97 58",
-    email: "info@digi-trans.org",
-    image: "/assets/offices/paris.webp",
   },
   {
     city: "London",
     country: "UK",
-    address: "London, UK",
     phone: "+44 777 11 51 435",
     email: "info@digi-trans.org",
-    image: "/assets/offices/london.webp",
+  },
+  {
+    city: "Paris",
+    country: "France",
+    phone: "+33 6 13 70 97 58",
+    email: "info@digi-trans.org",
   },
   {
     city: "Casablanca",
     country: "Morocco",
-    address: "Casablanca, Morocco",
     phone: "+212 6 67 19 71 88",
     email: "info@digi-trans.org",
-    image: "/assets/offices/casa.webp",
   },
 ];
 
-const contactOptions = [
-  {
-    icon: <Calendar className="w-8 h-8" />,
-    title: "Free Strategy Call",
-    description: "30-minute consultation to discuss your SaaS idea and roadmap",
-    cta: "Book Free Call",
+// Form state type - matches hidden HTML form in index.html
+interface FormData {
+  name: string;
+  email: string;
+  company: string;
+  phone: string;
+  subject: string;
+  message: string;
+  "bot-field": string; // Honeypot field for spam prevention
+}
 
-    color: "purple",
-  },
-  {
-    icon: <Rocket className="w-8 h-8" />,
-    title: "MVP Demo Request", 
-    description: "See how we've built successful SaaS products for other founders",
-    cta: "Request Demo",
-    color: "blue",
-  },
-  {
-    icon: <MessageCircle className="w-8 h-8" />,
-    title: "Quick Question",
-    description: "Have a specific question? Get a quick response from our team",
-    cta: "Send Message",
-    color: "indigo",
-  },
-];
-
-const whyChooseUs = [
-  "8-12 week MVP delivery guarantee",
-  "80% of our MVPs raise funding",
-  "50+ successful SaaS launches",
-  "99.9% uptime track record",
-  "SOC 2 & ISO 27001 compliant",
-  "Dedicated EMEA team",
-];
+/**
+ * Encode form data for Netlify Forms submission
+ * Per Netlify docs: Use application/x-www-form-urlencoded content type
+ */
+const encode = (data: Record<string, string>) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
 
 export default function Contact() {
-  const [showBookingModal, setShowBookingModal] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState(null);
-  const [selectedContactType, setSelectedContactType] = useState(null);
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    subject: "",
+    message: "",
+    "bot-field": "", // Must be empty for real users
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  /**
+   * Handle form submission via AJAX
+   * Per Netlify docs for JavaScript-rendered forms:
+   * - POST to any path on the site
+   * - Include form-name in body
+   * - Use application/x-www-form-urlencoded
+   * - Include honeypot field in body
+   */
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({
+          "form-name": "contact",
+          ...formData,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          phone: "",
+          subject: "",
+          message: "",
+          "bot-field": "",
+        });
+      } else {
+        throw new Error(`Form submission failed: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setSubmitStatus("error");
+      setErrorMessage(
+        "Something went wrong. Please try again or email us directly at info@digi-trans.org"
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
       <SEO
-        title="Contact Digitrans | Free SaaS Development Consultation"
-        description="Ready to build your SaaS product? Book a free consultation with our EMEA team. 8-12 week MVP delivery, 80% funding success rate, 50+ launches."
+        title="Contact DigitransLab | AI & Data Consulting"
+        description="Get in touch with DigitransLab for AI consulting, data engineering, and custom software development. Book a free consultation today."
         canonicalUrl="/contact"
-        keywords={[
-          "SaaS development consultation",
-          "MVP development quote",
-          "SaaS development contact",
-          "technical co-founder consultation",
-          "SaaS product development quote",
-          "startup development consultation",
-        ]}
+        keywords={["AI consulting contact", "data engineering services", "book consultation", "DigitransLab contact"]}
       />
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-12 bg-gradient-to-br from-black via-gray-900 to-black text-white relative overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-purple-900/10 rounded-full filter blur-[120px] -z-10"></div>
-        <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-blue-900/10 rounded-full filter blur-[120px] -z-10"></div>
-        
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto mb-16"
-          >
-            <span className="inline-block mb-4 px-4 py-1 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
-              Ready to Build Your SaaS?
-            </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-400">
-              Let's Turn Your Idea Into Reality
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Join 50+ successful SaaS founders who've built and scaled their products with our help. 
-              Book a free consultation to discuss your project and get expert guidance.
-            </p>
-            
-            {/* Trust signals */}
-            <div className="flex flex-wrap justify-center items-center gap-6 mb-8 text-sm text-gray-300">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-green-400" />
-                <span>8-12 Week Delivery</span>
-              </div>
-              <div className="w-px h-4 bg-gray-600"></div>
-              <div className="flex items-center gap-2">
-                <Rocket className="w-4 h-4 text-green-400" />
-                <span>80% Funding Success</span>
-              </div>
-              <div className="w-px h-4 bg-gray-600"></div>
-              <div className="flex items-center gap-2">
-                <Star className="w-4 h-4 text-green-400" />
-                <span>98% Client Satisfaction</span>
-              </div>
-            </div>
-          </motion.div>
+      <main>
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-16 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
 
-          {/* Contact Options */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
-          >
-            {contactOptions.map((option, index) => (
-              <motion.div
-                key={option.title}
-                whileHover={{ y: -10, scale: 1.03 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="relative"
-              >
-
-                <Card className={`p-8 h-full bg-gradient-to-br from-gray-900/80 via-${option.color}-900/20 to-gray-900/80 backdrop-blur-sm border border-${option.color}-500/20 hover:border-${option.color}-400/40 transition-all duration-300 text-center group cursor-pointer`}>
-                  <div className={`w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-br from-${option.color}-600/30 to-${option.color}-700/30 flex items-center justify-center text-${option.color}-400 group-hover:scale-110 transition-transform duration-300`}>
-                    {option.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-4">{option.title}</h3>
-                  <p className="text-gray-300 mb-6">{option.description}</p>
-                  <Button
-                    className={`w-full bg-gradient-to-r from-${option.color}-600 to-${option.color}-700 hover:from-${option.color}-700 hover:to-${option.color}-800 text-white transition-all duration-300 group`}
-                    onClick={() => {
-                      setSelectedContactType(option);
-                      setShowBookingModal(true);
-                    }}
-                  >
-                    {option.cta}
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Why Choose Us */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="max-w-4xl mx-auto mb-16"
-          >
-            <div className="bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-indigo-900/20 backdrop-blur-sm rounded-2xl border border-blue-500/10 p-8">
-              <h3 className="text-2xl font-bold text-white text-center mb-8">Why SaaS Founders Choose Digitrans</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {whyChooseUs.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                    <span className="text-gray-300">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Offices Section */}
-      <section className="py-16 bg-black text-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Meet Us Across EMEA
-            </h2>
-            <p className="text-xl text-gray-300">
-              Local presence with global expertise. Our teams across Europe, Middle East, and Africa 
-              are ready to help you build your SaaS product.
-            </p>
-          </motion.div>
-
-          {/* Location Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {locations.map((location, index) => (
-              <motion.div
-                key={location.city}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
-              >
-                <Card className="overflow-hidden h-full hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-indigo-900/20 border border-blue-500/10 backdrop-blur-sm hover:border-blue-400/20">
-                  <div className="aspect-[4/3] relative overflow-hidden">
-                    <img
-                      src={location.image}
-                      alt={`${location.city}, ${location.country}`}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                    />
-                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/80 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-2xl font-bold text-white mb-1">
-                        {location.city}
-                      </h3>
-                      <p className="text-gray-300">{location.country}</p>
-                    </div>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-start gap-3">
-                      <MapPin className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
-                      <p className="text-gray-300">{location.address}</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Phone className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
-                      <p className="text-gray-300">{location.phone}</p>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Mail className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
-                      <p className="text-gray-300">{location.email}</p>
-                    </div>
-                    <Button
-                      onClick={() => {
-                        setSelectedLocation(location);
-                        setShowBookingModal(true);
-                      }}
-                      className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white mt-4 group"
-                    >
-                      Book SaaS Consultation
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="container mx-auto px-4 relative z-10">
+            <AnimatedWrapper animation="fade-up" className="max-w-3xl mx-auto text-center">
+              <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
+                Let's Connect
+              </span>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                Start Your AI & Data Journey
+              </h1>
+              <p className="text-xl text-gray-300 mb-8">
+                Whether you need strategic consulting, engineering expertise, or want to explore our products, 
+                we're here to help transform your business.
+              </p>
+            </AnimatedWrapper>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Testimonial Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <Card className="p-8 bg-gray-900/50 backdrop-blur-sm border border-blue-800/30">
-              <div className="mb-6">
-                <div className="flex justify-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-6 h-6 text-yellow-500 fill-yellow-500" />
-                  ))}
-                </div>
-                <blockquote className="text-xl md:text-2xl text-white font-light leading-relaxed mb-6">
-                  "Digitrans transformed our MVP idea into a market-ready SaaS platform in just 10 weeks. 
-                  We've already secured €2M in funding and onboarded 500+ customers. They didn't just build 
-                  our product - they became our strategic partner."
-                </blockquote>
-                <div className="flex items-center justify-center gap-4">
-                  <div className="w-12 h-12 rounded-full overflow-hidden">
-                    <img 
-                      src="/images/testimonials/ayoub.jpeg" 
-                      alt="Marcus Weber" 
-                      className="w-full h-full object-cover"
-                    />
+        {/* Contact Options */}
+        <section className="py-12">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              
+              {/* Contact Form */}
+              <AnimatedWrapper animation="slide-right">
+                <GlassCard variant="gradient" className="p-6 h-full">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 text-white">
+                      <MessageCircle className="w-5 h-5" />
+                    </div>
+                    <h2 className="text-xl font-bold text-white">Send a Message</h2>
                   </div>
-                  <div className="text-left">
-                    <p className="text-white font-medium">Marcus Weber</p>
-                    <p className="text-purple-300 text-sm">CEO & Founder, TechFlow SaaS</p>
+
+                  {submitStatus === "success" ? (
+                    <div className="text-center py-12">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center">
+                        <CheckCircle className="w-8 h-8 text-green-400" />
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-2">Message Sent!</h3>
+                      <p className="text-gray-400 mb-6">We'll get back to you within 24 hours.</p>
+                      <GradientButton 
+                        variant="secondary" 
+                        onClick={() => setSubmitStatus("idle")}
+                      >
+                        Send Another Message
+                      </GradientButton>
+                    </div>
+                  ) : (
+                    <form 
+                      name="contact" 
+                      method="POST"
+                      data-netlify="true"
+                      data-netlify-honeypot="bot-field"
+                      onSubmit={handleSubmit}
+                      className="space-y-4"
+                    >
+                      {/* 
+                        Hidden field for form-name (required for JS forms)
+                        Per Netlify docs: "you need to add a hidden input with name='form-name'"
+                      */}
+                      <input type="hidden" name="form-name" value="contact" />
+                      
+                      {/* 
+                        Honeypot field for spam prevention
+                        Per Netlify docs: "hidden form fields that lure bot users"
+                        Must be hidden via CSS, included in POST body
+                      */}
+                      <p className="hidden" aria-hidden="true">
+                        <label>
+                          Don't fill this out if you're human:
+                          <input 
+                            name="bot-field" 
+                            value={formData["bot-field"]}
+                            onChange={handleChange}
+                            tabIndex={-1}
+                            autoComplete="off"
+                          />
+                        </label>
+                      </p>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label htmlFor="name" className="block text-sm text-gray-400 mb-1">
+                            Name <span className="text-red-400">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            value={formData.name}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                            placeholder="Your name"
+                          />
+                        </div>
+                        <div>
+                          {/* 
+                            Email field named "email" for Reply-to functionality
+                            Per Netlify docs: "add an <input> with name='email' to set Reply-to"
+                          */}
+                          <label htmlFor="email" className="block text-sm text-gray-400 mb-1">
+                            Email <span className="text-red-400">*</span>
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                            placeholder="your@email.com"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label htmlFor="company" className="block text-sm text-gray-400 mb-1">Company</label>
+                          <input
+                            type="text"
+                            id="company"
+                            name="company"
+                            value={formData.company}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                            placeholder="Company name"
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="phone" className="block text-sm text-gray-400 mb-1">Phone</label>
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            className="w-full px-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                            placeholder="+1 234 567 890"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label htmlFor="subject" className="block text-sm text-gray-400 mb-1">
+                          Subject <span className="text-red-400">*</span>
+                        </label>
+                        <select
+                          id="subject"
+                          name="subject"
+                          required
+                          value={formData.subject}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-purple-500 transition-colors"
+                        >
+                          <option value="">Select a topic</option>
+                          <option value="AI Consulting">AI Consulting</option>
+                          <option value="Data Engineering">Data Engineering</option>
+                          <option value="Custom Development">Custom Development</option>
+                          <option value="Product Inquiry - Allama">Product Inquiry - Allama</option>
+                          <option value="Product Inquiry - DBLOCK">Product Inquiry - DBLOCK</option>
+                          <option value="Partnership">Partnership Opportunity</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label htmlFor="message" className="block text-sm text-gray-400 mb-1">
+                          Message <span className="text-red-400">*</span>
+                        </label>
+                        <textarea
+                          id="message"
+                          name="message"
+                          required
+                          rows={4}
+                          value={formData.message}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors resize-none"
+                          placeholder="Tell us about your project or question..."
+                        />
+                      </div>
+
+                      {submitStatus === "error" && (
+                        <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg flex items-start gap-2">
+                          <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                          <p className="text-red-400 text-sm">{errorMessage}</p>
+                        </div>
+                      )}
+
+                      <GradientButton 
+                        type="submit" 
+                        className="w-full" 
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4 mr-2" />
+                            Send Message
+                          </>
+                        )}
+                      </GradientButton>
+                    </form>
+                  )}
+                </GlassCard>
+              </AnimatedWrapper>
+
+              {/* Book a Call */}
+              <AnimatedWrapper animation="slide-left">
+                <GlassCard variant="gradient" className="p-6 h-full">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 text-white">
+                      <Calendar className="w-5 h-5" />
+                    </div>
+                    <h2 className="text-xl font-bold text-white">Book a Consultation</h2>
                   </div>
-                </div>
+
+                  <p className="text-gray-400 mb-6">
+                    Schedule a free 30-minute consultation to discuss your AI and data transformation needs.
+                  </p>
+
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <Clock className="w-5 h-5 text-purple-400" />
+                      <span>30-minute video call</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <Users className="w-5 h-5 text-purple-400" />
+                      <span>Meet with our experts</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <Globe className="w-5 h-5 text-purple-400" />
+                      <span>Available worldwide</span>
+                    </div>
+                  </div>
+
+                  {/* Cal.com Booking Link - Free tier */}
+                  <GradientButton className="w-full mb-4" asChild>
+                    <a 
+                      href="https://cal.com/digitransinc/consultation-digitrans" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Schedule Free Consultation
+                      <ExternalLink className="w-4 h-4 ml-2" />
+                    </a>
+                  </GradientButton>
+
+                  <p className="text-xs text-gray-500 text-center">
+                    Opens Cal.com scheduling page
+                  </p>
+                </GlassCard>
+              </AnimatedWrapper>
+            </div>
+          </div>
+        </section>
+
+        {/* Global Offices */}
+        <section className="py-16 bg-gray-900/30">
+          <div className="container mx-auto px-4">
+            <SectionHeader
+              badge="Global Presence"
+              title="Our Offices"
+              description="Local expertise across EMEA region."
+              alignment="center"
+            />
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
+              {locations.map((location, index) => (
+                <AnimatedWrapper key={location.city} animation="fade-up" delay={index * 0.1}>
+                  <GlassCard className="p-4 text-center h-full">
+                    <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mx-auto mb-3" />
+                    <h3 className="font-bold text-white mb-1">{location.city}</h3>
+                    <p className="text-gray-400 text-sm mb-2">{location.country}</p>
+                    <a 
+                      href={`tel:${location.phone.replace(/\s/g, '')}`}
+                      className="text-xs text-purple-400 hover:text-purple-300 transition-colors block"
+                    >
+                      {location.phone}
+                    </a>
+                  </GlassCard>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Quick Info */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <SectionHeader
+                badge="Quick Info"
+                title="What to Expect"
+                alignment="center"
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                <GlassCard className="p-5">
+                  <h3 className="font-bold text-white mb-2">Response Time</h3>
+                  <p className="text-gray-400 text-sm">
+                    We typically respond to inquiries within 24 hours during business days.
+                  </p>
+                </GlassCard>
+                <GlassCard className="p-5">
+                  <h3 className="font-bold text-white mb-2">Consultation</h3>
+                  <p className="text-gray-400 text-sm">
+                    Initial consultations are free. We'll discuss your needs and provide recommendations.
+                  </p>
+                </GlassCard>
+                <GlassCard className="p-5">
+                  <h3 className="font-bold text-white mb-2">Project Scope</h3>
+                  <p className="text-gray-400 text-sm">
+                    We work with projects of all sizes, from startups to enterprise transformations.
+                  </p>
+                </GlassCard>
+                <GlassCard className="p-5">
+                  <h3 className="font-bold text-white mb-2">Open Source</h3>
+                  <p className="text-gray-400 text-sm">
+                    Our products are open-source. Check our GitHub for documentation and community support.
+                  </p>
+                </GlassCard>
               </div>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
-      {showBookingModal && (
-        <BookingModal
-          open={showBookingModal}
-          onOpenChange={() => setShowBookingModal(false)}
-          title={selectedContactType ? selectedContactType.title : `Book a Meeting in ${selectedLocation?.city || 'our office'}`}
-          description={selectedContactType ? 
-            selectedContactType.description : 
-            `Schedule a meeting at our ${selectedLocation?.city || ''} location to discuss your SaaS project.`}
-        />
-      )}
+            </div>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>

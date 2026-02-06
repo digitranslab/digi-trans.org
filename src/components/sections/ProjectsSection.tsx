@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
 const featuredProjects = [
@@ -159,15 +159,12 @@ export default function ProjectsSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <Button
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] relative group"
+          <GradientButton
+            rightIcon={<ExternalLink className="h-5 w-5" />}
             onClick={() => window.open("/portfolio", "_self")}
           >
-            <span className="relative flex items-center">
-              View All Case Studies
-              <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </Button>
+            View All Case Studies
+          </GradientButton>
         </motion.div>
       </div>
     </section>

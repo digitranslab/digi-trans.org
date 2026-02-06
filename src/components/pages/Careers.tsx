@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { ArrowRight, Briefcase, MapPin, Clock, DollarSign } from "lucide-react";
 import JobApplicationModal from "../JobApplicationModal";
 import UniverseLights from "../UniverseLights";
@@ -239,8 +239,8 @@ export default function Careers() {
                     <p className="text-gray-300 mb-4">{job.description}</p>
 
                     <div className="mt-auto">
-                      <Button
-                        className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
+                      <GradientButton
+                        className="w-full"
                         onClick={() => {
                           // Redirect to the job page based on job title
                           const jobPath = job.title
@@ -248,10 +248,10 @@ export default function Careers() {
                             .replace(/\s+/g, "-");
                           window.location.href = `/careers/${jobPath}`;
                         }}
+                        rightIcon={<ArrowRight className="h-4 w-4" />}
                       >
                         View Job
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
+                      </GradientButton>
                     </div>
                   </Card>
                 </motion.div>

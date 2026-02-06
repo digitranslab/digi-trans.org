@@ -3,6 +3,7 @@ import UniverseLights from "./UniverseLights";
 import { motion } from "framer-motion";
 import { Card } from "./ui/card";
 import { Button } from "./ui/button";
+import { GradientButton } from "./ui/gradient-button";
 import {
   Dialog,
   DialogContent,
@@ -248,29 +249,22 @@ Building Tomorrow's<br />
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
         >
-          <Button
+          <GradientButton
             size="lg"
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] relative group"
             onClick={() => window.open("/contact", "_self")}
+            rightIcon={<ArrowRight className="h-5 w-5" />}
           >
-            <span className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></span>
-            <span className="relative flex items-center">
-              Start Your Project
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </Button>
+            Start Your Project
+          </GradientButton>
           
-          <Button
+          <GradientButton
             size="lg"
-            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg rounded-lg transition-all duration-300 ease-in-out transform hover:scale-[1.02] relative group"
+            variant="secondary"
             onClick={() => setShowCalPopup(true)}
+            rightIcon={<ArrowRight className="h-5 w-5" />}
           >
-            <span className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></span>
-            <span className="relative flex items-center">
-              Schedule a Demo
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </Button>
+            Schedule a Demo
+          </GradientButton>
         </motion.div>
 
         {showCards && (
@@ -316,18 +310,14 @@ Building Tomorrow's<br />
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-12"
           >
-            <Button
+            <GradientButton
               size="lg"
               onClick={() => setShowCalPopup(true)}
-              className="p-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 ease-in-out text-white px-8 py-6 text-lg relative group overflow-hidden"
+              rightIcon={<ArrowRight className="w-5 h-5" />}
             >
-              <span className="relative z-10 flex items-center gap-2">
-                <span className="animate-pulse bg-white rounded-full w-2 h-2 mr-1"></span>
-                Book a 30-min Call with our CEO
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></span>
-            </Button>
+              <span className="animate-pulse bg-white rounded-full w-2 h-2 mr-2"></span>
+              Book a 30-min Call with our CEO
+            </GradientButton>
           </motion.div>
         )}
       </div>
@@ -356,16 +346,16 @@ Building Tomorrow's<br />
                 ))}
               </div>
               <div className="mt-6 pt-4 border-t border-purple-500/20">
-                <Button
-                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white"
+                <GradientButton
+                  className="w-full"
                   onClick={() => {
                     setSelectedCard(null);
                     window.open("/contact", "_self");
                   }}
+                  rightIcon={<ArrowRight className="h-4 w-4" />}
                 >
                   Learn More About This Solution
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                </GradientButton>
               </div>
             </>
           )}

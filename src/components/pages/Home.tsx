@@ -4,7 +4,6 @@ import Footer from "../Footer";
 import Hero from "../Hero";
 import ServicesSection from "../sections/ServicesSection";
 import ProcessSection from "../sections/ProcessSection";
-import ProjectsSection from "../sections/ProjectsSection";
 import SEO from "../SEO";
 import { OrganizationSchema, ServiceSchema } from "../JsonLd";
 
@@ -47,7 +46,6 @@ export default function Home() {
       <Hero />
       <ServicesSection />
       <ProcessSection />
-      <ProjectsSection />
       <Footer />
     </div>
   );

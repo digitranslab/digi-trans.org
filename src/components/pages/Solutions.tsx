@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
-import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import {
   ArrowRight,
   Database,
@@ -118,13 +118,13 @@ export default function Solutions() {
                   <p className="text-gray-300 mb-6 flex-grow text-left">
                     {solution.description}
                   </p>
-                  <Button
-                    className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white w-full group"
+                  <GradientButton
+                    className="w-full"
                     onClick={() => (window.location.href = solution.link)}
+                    rightIcon={<ArrowRight className="h-4 w-4" />}
                   >
                     Learn More
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                  </GradientButton>
                 </Card>
               </motion.div>
             ))}
@@ -144,13 +144,13 @@ export default function Solutions() {
               specific business challenges. Schedule a consultation to discuss
               your needs.
             </p>
-            <Button
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg rounded-lg"
+            <GradientButton
+              size="lg"
               onClick={() => (window.location.href = "/contact")}
+              rightIcon={<ArrowRight className="h-5 w-5" />}
             >
               Schedule a Consultation
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </GradientButton>
           </motion.div>
         </div>
       </section>

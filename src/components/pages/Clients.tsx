@@ -5,6 +5,7 @@ import Hero from "../Hero";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
+import { GradientButton } from "../ui/gradient-button";
 import { ArrowRight, Building2, Landmark, Rocket, Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 
 const clientCategories = [
@@ -351,9 +352,9 @@ export default function Clients() {
                   <p className="text-xl text-gray-400 mb-8">
                     Join our growing network of satisfied clients and experience the difference of working with a dedicated team of technology experts.
                   </p>
-                  <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg">
+                  <GradientButton size="lg">
                     Contact Us for a Free Consultation
-                  </Button>
+                  </GradientButton>
                 </motion.div>
               </div>
             </motion.div>
