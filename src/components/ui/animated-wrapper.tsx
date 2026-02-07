@@ -34,14 +34,27 @@ export const useReducedMotion = (): boolean => {
   return reducedMotion;
 };
 
+// Custom easing curves for smoother animations
+const smoothEasing = [0.25, 0.1, 0.25, 1]; // cubic-bezier
+const bounceEasing = [0.68, -0.55, 0.265, 1.55];
+const springConfig = { type: "spring", stiffness: 100, damping: 15 };
+
 // Animation variant definitions
 const animationVariants: Record<string, Variants> = {
   "fade-up": {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
+      transition: { duration: 0.6, ease: smoothEasing }
+    },
+  },
+  "fade-up-slow": {
+    hidden: { opacity: 0, y: 60 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: smoothEasing }
     },
   },
   "fade-in": {
@@ -51,28 +64,112 @@ const animationVariants: Record<string, Variants> = {
       transition: { duration: 0.5, ease: "easeOut" }
     },
   },
+  "fade-in-blur": {
+    hidden: { opacity: 0, filter: "blur(10px)" },
+    visible: { 
+      opacity: 1,
+      filter: "blur(0px)",
+      transition: { duration: 0.6, ease: smoothEasing }
+    },
+  },
   "slide-left": {
-    hidden: { opacity: 0, x: 50 },
+    hidden: { opacity: 0, x: 60 },
     visible: { 
       opacity: 1, 
       x: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
+      transition: { duration: 0.6, ease: smoothEasing }
     },
   },
   "slide-right": {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -60 },
     visible: { 
       opacity: 1, 
       x: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
+      transition: { duration: 0.6, ease: smoothEasing }
+    },
+  },
+  "slide-up": {
+    hidden: { opacity: 0, y: 80 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.7, ease: smoothEasing }
+    },
+  },
+  "slide-down": {
+    hidden: { opacity: 0, y: -60 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: smoothEasing }
     },
   },
   "scale-up": {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.5, ease: smoothEasing }
+    },
+  },
+  "scale-up-bounce": {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: springConfig
+    },
+  },
+  "scale-in": {
     hidden: { opacity: 0, scale: 0.95 },
     visible: { 
       opacity: 1, 
       scale: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
+      transition: { duration: 0.4, ease: smoothEasing }
+    },
+  },
+  "rotate-in": {
+    hidden: { opacity: 0, rotate: -5, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      rotate: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: smoothEasing }
+    },
+  },
+  "flip-up": {
+    hidden: { opacity: 0, rotateX: 20, y: 30 },
+    visible: { 
+      opacity: 1, 
+      rotateX: 0,
+      y: 0,
+      transition: { duration: 0.6, ease: smoothEasing }
+    },
+  },
+  "zoom-in": {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      transition: { duration: 0.5, ease: bounceEasing }
+    },
+  },
+  "bounce-in": {
+    hidden: { opacity: 0, scale: 0.3, y: 50 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: springConfig
+    },
+  },
+  "float-up": {
+    hidden: { opacity: 0, y: 100, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     },
   },
   "none": {
@@ -90,7 +187,7 @@ const reducedMotionVariants: Variants = {
   },
 };
 
-export type AnimationVariant = "fade-up" | "fade-in" | "slide-left" | "slide-right" | "scale-up" | "none";
+export type AnimationVariant = "fade-up" | "fade-up-slow" | "fade-in" | "fade-in-blur" | "slide-left" | "slide-right" | "slide-up" | "slide-down" | "scale-up" | "scale-up-bounce" | "scale-in" | "rotate-in" | "flip-up" | "zoom-in" | "bounce-in" | "float-up" | "none";
 
 export interface AnimatedWrapperProps {
   children: React.ReactNode;

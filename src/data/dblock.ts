@@ -2,10 +2,8 @@
  * DBLOCK Product Data File
  * 
  * Contains all content data for the DBLOCK product page.
- * DBLOCK is based on Langflow - an open-source, Python-based framework 
- * for building AI applications with a visual editor.
- * 
- * Based on actual documentation at products/dblock/docs/
+ * DBLOCK is DigiTransLab's AI application development platform - we provide
+ * implementation, consulting, and managed services for building enterprise AI solutions.
  */
 
 // Type definitions
@@ -29,13 +27,6 @@ export interface Feature {
   image?: string;
 }
 
-export interface DeploymentOption {
-  name: string;
-  description: string;
-  features: string[];
-  recommended?: boolean;
-}
-
 export interface UseCase {
   title: string;
   description: string;
@@ -44,55 +35,55 @@ export interface UseCase {
 
 // Hero Section Data
 export const heroData = {
-  tagline: "Open-source AI application builder",
-  headline: "Build AI Applications Visually",
-  description: "DBLOCK is an open-source, Python-based framework for building AI applications. Visual editor for prototyping, agents, MCP support, and no lock-in to specific LLMs or vector stores.",
+  tagline: "Enterprise AI Application Platform",
+  headline: "Build AI Applications That Deliver Results",
+  description: "DBLOCK accelerates your AI initiatives. Our experts design, build, and deploy custom AI applications—from RAG systems to intelligent agents—tailored to your business needs.",
   primaryCTA: {
-    label: "Get Started Free",
-    href: "https://github.com/digitranslab/dblock",
+    label: "Schedule a Consultation",
+    href: "/contact",
   },
   secondaryCTA: {
-    label: "Read Documentation",
-    href: "https://docs.dblock.io",
+    label: "View Case Studies",
+    href: "/clients",
   },
 };
 
 // Value Propositions
 export const valuePropositions: ValueProposition[] = [
   {
-    icon: "Workflow",
-    title: "Visual Flow Builder",
-    description: "Drag and drop components to build AI application workflows. Connect nodes, configure parameters, and test in real-time without writing code.",
+    icon: "Rocket",
+    title: "Rapid AI Development",
+    description: "Our AI engineers build production-ready applications in weeks. Visual development accelerates iteration while our expertise ensures enterprise-grade quality.",
     metric: {
-      value: "Minutes",
-      label: "To First Flow",
+      value: "3-4x",
+      label: "Faster Development",
     },
   },
   {
     icon: "Bot",
-    title: "Agent & MCP Support",
-    description: "Built-in support for AI agents and Model Context Protocol (MCP). Use DBLOCK as an MCP server or client for seamless AI integration.",
+    title: "Intelligent Agents",
+    description: "We build AI agents that automate complex workflows—from customer support to document processing. Agents that think, decide, and act on your behalf.",
     metric: {
-      value: "Native",
-      label: "Agent Support",
+      value: "Custom",
+      label: "Agent Solutions",
     },
   },
   {
-    icon: "Blocks",
-    title: "Flexible Components",
-    description: "Not tied to specific LLMs or vector stores. Use any model provider, any embedding service, any data store that fits your needs.",
+    icon: "Shield",
+    title: "Enterprise Security",
+    description: "Deploy AI with confidence. We implement proper data governance, access controls, and audit trails. Your data stays secure and compliant.",
     metric: {
-      value: "100+",
-      label: "Components",
+      value: "SOC 2",
+      label: "Compliant",
     },
   },
   {
-    icon: "Code2",
-    title: "100% Open Source",
-    description: "Fully open source and Python-based. Extend with custom components, contribute to the community, and maintain full control.",
+    icon: "TrendingUp",
+    title: "Measurable ROI",
+    description: "Every AI project we deliver is tied to business outcomes. We track metrics that matter—cost savings, efficiency gains, revenue impact.",
     metric: {
-      value: "100%",
-      label: "Open Source",
+      value: "Proven",
+      label: "Business Value",
     },
   },
 ];
@@ -100,157 +91,122 @@ export const valuePropositions: ValueProposition[] = [
 // Features Deep Dive
 export const features: Feature[] = [
   {
-    id: "flow-builder",
-    icon: "Workflow",
-    title: "Visual Flow Editor",
-    description: "Build AI application workflows with an intuitive visual editor. No coding required for basic flows.",
+    id: "rag-solutions",
+    icon: "FileSearch",
+    title: "RAG & Knowledge Systems",
+    description: "We build retrieval-augmented generation systems that let your teams query internal knowledge bases, documents, and data with natural language.",
     capabilities: [
-      "Drag-and-drop component placement",
-      "Real-time flow validation",
-      "Component configuration panels",
-      "Flow templates and examples",
-      "Export flows as code",
-      "Version control friendly",
+      "Custom document ingestion pipelines",
+      "Optimized vector search and retrieval",
+      "Multi-source knowledge aggregation",
+      "Accuracy tuning and hallucination reduction",
+      "Citation and source tracking",
+      "Continuous knowledge updates",
     ],
-    marketingAngle: "From idea to working AI app in minutes.",
-    image: "/images/products/dblock/workspace-basic-prompting.png",
+    marketingAngle: "Turn your documents into intelligent answers.",
+    image: "/images/products/dblock/vector-store-document-ingestion.png",
   },
   {
-    id: "playground",
-    icon: "Play",
-    title: "Interactive Playground",
-    description: "Test your flows in real-time without building your entire application stack.",
-    capabilities: [
-      "Real-time flow execution",
-      "Interactive chat interface",
-      "Response streaming",
-      "Debug and inspect outputs",
-      "Test individual components",
-      "Iterate quickly on logic",
-    ],
-    marketingAngle: "Test, iterate, and perfect your AI flows instantly.",
-    image: "/images/products/dblock/playground.png",
-  },
-  {
-    id: "agents",
+    id: "ai-agents",
     icon: "Bot",
-    title: "AI Agents & Tools",
-    description: "Build sophisticated AI agents with tool-calling capabilities and autonomous decision making.",
+    title: "Custom AI Agents",
+    description: "We design and deploy AI agents that automate complex business processes—from customer interactions to internal operations.",
     capabilities: [
-      "Tool-calling agent components",
-      "Use components as agent tools",
-      "Use flows as agent tools",
-      "MCP server integration",
-      "MCP client support",
+      "Multi-step reasoning and planning",
+      "Tool integration (APIs, databases, systems)",
+      "Human-in-the-loop workflows",
       "Multi-agent orchestration",
+      "Conversation memory and context",
+      "Performance monitoring and optimization",
     ],
-    marketingAngle: "Build agents that think, decide, and act.",
+    marketingAngle: "Agents that work as hard as your best employees.",
     image: "/images/products/dblock/quickstart-simple-agent-flow.png",
   },
   {
-    id: "components",
-    icon: "Blocks",
-    title: "Extensible Components",
-    description: "Rich library of components for inputs, outputs, models, embeddings, and data stores.",
+    id: "integration",
+    icon: "Plug",
+    title: "Enterprise Integration",
+    description: "We connect DBLOCK to your existing systems—CRM, ERP, databases, and APIs—creating AI solutions that fit your workflow.",
     capabilities: [
-      "LLM providers (OpenAI, Anthropic, etc.)",
-      "Vector stores (Pinecone, Weaviate, etc.)",
-      "Document loaders and processors",
-      "Custom Python components",
-      "Community component bundles",
-      "API integrations",
+      "Any LLM provider (OpenAI, Anthropic, Azure, etc.)",
+      "Any vector store (Pinecone, Weaviate, etc.)",
+      "Custom API integrations",
+      "SSO and enterprise authentication",
+      "Data governance and access controls",
+      "Audit logging and compliance",
     ],
-    marketingAngle: "Every building block you need, plus the freedom to build your own.",
-    image: "/images/products/dblock/vector-store-document-ingestion.png",
-  },
-];
-
-// Deployment Options
-export const deploymentOptions: DeploymentOption[] = [
-  {
-    name: "Desktop App",
-    description: "Download and install the standalone desktop application for the simplest setup experience.",
-    features: [
-      "One-click install",
-      "Dependency management",
-      "Easy upgrades",
-      "macOS & Windows",
-    ],
-    recommended: true,
+    marketingAngle: "AI that works with your existing stack.",
+    image: "/images/products/dblock/workspace-basic-prompting.png",
   },
   {
-    name: "Docker",
-    description: "Pull and run the Docker image to start DBLOCK in isolation.",
-    features: [
-      "Single command setup",
-      "Isolated environment",
-      "Easy deployment",
-      "Production ready",
+    id: "managed-ai",
+    icon: "Headphones",
+    title: "Managed AI Services",
+    description: "Let our AI experts manage your DBLOCK deployment. We monitor, optimize, and evolve your AI applications as your needs grow.",
+    capabilities: [
+      "24/7 platform monitoring",
+      "Model performance optimization",
+      "Prompt engineering and tuning",
+      "Cost optimization across providers",
+      "New feature development",
+      "Dedicated AI success manager",
     ],
-  },
-  {
-    name: "Python Package",
-    description: "Install via pip/uv for full control over environment and dependencies.",
-    features: [
-      "pip install dblock",
-      "Virtual environment support",
-      "Custom dependencies",
-      "Development friendly",
-    ],
+    marketingAngle: "Focus on outcomes, not infrastructure.",
+    image: "/images/products/dblock/playground.png",
   },
 ];
 
 // Use Cases
 export const useCases: UseCase[] = [
   {
-    title: "RAG Applications",
-    description: "Build retrieval-augmented generation apps that query your documents and data.",
+    title: "Internal Knowledge Base",
+    description: "AI-powered search across company documents, policies, and procedures.",
     icon: "FileSearch",
   },
   {
-    title: "Chatbots",
-    description: "Create conversational AI assistants with memory and context awareness.",
+    title: "Customer Support Agents",
+    description: "Intelligent agents that handle customer inquiries and escalate when needed.",
     icon: "MessageSquare",
   },
   {
-    title: "Document Analysis",
-    description: "Process, analyze, and extract insights from documents at scale.",
+    title: "Document Processing",
+    description: "Automated extraction, classification, and routing of business documents.",
     icon: "FileText",
   },
   {
-    title: "Content Generation",
-    description: "Generate blog posts, reports, summaries, and creative content.",
-    icon: "PenTool",
+    title: "Sales Intelligence",
+    description: "AI that analyzes prospects, generates insights, and drafts personalized outreach.",
+    icon: "TrendingUp",
   },
   {
-    title: "Multi-Agent Systems",
-    description: "Orchestrate multiple AI agents working together on complex tasks.",
-    icon: "Users",
+    title: "Process Automation",
+    description: "Multi-step workflows that combine AI reasoning with system integrations.",
+    icon: "Workflow",
   },
   {
-    title: "API Integrations",
-    description: "Connect AI capabilities to your existing systems via API.",
-    icon: "Plug",
+    title: "Data Analysis",
+    description: "Natural language queries against databases and analytics platforms.",
+    icon: "BarChart",
   },
 ];
 
-// Component Categories
+// Supported Technologies (what we integrate with)
 export const componentCategories = [
   {
-    category: "Models",
-    items: ["OpenAI", "Anthropic", "Google AI", "Azure OpenAI", "Ollama", "Hugging Face"],
+    category: "LLM Providers",
+    items: ["OpenAI", "Anthropic", "Google AI", "Azure OpenAI", "AWS Bedrock", "Private Models"],
   },
   {
-    category: "Vector Stores",
-    items: ["Pinecone", "Weaviate", "Chroma", "Qdrant", "Milvus", "FAISS"],
+    category: "Vector Databases",
+    items: ["Pinecone", "Weaviate", "Chroma", "Qdrant", "Milvus", "PostgreSQL pgvector"],
   },
   {
-    category: "Data Loaders",
-    items: ["PDF", "CSV", "JSON", "Web Scraper", "Notion", "Google Drive"],
+    category: "Data Sources",
+    items: ["SharePoint", "Confluence", "Google Drive", "S3", "Databases", "APIs"],
   },
   {
-    category: "Tools",
-    items: ["Search", "Calculator", "Code Interpreter", "API Calls", "Database", "File System"],
+    category: "Enterprise Systems",
+    items: ["Salesforce", "ServiceNow", "SAP", "Workday", "Slack", "Microsoft 365"],
   },
 ];
 
@@ -258,7 +214,6 @@ export default {
   hero: heroData,
   valuePropositions,
   features,
-  deploymentOptions,
   useCases,
   componentCategories,
 };

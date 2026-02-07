@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import GridBackground from "./components/GridBackground";
 import PromoBanner from "./components/PromoBanner";
+import ScrollToTop from "./components/ScrollToTop";
 import { useRoutes, Routes, Route } from "react-router-dom";
 import Home from "./components/home";
 import Services from "./components/pages/Services";
@@ -22,13 +23,17 @@ import MultiAgentOrchestration from "./components/pages/blog/MultiAgentOrchestra
 import Locations from "./components/pages/Locations";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
-import BigDataAnalytics from "./components/pages/BigDataAnalytics";
 import CeoProfile from "./components/pages/CeoProfile";
-import AiSolutions from "./components/pages/AiSolutions";
-import CloudComputing from "./components/pages/CloudComputing";
-import DigitalTransformation from "./components/pages/DigitalTransformation";
+
+// Legacy service pages replaced by new redesigned versions
+import BigDataAnalyticsPage from "./components/pages/services/BigDataAnalyticsPage";
+import AiSolutionsPage from "./components/pages/services/AiSolutionsPage";
+import CloudComputingPage from "./components/pages/services/CloudComputingPage";
+
+// Legacy solution pages replaced by new redesigned versions
+import DigitalTransformationPage from "./components/pages/solutions/DigitalTransformationPage";
+import EnterpriseSolutionsPage from "./components/pages/solutions/EnterpriseSolutionsPage";
 import DataSecurity from "./components/pages/DataSecurity";
-import EnterpriseSolutions from "./components/pages/EnterpriseSolutions";
 import Fortune500 from "./components/pages/clients/Fortune500";
 import GovAgencies from "./components/pages/clients/GovAgencies";
 import TechStartups from "./components/pages/clients/TechStartups";
@@ -85,6 +90,11 @@ import DataEngineeringPage from "./components/pages/services/DataEngineeringPage
 import CloudSolutionsPage from "./components/pages/services/CloudSolutionsPage";
 import CustomDevelopmentPage from "./components/pages/services/CustomDevelopmentPage";
 
+// New Consolidated Service Pages (3 categories)
+import BigDataArchitecturePage from "./components/pages/services/BigDataArchitecturePage";
+import AgenticAIDataPage from "./components/pages/services/AgenticAIDataPage";
+import AIDataConsultingPage from "./components/pages/services/AIDataConsultingPage";
+
 // New Solution Pages (redesign)
 import FinancialServicesPage from "./components/pages/solutions/FinancialServicesPage";
 import HealthcarePage from "./components/pages/solutions/HealthcarePage";
@@ -103,6 +113,7 @@ import WebinarsPage from "./components/pages/university/WebinarsPage";
 function App() {
   return (
     <Suspense fallback={<p>Loading...</p>}>
+      <ScrollToTop />
       <GridBackground />
       <PromoBanner />
       {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
@@ -157,10 +168,10 @@ function App() {
         <Route path="/ceo-profile" element={<CeoProfile />} />
         <Route
           path="/services/big-data-analytics"
-          element={<BigDataAnalytics />}
+          element={<BigDataAnalyticsPage />}
         />
-        <Route path="/services/ai-solutions" element={<AiSolutions />} />
-        <Route path="/services/cloud-computing" element={<CloudComputing />} />
+        <Route path="/services/ai-solutions" element={<AiSolutionsPage />} />
+        <Route path="/services/cloud-computing" element={<CloudComputingPage />} />
         <Route path="/services/mvp-development" element={<MvpDevelopment />} />
         <Route path="/services/product-strategy" element={<ProductStrategy />} />
         <Route path="/services/full-stack-development" element={<FullStackDevelopment />} />
@@ -171,12 +182,12 @@ function App() {
         <Route path="/services/ai-accounting" element={<AIAccounting />} />
         <Route
           path="/solutions/digital-transformation"
-          element={<DigitalTransformation />}
+          element={<DigitalTransformationPage />}
         />
         <Route path="/solutions/data-security" element={<DataSecurity />} />
         <Route
           path="/solutions/enterprise-solutions"
-          element={<EnterpriseSolutions />}
+          element={<EnterpriseSolutionsPage />}
         />
         <Route path="/solutions/technical-cofounder" element={<TechnicalCofounder />} />
         <Route path="/solutions/saas-consulting" element={<SaaSConsulting />} />
@@ -200,6 +211,11 @@ function App() {
         <Route path="/services/data-engineering" element={<DataEngineeringPage />} />
         <Route path="/services/cloud-solutions" element={<CloudSolutionsPage />} />
         <Route path="/services/custom-development" element={<CustomDevelopmentPage />} />
+        
+        {/* New Consolidated Service Routes (3 categories) */}
+        <Route path="/services/big-data-architecture" element={<BigDataArchitecturePage />} />
+        <Route path="/services/agentic-ai-data" element={<AgenticAIDataPage />} />
+        <Route path="/services/ai-data-consulting" element={<AIDataConsultingPage />} />
         
         {/* New Solution Routes (redesign) */}
         <Route path="/solutions/financial-services" element={<FinancialServicesPage />} />

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { Card } from "../ui/card";
 import { GradientButton } from "../ui/gradient-button";
 import { ArrowRight, Briefcase, MapPin, Clock, DollarSign } from "lucide-react";
 import JobApplicationModal from "../JobApplicationModal";
 import UniverseLights from "../UniverseLights";
 import SEO from "../SEO";
+import { AnimatedWrapper } from "../ui/animated-wrapper";
+import { GlassCard } from "../ui/glass-card";
+import { SectionHeader } from "../ui/section-header";
+import { TypewriterGradientText } from "../ui/typewriter-text";
 
 const jobs = [
   {
@@ -106,20 +109,6 @@ const jobs = [
 export default function Careers() {
   const [selectedJob, setSelectedJob] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    // Start the animation sequence immediately and repeat indefinitely
-    const startAnimation = async () => {
-      await controls.start("visible");
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Pause at the end
-      await controls.start("hidden");
-      await new Promise((resolve) => setTimeout(resolve, 500)); // Brief pause before restarting
-      startAnimation(); // Restart the animation
-    };
-
-    startAnimation();
-  }, [controls]);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -141,121 +130,90 @@ export default function Careers() {
         >
           <source src="/videos/join.mp4" type="video/mp4" />
         </video>
-        <UniverseLights />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
         <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-          >
-            Join Our Team
-          </motion.h1>
+          <AnimatedWrapper animation="fade-up-slow">
+            <TypewriterGradientText 
+              text="Join Our Team"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+              gradientClassName="bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent"
+              duration={1.8}
+            />
+          </AnimatedWrapper>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl"
-          >
-            Build the future of enterprise technology with a team of passionate
-            innovators
-          </motion.p>
+          <AnimatedWrapper animation="fade-up" delay={0.2}>
+            <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl">
+              Build the future of enterprise technology with a team of passionate
+              innovators
+            </p>
+          </AnimatedWrapper>
         </div>
       </div>
 
       <section className="py-20 bg-black">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Current Openings
-            </h2>
-            <p className="text-xl text-gray-300">
-              Explore our open positions and find your next career opportunity
-            </p>
-          </div>
+          <AnimatedWrapper animation="fade-up" className="max-w-4xl mx-auto text-center mb-16">
+            <SectionHeader
+              badge="Opportunities"
+              title="Current Openings"
+              description="Explore our open positions and find your next career opportunity"
+              alignment="center"
+            />
+          </AnimatedWrapper>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative max-w-6xl mx-auto">
             {jobs.map((job, index) => (
-              <div key={job.title} className="relative w-full">
-                <motion.div
-                  variants={{
-                    hidden: { opacity: 0.7, y: 10, scale: 0.98 },
-                    visible: { opacity: 1, y: 0, scale: 1 },
-                  }}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 1.5,
-                    delay: index * 0.3,
-                    ease: "easeInOut",
-                  }}
-                  className="w-full"
+              <AnimatedWrapper key={job.title} animation="scale-up-bounce" delay={index * 0.1}>
+                <GlassCard 
+                  variant="gradient"
+                  className="w-full h-[400px] p-8 hover:scale-[1.02] transition-all duration-300 flex flex-col cursor-pointer"
                   onClick={() => {
-                    // Redirect to the job page based on job title
-                    const jobPath = job.title
-                      .toLowerCase()
-                      .replace(/\s+/g, "-");
+                    const jobPath = job.title.toLowerCase().replace(/\s+/g, "-");
                     window.location.href = `/careers/${jobPath}`;
                   }}
                 >
-                  <Card className="w-full h-[400px] p-8 bg-purple-900/20 backdrop-blur border-purple-500/50 hover:border-purple-400 relative shadow-[0_4px_20px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_25px_rgba(168,85,247,0.3)] transition-all duration-300 flex flex-col cursor-pointer">
-                    <motion.div
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        opacity: [0.8, 1, 0.8],
+                  <div className="text-purple-400 mb-6">
+                    <Briefcase className="w-8 h-8" />
+                  </div>
+
+                  <h3 className="text-xl font-semibold mb-3 text-white">
+                    {job.title}
+                  </h3>
+
+                  <div className="flex flex-wrap gap-3 mb-4">
+                    <span className="flex items-center text-sm text-gray-400">
+                      <MapPin className="w-4 h-4 mr-1 text-blue-400" />
+                      {job.location}
+                    </span>
+                    <span className="flex items-center text-sm text-gray-400">
+                      <Clock className="w-4 h-4 mr-1 text-green-400" />
+                      {job.type}
+                    </span>
+                    <span className="flex items-center text-sm text-gray-400">
+                      <DollarSign className="w-4 h-4 mr-1 text-yellow-400" />
+                      {job.salary}
+                    </span>
+                  </div>
+
+                  <p className="text-gray-300 mb-4 flex-1">{job.description}</p>
+
+                  <div className="mt-auto">
+                    <GradientButton
+                      className="w-full"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const jobPath = job.title.toLowerCase().replace(/\s+/g, "-");
+                        window.location.href = `/careers/${jobPath}`;
                       }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      className="text-purple-400 mb-6"
+                      rightIcon={<ArrowRight className="h-4 w-4" />}
                     >
-                      <Briefcase className="w-8 h-8" />
-                    </motion.div>
-
-                    <h3 className="text-xl font-semibold mb-3 text-white">
-                      {job.title}
-                    </h3>
-
-                    <div className="flex flex-wrap gap-3 mb-4">
-                      <span className="flex items-center text-sm text-gray-400">
-                        <MapPin className="w-4 h-4 mr-1 text-blue-400" />
-                        {job.location}
-                      </span>
-                      <span className="flex items-center text-sm text-gray-400">
-                        <Clock className="w-4 h-4 mr-1 text-green-400" />
-                        {job.type}
-                      </span>
-                      <span className="flex items-center text-sm text-gray-400">
-                        <DollarSign className="w-4 h-4 mr-1 text-yellow-400" />
-                        {job.salary}
-                      </span>
-                    </div>
-
-                    <p className="text-gray-300 mb-4">{job.description}</p>
-
-                    <div className="mt-auto">
-                      <GradientButton
-                        className="w-full"
-                        onClick={() => {
-                          // Redirect to the job page based on job title
-                          const jobPath = job.title
-                            .toLowerCase()
-                            .replace(/\s+/g, "-");
-                          window.location.href = `/careers/${jobPath}`;
-                        }}
-                        rightIcon={<ArrowRight className="h-4 w-4" />}
-                      >
-                        View Job
-                      </GradientButton>
-                    </div>
-                  </Card>
-                </motion.div>
-              </div>
+                      View Job
+                    </GradientButton>
+                  </div>
+                </GlassCard>
+              </AnimatedWrapper>
             ))}
           </div>
         </div>
@@ -265,117 +223,96 @@ export default function Careers() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Why Join Digitrans?
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400 flex-shrink-0 mt-1">
-                      <Briefcase className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        Challenging Projects
-                      </h3>
-                      <p className="text-gray-300">
-                        Work on complex, high-impact projects for Fortune 500
-                        companies and innovative startups.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center text-purple-400 flex-shrink-0 mt-1">
-                      <Briefcase className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        Continuous Learning
-                      </h3>
-                      <p className="text-gray-300">
-                        Access to training, certifications, and opportunities to
-                        work with cutting-edge technologies.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 flex-shrink-0 mt-1">
-                      <Briefcase className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-2">
-                        Global Opportunities
-                      </h3>
-                      <p className="text-gray-300">
-                        Work with international teams and clients, with
-                        possibilities for relocation and travel.
-                      </p>
-                    </div>
+              <AnimatedWrapper animation="slide-right">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                    Why Join Digitrans?
+                  </h2>
+                  <div className="space-y-4">
+                    <AnimatedWrapper animation="float-up" delay={0.1}>
+                      <div className="flex items-start gap-3">
+                        <div className="w-10 h-10 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400 flex-shrink-0 mt-1">
+                          <Briefcase className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold mb-2">
+                            Challenging Projects
+                          </h3>
+                          <p className="text-gray-300">
+                            Work on complex, high-impact projects for Fortune 500
+                            companies and innovative startups.
+                          </p>
+                        </div>
+                      </div>
+                    </AnimatedWrapper>
+                    <AnimatedWrapper animation="float-up" delay={0.2}>
+                      <div className="flex items-start gap-3">
+                        <div className="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center text-purple-400 flex-shrink-0 mt-1">
+                          <Briefcase className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold mb-2">
+                            Continuous Learning
+                          </h3>
+                          <p className="text-gray-300">
+                            Access to training, certifications, and opportunities to
+                            work with cutting-edge technologies.
+                          </p>
+                        </div>
+                      </div>
+                    </AnimatedWrapper>
+                    <AnimatedWrapper animation="float-up" delay={0.3}>
+                      <div className="flex items-start gap-3">
+                        <div className="w-10 h-10 rounded-full bg-green-900/50 flex items-center justify-center text-green-400 flex-shrink-0 mt-1">
+                          <Briefcase className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold mb-2">
+                            Global Opportunities
+                          </h3>
+                          <p className="text-gray-300">
+                            Work with international teams and clients, with
+                            possibilities for relocation and travel.
+                          </p>
+                        </div>
+                      </div>
+                    </AnimatedWrapper>
                   </div>
                 </div>
-              </motion.div>
+              </AnimatedWrapper>
 
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <div className="bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm p-8 rounded-xl border border-blue-800/30">
+              <AnimatedWrapper animation="slide-left">
+                <GlassCard variant="gradient" className="p-8 hover:scale-[1.02] transition-all duration-300">
                   <h3 className="text-2xl font-bold mb-6">Our Benefits</h3>
                   <ul className="space-y-4">
-                    <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
-                        <ArrowRight className="w-3 h-3" />
-                      </div>
-                      <span>Competitive salary and performance bonuses</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
-                        <ArrowRight className="w-3 h-3" />
-                      </div>
-                      <span>Flexible working arrangements</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
-                        <ArrowRight className="w-3 h-3" />
-                      </div>
-                      <span>Health insurance and wellness programs</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
-                        <ArrowRight className="w-3 h-3" />
-                      </div>
-                      <span>Professional development budget</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
-                        <ArrowRight className="w-3 h-3" />
-                      </div>
-                      <span>Regular team events and activities</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
-                        <ArrowRight className="w-3 h-3" />
-                      </div>
-                      <span>Equity options for senior positions</span>
-                    </li>
+                    {[
+                      "Competitive salary and performance bonuses",
+                      "Flexible working arrangements",
+                      "Health insurance and wellness programs",
+                      "Professional development budget",
+                      "Regular team events and activities",
+                      "Equity options for senior positions"
+                    ].map((benefit, index) => (
+                      <AnimatedWrapper key={benefit} animation="slide-up" delay={index * 0.05}>
+                        <li className="flex items-center gap-3">
+                          <div className="w-6 h-6 rounded-full bg-blue-900/50 flex items-center justify-center text-blue-400">
+                            <ArrowRight className="w-3 h-3" />
+                          </div>
+                          <span>{benefit}</span>
+                        </li>
+                      </AnimatedWrapper>
+                    ))}
                   </ul>
-                </div>
-              </motion.div>
+                </GlassCard>
+              </AnimatedWrapper>
             </div>
           </div>
         </div>
       </section>
 
       <JobApplicationModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
         job={selectedJob}
       />
 

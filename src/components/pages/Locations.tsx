@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import type { Map as LeafletMap } from "leaflet";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { motion } from "framer-motion";
-import Hero from "../Hero";
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
 import { MapPin, Phone, Mail } from "lucide-react";
 import RegistrationModal from "../RegistrationModal";
+import { AnimatedWrapper } from "../ui/animated-wrapper";
+import { GlassCard } from "../ui/glass-card";
+import { TypewriterGradientText } from "../ui/typewriter-text";
+import { GradientButton } from "../ui/gradient-button";
 
 const locations = [
   {
@@ -74,57 +76,71 @@ export default function Locations() {
     <div className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <Hero
-        headline="Our Global Presence"
-        subheadline="With offices across multiple continents, we're ready to serve your business needs wherever you are."
-        showCards={false}
-        showBookCallButton={true}
-        onRegisterInterest={() => setShowRegistrationModal(true)}
-      />
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
+            <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
+              Global Presence
+            </span>
+            <TypewriterGradientText 
+              text="Our Global Presence"
+              className="text-4xl md:text-5xl font-bold mb-6"
+              duration={1.8}
+            />
+            <p className="text-xl text-gray-300 mb-8">
+              With offices across multiple continents, we're ready to serve your business needs wherever you are.
+            </p>
+            <GradientButton size="lg" onClick={() => setShowRegistrationModal(true)}>
+              Get in Touch
+            </GradientButton>
+          </AnimatedWrapper>
+        </div>
+      </section>
 
       <section className="py-24">
         <div className="container mx-auto px-4">
           {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full h-[400px] rounded-xl overflow-hidden mb-16 shadow-lg"
-          >
-            <div ref={mapRef} className="w-full h-full relative z-0" />
-          </motion.div>
+          <AnimatedWrapper animation="fade-up-slow">
+            <div className="w-full h-[400px] rounded-xl overflow-hidden mb-16 shadow-lg">
+              <div ref={mapRef} className="w-full h-full relative z-0" />
+            </div>
+          </AnimatedWrapper>
 
           {/* Location Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {locations.map((location, index) => (
-              <motion.div
+              <AnimatedWrapper
                 key={location.city}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
+                animation="float-up"
+                delay={index * 0.1}
               >
-                <Card className="p-6 h-full hover:shadow-lg transition-shadow bg-gray-900/50 backdrop-blur-sm border border-blue-800/30 hover:border-blue-400/20">
+                <GlassCard variant="gradient" className="p-6 h-full hover:scale-[1.03] transition-all duration-300">
                   <div className="flex items-start gap-4 mb-4">
                     <MapPin className="h-5 w-5 text-blue-500 mt-1" />
                     <div>
-                      <h3 className="text-lg font-semibold mb-1">
+                      <h3 className="text-lg font-semibold mb-1 text-white">
                         {location.city}, {location.country}
                       </h3>
-                      <p className="text-slate-600 text-sm">
+                      <p className="text-gray-400 text-sm">
                         {location.address}
                       </p>
                     </div>
                   </div>
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2">
-                      <Phone className="h-4 w-4 text-slate-400" />
-                      <span className="text-sm text-slate-600">
+                      <Phone className="h-4 w-4 text-gray-400" />
+                      <span className="text-sm text-gray-400">
                         {location.phone}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Mail className="h-4 w-4 text-slate-400" />
-                      <span className="text-sm text-slate-600">
+                      <Mail className="h-4 w-4 text-gray-400" />
+                      <span className="text-sm text-gray-400">
                         {location.email}
                       </span>
                     </div>
@@ -136,8 +152,8 @@ export default function Locations() {
                   >
                     Get in Touch
                   </Button>
-                </Card>
-              </motion.div>
+                </GlassCard>
+              </AnimatedWrapper>
             ))}
           </div>
         </div>

@@ -34,7 +34,7 @@ export function ComparisonTable({ competitor, aspects, className }: ComparisonTa
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className={cn(
-        "rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 backdrop-blur-sm",
+        "rounded-2xl overflow-hidden border border-gray-800 bg-gray-900/50 backdrop-blur-sm h-full min-h-[320px]",
         className
       )}
     >

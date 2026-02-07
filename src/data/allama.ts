@@ -4,14 +4,13 @@
  * Contains all content data for the Allama product page including:
  * - Hero content with tagline
  * - Four value propositions
- * - Features (Workflow Builder, Integrations, Self-Hosting, Tutorials)
+ * - Features (Workflow Builder, Integrations, Case Management)
  * - Integration categories and tools
- * - Deployment options
  * - Competitor comparisons
  * - Use cases
  * 
- * Based on actual Allama documentation at products/allama/docs/
- * Allama is a modern, open source automation platform built for security and IT engineers.
+ * Allama is DigiTransLab's security automation platform - we provide
+ * implementation, consulting, and managed services for enterprise security teams.
  * 
  * Requirements: 9.2, 9.4
  */
@@ -47,13 +46,6 @@ export interface IntegrationCategory {
   tools: Integration[];
 }
 
-export interface DeploymentOption {
-  name: string;
-  description: string;
-  features: string[];
-  recommended?: boolean;
-}
-
 export interface CompetitorComparison {
   competitor: string;
   aspects: {
@@ -82,59 +74,58 @@ export interface AllamaData {
   valuePropositions: ValueProposition[];
   features: Feature[];
   integrations: IntegrationCategory[];
-  deploymentOptions: DeploymentOption[];
   competitors: CompetitorComparison[];
   useCases: UseCase[];
 }
 
 // Hero Section Data
 export const heroData = {
-  tagline: "Open-source security automation platform",
-  headline: "Modern Automation for Security & IT Teams",
-  description: "Allama is a modern, open source automation platform built for security and IT engineers. No-code/low-code UI for workflows, out-of-the-box integrations, and case management—orchestrated by Temporal for scale and reliability.",
+  tagline: "Enterprise Security Automation Platform",
+  headline: "Automate Your Security Operations",
+  description: "Allama transforms how security teams work. Our experts implement custom workflows, integrate your security stack, and deliver measurable ROI in weeks, not months.",
   primaryCTA: {
-    label: "Get Started Free",
-    href: "https://github.com/digitranslab/allama",
+    label: "Schedule a Consultation",
+    href: "/contact",
   },
   secondaryCTA: {
-    label: "Read Documentation",
-    href: "https://docs.allama.com",
+    label: "View Case Studies",
+    href: "/clients",
   },
 };
 
 // Value Propositions - Requirements 9.2
 export const valuePropositions: ValueProposition[] = [
   {
-    icon: "Workflow",
-    title: "No-Code Workflow Builder",
-    description: "Build sophisticated security automation playbooks with a visual drag-and-drop interface. Define workflows in YAML for version control and portability.",
+    icon: "Rocket",
+    title: "Rapid Implementation",
+    description: "Our security automation experts deploy Allama in your environment and build custom workflows tailored to your SOC processes. Go live in weeks, not months.",
     metric: {
-      value: "Zero",
-      label: "Code Required",
+      value: "4-6",
+      label: "Weeks to Production",
     },
   },
   {
-    icon: "Zap",
-    title: "Temporal-Powered Orchestration",
-    description: "Built on Temporal for enterprise-grade reliability. Automatic retries, durable execution, and horizontal scaling out of the box.",
+    icon: "TrendingUp",
+    title: "Proven ROI",
+    description: "Reduce mean time to respond by 80%. Our clients see measurable improvements in analyst efficiency and incident resolution within the first quarter.",
     metric: {
-      value: "99.9%",
-      label: "Reliability",
+      value: "80%",
+      label: "Faster Response",
     },
   },
   {
-    icon: "Code2",
-    title: "100% Open Source",
-    description: "Fully open source under AGPL-3.0. Inspect every line of code, contribute to the community, and avoid vendor lock-in with portable YAML workflows.",
+    icon: "Users",
+    title: "Expert Support",
+    description: "Dedicated security engineers who understand your environment. We don't just deploy software—we partner with your team to continuously optimize workflows.",
     metric: {
-      value: "100%",
-      label: "Open Source",
+      value: "24/7",
+      label: "Expert Support",
     },
   },
   {
     icon: "Plug",
-    title: "Extensible Integrations",
-    description: "Pre-built integrations via YAML action templates and Python UDFs. Sync custom integrations from your private Git repository.",
+    title: "Seamless Integration",
+    description: "We integrate Allama with your existing SIEM, EDR, ticketing, and communication tools. Custom integrations built to your exact specifications.",
     metric: {
       value: "80+",
       label: "Integrations",
@@ -145,67 +136,68 @@ export const valuePropositions: ValueProposition[] = [
 // Features Deep Dive - Requirements 9.4
 export const features: Feature[] = [
   {
-    id: "core-actions",
+    id: "workflow-automation",
     icon: "Workflow",
-    title: "Core Actions",
-    description: "Powerful building blocks for any automation workflow, from HTTP requests to data transforms.",
+    title: "Custom Workflow Automation",
+    description: "We design and implement security playbooks tailored to your specific processes, threats, and compliance requirements.",
     capabilities: [
-      "HTTP requests to any REST API",
-      "Data transforms and manipulation",
-      "Workflow actions (child workflows, scatter-gather)",
-      "Conditional logic (if/then/else)",
-      "Loops and parallel execution",
-      "Wait, retry, and require until patterns",
+      "Custom playbooks for your threat landscape",
+      "Multi-step orchestration across tools",
+      "Conditional logic and decision trees",
+      "Parallel execution for faster response",
+      "Human-in-the-loop approval workflows",
+      "Scheduled and event-driven triggers",
     ],
-    marketingAngle: "Everything you need to automate any process.",
+    marketingAngle: "Your processes, automated by experts.",
     image: "/images/products/allama/http-inputs.png",
   },
   {
-    id: "script-actions",
-    icon: "Code",
-    title: "Script Actions",
-    description: "Execute custom Python scripts in a secure sandbox for complex logic and custom integrations.",
-    capabilities: [
-      "Secure Python sandbox execution",
-      "Access to workflow context and secrets",
-      "Custom data processing logic",
-      "Integration with external libraries",
-      "Reusable Python UDFs",
-    ],
-    marketingAngle: "When no-code isn't enough, bring your own Python.",
-    image: "/images/products/allama/scan-url.png",
-  },
-  {
-    id: "integrations",
+    id: "integration-services",
     icon: "Plug",
-    title: "Action Templates & Integrations",
-    description: "Pre-built integrations via YAML action templates. Build your own and sync from Git.",
+    title: "Integration Services",
+    description: "Our team connects Allama to your entire security stack—SIEM, EDR, identity, ticketing, and more.",
     capabilities: [
-      "YAML-based action templates (no code required)",
-      "Python UDFs for complex integrations",
-      "OpenAPI spec converter (auto-generate from API docs)",
-      "OAuth 2.0 support (authorization code + client credentials)",
-      "Git sync for version-controlled integrations",
-      "Community-driven Allama Registry",
+      "Pre-built connectors for 80+ tools",
+      "Custom API integrations on demand",
+      "Bi-directional data sync",
+      "OAuth 2.0 and enterprise auth",
+      "Secure credential management",
+      "Ongoing integration maintenance",
     ],
-    marketingAngle: "Connect everything. Automate anything.",
+    marketingAngle: "Connect everything. We handle the complexity.",
     image: "/images/products/allama/view-available-actions.png",
   },
   {
     id: "case-management",
     icon: "FolderKanban",
-    title: "Case Management",
-    description: "Track security incidents from detection to resolution with built-in case management.",
+    title: "Incident Case Management",
+    description: "Track security incidents from detection to resolution with built-in case management configured to your workflow.",
     capabilities: [
-      "Custom fields and schemas per workspace",
-      "Task assignment and tracking",
-      "File attachments and evidence collection",
-      "Audit trail and timeline",
-      "Tag-based organisation",
-      "Direct integration with workflows",
+      "Custom fields matching your processes",
+      "Automated task assignment",
+      "Evidence collection and chain of custody",
+      "Complete audit trail for compliance",
+      "SLA tracking and escalation",
+      "Executive reporting dashboards",
     ],
-    marketingAngle: "From alert to resolution, all in one place.",
+    marketingAngle: "From alert to resolution, fully tracked.",
     image: "/images/products/allama/scatter-gather.png",
+  },
+  {
+    id: "managed-services",
+    icon: "Headphones",
+    title: "Managed Services",
+    description: "Let our security experts manage your Allama deployment. We monitor, optimize, and evolve your automation.",
+    capabilities: [
+      "24/7 platform monitoring",
+      "Workflow performance optimization",
+      "New playbook development",
+      "Quarterly business reviews",
+      "Dedicated success manager",
+      "Priority support SLA",
+    ],
+    marketingAngle: "Focus on threats, not tools.",
+    image: "/images/products/allama/scan-url.png",
   },
 ];
 
@@ -280,70 +272,36 @@ export const integrations: IntegrationCategory[] = [
   },
 ];
 
-// Deployment Options
-export const deploymentOptions: DeploymentOption[] = [
-  {
-    name: "Docker Compose",
-    description: "Single command deployment ideal for evaluation and small teams. All services included.",
-    features: [
-      "5-minute setup",
-      "All services included",
-      "Ideal for development",
-      "Easy upgrades",
-    ],
-    recommended: true,
-  },
-  {
-    name: "AWS ECS Fargate",
-    description: "Terraform-based production deployment with auto-scaling and high availability.",
-    features: [
-      "Auto-scaling",
-      "High availability",
-      "Application Load Balancer",
-      "RDS PostgreSQL",
-    ],
-  },
-  {
-    name: "Self-Hosted LLMs",
-    description: "Run with Ollama for complete air-gapped operation with self-hosted LLMs.",
-    features: [
-      "Ollama integration",
-      "No external dependencies",
-      "Complete data sovereignty",
-      "Llama 3, Mistral support",
-    ],
-  },
-];
-
 // Competitor Comparisons
 export const competitors: CompetitorComparison[] = [
   {
     competitor: "Splunk SOAR",
     aspects: [
-      { aspect: "Price", allama: "Free", competitor: "$50-100K+/year", advantage: true },
-      { aspect: "AI Integration", allama: "Native", competitor: "Limited", advantage: true },
-      { aspect: "Source Code", allama: "Open", competitor: "Closed", advantage: true },
-      { aspect: "Deployment", allama: "5 minutes", competitor: "Weeks", advantage: true },
-      { aspect: "Lock-in", allama: "None", competitor: "High", advantage: true },
+      { aspect: "Time to Value", allama: "4-6 weeks", competitor: "6-12 months", advantage: true },
+      { aspect: "Implementation", allama: "Expert-led", competitor: "DIY or expensive PS", advantage: true },
+      { aspect: "Total Cost", allama: "Predictable", competitor: "$100K+ hidden costs", advantage: true },
+      { aspect: "Customization", allama: "Unlimited", competitor: "Limited", advantage: true },
+      { aspect: "Support", allama: "Dedicated team", competitor: "Ticket queue", advantage: true },
     ],
   },
   {
     competitor: "Palo Alto XSOAR",
     aspects: [
-      { aspect: "Price", allama: "Free", competitor: "$75K+/year", advantage: true },
-      { aspect: "AI Integration", allama: "Native", competitor: "Limited (requires XSIAM)", advantage: true },
-      { aspect: "Integrations", allama: "80+", competitor: "700+", advantage: false },
-      { aspect: "Learning Curve", allama: "Low", competitor: "High", advantage: true },
-      { aspect: "Lock-in", allama: "None", competitor: "High", advantage: true },
+      { aspect: "Time to Value", allama: "4-6 weeks", competitor: "3-6 months", advantage: true },
+      { aspect: "Learning Curve", allama: "We handle it", competitor: "Steep", advantage: true },
+      { aspect: "Custom Integrations", allama: "Included", competitor: "Extra cost", advantage: true },
+      { aspect: "Flexibility", allama: "Any workflow", competitor: "Platform constraints", advantage: true },
+      { aspect: "Ongoing Support", allama: "Proactive", competitor: "Reactive", advantage: true },
     ],
   },
   {
     competitor: "Tines/Torq",
     aspects: [
-      { aspect: "Price", allama: "Free", competitor: "$30K+/year", advantage: true },
-      { aspect: "Open Source", allama: "Yes", competitor: "No", advantage: true },
-      { aspect: "Self-Hosted", allama: "Yes", competitor: "Limited", advantage: true },
-      { aspect: "AI Agents", allama: "Yes", competitor: "Limited", advantage: true },
+      { aspect: "Implementation", allama: "Full service", competitor: "Self-service", advantage: true },
+      { aspect: "Security Expertise", allama: "SOC veterans", competitor: "Generic support", advantage: true },
+      { aspect: "Custom Development", allama: "Included", competitor: "Limited", advantage: true },
+      { aspect: "Enterprise Ready", allama: "Day one", competitor: "Requires work", advantage: true },
+      { aspect: "Ongoing Partnership", allama: "Dedicated team", competitor: "Support tickets", advantage: true },
     ],
   },
 ];
@@ -351,34 +309,34 @@ export const competitors: CompetitorComparison[] = [
 // Use Cases
 export const useCases: UseCase[] = [
   {
-    title: "Automated Phishing Triage",
-    problem: "Manual phishing analysis takes 15-30 minutes per email.",
-    solution: "Automated workflow that extracts indicators, checks threat intel via URLScan/VirusTotal, classifies severity, and creates cases.",
-    result: "Dramatic reduction in triage time with consistent analysis.",
+    title: "Phishing Response Automation",
+    problem: "Analysts spend 20+ minutes per phishing report, creating backlogs.",
+    solution: "We implement end-to-end phishing triage: extraction, threat intel enrichment, user notification, and remediation—all automated.",
+    result: "90% reduction in analyst time per incident.",
   },
   {
-    title: "Alert Enrichment & Correlation",
-    problem: "Raw alerts lack context for decision-making.",
-    solution: "Automatically enrich alerts with user info, asset data, threat intel, and historical context using HTTP requests and data transforms.",
-    result: "Analysts see complete picture immediately.",
+    title: "SIEM Alert Enrichment",
+    problem: "Thousands of alerts with no context, leading to alert fatigue.",
+    solution: "Our team builds enrichment workflows that add user, asset, and threat context to every alert before it reaches your analysts.",
+    result: "Analysts make faster, better decisions.",
   },
   {
-    title: "Workflow Triggers",
-    problem: "Manual workflow execution is slow and error-prone.",
-    solution: "Trigger workflows via UI, webhooks, or schedules. Pass custom payloads for dynamic automation.",
-    result: "Automated response to any event.",
+    title: "Compliance Automation",
+    problem: "Manual evidence collection for audits takes weeks.",
+    solution: "Automated workflows that continuously collect, organize, and report compliance evidence across your security stack.",
+    result: "Audit-ready in hours, not weeks.",
   },
   {
-    title: "Child Workflows & Scatter-Gather",
-    problem: "Complex processes require multiple coordinated steps.",
-    solution: "Build workflows of workflows. Split data, process in parallel, and merge results with scatter-gather patterns.",
-    result: "Modular, reusable automation at scale.",
+    title: "Threat Containment",
+    problem: "Slow response to confirmed threats increases blast radius.",
+    solution: "One-click or fully automated containment: isolate hosts, disable accounts, block IPs across your entire stack.",
+    result: "Contain threats in seconds, not hours.",
   },
   {
-    title: "Custom Integrations via Git",
-    problem: "Teams need custom integrations not available out-of-the-box.",
-    solution: "Sync custom YAML integrations and Python scripts directly from your private Git repository.",
-    result: "Version-controlled, team-specific integrations.",
+    title: "Custom Integration Development",
+    problem: "Your security tools don't talk to each other.",
+    solution: "We build custom integrations for any tool with an API—internal systems, niche vendors, legacy platforms.",
+    result: "Unified security operations.",
   },
 ];
 
@@ -395,7 +353,6 @@ export const allamaData: AllamaData = {
   valuePropositions,
   features,
   integrations,
-  deploymentOptions,
   competitors,
   useCases,
 };

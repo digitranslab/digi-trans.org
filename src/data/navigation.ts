@@ -27,32 +27,32 @@ export interface NavigationConfig {
 /**
  * Main navigation items for the website
  * Structured according to the information architecture requirements
+ * 
+ * Services consolidated into 3 categories:
+ * 1. Big Data Architecture & Engineering
+ * 2. Agentic AI for Data Processing & Enrichment
+ * 3. AI & Data Consulting and Strategy
  */
 export const navigationItems: NavItem[] = [
   {
     label: "Services",
     href: "/services",
-    description: "Expert consulting and engineering services",
+    description: "Data engineering, AI, and strategic consulting",
     children: [
       {
-        label: "AI Consulting",
-        href: "/services/ai-consulting",
-        description: "Strategic AI roadmap and implementation consulting",
+        label: "Big Data Architecture & Engineering",
+        href: "/services/big-data-architecture",
+        description: "Medallion architecture, lakehouses, and real-time streaming",
       },
       {
-        label: "Data Engineering",
-        href: "/services/data-engineering",
-        description: "Build robust data pipelines and infrastructure",
+        label: "Agentic AI for Data",
+        href: "/services/agentic-ai-data",
+        description: "Autonomous AI agents for data processing and enrichment",
       },
       {
-        label: "Cloud Solutions",
-        href: "/services/cloud-solutions",
-        description: "Scalable cloud architecture and migration",
-      },
-      {
-        label: "Custom Development",
-        href: "/services/custom-development",
-        description: "Bespoke software solutions for your needs",
+        label: "AI & Data Consulting",
+        href: "/services/ai-data-consulting",
+        description: "Strategic advisory, roadmaps, and governance",
       },
     ],
   },
@@ -64,19 +64,19 @@ export const navigationItems: NavItem[] = [
       {
         label: "Allama",
         href: "/products/allama",
-        description: "Open-source AI security automation platform",
+        description: "Open-source AI workflow automation platform",
       },
       {
         label: "DBLOCK",
         href: "/products/dblock",
-        description: "Next-generation data platform",
+        description: "Next-generation AI application platform",
         badge: "Coming Soon",
       },
     ],
   },
   {
-    label: "Solutions",
-    href: "/solutions",
+    label: "Industries",
+    href: "/industries",
     description: "Industry-specific solutions",
     children: [
       {
@@ -130,18 +130,13 @@ export const navigationItems: NavItem[] = [
     children: [
       {
         label: "Blog",
-        href: "/resources/blog",
+        href: "/blog",
         description: "Latest insights and articles",
       },
       {
         label: "Case Studies",
-        href: "/resources/case-studies",
+        href: "/clients",
         description: "Client success stories",
-      },
-      {
-        label: "Documentation",
-        href: "/resources/documentation",
-        description: "Product documentation and guides",
       },
     ],
   },

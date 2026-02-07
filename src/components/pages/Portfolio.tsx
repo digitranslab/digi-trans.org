@@ -6,6 +6,10 @@ import { Card } from "../ui/card";
 import { GradientButton } from "../ui/gradient-button";
 import { ArrowRight, ExternalLink, TrendingUp, Users, DollarSign, Calendar, Star, Award, Zap } from "lucide-react";
 import SEO from "../SEO";
+import { AnimatedWrapper } from "../ui/animated-wrapper";
+import { GlassCard } from "../ui/glass-card";
+import { SectionHeader } from "../ui/section-header";
+import { TypewriterGradientText } from "../ui/typewriter-text";
 
 const saasProjects = [
   {
@@ -272,22 +276,19 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <section className="pt-32 pb-12 bg-gradient-to-br from-black via-gray-900 to-black text-white relative overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-purple-900/10 rounded-full filter blur-[120px] -z-10"></div>
-        <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-blue-900/10 rounded-full filter blur-[120px] -z-10"></div>
+        <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-purple-900/10 rounded-full filter blur-[120px] -z-10 animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-blue-900/10 rounded-full filter blur-[120px] -z-10 animate-pulse" style={{ animationDelay: '1s' }}></div>
         
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto mb-16"
-          >
+          <AnimatedWrapper animation="fade-up-slow" className="text-center max-w-4xl mx-auto mb-16">
             <span className="inline-block mb-4 px-4 py-1 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
               Success Stories
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-400">
-              SaaS Success Stories
-            </h1>
+            <TypewriterGradientText 
+              text="SaaS Success Stories"
+              className="text-4xl md:text-6xl font-bold mb-6"
+              duration={1.8}
+            />
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               From MVP to market leadership - explore how we've helped 50+ SaaS founders 
               transform their ideas into successful, scalable businesses across EMEA.
@@ -295,24 +296,21 @@ export default function Portfolio() {
             
             {/* Success metrics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400 mb-2">50+</div>
-                <div className="text-gray-300 text-sm">Products Launched</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">€45M+</div>
-                <div className="text-gray-300 text-sm">Funding Raised</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-indigo-400 mb-2">80%</div>
-                <div className="text-gray-300 text-sm">Funding Success</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-400 mb-2">99.9%</div>
-                <div className="text-gray-300 text-sm">Avg. Uptime</div>
-              </div>
+              {[
+                { value: "50+", label: "Products Launched", color: "text-purple-400" },
+                { value: "€45M+", label: "Funding Raised", color: "text-blue-400" },
+                { value: "80%", label: "Funding Success", color: "text-indigo-400" },
+                { value: "99.9%", label: "Avg. Uptime", color: "text-green-400" }
+              ].map((metric, index) => (
+                <AnimatedWrapper key={metric.label} animation="bounce-in" delay={index * 0.1}>
+                  <div className="text-center">
+                    <div className={`text-3xl font-bold ${metric.color} mb-2`}>{metric.value}</div>
+                    <div className="text-gray-300 text-sm">{metric.label}</div>
+                  </div>
+                </AnimatedWrapper>
+              ))}
             </div>
-          </motion.div>
+          </AnimatedWrapper>
         </div>
       </section>
 
@@ -321,17 +319,16 @@ export default function Portfolio() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {saasProjects.map((project, index) => (
-              <motion.div
+              <AnimatedWrapper
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="group cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                animation="scale-up-bounce"
+                delay={index * 0.1}
               >
-                <Card className="overflow-hidden h-full bg-gray-900/50 backdrop-blur-sm border border-blue-800/30 hover:border-blue-400/20 transition-all duration-300">
+                <GlassCard 
+                  variant="gradient"
+                  className="overflow-hidden h-full hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
+                  onClick={() => setSelectedProject(project)}
+                >
                   {/* Project Image */}
                   <div className="aspect-video relative overflow-hidden">
                     <img
@@ -412,23 +409,20 @@ export default function Portfolio() {
                       View Case Study
                     </GradientButton>
                   </div>
-                </Card>
-              </motion.div>
+                </GlassCard>
+              </AnimatedWrapper>
             ))}
           </div>
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
+      <section className="py-16 bg-gradient-to-br from-gray-950 via-gray-900 to-black relative overflow-hidden">
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <AnimatedWrapper animation="zoom-in" className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Ready to Build Your Success Story?
             </h2>
@@ -443,7 +437,7 @@ export default function Portfolio() {
             >
               Start Your Success Story
             </GradientButton>
-          </motion.div>
+          </AnimatedWrapper>
         </div>
       </section>
 

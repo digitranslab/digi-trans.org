@@ -1,6 +1,5 @@
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import Hero from "../Hero";
 import UniverseLights from "../UniverseLights";
 import { motion } from "framer-motion";
 import { Card } from "../ui/card";
@@ -27,11 +26,66 @@ import {
   Briefcase,
   Globe,
   CheckCircle,
+  Layers,
+  Sparkles,
+  Target,
 } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ProgressBar } from "../ui/progress-bar";
 import { BackToTop } from "../ui/back-to-top";
 import { StickyCTA } from "../ui/sticky-cta";
+import { AnimatedWrapper } from "../ui/animated-wrapper";
+import { GlassCard } from "../ui/glass-card";
+import { SectionHeader } from "../ui/section-header";
+import { TypewriterGradientText } from "../ui/typewriter-text";
+import { GradientButton } from "../ui/gradient-button";
+
+// New consolidated service categories
+const mainServices = [
+  {
+    icon: <Layers className="w-10 h-10" />,
+    title: "Big Data Architecture & Engineering",
+    description: "Modern data platforms using medallion architecture, lakehouses, and real-time streaming. Transform raw data into trusted, analytics-ready assets at petabyte scale.",
+    href: "/services/big-data-architecture",
+    highlights: [
+      "Medallion Architecture (Bronze-Silver-Gold)",
+      "Data Lakehouse Implementation",
+      "Real-Time Streaming Pipelines",
+      "Data Mesh & Federated Governance",
+    ],
+    technologies: ["Databricks", "Delta Lake", "Apache Kafka", "Spark", "Snowflake"],
+    gradient: "from-blue-500 to-cyan-500",
+  },
+  {
+    icon: <Bot className="w-10 h-10" />,
+    title: "Agentic AI for Data",
+    description: "Deploy autonomous AI agents that sense, reason, and act on your data pipelines. Self-healing workflows, intelligent metadata management, and continuous data quality.",
+    href: "/services/agentic-ai-data",
+    highlights: [
+      "Self-Healing Data Pipelines",
+      "Intelligent Data Quality Agents",
+      "Autonomous Metadata Management",
+      "Predictive Pipeline Optimization",
+    ],
+    technologies: ["LangChain", "OpenAI", "Claude", "Great Expectations", "Alation"],
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    icon: <Target className="w-10 h-10" />,
+    title: "AI & Data Consulting",
+    description: "Navigate the AI era with confidence. From data strategy and governance to AI roadmaps and organizational transformation—expert guidance that delivers results.",
+    href: "/services/ai-data-consulting",
+    highlights: [
+      "Enterprise Data Strategy",
+      "AI Opportunity Assessment",
+      "Data Governance Framework",
+      "Responsible AI Guidelines",
+    ],
+    technologies: ["Strategy", "Governance", "Change Management", "ROI Analysis"],
+    gradient: "from-orange-500 to-amber-500",
+  },
+];
 
 const services = [
   {
@@ -203,6 +257,7 @@ const services = [
 
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -220,72 +275,163 @@ export default function Services() {
         >
           <source src="/videos/services.mp4" type="video/mp4" />
         </video>
-        <UniverseLights />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
         <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center pt-32">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
-          >
-            Complete SaaS{" "}
-            <span className="text-orange-500">Development</span>
-            <br />
-            Services
-          </motion.h1>
+          <AnimatedWrapper animation="fade-up-slow">
+            <TypewriterGradientText 
+              text="Data & AI Services"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
+              gradientClassName="bg-gradient-to-r from-white via-purple-300 to-purple-500 bg-clip-text text-transparent"
+              duration={2.0}
+            />
+          </AnimatedWrapper>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-gray-300 mb-12 max-w-3xl"
-          >
-            From MVP to scaling success - we provide end-to-end SaaS development 
-            services for ambitious founders across EMEA.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-4xl space-y-6"
-          >
-            <p className="text-lg text-gray-300 leading-relaxed">
-              At Digitrans, we don't just build software—we partner with visionary 
-              founders to transform innovative ideas into market-leading SaaS products. 
-              Our approach begins with deep understanding of your market, users, and 
-              business goals. This foundation allows us to assemble the perfect team 
-              of product strategists, UX designers, senior developers, and DevOps 
-              engineers to build solutions that scale from MVP to market leadership.
+          <AnimatedWrapper animation="fade-up" delay={0.2}>
+            <p className="text-xl text-gray-300 mb-12 max-w-3xl">
+              From modern data architecture to autonomous AI agents—we help enterprises 
+              build intelligent data platforms that drive competitive advantage.
             </p>
+          </AnimatedWrapper>
 
-            <p className="text-lg text-gray-300 leading-relaxed">
-              Our proven 6-step methodology has helped 50+ SaaS companies successfully 
-              launch and scale their products. We focus on building technically 
-              excellent, user-centric solutions with enterprise-grade security and 
-              scalability from day one. Our clients achieve an 80% funding success 
-              rate and 98% client satisfaction because we treat your success as our own.
-            </p>
-          </motion.div>
+          <AnimatedWrapper animation="fade-up" delay={0.4}>
+            <div className="max-w-4xl space-y-6">
+              <p className="text-lg text-gray-300 leading-relaxed">
+                In 2025, enterprise data strategy is being reshaped by AI, regulatory pressure, 
+                and the need to operationalize insights in real time. Organizations are shifting 
+                from experimentation to operationalization, with focus on measurable ROI, 
+                ethical governance, and sustainable practices.
+              </p>
+
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Our services span the full data lifecycle—from building scalable data platforms 
+                with medallion architecture to deploying autonomous AI agents that continuously 
+                optimize your data operations. We combine deep technical expertise with strategic 
+                advisory to deliver solutions that transform data into competitive advantage.
+              </p>
+            </div>
+          </AnimatedWrapper>
         </div>
       </div>
 
-      {/* Services Grid */}
+      {/* Main Services - 3 Categories */}
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
+          <SectionHeader
+            badge="Our Services"
+            title="Three Pillars of Data Excellence"
+            description="Comprehensive services spanning architecture, AI automation, and strategic consulting."
+            alignment="center"
+          />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
+            {mainServices.map((service, index) => (
+              <AnimatedWrapper
                 key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onClick={() => setSelectedService(service)}
-                className="cursor-pointer"
+                animation="scale-up-bounce"
+                delay={index * 0.15}
               >
-                <Card className="p-8 h-full hover:shadow-lg transition-shadow bg-gray-900/50 backdrop-blur-sm border border-blue-800/30 hover:border-blue-400/20 hover:scale-[1.02] transition-all duration-200">
+                <GlassCard 
+                  variant="gradient"
+                  className="p-8 h-full hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
+                  onClick={() => navigate(service.href)}
+                >
+                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} bg-opacity-20 text-white mb-6`}>
+                    {service.icon}
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-400 transition-colors">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 mb-6">{service.description}</p>
+
+                  <div className="mb-6">
+                    <h4 className="font-semibold mb-3 text-white text-sm uppercase tracking-wider">
+                      Key Capabilities
+                    </h4>
+                    <ul className="space-y-2">
+                      {service.highlights.map((highlight) => (
+                        <li
+                          key={highlight}
+                          className="text-gray-400 flex items-center gap-2 text-sm"
+                        >
+                          <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mb-6">
+                    <h4 className="font-semibold mb-3 text-white text-sm uppercase tracking-wider">
+                      Technologies
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {service.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-purple-400 group-hover:gap-4 transition-all">
+                    <span className="font-semibold">Learn More</span>
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+                </GlassCard>
+              </AnimatedWrapper>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-b from-purple-900/20 to-transparent">
+        <div className="container mx-auto px-4">
+          <AnimatedWrapper animation="zoom-in" className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+              Ready to Transform Your Data?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Let's discuss how we can help you build intelligent data platforms 
+              that drive competitive advantage.
+            </p>
+            <GradientButton size="lg" onClick={() => navigate('/contact')}>
+              Schedule a Consultation
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </GradientButton>
+          </AnimatedWrapper>
+        </div>
+      </section>
+
+      {/* Legacy Services - Additional Offerings */}
+      <section className="py-24 bg-gray-900/30">
+        <div className="container mx-auto px-4">
+          <SectionHeader
+            badge="Additional Services"
+            title="SaaS Development Services"
+            description="End-to-end development services for ambitious founders."
+            alignment="center"
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {services.map((service, index) => (
+              <AnimatedWrapper
+                key={service.title}
+                animation="scale-up-bounce"
+                delay={index * 0.1}
+              >
+                <GlassCard 
+                  variant="gradient"
+                  className="p-8 h-full hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                  onClick={() => setSelectedService(service)}
+                >
                   <div className="text-blue-500 mb-6">{service.icon}</div>
                   <h3 className="text-2xl font-semibold mb-4 text-white">
                     {service.title}
@@ -324,14 +470,12 @@ export default function Services() {
                       ))}
                     </div>
                   </div>
-                </Card>
-              </motion.div>
+                </GlassCard>
+              </AnimatedWrapper>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Success Story Dialog */}
       <Dialog
         open={!!selectedService}
         onOpenChange={() => setSelectedService(null)}

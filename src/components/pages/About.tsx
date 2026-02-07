@@ -37,6 +37,7 @@ import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import LazyImage from "@/components/LazyImage";
 import SEO from "@/components/SEO";
 import { OrganizationSchema } from "@/components/JsonLd";
+import { TypewriterGradientText } from "@/components/ui/typewriter-text";
 
 // Hero Data
 const heroData = {
@@ -192,17 +193,19 @@ const AboutPage: React.FC = () => {
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
           <div className="container mx-auto px-4 relative z-10">
-            <AnimatedWrapper animation="fade-up" className="max-w-4xl mx-auto text-center">
+            <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
               <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
                 {heroData.tagline}
               </span>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                {heroData.headline}
-              </h1>
+              <TypewriterGradientText 
+                text={heroData.headline}
+                className="text-4xl md:text-6xl font-bold mb-6"
+                duration={1.8}
+              />
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">{heroData.description}</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <GradientButton size="lg" asChild>
@@ -234,8 +237,8 @@ const AboutPage: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
               {valuePropositions.map((prop, index) => (
-                <AnimatedWrapper key={prop.title} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard variant="gradient" className="h-full p-6">
+                <AnimatedWrapper key={prop.title} animation="scale-up-bounce" delay={index * 0.1}>
+                  <GlassCard variant="gradient" className="h-full p-6 hover:scale-[1.02] transition-all duration-300">
                     <div className="flex items-start gap-4">
                       <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400">
                         {prop.icon}
@@ -286,26 +289,30 @@ const AboutPage: React.FC = () => {
                       </div>
                       <p className="text-gray-400 mb-6">{pillar.description}</p>
                       <ul className="space-y-2 mb-6">
-                        {pillar.capabilities.map((cap) => (
-                          <li key={cap} className="flex items-start gap-2 text-gray-300">
-                            <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                            <span>{cap}</span>
-                          </li>
+                        {pillar.capabilities.map((cap, capIndex) => (
+                          <AnimatedWrapper key={cap} animation="slide-up" delay={capIndex * 0.05}>
+                            <li className="flex items-start gap-2 text-gray-300">
+                              <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                              <span>{cap}</span>
+                            </li>
+                          </AnimatedWrapper>
                         ))}
                       </ul>
                       <p className="text-purple-400 italic">"{pillar.marketingAngle}"</p>
                     </div>
                     <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                      <GlassCard className="p-8 overflow-hidden">
-                        <div className="aspect-video flex items-center justify-center">
-                          <div className="text-center">
-                            <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 inline-block mb-4">
-                              {React.cloneElement(pillar.icon, { className: "w-12 h-12" })}
+                      <AnimatedWrapper animation="zoom-in" delay={0.2}>
+                        <GlassCard className="p-8 overflow-hidden hover:scale-[1.02] transition-all duration-300">
+                          <div className="aspect-video flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 inline-block mb-4">
+                                {React.cloneElement(pillar.icon, { className: "w-12 h-12" })}
+                              </div>
+                              <p className="text-xl font-bold text-white">{pillar.title}</p>
                             </div>
-                            <p className="text-xl font-bold text-white">{pillar.title}</p>
                           </div>
-                        </div>
-                      </GlassCard>
+                        </GlassCard>
+                      </AnimatedWrapper>
                     </div>
                   </div>
                 </AnimatedWrapper>
@@ -319,15 +326,15 @@ const AboutPage: React.FC = () => {
           <div className="container mx-auto px-4">
             <SectionHeader
               badge="Our Products"
-              title="Open-Source Software Built for Modern Teams"
+              title="Advanced Software Built for Modern Teams"
               description="Enterprise-grade products with transparent, open-source foundations."
               alignment="center"
             />
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
               {products.map((product, index) => (
-                <AnimatedWrapper key={product.name} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard variant="gradient" className="h-full p-6 relative">
+                <AnimatedWrapper key={product.name} animation="float-up" delay={index * 0.15}>
+                  <GlassCard variant="gradient" className="h-full p-6 relative hover:scale-[1.02] transition-all duration-300">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-2xl font-bold text-white">{product.name}</h3>
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -371,8 +378,8 @@ const AboutPage: React.FC = () => {
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
               {industries.map((industry, index) => (
-                <AnimatedWrapper key={industry.name} animation="fade-up" delay={index * 0.05}>
-                  <GlassCard className="p-4">
+                <AnimatedWrapper key={industry.name} animation="scale-in" delay={index * 0.05}>
+                  <GlassCard className="p-4 hover:scale-[1.05] transition-all duration-300">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="p-2 rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400">
                         {industry.icon}
@@ -392,7 +399,7 @@ const AboutPage: React.FC = () => {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <AnimatedWrapper animation="slide-right">
-                <GlassCard variant="gradient" className="h-full p-8">
+                <GlassCard variant="gradient" className="h-full p-8 hover:scale-[1.02] transition-all duration-300">
                   <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 w-fit mb-4">
                     <Target className="w-6 h-6" />
                   </div>
@@ -404,7 +411,7 @@ const AboutPage: React.FC = () => {
                 </GlassCard>
               </AnimatedWrapper>
               <AnimatedWrapper animation="slide-left">
-                <GlassCard variant="gradient" className="h-full p-8">
+                <GlassCard variant="gradient" className="h-full p-8 hover:scale-[1.02] transition-all duration-300">
                   <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 w-fit mb-4">
                     <Globe className="w-6 h-6" />
                   </div>
@@ -431,8 +438,8 @@ const AboutPage: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 max-w-5xl mx-auto">
               {values.map((value, index) => (
-                <AnimatedWrapper key={value.title} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard className="h-full p-6 text-center">
+                <AnimatedWrapper key={value.title} animation="flip-up" delay={index * 0.1}>
+                  <GlassCard className="h-full p-6 text-center hover:scale-[1.05] transition-all duration-300">
                     <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 w-fit mx-auto mb-4">
                       {value.icon}
                     </div>
@@ -457,8 +464,8 @@ const AboutPage: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 max-w-5xl mx-auto">
               {teamMembers.map((member, index) => (
-                <AnimatedWrapper key={member.name} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard variant="hover" className="h-full p-6 text-center">
+                <AnimatedWrapper key={member.name} animation="bounce-in" delay={index * 0.15}>
+                  <GlassCard variant="hover" className="h-full p-6 text-center hover:scale-[1.05] transition-all duration-300">
                     <div className="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-purple-500/50">
                       <LazyImage 
                         src={member.image} 
@@ -488,8 +495,8 @@ const AboutPage: React.FC = () => {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
               {offices.map((office, index) => (
-                <AnimatedWrapper key={office.city} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard variant="hover" className="p-6 text-center">
+                <AnimatedWrapper key={office.city} animation="float-up" delay={index * 0.1}>
+                  <GlassCard variant="hover" className="p-6 text-center hover:scale-[1.05] transition-all duration-300">
                     <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mx-auto mb-4" />
                     <h4 className="font-bold text-white text-lg">{office.city}</h4>
                     <p className="text-gray-400 text-sm">{office.country}</p>
@@ -505,11 +512,11 @@ const AboutPage: React.FC = () => {
         {/* Final CTA Section */}
         <section className="py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
           
           <div className="container mx-auto px-4 relative z-10">
-            <AnimatedWrapper animation="fade-up" className="max-w-3xl mx-auto text-center">
+            <AnimatedWrapper animation="zoom-in" className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
                 Ready to Transform Your Business?
               </h2>

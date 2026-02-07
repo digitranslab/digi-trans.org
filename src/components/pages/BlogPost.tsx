@@ -1,8 +1,9 @@
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import { useParams } from "react-router-dom";
+import { AnimatedWrapper } from "../ui/animated-wrapper";
+import { TypewriterGradientText } from "../ui/typewriter-text";
 
 interface BlogPostProps {
   post: {
@@ -324,17 +325,15 @@ kafka.subscribe('order.created', async (event) => {
 
       <article className="pt-32 pb-16 bg-black">
         <div className="container mx-auto px-4 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <AnimatedWrapper animation="fade-up-slow">
             <img
               src={post.image}
               alt={post.title}
               className="w-full h-[400px] object-cover rounded-lg mb-8"
             />
+          </AnimatedWrapper>
 
+          <AnimatedWrapper animation="fade-up" delay={0.1}>
             <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
               <span>{post.date}</span>
               <span className="flex items-center gap-1">
@@ -342,11 +341,18 @@ kafka.subscribe('order.created', async (event) => {
                 {post.readTime}
               </span>
             </div>
+          </AnimatedWrapper>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              {post.title}
-            </h1>
+          <AnimatedWrapper animation="fade-up" delay={0.2}>
+            <TypewriterGradientText 
+              text={post.title}
+              className="text-4xl md:text-5xl font-bold mb-6"
+              gradientClassName="bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent"
+              duration={1.8}
+            />
+          </AnimatedWrapper>
 
+          <AnimatedWrapper animation="fade-up" delay={0.3}>
             <div className="prose prose-lg max-w-none">
               <p className="text-xl text-gray-400 mb-8">{post.description}</p>
 
@@ -356,7 +362,7 @@ kafka.subscribe('order.created', async (event) => {
                 <p className="text-gray-400">Full content coming soon...</p>
               )}
             </div>
-          </motion.div>
+          </AnimatedWrapper>
         </div>
       </article>
 

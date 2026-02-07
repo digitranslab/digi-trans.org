@@ -39,62 +39,62 @@ interface HeroProps {
 
 const defaultServiceCards: ServiceCard[] = [
   {
-    title: "Big Data & AI Consultancy",
-    description: "Transform your business with intelligent data strategies and AI-powered insights",
+    title: "Big Data Architecture",
+    description: "Medallion architecture, lakehouses, and real-time streaming",
     icon: <BarChart className="w-12 h-12 text-white" />,
     story: {
-      title: "Enterprise AI & Data Transformation",
+      title: "Modern Data Platform Excellence",
       description:
-        "We help businesses unlock the power of their data through advanced analytics, machine learning, and AI solutions. Our consultants design and implement data architectures that drive actionable insights and competitive advantage.",
+        "We design and implement enterprise-grade data platforms using medallion architecture (Bronze-Silver-Gold), data lakehouses, and real-time streaming. Our solutions process petabytes of data with sub-second query performance.",
       metrics: [
-        "300% ROI Improvement",
-        "85% Faster Insights",
-        "200+ AI Models Deployed",
+        "10x Faster Queries",
+        "45% Cost Reduction",
+        "99.9% Uptime",
       ],
     },
   },
   {
-    title: "AI-Assisted Accounting SaaS",
-    description: "Intelligent accounting software that automates bookkeeping and financial insights",
+    title: "Agentic AI for Data",
+    description: "Autonomous AI agents for self-healing data pipelines",
     icon: <Bot className="w-12 h-12 text-white" />,
     story: {
-      title: "Smart Financial Management",
+      title: "Intelligent Data Operations",
       description:
-        "Our AI-powered accounting platform automatically categorizes transactions, detects anomalies, and provides real-time financial insights. Perfect for businesses that want to eliminate manual bookkeeping and gain predictive financial analytics.",
+        "Deploy AI agents that autonomously monitor, diagnose, and repair data pipelines. Our agentic systems handle 90% of incidents without human intervention, continuously improving data quality and metadata management.",
       metrics: [
-        "95% Automation Rate",
-        "60% Time Savings",
-        "99.9% Accuracy",
+        "90% Auto-Resolution",
+        "70% Ops Reduction",
+        "24/7 Autonomous",
       ],
     },
   },
   {
-    title: "AI Project Management SaaS",
-    description: "Intelligent collaboration platform that predicts project outcomes and optimizes workflows",
+    title: "AI & Data Consulting",
+    description: "Strategic advisory for data-driven transformation",
     icon: <Cloud className="w-12 h-12 text-white" />,
     story: {
-      title: "Predictive Project Intelligence",
+      title: "Strategic Data Leadership",
       description:
-        "Our AI-enhanced project management platform learns from your team's patterns to predict delays, suggest optimal resource allocation, and automate routine tasks. Built for teams that want to work smarter, not harder.",
+        "Expert guidance on enterprise data strategy, AI roadmaps, governance frameworks, and organizational transformation. We help you turn data into competitive advantage with measurable ROI.",
       metrics: [
-        "40% Faster Delivery",
-        "85% Risk Reduction",
-        "200% Productivity Gain",
+        "3-5x ROI",
+        "200+ Engagements",
+        "98% Satisfaction",
       ],
     },
   },
   {
-    title: "AI Platform Integration",
-    description: "Connect your apps, docs, and team with intelligent automation (like Onyx.app)",
+    title: "Products & Platforms",
+    description: "Allama AI automation and DBLOCK data platform",
     icon: <AppWindow className="w-12 h-12 text-white" />,
     story: {
-      title: "Unified AI Ecosystem",
+      title: "Enterprise AI Products",
       description:
-        "We build custom AI platforms that integrate with your existing tools and documents, creating a unified intelligence layer for your business. Our solutions connect teams, automate workflows, and provide insights across all your business systems.",
+        "Our flagship products—Allama for AI workflow automation and DBLOCK for next-gen data applications—accelerate your AI journey with production-ready platforms built on open standards.",
       metrics: [
-        "100+ App Integrations",
-        "50% Workflow Efficiency",
-        "Real-time Intelligence",
+        "Open Source",
+        "Enterprise Ready",
+        "Rapid Deployment",
       ],
     },
   },
@@ -102,8 +102,8 @@ const defaultServiceCards: ServiceCard[] = [
 
 const Hero = ({
   headline:
-    initialHeadline = "Enterprise AI & Data Intelligence Solutions",
-  subheadline = "Transform your business with cutting-edge AI platforms, intelligent automation, and data-driven insights. We build custom AI solutions that connect your team, apps, and data into one intelligent ecosystem.",
+    initialHeadline = "Enterprise Data & AI Platform Solutions",
+  subheadline = "Transform your data infrastructure with modern architecture, autonomous AI agents, and strategic consulting. We build intelligent data platforms that scale from gigabytes to petabytes.",
   serviceCards = defaultServiceCards,
   videoUrl = "/videos/financial-ai.mp4",
   onRegisterInterest = () => {},
@@ -198,8 +198,8 @@ const Hero = ({
           transition={{ duration: 1 }}
           className="text-3xl md:text-5xl lg:text-6xl tracking-wider text-violet-300 font-bold uppercase leading-tight mb-2"
         >
-Building Tomorrow's<br />
-          AI Intelligence Today
+          Modern Data Platforms<br />
+          Powered by AI
         </motion.div>
       </div>
 

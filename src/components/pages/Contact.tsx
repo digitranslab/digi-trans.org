@@ -30,34 +30,7 @@ import { GradientButton } from "../ui/gradient-button";
 import { SectionHeader } from "../ui/section-header";
 import { AnimatedWrapper } from "../ui/animated-wrapper";
 import SEO from "../SEO";
-
-// Office locations
-const locations = [
-  {
-    city: "Dubai",
-    country: "UAE",
-    phone: "+971 50 205 5733",
-    email: "info@digi-trans.org",
-  },
-  {
-    city: "London",
-    country: "UK",
-    phone: "+44 777 11 51 435",
-    email: "info@digi-trans.org",
-  },
-  {
-    city: "Paris",
-    country: "France",
-    phone: "+33 6 13 70 97 58",
-    email: "info@digi-trans.org",
-  },
-  {
-    city: "Casablanca",
-    country: "Morocco",
-    phone: "+212 6 67 19 71 88",
-    email: "info@digi-trans.org",
-  },
-];
+import { TypewriterGradientText } from "../ui/typewriter-text";
 
 // Form state type - matches hidden HTML form in index.html
 interface FormData {
@@ -165,17 +138,19 @@ export default function Contact() {
         {/* Hero Section */}
         <section className="relative pt-32 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
           <div className="container mx-auto px-4 relative z-10">
-            <AnimatedWrapper animation="fade-up" className="max-w-3xl mx-auto text-center">
+            <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
               <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
                 Let's Connect
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                Start Your AI & Data Journey
-              </h1>
+              <TypewriterGradientText 
+                text="Start Your AI & Data Journey"
+                className="text-4xl md:text-5xl font-bold mb-6"
+                duration={1.8}
+              />
               <p className="text-xl text-gray-300 mb-8">
                 Whether you need strategic consulting, engineering expertise, or want to explore our products, 
                 we're here to help transform your business.
@@ -191,7 +166,7 @@ export default function Contact() {
               
               {/* Contact Form */}
               <AnimatedWrapper animation="slide-right">
-                <GlassCard variant="gradient" className="p-6 h-full">
+                <GlassCard variant="gradient" className="p-6 h-full hover:scale-[1.01] transition-all duration-300">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 text-white">
                       <MessageCircle className="w-5 h-5" />
@@ -380,7 +355,7 @@ export default function Contact() {
 
               {/* Book a Call */}
               <AnimatedWrapper animation="slide-left">
-                <GlassCard variant="gradient" className="p-6 h-full">
+                <GlassCard variant="gradient" className="p-6 h-full hover:scale-[1.01] transition-all duration-300">
                   <div className="flex items-center gap-3 mb-6">
                     <div className="p-2 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 text-white">
                       <Calendar className="w-5 h-5" />
@@ -416,36 +391,6 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* Global Offices */}
-        <section className="py-16 bg-gray-900/30">
-          <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="Global Presence"
-              title="Our Offices"
-              description="Local expertise across EMEA region."
-              alignment="center"
-            />
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
-              {locations.map((location, index) => (
-                <AnimatedWrapper key={location.city} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard className="p-4 text-center h-full">
-                    <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mx-auto mb-3" />
-                    <h3 className="font-bold text-white mb-1">{location.city}</h3>
-                    <p className="text-gray-400 text-sm mb-2">{location.country}</p>
-                    <a 
-                      href={`tel:${location.phone.replace(/\s/g, '')}`}
-                      className="text-xs text-purple-400 hover:text-purple-300 transition-colors block"
-                    >
-                      {location.phone}
-                    </a>
-                  </GlassCard>
-                </AnimatedWrapper>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Quick Info */}
         <section className="py-16">
           <div className="container mx-auto px-4">
@@ -457,30 +402,38 @@ export default function Contact() {
               />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <GlassCard className="p-5">
-                  <h3 className="font-bold text-white mb-2">Response Time</h3>
-                  <p className="text-gray-400 text-sm">
-                    We typically respond to inquiries within 24 hours during business days.
-                  </p>
-                </GlassCard>
-                <GlassCard className="p-5">
-                  <h3 className="font-bold text-white mb-2">Consultation</h3>
-                  <p className="text-gray-400 text-sm">
-                    Initial consultations are free. We'll discuss your needs and provide recommendations.
-                  </p>
-                </GlassCard>
-                <GlassCard className="p-5">
-                  <h3 className="font-bold text-white mb-2">Project Scope</h3>
-                  <p className="text-gray-400 text-sm">
-                    We work with projects of all sizes, from startups to enterprise transformations.
-                  </p>
-                </GlassCard>
-                <GlassCard className="p-5">
-                  <h3 className="font-bold text-white mb-2">Open Source</h3>
-                  <p className="text-gray-400 text-sm">
-                    Our products are open-source. Check our GitHub for documentation and community support.
-                  </p>
-                </GlassCard>
+                <AnimatedWrapper animation="float-up" delay={0.1}>
+                  <GlassCard className="p-5 hover:scale-[1.03] transition-all duration-300">
+                    <h3 className="font-bold text-white mb-2">Response Time</h3>
+                    <p className="text-gray-400 text-sm">
+                      We typically respond to inquiries within 24 hours during business days.
+                    </p>
+                  </GlassCard>
+                </AnimatedWrapper>
+                <AnimatedWrapper animation="float-up" delay={0.2}>
+                  <GlassCard className="p-5 hover:scale-[1.03] transition-all duration-300">
+                    <h3 className="font-bold text-white mb-2">Consultation</h3>
+                    <p className="text-gray-400 text-sm">
+                      Initial consultations are free. We'll discuss your needs and provide recommendations.
+                    </p>
+                  </GlassCard>
+                </AnimatedWrapper>
+                <AnimatedWrapper animation="float-up" delay={0.3}>
+                  <GlassCard className="p-5 hover:scale-[1.03] transition-all duration-300">
+                    <h3 className="font-bold text-white mb-2">Project Scope</h3>
+                    <p className="text-gray-400 text-sm">
+                      We work with projects of all sizes, from startups to enterprise transformations.
+                    </p>
+                  </GlassCard>
+                </AnimatedWrapper>
+                <AnimatedWrapper animation="float-up" delay={0.4}>
+                  <GlassCard className="p-5 hover:scale-[1.03] transition-all duration-300">
+                    <h3 className="font-bold text-white mb-2">Open Source</h3>
+                    <p className="text-gray-400 text-sm">
+                      Our products are open-source. Check our GitHub for documentation and community support.
+                    </p>
+                  </GlassCard>
+                </AnimatedWrapper>
               </div>
             </div>
           </div>

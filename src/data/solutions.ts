@@ -273,3 +273,145 @@ export const solutionsData: Record<string, SolutionData> = {
 };
 
 export default solutionsData;
+
+// Additional solutions for legacy routes
+export const additionalSolutionsData: Record<string, SolutionData> = {
+  "enterprise-solutions": {
+    slug: "enterprise-solutions",
+    hero: {
+      badge: "Enterprise Solutions",
+      title: "Enterprise Software Solutions",
+      description: "Streamline operations, enhance collaboration, and drive growth with custom enterprise software built for your specific business challenges.",
+    },
+    overview: "Our enterprise solutions help organisations transform their operations through integrated, scalable platforms that connect people, processes, and technology. We combine deep industry expertise with cutting-edge technology to deliver solutions tailored to your specific business needs, whether you're looking to streamline operations, enhance decision-making, or transform customer experiences.",
+    challenges: [
+      {
+        title: "System Integration",
+        description: "Connect disparate systems and eliminate data silos across your organisation.",
+        icon: "Link",
+      },
+      {
+        title: "Process Automation",
+        description: "Automate manual workflows to improve efficiency and reduce operational costs.",
+        icon: "Zap",
+      },
+      {
+        title: "Data Visibility",
+        description: "Gain real-time visibility into operations, inventory, and financials.",
+        icon: "Eye",
+      },
+      {
+        title: "Scalability",
+        description: "Build systems that scale with your business growth and evolving needs.",
+        icon: "TrendingUp",
+      },
+    ],
+    services: [
+      {
+        title: "Custom Development",
+        description: "Bespoke enterprise applications built for your unique requirements.",
+        href: "/services/custom-development",
+      },
+      {
+        title: "Data Engineering",
+        description: "Modern data platforms for analytics and business intelligence.",
+        href: "/services/data-engineering",
+      },
+      {
+        title: "Cloud Solutions",
+        description: "Scalable cloud infrastructure for enterprise workloads.",
+        href: "/services/cloud-solutions",
+      },
+    ],
+    caseStudies: [
+      {
+        title: "Global Manufacturer ERP Transformation",
+        description: "Implemented integrated ERP and BI solution connecting 50+ facilities worldwide.",
+        results: ["35% reduction in operational costs", "40% improvement in inventory accuracy", "$15M annual savings"],
+      },
+      {
+        title: "Financial Services CX Platform",
+        description: "Unified customer experience platform integrating CRM, marketing, and analytics.",
+        results: ["42% increase in customer satisfaction", "65% reduction in response time", "22% decrease in churn"],
+      },
+      {
+        title: "Healthcare Workflow Automation",
+        description: "Enterprise-wide workflow automation for a major healthcare network.",
+        results: ["70% reduction in admin tasks", "45% decrease in documentation errors", "$8M annual savings"],
+      },
+    ],
+    ctaText: "Transform Your Enterprise",
+  },
+  "digital-transformation": {
+    slug: "digital-transformation",
+    hero: {
+      badge: "Digital Transformation",
+      title: "Digital Transformation Services",
+      description: "Transform your business with cutting-edge digital solutions and strategies that drive innovation, efficiency, and competitive advantage.",
+    },
+    overview: "Digital transformation is a fundamental reimagining of how your organisation uses technology, people, and processes to radically improve business performance. Our approach combines strategic vision with practical implementation, addressing technology, data, process, and organisational change to deliver sustainable transformation that creates lasting business value.",
+    challenges: [
+      {
+        title: "Legacy Systems",
+        description: "Modernise outdated systems while maintaining business continuity.",
+        icon: "RefreshCw",
+      },
+      {
+        title: "Cultural Change",
+        description: "Build a digital-first culture that embraces innovation and agility.",
+        icon: "Users",
+      },
+      {
+        title: "Customer Expectations",
+        description: "Meet evolving customer demands for seamless digital experiences.",
+        icon: "Heart",
+      },
+      {
+        title: "Competitive Pressure",
+        description: "Stay ahead of digital-native competitors disrupting your industry.",
+        icon: "Target",
+      },
+    ],
+    services: [
+      {
+        title: "AI Consulting",
+        description: "Strategic AI roadmaps to accelerate your digital transformation.",
+        href: "/services/ai-consulting",
+      },
+      {
+        title: "Cloud Solutions",
+        description: "Cloud-native infrastructure enabling agility and innovation.",
+        href: "/services/cloud-solutions",
+      },
+      {
+        title: "Custom Development",
+        description: "Modern applications that power your digital business.",
+        href: "/services/custom-development",
+      },
+    ],
+    caseStudies: [
+      {
+        title: "Retail Digital Transformation",
+        description: "End-to-end digital transformation for a major retail chain.",
+        results: ["300% increase in online sales", "50% improvement in customer engagement", "Omnichannel experience"],
+      },
+      {
+        title: "Manufacturing Industry 4.0",
+        description: "Smart factory implementation with IoT and AI-powered analytics.",
+        results: ["25% increase in productivity", "40% reduction in downtime", "Real-time visibility"],
+      },
+      {
+        title: "Banking Digital Services",
+        description: "Digital banking platform transformation for a regional bank.",
+        results: ["80% of transactions now digital", "60% cost reduction", "NPS improved by 35 points"],
+      },
+    ],
+    ctaText: "Start Your Digital Journey",
+  },
+};
+
+// Merge all solutions
+export const allSolutionsData: Record<string, SolutionData> = {
+  ...solutionsData,
+  ...additionalSolutionsData,
+};

@@ -1,28 +1,25 @@
 /**
  * DBlockPage Component
  * 
- * The product page for DBLOCK - open-source AI application builder.
- * Based on Langflow - a visual framework for building AI applications.
+ * The product page for DBLOCK - enterprise AI application platform.
+ * DigiTransLab provides implementation, consulting, and managed services
+ * for building enterprise AI solutions.
  * 
  * Includes:
  * - Hero section with tagline and CTAs
  * - Value propositions section
  * - Feature deep dive sections
- * - Component categories
- * - Deployment options
+ * - Technology integrations
  * - Use cases
- * - Final CTAs
  */
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as LucideIcons from "lucide-react";
 import { 
-  Play, 
-  BookOpen,
   Check,
-  GitBranch,
-  Download
+  Calendar,
+  Users
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -30,11 +27,11 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
+import { TypewriterGradientText } from "@/components/ui/typewriter-text";
 import {
   heroData,
   valuePropositions,
   features,
-  deploymentOptions,
   useCases,
   componentCategories,
 } from "@/data/dblock";
@@ -46,6 +43,8 @@ const getIcon = (iconName: string) => {
 };
 
 const DBlockPage: React.FC = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
@@ -55,20 +54,23 @@ const DBlockPage: React.FC = () => {
         <section className="relative pt-32 pb-20 overflow-hidden">
           {/* Background Effects */}
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
           
           <div className="container mx-auto px-4 relative z-10">
-            <AnimatedWrapper animation="fade-up" className="max-w-4xl mx-auto text-center">
+            <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
               {/* Badge */}
               <span className="inline-block mb-4 px-4 py-1.5 bg-blue-900/40 text-blue-300 text-sm rounded-full border border-blue-500/30">
                 {heroData.tagline}
               </span>
               
               {/* Headline */}
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-                {heroData.headline}
-              </h1>
+              <TypewriterGradientText 
+                text={heroData.headline}
+                className="text-4xl md:text-6xl font-bold mb-6"
+                gradientClassName="bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent"
+                duration={1.8}
+              />
               
               {/* Description */}
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -77,17 +79,13 @@ const DBlockPage: React.FC = () => {
               
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <GradientButton size="lg" asChild>
-                  <a href={heroData.primaryCTA.href} target="_blank" rel="noopener noreferrer">
-                    <GitBranch className="w-5 h-5 mr-2" />
-                    {heroData.primaryCTA.label}
-                  </a>
+                <GradientButton size="lg" onClick={() => navigate('/contact')}>
+                  <Calendar className="w-5 h-5 mr-2" />
+                  {heroData.primaryCTA.label}
                 </GradientButton>
-                <GradientButton variant="secondary" size="lg" asChild>
-                  <a href={heroData.secondaryCTA.href} target="_blank" rel="noopener noreferrer">
-                    <BookOpen className="w-5 h-5 mr-2" />
-                    {heroData.secondaryCTA.label}
-                  </a>
+                <GradientButton variant="secondary" size="lg" onClick={() => navigate('/clients')}>
+                  <Users className="w-5 h-5 mr-2" />
+                  {heroData.secondaryCTA.label}
                 </GradientButton>
               </div>
               
@@ -109,15 +107,15 @@ const DBlockPage: React.FC = () => {
           <div className="container mx-auto px-4">
             <SectionHeader
               badge="Why DBLOCK"
-              title="AI Application Development, Simplified"
-              description="Four pillars that make DBLOCK the choice for AI builders."
+              title="Enterprise AI, Delivered"
+              description="Four reasons teams choose DigiTransLab for AI development."
               alignment="center"
             />
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
               {valuePropositions.map((prop, index) => (
-                <AnimatedWrapper key={prop.title} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard variant="gradient" className="h-full p-6">
+                <AnimatedWrapper key={prop.title} animation="scale-up-bounce" delay={index * 0.1}>
+                  <GlassCard variant="gradient" className="h-full p-6 hover:scale-[1.02] transition-all duration-300">
                     <div className="flex items-start gap-4">
                       <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400">
                         {getIcon(prop.icon)}
@@ -146,9 +144,9 @@ const DBlockPage: React.FC = () => {
         <section className="py-20 bg-gray-900/30">
           <div className="container mx-auto px-4">
             <SectionHeader
-              badge="Features"
-              title="Everything You Need to Build AI Apps"
-              description="Powerful capabilities for developers and teams."
+              badge="Services"
+              title="AI Solutions We Deliver"
+              description="End-to-end AI development from strategy to production."
               alignment="center"
             />
             
@@ -170,17 +168,20 @@ const DBlockPage: React.FC = () => {
                       </div>
                       <p className="text-gray-400 mb-6">{feature.description}</p>
                       <ul className="space-y-2 mb-6">
-                        {feature.capabilities.map((cap) => (
-                          <li key={cap} className="flex items-start gap-2 text-gray-300">
-                            <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                            <span>{cap}</span>
-                          </li>
+                        {feature.capabilities.map((cap, capIndex) => (
+                          <AnimatedWrapper key={cap} animation="slide-up" delay={capIndex * 0.05}>
+                            <li className="flex items-start gap-2 text-gray-300">
+                              <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
+                              <span>{cap}</span>
+                            </li>
+                          </AnimatedWrapper>
                         ))}
                       </ul>
                       <p className="text-blue-400 italic">"{feature.marketingAngle}"</p>
                     </div>
                     <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                      <GlassCard className="p-4 overflow-hidden">
+                      <AnimatedWrapper animation="zoom-in" delay={0.2}>
+                        <GlassCard className="p-4 overflow-hidden hover:scale-[1.02] transition-all duration-300">
                         {feature.image ? (
                           <img 
                             src={feature.image} 
@@ -198,6 +199,7 @@ const DBlockPage: React.FC = () => {
                           </div>
                         )}
                       </GlassCard>
+                    </AnimatedWrapper>
                     </div>
                   </div>
                 </AnimatedWrapper>
@@ -210,16 +212,16 @@ const DBlockPage: React.FC = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <SectionHeader
-              badge="Components"
-              title="Rich Component Library"
-              description="Connect to any LLM, vector store, or data source."
+              badge="Integrations"
+              title="We Integrate With Your Stack"
+              description="Connect to any LLM, vector store, or enterprise system."
               alignment="center"
             />
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
               {componentCategories.map((category, index) => (
-                <AnimatedWrapper key={category.category} animation="fade-up" delay={index * 0.05}>
-                  <GlassCard className="p-4">
+                <AnimatedWrapper key={category.category} animation="float-up" delay={index * 0.05}>
+                  <GlassCard className="p-4 h-full min-h-[180px] hover:scale-[1.03] transition-all duration-300">
                     <h4 className="font-bold text-blue-400 mb-3">{category.category}</h4>
                     <ul className="space-y-1">
                       {category.items.map((item) => (
@@ -235,59 +237,20 @@ const DBlockPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Deployment Options Section */}
+        {/* Use Cases Section */}
         <section className="py-20 bg-gray-900/30">
           <div className="container mx-auto px-4">
             <SectionHeader
-              badge="Deployment"
-              title="Deploy Your Way"
-              description="From desktop app to production Docker deployment."
-              alignment="center"
-            />
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
-              {deploymentOptions.map((option, index) => (
-                <AnimatedWrapper key={option.name} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard 
-                    variant={option.recommended ? "gradient" : "default"} 
-                    className="h-full p-6 relative"
-                  >
-                    {option.recommended && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs rounded-full">
-                        Recommended
-                      </span>
-                    )}
-                    <h4 className="text-lg font-bold text-white mb-2">{option.name}</h4>
-                    <p className="text-sm text-gray-400 mb-4">{option.description}</p>
-                    <ul className="space-y-2">
-                      {option.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-2 text-sm text-gray-300">
-                          <Check className="w-4 h-4 text-green-400" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </GlassCard>
-                </AnimatedWrapper>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Use Cases Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <SectionHeader
               badge="Use Cases"
-              title="Build Any AI Application"
-              description="From chatbots to multi-agent systems."
+              title="AI Solutions We Build"
+              description="From knowledge systems to intelligent agents."
               alignment="center"
             />
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
               {useCases.map((useCase, index) => (
-                <AnimatedWrapper key={useCase.title} animation="fade-up" delay={index * 0.1}>
-                  <GlassCard className="h-full p-6">
+                <AnimatedWrapper key={useCase.title} animation="flip-up" delay={index * 0.1}>
+                  <GlassCard className="h-full min-h-[140px] p-6 hover:scale-[1.03] transition-all duration-300">
                     <div className="flex items-start gap-4">
                       <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400">
                         {getIcon(useCase.icon)}
@@ -301,62 +264,6 @@ const DBlockPage: React.FC = () => {
                 </AnimatedWrapper>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* Final CTA Section */}
-        <section className="py-24 relative overflow-hidden">
-          {/* Background Effects */}
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <AnimatedWrapper animation="fade-up" className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-                Ready to Build Your AI Application?
-              </h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Join thousands of developers building AI applications with DBLOCK.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <GradientButton size="lg" asChild>
-                  <a href="https://github.com/digitranslab/dblock" target="_blank" rel="noopener noreferrer">
-                    <GitBranch className="w-5 h-5 mr-2" />
-                    Get Started Free
-                  </a>
-                </GradientButton>
-                <GradientButton variant="secondary" size="lg" asChild>
-                  <a href="https://dblock.io/desktop" target="_blank" rel="noopener noreferrer">
-                    <Download className="w-5 h-5 mr-2" />
-                    Download Desktop
-                  </a>
-                </GradientButton>
-                <GradientButton variant="secondary" size="lg" asChild>
-                  <a href="https://docs.dblock.io" target="_blank" rel="noopener noreferrer">
-                    <BookOpen className="w-5 h-5 mr-2" />
-                    Documentation
-                  </a>
-                </GradientButton>
-              </div>
-              
-              {/* Trust Indicators */}
-              <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-                <span className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
-                  100% Open Source
-                </span>
-                <span className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
-                  Free Forever
-                </span>
-                <span className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
-                  No Vendor Lock-in
-                </span>
-              </div>
-            </AnimatedWrapper>
           </div>
         </section>
       </main>
