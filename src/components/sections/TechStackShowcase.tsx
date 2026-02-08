@@ -8,26 +8,30 @@
 
 import { motion } from "framer-motion";
 
-// Platform icons as inline SVGs for better performance
+// Platform icons as inline SVGs - Visible on dark background
 const PlatformIcons: Record<string, JSX.Element> = {
   Databricks: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#FF3621">
-      <path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm0 3.5L18.5 7v3.5L12 14 5.5 10.5V7L12 3.5zm-6.5 8L12 15l6.5-3.5v3.5L12 18.5 5.5 15v-3.5z"/>
+      <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.5L18 7l-6 3-6-3 6-2.5zM4 8.5l6 3v7l-6-3v-7zm16 0v7l-6 3v-7l6-3z"/>
     </svg>
   ),
   Snowflake: (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#29B5E8">
-      <path d="M12 0l1.5 3.5L12 7l-1.5-3.5L12 0zm0 17l1.5 3.5L12 24l-1.5-3.5L12 17zm10.5-5l-3.5 1.5L15.5 12l3.5-1.5L22.5 12zM1.5 12l3.5 1.5L8.5 12 5 10.5 1.5 12zm17.3-6.5l-2.5 2.5-1.5-1.5 2.5-2.5 1.5 1.5zM5.2 18.5l2.5-2.5 1.5 1.5-2.5 2.5-1.5-1.5zm13.6 0l-1.5-1.5 2.5-2.5 1.5 1.5-2.5 2.5zM5.2 5.5l1.5 1.5-2.5 2.5-1.5-1.5 2.5-2.5z"/>
+      <path d="M12 2v4m0 12v4M2 12h4m12 0h4M5.64 5.64l2.83 2.83m7.07 7.07l2.82 2.82M5.64 18.36l2.83-2.83m7.07-7.07l2.82-2.82"/>
+      <circle cx="12" cy="12" r="3" fill="#29B5E8"/>
+      <path d="M12 2v4m0 12v4M2 12h4m12 0h4" stroke="#29B5E8" strokeWidth="2" strokeLinecap="round"/>
+      <path d="M5.64 5.64l2.83 2.83m7.07 7.07l2.82 2.82M5.64 18.36l2.83-2.83m7.07-7.07l2.82-2.82" stroke="#29B5E8" strokeWidth="2" strokeLinecap="round"/>
     </svg>
   ),
   "Apache Spark": (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#E25A1C">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/>
+      <path d="M12 2C8.5 2 5.5 4 4 7l4 2c.8-1.5 2.3-2.5 4-2.5s3.2 1 4 2.5l4-2c-1.5-3-4.5-5-8-5z"/>
+      <path d="M4 7v6c0 4.4 3.6 8 8 8s8-3.6 8-8V7l-4 2v4c0 2.2-1.8 4-4 4s-4-1.8-4-4V9L4 7z"/>
     </svg>
   ),
   "Delta Lake": (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#00ADD8">
-      <path d="M12 2L2 19h20L12 2zm0 4l6.5 11h-13L12 6z"/>
+      <path d="M12 3L3 21h18L12 3zm0 4l6 12H6l6-12z"/>
     </svg>
   ),
   AWS: (
@@ -41,8 +45,11 @@ const PlatformIcons: Record<string, JSX.Element> = {
     </svg>
   ),
   GCP: (
-    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#4285F4">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+    <svg viewBox="0 0 24 24" className="w-5 h-5">
+      <path fill="#EA4335" d="M12 7l1.6 3H17l-2.5 2 1 3.5L12 13l-3.5 2.5 1-3.5L7 10h3.4z"/>
+      <path fill="#4285F4" d="M19.5 12c0-.3 0-.6-.1-.9l-1.9.7c0 .1.1.2.1.2 0 1.9-1.6 3.5-3.5 3.5-.2 0-.3 0-.5-.1l-.7 1.9c.4.1.8.1 1.2.1 3 0 5.4-2.4 5.4-5.4z"/>
+      <path fill="#FBBC05" d="M12 17.5c-1.9 0-3.5-1.6-3.5-3.5 0-.2 0-.3.1-.5l-1.9-.7c-.1.4-.1.8-.1 1.2 0 3 2.4 5.4 5.4 5.4.3 0 .6 0 .9-.1l-.7-1.9c-.1.1-.2.1-.2.1z"/>
+      <path fill="#34A853" d="M8.5 12c0-1.9 1.6-3.5 3.5-3.5.2 0 .3 0 .5.1l.7-1.9c-.4-.1-.8-.1-1.2-.1-3 0-5.4 2.4-5.4 5.4 0 .3 0 .6.1.9l1.9-.7c-.1-.1-.1-.2-.1-.2z"/>
     </svg>
   ),
   OpenAI: (
@@ -51,35 +58,34 @@ const PlatformIcons: Record<string, JSX.Element> = {
     </svg>
   ),
   LangChain: (
-    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#1C3C3C">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-      <circle cx="12" cy="12" r="3" fill="#10A37F"/>
+    <svg viewBox="0 0 24 24" className="w-5 h-5">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#10B981" strokeWidth="2"/>
+      <path d="M8 12h8M12 8v8" stroke="#10B981" strokeWidth="2" strokeLinecap="round"/>
+      <circle cx="8" cy="12" r="2" fill="#10B981"/>
+      <circle cx="16" cy="12" r="2" fill="#10B981"/>
+      <circle cx="12" cy="8" r="2" fill="#10B981"/>
+      <circle cx="12" cy="16" r="2" fill="#10B981"/>
     </svg>
   ),
   "Hugging Face": (
     <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#FFD21E">
-      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 1.5c4.687 0 8.5 3.813 8.5 8.5s-3.813 8.5-8.5 8.5S3.5 16.687 3.5 12 7.313 3.5 12 3.5zM8 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm8 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-8.5 6c0 1.5 2 3 4.5 3s4.5-1.5 4.5-3h-9z"/>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8.5 8C9.33 8 10 8.67 10 9.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zm7 0c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5zm-3.5 9c-2.33 0-4.32-1.45-5.12-3.5h1.67c.69 1.19 1.97 2 3.45 2s2.76-.81 3.45-2h1.67c-.8 2.05-2.79 3.5-5.12 3.5z"/>
     </svg>
   ),
   "Apache Kafka": (
     <svg viewBox="0 0 24 24" className="w-5 h-5">
-      <circle cx="12" cy="5" r="2" fill="#FFFFFF"/>
-      <circle cx="7" cy="10" r="2" fill="#FFFFFF"/>
-      <circle cx="17" cy="10" r="2" fill="#FFFFFF"/>
-      <circle cx="12" cy="15" r="2" fill="#FFFFFF"/>
-      <circle cx="7" cy="19" r="2" fill="#FFFFFF"/>
-      <circle cx="17" cy="19" r="2" fill="#FFFFFF"/>
-      <line x1="12" y1="5" x2="7" y2="10" stroke="#FFFFFF" strokeWidth="1"/>
-      <line x1="12" y1="5" x2="17" y2="10" stroke="#FFFFFF" strokeWidth="1"/>
-      <line x1="7" y1="10" x2="12" y2="15" stroke="#FFFFFF" strokeWidth="1"/>
-      <line x1="17" y1="10" x2="12" y2="15" stroke="#FFFFFF" strokeWidth="1"/>
-      <line x1="12" y1="15" x2="7" y2="19" stroke="#FFFFFF" strokeWidth="1"/>
-      <line x1="12" y1="15" x2="17" y2="19" stroke="#FFFFFF" strokeWidth="1"/>
+      <circle cx="12" cy="5" r="2.5" fill="#FFFFFF"/>
+      <circle cx="6" cy="12" r="2.5" fill="#FFFFFF"/>
+      <circle cx="18" cy="12" r="2.5" fill="#FFFFFF"/>
+      <circle cx="12" cy="19" r="2.5" fill="#FFFFFF"/>
+      <path d="M12 7.5v4M9 10l2 1.5M15 10l-2 1.5M12 16.5v-4M9 14l2-1.5M15 14l-2-1.5" stroke="#FFFFFF" strokeWidth="1.5" fill="none"/>
     </svg>
   ),
   "Apache Flink": (
-    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#E6526F">
-      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+    <svg viewBox="0 0 24 24" className="w-5 h-5">
+      <path d="M4 8l8-4 8 4" stroke="#E6526F" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+      <path d="M4 12l8 4 8-4" stroke="#E6526F" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+      <path d="M4 16l8 4 8-4" stroke="#E6526F" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
     </svg>
   ),
 };
@@ -105,11 +111,11 @@ const technologies = [
   
   // AI/ML
   { name: "OpenAI", category: "AI", color: "#00A67E" },
-  { name: "LangChain", category: "AI", color: "#10A37F" },
+  { name: "LangChain", category: "AI", color: "#10B981" },
   { name: "Hugging Face", category: "AI", color: "#FFD21E" },
   
   // Streaming
-  { name: "Apache Kafka", category: "Streaming", color: "#231F20" },
+  { name: "Apache Kafka", category: "Streaming", color: "#FFFFFF" },
   { name: "Apache Flink", category: "Streaming", color: "#E6526F" },
 ];
 

@@ -135,34 +135,46 @@ function AnimatedDonutChart() {
 
   const radius = 60;
   const circumference = 2 * Math.PI * radius;
-  let cumulativeOffset = 0;
+  
+  // Pre-calculate all segment positions
+  const segmentsWithOffsets = segments.reduce((acc, segment, index) => {
+    const prevCumulative = index === 0 ? 0 : acc[index - 1].cumulativeEnd;
+    const segmentLength = (segment.value / 100) * circumference;
+    
+    acc.push({
+      ...segment,
+      segmentLength,
+      // Offset from the start (top of circle after -90deg rotation)
+      offset: -prevCumulative,
+      cumulativeEnd: prevCumulative + segmentLength
+    });
+    
+    return acc;
+  }, [] as Array<{ value: number; color: string; label: string; segmentLength: number; offset: number; cumulativeEnd: number }>);
 
   return (
     <div ref={ref} className="relative w-40 h-40 mx-auto">
       <svg className="w-full h-full transform -rotate-90" viewBox="0 0 160 160">
-        {segments.map((segment, index) => {
-          const strokeDasharray = (segment.value / 100) * circumference;
-          const strokeDashoffset = cumulativeOffset;
-          cumulativeOffset -= strokeDasharray;
-
-          return (
-            <motion.circle
-              key={segment.label}
-              cx="80"
-              cy="80"
-              r={radius}
-              fill="none"
-              stroke={segment.color}
-              strokeWidth="20"
-              strokeDasharray={`${strokeDasharray} ${circumference}`}
-              strokeDashoffset={-strokeDashoffset}
-              initial={{ strokeDasharray: `0 ${circumference}` }}
-              animate={isInView ? { strokeDasharray: `${strokeDasharray} ${circumference}` } : {}}
-              transition={{ duration: 1.5, delay: index * 0.2, ease: "easeOut" }}
-              className="cursor-pointer hover:opacity-80 transition-opacity"
-            />
-          );
-        })}
+        {segmentsWithOffsets.map((segment, index) => (
+          <motion.circle
+            key={segment.label}
+            cx="80"
+            cy="80"
+            r={radius}
+            fill="none"
+            stroke={segment.color}
+            strokeWidth="20"
+            strokeLinecap="butt"
+            style={{
+              strokeDasharray: `${segment.segmentLength} ${circumference}`,
+              strokeDashoffset: segment.offset,
+            }}
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: index * 0.15 }}
+            className="cursor-pointer hover:opacity-80 transition-opacity"
+          />
+        ))}
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center">

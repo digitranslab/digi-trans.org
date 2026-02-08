@@ -36,12 +36,12 @@ import { AnimatedWrapper } from "./ui/animated-wrapper";
 
 // Client logos for trust bar
 const clientLogos = [
-  { name: "Fortune 500 Bank", logo: "/images/1.svg" },
-  { name: "Healthcare Leader", logo: "/images/2.svg" },
-  { name: "Tech Unicorn", logo: "/images/3.svg" },
-  { name: "Retail Giant", logo: "/images/4.svg" },
-  { name: "Insurance Corp", logo: "/images/5.svg" },
-  { name: "Manufacturing Co", logo: "/images/6.svg" },
+  { name: "Renault", logo: "/images/1.svg" },
+  { name: "BPI France", logo: "/images/2.svg" },
+  { name: "Dr. Martens", logo: "/images/3.svg" },
+  { name: "Direct Line Insurance", logo: "/images/4.svg" },
+  { name: "Thales", logo: "/images/5.svg" },
+  { name: "RATP", logo: "/images/6.svg" },
 ];
 
 // Core services - aligned with new 3 categories
@@ -151,36 +151,58 @@ export default function Home() {
       <Hero videoUrl="/videos/home-page.mp4" />
 
       {/* Trust Bar - Client Logos */}
-      <section className="py-12 bg-black/50 border-y border-white/5">
+      <section className="py-20 bg-black overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-8"
+            className="text-center mb-12"
           >
-            <p className="text-gray-400 text-sm uppercase tracking-wider">
-              Trusted by data-driven enterprises worldwide
+            <span className="inline-block mb-4 px-4 py-1.5 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">
+              Our Clients
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Trusted by Data-Driven Enterprises Worldwide
+            </h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Powering data transformation for industry leaders across sectors
             </p>
           </motion.div>
           
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-            {clientLogos.map((client, index) => (
-              <motion.div
-                key={client.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="grayscale hover:grayscale-0 opacity-50 hover:opacity-100 transition-all duration-300"
-              >
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="h-8 md:h-10 w-auto"
-                />
-              </motion.div>
-            ))}
+          {/* Animated scrolling logos - styled like platforms */}
+          <div className="relative">
+            <motion.div
+              className="flex gap-6 items-center"
+              animate={{ x: [0, -1800] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 35,
+                  ease: "linear",
+                },
+              }}
+            >
+              {/* Quadruple the logos for seamless loop */}
+              {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
+                <div
+                  key={`${client.name}-${index}`}
+                  className="flex-shrink-0 px-8 py-5 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group cursor-pointer hover:bg-gray-800/50"
+                >
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src={client.logo} 
+                      alt={client.name}
+                      className="h-10 w-auto object-contain brightness-0 invert"
+                    />
+                    <span className="text-white font-medium whitespace-nowrap group-hover:text-purple-400 transition-colors text-lg">
+                      {client.name}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
