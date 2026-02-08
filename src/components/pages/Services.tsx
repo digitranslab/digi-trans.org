@@ -1,389 +1,418 @@
+/**
+ * Services Page
+ * 
+ * Showcases DigiTransLab's three core service pillars with rich content
+ * matching the Products page design style.
+ */
+
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import UniverseLights from "../UniverseLights";
-import { motion } from "framer-motion";
-import { Card } from "../ui/card";
-import { Button } from "../ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "../ui/dialog";
-import { ArrowRight } from "lucide-react";
-import {
-  Brain,
-  Code2,
-  Cloud,
-  Database,
-  Users,
-  Lightbulb,
-  Bot,
-  Server,
-  BarChart,
-  Network,
-  Briefcase,
-  Globe,
-  CheckCircle,
-  Layers,
-  Sparkles,
-  Target,
-} from "lucide-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ProgressBar } from "../ui/progress-bar";
-import { BackToTop } from "../ui/back-to-top";
-import { StickyCTA } from "../ui/sticky-cta";
-import { AnimatedWrapper } from "../ui/animated-wrapper";
 import { GlassCard } from "../ui/glass-card";
-import { SectionHeader } from "../ui/section-header";
-import { TypewriterGradientText } from "../ui/typewriter-text";
 import { GradientButton } from "../ui/gradient-button";
+import { SectionHeader } from "../ui/section-header";
+import { AnimatedWrapper } from "../ui/animated-wrapper";
+import { BackToTop } from "../ui/back-to-top";
+import { 
+  ArrowRight, 
+  CheckCircle, 
+  Bot, 
+  Layers, 
+  Target,
+  Zap, 
+  Users,
+  Globe,
+  Award,
+  Clock,
+  Database,
+  Sparkles,
+  BarChart3,
+  Shield,
+  Workflow,
+  Brain,
+  Server,
+  LineChart,
+  FileSearch,
+  Settings,
+  TrendingUp
+} from "lucide-react";
 
-// New consolidated service categories
-const mainServices = [
+// Main service offerings - 3 pillars
+const services = [
   {
-    icon: <Layers className="w-10 h-10" />,
-    title: "Big Data Architecture & Engineering",
-    description: "Modern data platforms using medallion architecture, lakehouses, and real-time streaming. Transform raw data into trusted, analytics-ready assets at petabyte scale.",
-    href: "/services/big-data-architecture",
-    highlights: [
+    name: "Big Data Architecture & Engineering",
+    tagline: "Modern Data Platforms at Scale",
+    description: "Build enterprise-grade data platforms using medallion architecture, lakehouses, and real-time streaming pipelines.",
+    longDescription: "Transform raw data into trusted, analytics-ready assets at petabyte scale. Our data engineering team designs and implements modern data architectures that enable self-service analytics, real-time insights, and AI-ready data foundations. From data mesh to federated governance, we build platforms that scale with your business.",
+    benefits: [
       "Medallion Architecture (Bronze-Silver-Gold)",
       "Data Lakehouse Implementation",
       "Real-Time Streaming Pipelines",
       "Data Mesh & Federated Governance",
+      "Petabyte-Scale Processing",
+      "Self-Service Analytics Enablement"
     ],
-    technologies: ["Databricks", "Delta Lake", "Apache Kafka", "Spark", "Snowflake"],
-    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      { icon: <Layers className="w-5 h-5" />, title: "Medallion Architecture", description: "Bronze-Silver-Gold data layers for quality and governance" },
+      { icon: <Database className="w-5 h-5" />, title: "Data Lakehouse", description: "Combine data lake flexibility with warehouse performance" },
+      { icon: <Zap className="w-5 h-5" />, title: "Real-Time Streaming", description: "Process millions of events per second with Kafka & Flink" },
+      { icon: <Settings className="w-5 h-5" />, title: "Data Mesh", description: "Domain-oriented, self-serve data infrastructure" },
+    ],
+    technologies: ["Databricks", "Delta Lake", "Apache Kafka", "Apache Spark", "Snowflake", "dbt", "Apache Flink", "Airflow"],
+    cta1: { text: "Learn More", href: "/services/big-data-architecture" },
+    cta2: { text: "View Case Studies", href: "/portfolio" },
+    gradient: "from-blue-600 to-cyan-600",
+    icon: <Layers className="w-12 h-12" />,
+    stats: [
+      { value: "50+", label: "Data Platforms Built" },
+      { value: "10PB+", label: "Data Processed Daily" },
+      { value: "99.9%", label: "Pipeline Reliability" },
+    ],
   },
   {
-    icon: <Bot className="w-10 h-10" />,
-    title: "Agentic AI for Data",
-    description: "Deploy autonomous AI agents that sense, reason, and act on your data pipelines. Self-healing workflows, intelligent metadata management, and continuous data quality.",
-    href: "/services/agentic-ai-data",
-    highlights: [
+    name: "Agentic AI for Data",
+    tagline: "Autonomous Intelligence for Your Data",
+    description: "Deploy AI agents that sense, reason, and act on your data pipelines—enabling self-healing workflows and intelligent automation.",
+    longDescription: "Move beyond traditional automation to truly autonomous data operations. Our agentic AI solutions deploy intelligent agents that continuously monitor data quality, optimise pipeline performance, and resolve issues before they impact your business. From self-healing ETL to predictive maintenance, we bring AI-native thinking to data engineering.",
+    benefits: [
       "Self-Healing Data Pipelines",
       "Intelligent Data Quality Agents",
       "Autonomous Metadata Management",
-      "Predictive Pipeline Optimization",
+      "Predictive Pipeline Optimisation",
+      "Natural Language Data Queries",
+      "Automated Anomaly Detection"
     ],
-    technologies: ["LangChain", "OpenAI", "Claude", "Great Expectations", "Alation"],
-    gradient: "from-purple-500 to-pink-500",
+    features: [
+      { icon: <Bot className="w-5 h-5" />, title: "AI Agents", description: "Autonomous agents that monitor and optimise pipelines" },
+      { icon: <Shield className="w-5 h-5" />, title: "Self-Healing", description: "Automatic detection and resolution of data issues" },
+      { icon: <Brain className="w-5 h-5" />, title: "Intelligent Quality", description: "ML-powered data quality monitoring and alerting" },
+      { icon: <Sparkles className="w-5 h-5" />, title: "Natural Language", description: "Query and transform data using plain English" },
+    ],
+    technologies: ["LangChain", "OpenAI", "Claude", "Great Expectations", "Monte Carlo", "Alation", "Atlan", "Vector DBs"],
+    cta1: { text: "Learn More", href: "/services/agentic-ai-data" },
+    cta2: { text: "Book Demo", href: "/contact" },
+    gradient: "from-purple-600 to-pink-600",
+    icon: <Bot className="w-12 h-12" />,
+    stats: [
+      { value: "90%", label: "Reduction in Manual Tasks" },
+      { value: "24/7", label: "Autonomous Monitoring" },
+      { value: "60%", label: "Faster Issue Resolution" },
+    ],
   },
   {
-    icon: <Target className="w-10 h-10" />,
-    title: "AI & Data Consulting",
-    description: "Navigate the AI era with confidence. From data strategy and governance to AI roadmaps and organizational transformation—expert guidance that delivers results.",
-    href: "/services/ai-data-consulting",
-    highlights: [
+    name: "AI & Data Consulting",
+    tagline: "Strategic Guidance for the AI Era",
+    description: "Navigate the AI era with confidence—from data strategy and governance to AI roadmaps and organisational transformation.",
+    longDescription: "In 2025, enterprise data strategy is being reshaped by AI, regulatory pressure, and the need to operationalise insights in real time. Our consultants bring deep expertise in data strategy, AI implementation, and organisational change to help you build a sustainable competitive advantage. From opportunity assessment to responsible AI frameworks, we guide your transformation journey.",
+    benefits: [
       "Enterprise Data Strategy",
       "AI Opportunity Assessment",
       "Data Governance Framework",
       "Responsible AI Guidelines",
+      "ROI-Focused Roadmaps",
+      "Change Management Support"
     ],
-    technologies: ["Strategy", "Governance", "Change Management", "ROI Analysis"],
+    features: [
+      { icon: <Target className="w-5 h-5" />, title: "Strategy", description: "Data and AI strategies aligned to business outcomes" },
+      { icon: <FileSearch className="w-5 h-5" />, title: "Assessment", description: "Identify high-value AI opportunities in your organisation" },
+      { icon: <Shield className="w-5 h-5" />, title: "Governance", description: "Build robust data governance and compliance frameworks" },
+      { icon: <TrendingUp className="w-5 h-5" />, title: "Transformation", description: "Guide organisational change for AI adoption" },
+    ],
+    technologies: ["Strategy", "Governance", "Change Management", "ROI Analysis", "Risk Assessment", "Compliance", "Training", "Workshops"],
+    cta1: { text: "Learn More", href: "/services/ai-data-consulting" },
+    cta2: { text: "Schedule Consultation", href: "/contact" },
     gradient: "from-orange-500 to-amber-500",
+    icon: <Target className="w-12 h-12" />,
+    stats: [
+      { value: "200+", label: "Enterprises Advised" },
+      { value: "£500M+", label: "Value Delivered" },
+      { value: "15+", label: "Years Experience" },
+    ],
   },
 ];
 
-const services = [
+// Why choose us section
+const whyChooseUs = [
   {
-    icon: <BarChart className="w-8 h-8" />,
-    title: "MVP Development",
-    description:
-      "Transform your SaaS idea into a market-ready MVP in 8-12 weeks",
-    features: [
-      "User Research & Market Validation",
-      "Technical Architecture Planning",
-      "Agile Development Process",
-      "Weekly Progress Demos",
-      "Production Deployment",
-      "Launch Strategy Support",
-    ],
-    technologies: ["React", "Node.js", "TypeScript", "PostgreSQL", "AWS"],
-    successStory: {
-      title: "TechFlow SaaS - Project Management Platform",
-      description:
-        "Developed a comprehensive project management SaaS platform from concept to production in 10 weeks. The platform secured €2M in funding within 6 months and onboarded 500+ enterprise customers.",
-      metrics: [
-        "€2M funding raised in 6 months",
-        "500+ enterprise customers",
-        "10-week development timeline",
-        "99.9% uptime since launch",
-      ],
-    },
+    icon: <Award className="w-6 h-6" />,
+    title: "Proven Expertise",
+    description: "200+ successful data and AI projects across industries",
   },
   {
-    icon: <Bot className="w-8 h-8" />,
-    title: "Product Strategy & Design",
-    description:
-      "Transform your vision into a winning product strategy that users love",
-    features: [
-      "Product Strategy Development",
-      "User Persona Research",
-      "Competitive Analysis",
-      "UX/UI Design System",
-      "Wireframing & Prototyping",
-      "User Testing & Validation",
-    ],
-    technologies: [
-      "Figma",
-      "User Research",
-      "Product Strategy",
-      "Market Validation",
-      "Design Systems",
-    ],
-    successStory: {
-      title: "DataSync Pro - Product-Market Fit Success",
-      description:
-        "Guided a data integration startup through product strategy refinement and UX redesign. Our strategic approach helped them achieve perfect product-market fit and 400% revenue growth in the first year.",
-      metrics: [
-        "400% revenue growth in year 1",
-        "Perfect product-market fit",
-        "Zero technical debt",
-        "95% user satisfaction score",
-      ],
-    },
+    icon: <Users className="w-6 h-6" />,
+    title: "Senior Team",
+    description: "Consultants with 10+ years average experience",
   },
   {
-    icon: <Code2 className="w-8 h-8" />,
-    title: "Full-Stack Development",
-    description:
-      "Complete technical development with modern, scalable technologies",
-    features: [
-      "Frontend Development (React/Next.js)",
-      "Backend API Development",
-      "Database Design & Optimization",
-      "Third-party Integrations",
-      "Payment Processing Setup",
-      "Security Implementation",
-    ],
-    technologies: ["React", "Next.js", "Python", "Django", "PostgreSQL", "Stripe"],
-    successStory: {
-      title: "MedCare Connect - Healthcare Platform",
-      description:
-        "Built a HIPAA-compliant healthcare SaaS platform from the ground up in 12 weeks. The platform now serves 50+ healthcare providers with zero security incidents and full compliance.",
-      metrics: [
-        "HIPAA-compliant from day one",
-        "50+ healthcare providers",
-        "12-week development cycle",
-        "Zero security incidents",
-      ],
-    },
+    icon: <Globe className="w-6 h-6" />,
+    title: "Cloud Agnostic",
+    description: "AWS, Azure, and GCP certified partners",
   },
   {
-    icon: <Cloud className="w-8 h-8" />,
-    title: "DevOps & Scaling",
-    description:
-      "Production-ready infrastructure that grows with your business",
-    features: [
-      "Cloud Infrastructure Setup",
-      "Automated CI/CD Pipelines",
-      "Auto-scaling Configuration",
-      "Monitoring & Alerting",
-      "Security & Compliance",
-      "Performance Optimization",
-    ],
-    technologies: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform", "Monitoring"],
-    successStory: {
-      title: "CloudOps Solutions - Infrastructure Excellence",
-      description:
-        "Architected and deployed auto-scaling infrastructure for a DevOps SaaS platform. The system seamlessly handles traffic spikes from 100 to 100,000+ concurrent users with 99.99% uptime.",
-      metrics: [
-        "99.99% uptime achieved",
-        "Auto-scales to 100K+ users",
-        "50% reduction in infrastructure costs",
-        "Zero-downtime deployments",
-      ],
-    },
+    icon: <Clock className="w-6 h-6" />,
+    title: "Rapid Delivery",
+    description: "POC to production in weeks, not months",
   },
-  {
-    icon: <Lightbulb className="w-8 h-8" />,
-    title: "SaaS Consulting",
-    description: "Strategic guidance for SaaS success and growth optimization",
-    features: [
-      "SaaS Business Model Design",
-      "Technology Stack Selection",
-      "Scaling Strategy Planning",
-      "Performance Optimization",
-      "Security Assessment",
-      "Growth Metrics Analysis",
-    ],
-    technologies: [
-      "SaaS Metrics",
-      "Business Intelligence",
-      "Growth Strategy",
-      "Technical Due Diligence",
-    ],
-    successStory: {
-      title: "FinanceFlow - Strategic SaaS Growth",
-      description:
-        "Provided strategic consulting for a fintech SaaS platform, optimizing their technology stack and growth strategy. Our guidance helped them achieve €5M ARR in 18 months with exceptional unit economics.",
-      metrics: [
-        "€5M ARR in 18 months",
-        "150% improvement in unit economics",
-        "SOC 2 Type II certification",
-        "40% reduction in churn rate",
-      ],
-    },
-  },
-  {
-    icon: <Users className="w-8 h-8" />,
-    title: "Technical Co-founder",
-    description: "On-demand technical leadership for non-technical founders",
-    features: [
-      "Technical Strategy & Roadmap",
-      "Team Building & Management",
-      "Technology Decision Making",
-      "Investor Communication",
-      "Due Diligence Support",
-      "Ongoing Technical Guidance",
-    ],
-    technologies: ["Leadership", "Strategy", "Team Management", "Investor Relations"],
-    successStory: {
-      title: "EduFlow - Technical Leadership Success",
-      description:
-        "Served as technical co-founder for an EdTech startup led by a non-technical founder. Provided end-to-end technical leadership from MVP to Series A funding round, building a world-class product and team.",
-      metrics: [
-        "Series A funding achieved",
-        "Technical team scaled to 15+",
-        "Product launched in 6 months",
-        "Zero technical debt accumulated",
-      ],
-    },
-  },
+];
+
+// Client logos/industries
+const industries = [
+  { name: "Financial Services", icon: <LineChart className="w-6 h-6" /> },
+  { name: "Healthcare", icon: <Shield className="w-6 h-6" /> },
+  { name: "Retail", icon: <BarChart3 className="w-6 h-6" /> },
+  { name: "Technology", icon: <Server className="w-6 h-6" /> },
+  { name: "Manufacturing", icon: <Settings className="w-6 h-6" /> },
 ];
 
 export default function Services() {
-  const [selectedService, setSelectedService] = useState(null);
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <ProgressBar />
       <Navbar />
-      <div className="relative w-full h-[800px] bg-black overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80 z-10" />
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-50 object-center"
-          style={{ objectPosition: "center 30%" }}
-        >
-          <source src="/videos/services.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-
-        <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-center text-center pt-32">
-          <AnimatedWrapper animation="fade-up-slow">
-            <TypewriterGradientText 
-              text="Data & AI Services"
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
-              gradientClassName="bg-gradient-to-r from-white via-purple-300 to-purple-500 bg-clip-text text-transparent"
-              duration={2.0}
-            />
-          </AnimatedWrapper>
-
-          <AnimatedWrapper animation="fade-up" delay={0.2}>
-            <p className="text-xl text-gray-300 mb-12 max-w-3xl">
+      
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-black to-black" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <span className="inline-block mb-4 px-4 py-1.5 bg-blue-900/40 text-blue-300 text-sm rounded-full border border-blue-500/30">
+              Our Services
+            </span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Data & AI Services for the Enterprise
+            </h1>
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               From modern data architecture to autonomous AI agents—we help enterprises 
               build intelligent data platforms that drive competitive advantage.
             </p>
-          </AnimatedWrapper>
-
-          <AnimatedWrapper animation="fade-up" delay={0.4}>
-            <div className="max-w-4xl space-y-6">
-              <p className="text-lg text-gray-300 leading-relaxed">
-                In 2025, enterprise data strategy is being reshaped by AI, regulatory pressure, 
-                and the need to operationalize insights in real time. Organizations are shifting 
-                from experimentation to operationalization, with focus on measurable ROI, 
-                ethical governance, and sustainable practices.
-              </p>
-
-              <p className="text-lg text-gray-300 leading-relaxed">
-                Our services span the full data lifecycle—from building scalable data platforms 
-                with medallion architecture to deploying autonomous AI agents that continuously 
-                optimize your data operations. We combine deep technical expertise with strategic 
-                advisory to deliver solutions that transform data into competitive advantage.
-              </p>
+            
+            <div className="flex flex-wrap justify-center gap-4">
+              <GradientButton
+                size="lg"
+                onClick={() => navigate('/contact')}
+                rightIcon={<ArrowRight className="w-5 h-5" />}
+              >
+                Schedule Consultation
+              </GradientButton>
+              <GradientButton
+                size="lg"
+                variant="secondary"
+                onClick={() => navigate('/portfolio')}
+                rightIcon={<ArrowRight className="w-5 h-5" />}
+              >
+                View Case Studies
+              </GradientButton>
             </div>
-          </AnimatedWrapper>
+          </motion.div>
+          
+          {/* Trust indicators */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap justify-center gap-8 mt-16"
+          >
+            {["AWS Partner", "GCP Partner", "Azure Partner", "Databricks Partner"].map((partner) => (
+              <div key={partner} className="flex items-center gap-2 text-gray-400">
+                <CheckCircle className="w-4 h-4 text-green-400" />
+                <span className="text-sm">{partner}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
-      </div>
+      </section>
 
-      {/* Main Services - 3 Categories */}
+      {/* Services Grid - Alternating Layout */}
       <section className="py-24">
         <div className="container mx-auto px-4">
+          <div className="space-y-32">
+            {services.map((service, index) => (
+              <AnimatedWrapper
+                key={service.name}
+                animation="fade-in-blur"
+                delay={index * 0.2}
+              >
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center`}>
+                  {/* Content */}
+                  <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className={`p-4 rounded-2xl bg-gradient-to-br ${service.gradient} text-white`}>
+                        {service.icon}
+                      </div>
+                      <div>
+                        <h2 className="text-3xl font-bold text-white">{service.name}</h2>
+                        <p className="text-purple-400">{service.tagline}</p>
+                      </div>
+                    </div>
+                    
+                    <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+                      {service.longDescription}
+                    </p>
+                    
+                    {/* Features Grid */}
+                    <div className="grid grid-cols-2 gap-4 mb-8">
+                      {service.features.map((feature, i) => (
+                        <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-gray-900/50 border border-gray-800">
+                          <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
+                            {feature.icon}
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-white text-sm">{feature.title}</h4>
+                            <p className="text-xs text-gray-400">{feature.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Benefits */}
+                    <div className="grid grid-cols-2 gap-2 mb-8">
+                      {service.benefits.slice(0, 4).map((benefit, i) => (
+                        <div key={i} className="flex items-center gap-2 text-sm text-gray-300">
+                          <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Technologies */}
+                    <div className="mb-8">
+                      <div className="flex flex-wrap gap-2">
+                        {service.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-xs px-3 py-1 bg-gray-800/50 text-gray-300 rounded-full border border-gray-700"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* CTAs */}
+                    <div className="flex gap-4">
+                      <GradientButton
+                        onClick={() => navigate(service.cta1.href)}
+                        rightIcon={<ArrowRight className="w-4 h-4" />}
+                      >
+                        {service.cta1.text}
+                      </GradientButton>
+                      <GradientButton
+                        variant="secondary"
+                        onClick={() => navigate(service.cta2.href)}
+                        rightIcon={<ArrowRight className="w-4 h-4" />}
+                      >
+                        {service.cta2.text}
+                      </GradientButton>
+                    </div>
+                  </div>
+                  
+                  {/* Stats Card */}
+                  <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
+                    <div className="relative">
+                      <div className={`absolute -inset-4 bg-gradient-to-r ${service.gradient} rounded-2xl opacity-20 blur-xl`} />
+                      <div className="relative bg-gray-900/80 backdrop-blur-sm rounded-2xl border border-gray-800 p-8">
+                        <h3 className="text-xl font-bold text-white mb-8 text-center">Impact & Results</h3>
+                        <div className="grid grid-cols-3 gap-6">
+                          {service.stats.map((stat, i) => (
+                            <div key={i} className="text-center">
+                              <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent mb-2`}>
+                                {stat.value}
+                              </div>
+                              <div className="text-xs text-gray-400">{stat.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        {/* Additional service highlights */}
+                        <div className="mt-8 pt-8 border-t border-gray-800">
+                          <h4 className="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">Key Capabilities</h4>
+                          <div className="space-y-3">
+                            {service.benefits.slice(0, 3).map((benefit, i) => (
+                              <div key={i} className="flex items-center gap-3">
+                                <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.gradient}`} />
+                                <span className="text-sm text-gray-300">{benefit}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedWrapper>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries We Serve */}
+      <section className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
+        <div className="container mx-auto px-4">
           <SectionHeader
-            badge="Our Services"
-            title="Three Pillars of Data Excellence"
-            description="Comprehensive services spanning architecture, AI automation, and strategic consulting."
+            badge="Industries"
+            title="Trusted Across Sectors"
+            description="We bring deep domain expertise to every engagement"
             alignment="center"
           />
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12">
-            {mainServices.map((service, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-16">
+            {industries.map((industry, index) => (
               <AnimatedWrapper
-                key={service.title}
-                animation="scale-up-bounce"
-                delay={index * 0.15}
+                key={industry.name}
+                animation="bounce-in"
+                delay={index * 0.1}
               >
-                <GlassCard 
-                  variant="gradient"
-                  className="p-8 h-full hover:scale-[1.02] transition-all duration-300 cursor-pointer group"
-                  onClick={() => navigate(service.href)}
-                >
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} bg-opacity-20 text-white mb-6`}>
-                    {service.icon}
+                <GlassCard className="p-6 text-center h-full hover:scale-105 transition-transform cursor-pointer">
+                  <div className="inline-flex p-3 rounded-xl bg-purple-500/10 text-purple-400 mb-4">
+                    {industry.icon}
                   </div>
-                  
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-400 transition-colors">
-                    {service.title}
+                  <h3 className="text-sm font-semibold text-white">
+                    {industry.name}
                   </h3>
-                  
-                  <p className="text-gray-400 mb-6">{service.description}</p>
+                </GlassCard>
+              </AnimatedWrapper>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-3 text-white text-sm uppercase tracking-wider">
-                      Key Capabilities
-                    </h4>
-                    <ul className="space-y-2">
-                      {service.highlights.map((highlight) => (
-                        <li
-                          key={highlight}
-                          className="text-gray-400 flex items-center gap-2 text-sm"
-                        >
-                          <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
+      {/* Why Choose Us */}
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <SectionHeader
+            badge="Why DigiTransLab"
+            title="Your Trusted Data Partner"
+            description="We combine deep technical expertise with strategic thinking"
+            alignment="center"
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+            {whyChooseUs.map((item, index) => (
+              <AnimatedWrapper
+                key={item.title}
+                animation="bounce-in"
+                delay={index * 0.1}
+              >
+                <GlassCard className="p-6 text-center h-full">
+                  <div className="inline-flex p-3 rounded-xl bg-blue-500/10 text-blue-400 mb-4">
+                    {item.icon}
                   </div>
-
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-3 text-white text-sm uppercase tracking-wider">
-                      Technologies
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-xs px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-purple-400 group-hover:gap-4 transition-all">
-                    <span className="font-semibold">Learn More</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    {item.description}
+                  </p>
                 </GlassCard>
               </AnimatedWrapper>
             ))}
@@ -392,124 +421,43 @@ export default function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-purple-900/20 to-transparent">
-        <div className="container mx-auto px-4">
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/20 to-pink-900/30" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <AnimatedWrapper animation="zoom-in" className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Ready to Transform Your Data?
             </h2>
             <p className="text-xl text-gray-300 mb-8">
               Let's discuss how we can help you build intelligent data platforms 
               that drive competitive advantage.
             </p>
-            <GradientButton size="lg" onClick={() => navigate('/contact')}>
-              Schedule a Consultation
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </GradientButton>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <GradientButton
+                size="lg"
+                onClick={() => navigate('/contact')}
+                rightIcon={<ArrowRight className="w-5 h-5" />}
+              >
+                Schedule Consultation
+              </GradientButton>
+              <GradientButton
+                size="lg"
+                variant="secondary"
+                onClick={() => navigate('/products')}
+                rightIcon={<ArrowRight className="w-5 h-5" />}
+              >
+                Explore Our Products
+              </GradientButton>
+            </div>
           </AnimatedWrapper>
         </div>
       </section>
 
-      {/* Legacy Services - Additional Offerings */}
-      <section className="py-24 bg-gray-900/30">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            badge="Additional Services"
-            title="SaaS Development Services"
-            description="End-to-end development services for ambitious founders."
-            alignment="center"
-          />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-            {services.map((service, index) => (
-              <AnimatedWrapper
-                key={service.title}
-                animation="scale-up-bounce"
-                delay={index * 0.1}
-              >
-                <GlassCard 
-                  variant="gradient"
-                  className="p-8 h-full hover:scale-[1.02] transition-all duration-300 cursor-pointer"
-                  onClick={() => setSelectedService(service)}
-                >
-                  <div className="text-blue-500 mb-6">{service.icon}</div>
-                  <h3 className="text-2xl font-semibold mb-4 text-white">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 mb-6">{service.description}</p>
-
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-3 text-white">
-                      Key Features
-                    </h4>
-                    <ul className="space-y-2">
-                      {service.features.map((feature) => (
-                        <li
-                          key={feature}
-                          className="text-gray-400 flex items-center gap-2"
-                        >
-                          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold mb-3 text-white">
-                      Technologies
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-sm px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </GlassCard>
-              </AnimatedWrapper>
-            ))}
-          </div>
-        </div>
-      </section>
-      <Dialog
-        open={!!selectedService}
-        onOpenChange={() => setSelectedService(null)}
-      >
-        <DialogContent className="sm:max-w-[600px] bg-gradient-to-br from-blue-900/20 via-purple-900/10 to-indigo-900/20 text-white border border-blue-500/10 backdrop-blur-sm">
-          {selectedService?.successStory && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-2xl font-bold text-white">
-                  {selectedService.successStory.title}
-                </DialogTitle>
-                <DialogDescription className="text-gray-300 mt-4">
-                  {selectedService.successStory.description}
-                </DialogDescription>
-              </DialogHeader>
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                {selectedService.successStory.metrics.map((metric, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-2 bg-gray-800/50 p-4 rounded-lg"
-                  >
-                    <CheckCircle className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-200">{metric}</span>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
-
       <Footer />
       <BackToTop />
-      <StickyCTA />
     </div>
   );
 }

@@ -1,165 +1,231 @@
-import React from "react";
 import Navbar from "../../Navbar";
 import Footer from "../../Footer";
-import UniverseLights from "../../UniverseLights";
 import { motion } from "framer-motion";
+import { FileText, Scale, AlertTriangle, Globe, Gavel, Link2, Mail } from "lucide-react";
 
 export default function Terms() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <div className="relative pt-32 pb-16">
-        <UniverseLights />
-        <div className="container mx-auto px-4">
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-black to-black" />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl font-bold mb-8">Terms & Conditions</h1>
-            <div className="prose prose-invert max-w-none">
-              <p className="text-gray-400 mb-6">Last updated: March 20, 2024</p>
-
-              <p className="text-gray-300 mb-6">
-                These Terms of Use ("Terms") are a legal contract between you
-                and/or the entity or company that you represent ("you" or
-                "your") and Digitrans, Inc. ("we", "us" or "Digitrans"), and
-                govern your use of all the text, data, information, software,
-                graphics, and other content (collectively "Content") that we and
-                our affiliates may make available to you.
-              </p>
-
-              <p className="text-gray-300 mb-6">
-                Please read these Terms and Conditions ("Terms", "Terms and
-                Conditions") carefully before browsing the https://digitrans.ai
-                website (the "Website") operated by Digitrans, Inc. ("us", "we",
-                "Digitrans" or "our").
-              </p>
-
-              <p className="text-gray-300 mb-6">
-                Your access to and use of the Website is conditioned on your
-                acceptance of and compliance with these Terms. These Terms apply
-                to all visitors, users and others who access or use the Website.
-              </p>
-
-              <p className="text-gray-300 mb-6">
-                By accessing or using the Website you agree to be bound by these
-                Terms. If you disagree with any part of the terms then you may
-                not access the Website.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Website owner and administrator
-              </h2>
-              <p className="text-gray-300 mb-6">
-                The digitrans.ai website's ("Website") owner and administrator
-                is Digitrans, Inc.
-              </p>
-
-              <p className="text-gray-300 mb-6">
-                We may modify, suspend or discontinue this website and/or the
-                Content at any time and without notifying you. We reserve the
-                right, at our sole discretion, to modify or replace these Terms
-                at any time.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">Copyright</h2>
-              <p className="text-gray-300 mb-6">
-                Use of any part of or content from this website for commercial
-                purposes of any kind is expressly prohibited. To request
-                permission to use any of the content on this website for
-                commercial purposes, please contact our company at
-                talk@digitrans.ai.
-              </p>
-
-              <p className="text-gray-300 mb-6">
-                Under no circumstances may any of the content on this website be
-                displayed on either a commercial or personal website without
-                obtaining prior permission. Unauthorized use of any information
-                from this website may violate copyright, trademark and other
-                laws.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">Disclaimer</h2>
-              <p className="text-gray-300 mb-6">
-                This website and all information contained herein is provided
-                "as is", without warranty of any kind, either express or
-                implied, including but not limited to any implied warranty of
-                merchantability or fitness for a particular purpose.
-              </p>
-
-              <p className="text-gray-300 mb-6">
-                The content, texts, documents, and related illustrations
-                published on this website could include technical inaccuracies
-                or typographical mistakes. Digitrans, Inc. may make changes
-                and/or enhancements in the content of this website at any time,
-                without notification.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Limitation of Liability
-              </h2>
-              <p className="text-gray-300 mb-6">
-                In no event shall Digitrans, Inc. be liable for any direct,
-                indirect, special, or consequential damages, or any other
-                damages whatsoever, for any use of or reliance on this website,
-                or any linked or referenced website, including, without
-                limitation, any lost opportunity, lost profits, business
-                interruption, loss of programs or data, even if expressly
-                advised or otherwise aware of the possibility of such damages,
-                whether in an action of contract, negligence, tort, or
-                otherwise.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Applicable law
-              </h2>
-              <p className="text-gray-300 mb-6">
-                By using this Website, you agree that the laws of the United
-                States, without regard to principles of conflict of laws, will
-                govern these Terms of Use and any dispute of any sort that might
-                arise between you and Digitrans.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">Local laws</h2>
-              <p className="text-gray-300 mb-6">
-                We control and operate the website from our headquarters in the
-                United States, and the entirety of the website may not be
-                appropriate or available for use in other locations. If you use
-                our websites outside the United States, you are solely
-                responsible for following applicable local laws.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">Contact us</h2>
-              <p className="text-gray-300 mb-6">
-                If you have any questions about these Terms or otherwise need to
-                contact us for any reason, you can reach us at
-                talk@digitrans.ai.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Links To Other Web Sites
-              </h2>
-              <p className="text-gray-300 mb-6">
-                Our Service may contain links to third-party web sites or
-                services that are not owned or controlled by Digitrans, Inc.
-              </p>
-
-              <p className="text-gray-300 mb-6">
-                Digitrans, Inc. has no control over, and assumes no
-                responsibility for, the content, privacy policies, or practices
-                of any third party web sites or services. You further
-                acknowledge and agree that Digitrans, Inc. shall not be
-                responsible or liable, directly or indirectly, for any damage or
-                loss caused or alleged to be caused by or in connection with use
-                of or reliance on any such content, goods or services available
-                on or through any such web sites or services.
-              </p>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-blue-500/20 text-blue-400">
+                <FileText className="w-8 h-8" />
+              </div>
+              <span className="text-blue-400 text-sm font-medium">Legal</span>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Terms & Conditions
+            </h1>
+            <p className="text-gray-400">Last updated: February 2026</p>
           </motion.div>
         </div>
-      </div>
+      </section>
+
+      {/* Content */}
+      <section className="pb-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-12"
+            >
+              {/* Introduction */}
+              <div className="bg-gray-900/50 rounded-2xl border border-gray-800 p-8">
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  These Terms of Use ("Terms") constitute a legal agreement between you and/or the entity 
+                  you represent ("you" or "your") and DigiTransLab ("we", "us" or "DigiTransLab"). 
+                  By accessing or using our website and services, you agree to be bound by these Terms.
+                </p>
+              </div>
+
+              {/* Section 1 */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+                    <Scale className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">1. Acceptance of Terms</h2>
+                </div>
+                <div className="pl-10 space-y-4">
+                  <p className="text-gray-300">
+                    By accessing or using the DigiTransLab website (digitranslab.com) and any associated services, 
+                    you acknowledge that you have read, understood, and agree to be bound by these Terms. 
+                    If you do not agree to these Terms, you must not access or use our services.
+                  </p>
+                  <p className="text-gray-300">
+                    We reserve the right to modify these Terms at any time. Changes will be effective immediately 
+                    upon posting to our website. Your continued use of our services following any changes 
+                    constitutes acceptance of those changes.
+                  </p>
+                </div>
+              </div>
+
+              {/* Section 2 */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-green-500/20 text-green-400">
+                    <FileText className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">2. Services Description</h2>
+                </div>
+                <div className="pl-10 space-y-4">
+                  <p className="text-gray-300">
+                    DigiTransLab provides data engineering, AI consulting, and software development services. 
+                    Our services include but are not limited to:
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "Big Data Architecture & Engineering",
+                      "Agentic AI for Data solutions",
+                      "AI & Data Consulting services",
+                      "Custom software development",
+                      "Cloud infrastructure services"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-gray-400">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-2 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Section 3 */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-purple-500/20 text-purple-400">
+                    <Gavel className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">3. Intellectual Property</h2>
+                </div>
+                <div className="pl-10 space-y-4">
+                  <p className="text-gray-300">
+                    All content on this website, including text, graphics, logos, images, and software, 
+                    is the property of DigiTransLab or its content suppliers and is protected by 
+                    international copyright laws.
+                  </p>
+                  <p className="text-gray-300">
+                    You may not reproduce, distribute, modify, create derivative works of, publicly display, 
+                    or exploit any content from this website without our prior written consent.
+                  </p>
+                  <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700 mt-4">
+                    <p className="text-sm text-gray-400">
+                      <strong className="text-white">Note:</strong> Our open-source products (such as Allama) 
+                      are governed by their respective open-source licences, which take precedence over these Terms 
+                      for those specific products.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Section 4 */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-orange-500/20 text-orange-400">
+                    <AlertTriangle className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">4. Limitation of Liability</h2>
+                </div>
+                <div className="pl-10 space-y-4">
+                  <p className="text-gray-300">
+                    To the fullest extent permitted by applicable law, DigiTransLab shall not be liable for 
+                    any indirect, incidental, special, consequential, or punitive damages, including but not limited to:
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "Loss of profits, revenue, or data",
+                      "Business interruption",
+                      "Loss of business opportunity",
+                      "Costs of procurement of substitute services",
+                      "Any other intangible losses"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-gray-400">
+                        <div className="w-1.5 h-1.5 rounded-full bg-orange-400 mt-2 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-gray-300 mt-4">
+                    This limitation applies regardless of the legal theory upon which the claim is based, 
+                    whether we have been advised of the possibility of such damages, and whether the 
+                    remedies otherwise available are adequate.
+                  </p>
+                </div>
+              </div>
+
+              {/* Section 5 */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-cyan-500/20 text-cyan-400">
+                    <Link2 className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">5. Third-Party Links</h2>
+                </div>
+                <div className="pl-10">
+                  <p className="text-gray-300">
+                    Our website may contain links to third-party websites or services that are not owned 
+                    or controlled by DigiTransLab. We have no control over, and assume no responsibility for, 
+                    the content, privacy policies, or practices of any third-party websites or services. 
+                    You acknowledge and agree that DigiTransLab shall not be responsible or liable for any 
+                    damage or loss caused by your use of any such content, goods, or services.
+                  </p>
+                </div>
+              </div>
+
+              {/* Section 6 */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-pink-500/20 text-pink-400">
+                    <Globe className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">6. Governing Law</h2>
+                </div>
+                <div className="pl-10">
+                  <p className="text-gray-300">
+                    These Terms shall be governed by and construed in accordance with the laws of England and Wales, 
+                    without regard to its conflict of law provisions. Any disputes arising from these Terms 
+                    shall be subject to the exclusive jurisdiction of the courts of England and Wales.
+                  </p>
+                </div>
+              </div>
+
+              {/* Contact Section */}
+              <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 rounded-2xl border border-blue-500/20 p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Contact Us</h2>
+                </div>
+                <p className="text-gray-300 mb-4">
+                  If you have any questions about these Terms & Conditions, please get in touch:
+                </p>
+                <a 
+                  href="/contact" 
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors font-medium"
+                >
+                  Contact Us
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

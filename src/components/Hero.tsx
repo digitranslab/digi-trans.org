@@ -190,55 +190,82 @@ const Hero = ({
         <div className="absolute h-3 w-3 rounded-full bg-indigo-500/50 animate-float-fast left-[90%] top-[60%]"></div>
       </div>
 
-      {/* Financial AI tagline - repositioned and enlarged */}
-      <div className="relative z-20 w-full text-center pt-12 pb-0">
+      {/* Animated Hero Title */}
+      <div className="relative z-20 w-full text-center pt-8 pb-0">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="text-3xl md:text-5xl lg:text-6xl tracking-wider text-violet-300 font-bold uppercase leading-tight mb-2"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-4"
         >
-          Modern Data Platforms<br />
-          Powered by AI
+          <span className="inline-block px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30 backdrop-blur-sm">
+            Enterprise AI & Data Solutions
+          </span>
         </motion.div>
+        
+        <div className="overflow-hidden">
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4"
+          >
+            <span className="bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
+              Turn Data Into
+            </span>
+            <br />
+            <motion.span
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent"
+            >
+              Competitive Advantage
+            </motion.span>
+          </motion.h1>
+        </div>
+        
+        {/* Animated underline */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="mx-auto w-32 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full"
+        />
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-start items-center text-center pt-3">
-        {/* Remove headline and divider - directly show paragraph */}
+      <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-start items-center text-center pt-6">
+        {/* Subheadline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl text-gray-200 mb-6 max-w-3xl leading-relaxed"
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl leading-relaxed"
         >
-          {subheadline}
+          We build intelligent data platforms and AI solutions that help enterprises 
+          make faster decisions, automate operations, and unlock new revenue streams.
         </motion.p>
 
         {/* Trust signals */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
           className="flex flex-wrap justify-center items-center gap-6 mb-8 text-sm text-gray-300"
         >
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>ISO 27001 Certified</span>
-          </div>
-          <div className="w-px h-4 bg-gray-600"></div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>SOC 2 Compliant</span>
-          </div>
-          <div className="w-px h-4 bg-gray-600"></div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>GDPR Ready</span>
-          </div>
-          <div className="w-px h-4 bg-gray-600"></div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
             <span>AWS Partner</span>
+          </div>
+          <div className="w-px h-4 bg-gray-600"></div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+            <span>GCP Partner</span>
+          </div>
+          <div className="w-px h-4 bg-gray-600"></div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+            <span>Azure Partner</span>
           </div>
         </motion.div>
 
@@ -246,24 +273,24 @@ const Hero = ({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          transition={{ duration: 0.8, delay: 1.6 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-10"
         >
           <GradientButton
             size="lg"
-            onClick={() => window.open("/contact", "_self")}
+            onClick={() => navigate("/services")}
             rightIcon={<ArrowRight className="h-5 w-5" />}
           >
-            Start Your Project
+            Explore Services
           </GradientButton>
           
           <GradientButton
             size="lg"
             variant="secondary"
-            onClick={() => navigate("/contact")}
+            onClick={() => navigate("/products")}
             rightIcon={<ArrowRight className="h-5 w-5" />}
           >
-            Schedule a Demo
+            View Products
           </GradientButton>
         </motion.div>
 
@@ -271,8 +298,8 @@ const Hero = ({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10 w-full max-w-7xl"
+            transition={{ duration: 0.8, delay: 1.8 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 w-full max-w-7xl"
           >
             {serviceCards.map((card, index) => (
               <motion.div

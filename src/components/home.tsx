@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import Footer from "./Footer";
@@ -23,7 +22,19 @@ import {
   TrendingUp,
   Award,
   Building2,
-  Sparkles
+  Sparkles,
+  Briefcase,
+  Code2,
+  Package,
+  Landmark,
+  HeartPulse,
+  ShoppingCart,
+  Cpu,
+  Factory,
+  Globe,
+  Rocket,
+  Lock,
+  GitBranch
 } from "lucide-react";
 
 import { StickyCTA } from "./ui/sticky-cta";
@@ -44,97 +55,174 @@ const clientLogos = [
   { name: "RATP", logo: "/images/6.svg" },
 ];
 
-// Core services - aligned with new 3 categories
-const coreServices = [
+// SECTION 2: Three Pillars - What We Do
+const threePillars = [
   {
-    icon: <Layers className="w-8 h-8" />,
-    title: "Big Data Architecture",
-    description: "Modern data platforms with medallion architecture, lakehouses, and real-time streaming at petabyte scale.",
-    href: "/services/big-data-architecture",
+    icon: <Briefcase className="w-8 h-8" />,
+    title: "Consulting",
+    subtitle: "Strategic AI & Data Advisory",
+    description: "Expert guidance to define your data strategy, AI roadmap, and transformation journey.",
+    bullets: [
+      "Data strategy & governance frameworks",
+      "AI readiness assessments",
+      "Technology selection & architecture",
+      "Change management & training"
+    ],
+    href: "/services",
+    cta: "Explore Consulting",
+    gradient: "from-purple-500 to-indigo-500",
+  },
+  {
+    icon: <Code2 className="w-8 h-8" />,
+    title: "Engineering",
+    subtitle: "Build & Deploy at Scale",
+    description: "End-to-end implementation of modern data platforms and AI solutions.",
+    bullets: [
+      "Data platform engineering",
+      "ML/AI model development",
+      "Real-time streaming pipelines",
+      "Cloud migration & optimisation"
+    ],
+    href: "/services",
+    cta: "View Engineering",
     gradient: "from-blue-500 to-cyan-500",
-    stats: "10x faster queries",
   },
   {
-    icon: <Bot className="w-8 h-8" />,
-    title: "Agentic AI for Data",
-    description: "Autonomous AI agents that self-heal pipelines, manage metadata, and ensure continuous data quality.",
-    href: "/services/agentic-ai-data",
-    gradient: "from-purple-500 to-pink-500",
-    stats: "90% auto-resolution",
-  },
-  {
-    icon: <Target className="w-8 h-8" />,
-    title: "AI & Data Consulting",
-    description: "Strategic advisory on data strategy, AI roadmaps, governance frameworks, and organizational transformation.",
-    href: "/services/ai-data-consulting",
+    icon: <Package className="w-8 h-8" />,
+    title: "Products",
+    subtitle: "Ready-to-Deploy Solutions",
+    description: "Production-ready platforms that accelerate your AI and data initiatives.",
+    bullets: [
+      "Allama: AI workflow automation",
+      "DBLOCK: Data application platform",
+      "Open-source foundations",
+      "Enterprise support included"
+    ],
+    href: "/products",
+    cta: "Discover Products",
     gradient: "from-orange-500 to-amber-500",
-    stats: "3-5x ROI",
   },
 ];
 
-// Key metrics
-const metrics = [
-  { value: "200+", label: "AI Models Deployed", icon: <Sparkles className="w-5 h-5" /> },
-  { value: "50PB+", label: "Data Processed", icon: <Layers className="w-5 h-5" /> },
-  { value: "99.9%", label: "Platform Uptime", icon: <Shield className="w-5 h-5" /> },
-  { value: "45%", label: "Cost Reduction", icon: <TrendingUp className="w-5 h-5" /> },
+// SECTION 3: Products Showcase
+const products = [
+  {
+    name: "Allama",
+    headline: "Open-Source AI Security Automation",
+    description: "Automate security workflows with intelligent AI agents that detect, analyse, and respond to threats in real-time.",
+    benefits: [
+      "Reduce incident response time by 90%",
+      "Automate repetitive security tasks",
+      "Integrate with existing security stack",
+      "Open-source with enterprise support"
+    ],
+    cta1: { text: "Learn More", href: "/products/allama" },
+    cta2: { text: "Try Free", href: "https://github.com/digitranslab/allama" },
+    gradient: "from-purple-600 to-pink-600",
+    icon: <Bot className="w-10 h-10" />,
+  },
+  {
+    name: "DBLOCK",
+    headline: "AI-Powered Data Workflow Automation",
+    description: "Build, deploy, and manage data applications with a visual workflow builder powered by AI.",
+    benefits: [
+      "Visual drag-and-drop workflow builder",
+      "AI-assisted data transformations",
+      "Connect to 100+ data sources",
+      "Self-service analytics for teams"
+    ],
+    cta1: { text: "Learn More", href: "/products/dblock" },
+    cta2: { text: "Join Waitlist", href: "/contact" },
+    gradient: "from-blue-600 to-cyan-600",
+    icon: <Layers className="w-10 h-10" />,
+  },
 ];
 
-// Process steps
-const processSteps = [
+// SECTION 4: Industries
+const industries = [
   {
-    number: "01",
-    title: "Discovery",
-    description: "Deep dive into your data landscape, business goals, and technical requirements.",
+    icon: <Landmark className="w-8 h-8" />,
+    title: "Financial Services",
+    description: "Risk analytics, fraud detection, and regulatory compliance at scale.",
+    href: "/solutions/financial-services",
   },
   {
-    number: "02", 
-    title: "Strategy",
-    description: "Design architecture, define roadmap, and prioritize high-impact initiatives.",
+    icon: <HeartPulse className="w-8 h-8" />,
+    title: "Healthcare",
+    description: "Patient insights, clinical analytics, and operational efficiency.",
+    href: "/solutions/healthcare",
   },
   {
-    number: "03",
-    title: "Build",
-    description: "Implement solutions with agile methodology, continuous delivery, and quality gates.",
+    icon: <ShoppingCart className="w-8 h-8" />,
+    title: "Retail & E-commerce",
+    description: "Customer 360, demand forecasting, and personalisation engines.",
+    href: "/solutions/retail",
   },
   {
-    number: "04",
-    title: "Scale",
-    description: "Optimize performance, enable self-service, and transfer knowledge to your team.",
+    icon: <Cpu className="w-8 h-8" />,
+    title: "Technology",
+    description: "Product analytics, user behaviour, and platform optimisation.",
+    href: "/solutions/technology",
+  },
+  {
+    icon: <Factory className="w-8 h-8" />,
+    title: "Manufacturing",
+    description: "Predictive maintenance, supply chain, and quality analytics.",
+    href: "/solutions/manufacturing",
   },
 ];
 
-// Featured testimonial
-const featuredTestimonial = {
-  quote: "DigiTransLab transformed our data infrastructure from a bottleneck into a competitive advantage. Their medallion architecture implementation reduced our query times by 10x and cut costs by 45%.",
-  name: "Sarah Chen",
-  title: "VP of Data Engineering",
-  company: "Fortune 500 Retailer",
-  image: "/images/testimonials/ayoub.jpeg",
-  results: ["10x Faster Queries", "45% Cost Reduction", "99.9% Uptime"],
-};
-
-// Why choose us
-const whyChooseUs = [
+// SECTION 5: Why DigiTransLab - 5 Differentiators
+const differentiators = [
   {
     icon: <Award className="w-6 h-6" />,
-    title: "Deep Expertise",
-    description: "50+ data engineers with Databricks, Snowflake, and cloud certifications",
+    title: "Proven Experience",
+    description: "10+ years delivering enterprise data solutions",
+    proof: "500+ projects across 150+ clients",
   },
   {
-    icon: <Clock className="w-6 h-6" />,
+    icon: <Zap className="w-6 h-6" />,
+    title: "Massive Scale",
+    description: "Built to handle enterprise workloads",
+    proof: "50PB+ data processed, 1B+ events daily",
+  },
+  {
+    icon: <GitBranch className="w-6 h-6" />,
+    title: "Open-Source First",
+    description: "No vendor lock-in, full transparency",
+    proof: "Contributors to major OSS projects",
+  },
+  {
+    icon: <Globe className="w-6 h-6" />,
+    title: "Cloud Agnostic",
+    description: "Deploy anywhere, migrate anytime",
+    proof: "AWS, GCP, Azure certified partners",
+  },
+  {
+    icon: <Rocket className="w-6 h-6" />,
     title: "Rapid Delivery",
-    description: "POC in 4 weeks, production in 12 weeks with our proven methodology",
+    description: "From POC to production in weeks",
+    proof: "4-week POC, 12-week production",
+  },
+];
+
+// SECTION 6: Testimonials
+const testimonials = [
+  {
+    quote: "DigiTransLab transformed our data infrastructure from a bottleneck into a competitive advantage. Their medallion architecture reduced query times by 10x.",
+    name: "Sarah Chen",
+    title: "VP of Data Engineering",
+    company: "Fortune 500 Retailer",
+    image: "/images/testimonials/ayoub.jpeg",
+    results: ["10x Faster Queries", "45% Cost Reduction"],
   },
   {
-    icon: <Shield className="w-6 h-6" />,
-    title: "Enterprise Security",
-    description: "SOC 2, ISO 27001, GDPR compliant with zero security incidents",
-  },
-  {
-    icon: <Users className="w-6 h-6" />,
-    title: "Knowledge Transfer",
-    description: "We build your team's capabilities, not just your platform",
+    quote: "The team's expertise in AI and data engineering is exceptional. They delivered a production-ready ML platform in just 8 weeks.",
+    name: "James Mitchell",
+    title: "Chief Data Officer",
+    company: "Global Insurance Provider",
+    image: "/images/testimonials/ben-amarti.jpeg",
+    results: ["8-Week Delivery", "99.9% Uptime"],
   },
 ];
 
@@ -147,17 +235,17 @@ export default function Home() {
       <ProgressBar />
       <Navbar />
       
-      {/* Hero Section - Kept as requested */}
-      <Hero videoUrl="/videos/home-page.mp4" />
+      {/* SECTION 1: HERO */}
+      <Hero videoUrl="/videos/home-page.mp4" showCards={false} />
 
       {/* Trust Bar - Client Logos */}
-      <section className="py-20 bg-black overflow-hidden">
+      <section className="py-16 bg-black overflow-hidden">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-10"
           >
             <span className="inline-block mb-4 px-4 py-1.5 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">
               Our Clients
@@ -165,12 +253,9 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Trusted by Data-Driven Enterprises Worldwide
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Powering data transformation for industry leaders across sectors
-            </p>
           </motion.div>
           
-          {/* Animated scrolling logos - styled like platforms */}
+          {/* Animated scrolling logos */}
           <div className="relative">
             <motion.div
               className="flex gap-6 items-center"
@@ -184,7 +269,6 @@ export default function Home() {
                 },
               }}
             >
-              {/* Quadruple the logos for seamless loop */}
               {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
                 <div
                   key={`${client.name}-${index}`}
@@ -207,51 +291,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Core Services Section */}
+      {/* SECTION 2: WHAT WE DO - Three Pillars */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
         
         <div className="container mx-auto px-4 relative z-10">
           <SectionHeader
-            badge="Our Services"
-            title="Data & AI Excellence"
-            description="End-to-end services from architecture to autonomous operations"
+            badge="What We Do"
+            title="AI, Data & Products"
+            description="Three pillars of expertise to accelerate your digital transformation"
             alignment="center"
           />
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
-            {coreServices.map((service, index) => (
+            {threePillars.map((pillar, index) => (
               <AnimatedWrapper
-                key={service.title}
+                key={pillar.title}
                 animation="scale-up-bounce"
                 delay={index * 0.15}
               >
                 <GlassCard 
                   variant="gradient"
                   className="p-8 h-full cursor-pointer group hover:scale-[1.02] transition-all duration-300"
-                  onClick={() => navigate(service.href)}
+                  onClick={() => navigate(pillar.href)}
                 >
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} bg-opacity-20 text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    {service.icon}
+                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${pillar.gradient} bg-opacity-20 text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    {pillar.icon}
                   </div>
                   
-                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-400 transition-colors">
-                    {service.title}
+                  <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">
+                    {pillar.title}
                   </h3>
-                  
-                  <p className="text-gray-400 mb-6 leading-relaxed">
-                    {service.description}
+                  <p className="text-purple-400 text-sm font-medium mb-4">
+                    {pillar.subtitle}
                   </p>
                   
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-purple-400">
-                      {service.stats}
-                    </span>
-                    <div className="flex items-center gap-2 text-gray-400 group-hover:text-purple-400 group-hover:gap-4 transition-all">
-                      <span className="text-sm font-medium">Learn more</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
+                  <p className="text-gray-400 mb-6 leading-relaxed">
+                    {pillar.description}
+                  </p>
+                  
+                  <ul className="space-y-2 mb-6">
+                    {pillar.bullets.map((bullet, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="flex items-center gap-2 text-gray-400 group-hover:text-purple-400 group-hover:gap-4 transition-all mt-auto">
+                    <span className="text-sm font-medium">{pillar.cta}</span>
+                    <ArrowRight className="w-4 h-4" />
                   </div>
                 </GlassCard>
               </AnimatedWrapper>
@@ -260,27 +351,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Metrics Section */}
-      <section className="py-20 bg-gradient-to-r from-purple-900/20 via-blue-900/20 to-purple-900/20">
+      {/* SECTION 3: PRODUCTS SHOWCASE */}
+      <section className="py-24 bg-gradient-to-b from-gray-900/50 to-black">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {metrics.map((metric, index) => (
+          <SectionHeader
+            badge="Our Products"
+            title="Production-Ready AI Platforms"
+            description="Open-source foundations with enterprise-grade support"
+            alignment="center"
+          />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16 max-w-6xl mx-auto">
+            {products.map((product, index) => (
               <AnimatedWrapper
-                key={metric.label}
+                key={product.name}
+                animation="fade-in-blur"
+                delay={index * 0.2}
+              >
+                <GlassCard className="p-8 h-full relative overflow-hidden group">
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${product.gradient} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity`} />
+                  
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${product.gradient} text-white`}>
+                      {product.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">{product.name}</h3>
+                      <p className="text-gray-400 text-sm">{product.headline}</p>
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-300 mb-6 leading-relaxed">
+                    {product.description}
+                  </p>
+                  
+                  <ul className="space-y-3 mb-8">
+                    {product.benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-center gap-3 text-gray-300">
+                        <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="flex gap-4">
+                    <GradientButton
+                      onClick={() => navigate(product.cta1.href)}
+                      rightIcon={<ArrowRight className="w-4 h-4" />}
+                    >
+                      {product.cta1.text}
+                    </GradientButton>
+                    <GradientButton
+                      variant="secondary"
+                      onClick={() => window.open(product.cta2.href, product.cta2.href.startsWith('http') ? '_blank' : '_self')}
+                    >
+                      {product.cta2.text}
+                    </GradientButton>
+                  </div>
+                </GlassCard>
+              </AnimatedWrapper>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: INDUSTRIES */}
+      <section className="py-24 relative">
+        <div className="container mx-auto px-4">
+          <SectionHeader
+            badge="Industries"
+            title="Sector Expertise"
+            description="Deep domain knowledge across key industries"
+            alignment="center"
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-16">
+            {industries.map((industry, index) => (
+              <AnimatedWrapper
+                key={industry.title}
                 animation="bounce-in"
                 delay={index * 0.1}
               >
-                <div className="text-center">
-                  <div className="inline-flex p-3 rounded-xl bg-purple-500/10 text-purple-400 mb-4">
-                    {metric.icon}
+                <GlassCard 
+                  className="p-6 text-center cursor-pointer group hover:scale-105 transition-all duration-300"
+                  onClick={() => navigate(industry.href)}
+                >
+                  <div className="inline-flex p-4 rounded-xl bg-purple-500/10 text-purple-400 mb-4 group-hover:bg-purple-500/20 group-hover:scale-110 transition-all">
+                    {industry.icon}
                   </div>
-                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-2">
-                    {metric.value}
-                  </div>
-                  <div className="text-gray-400 text-sm">
-                    {metric.label}
-                  </div>
-                </div>
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                    {industry.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    {industry.description}
+                  </p>
+                </GlassCard>
               </AnimatedWrapper>
             ))}
           </div>
@@ -294,211 +459,112 @@ export default function Home() {
       <TechStackShowcase />
 
 
-      {/* How We Work Section */}
+      {/* SECTION 5: WHY DIGITRANSLAB */}
       <section className="py-24 relative">
         <div className="container mx-auto px-4">
           <SectionHeader
-            badge="Our Process"
-            title="From Vision to Value"
-            description="A proven methodology that delivers results in weeks, not months"
+            badge="Why DigiTransLab"
+            title="Your Strategic Data Partner"
+            description="What sets us apart from the rest"
             alignment="center"
           />
           
-          <div className="max-w-5xl mx-auto mt-16">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {processSteps.map((step, index) => (
-                <AnimatedWrapper
-                  key={step.number}
-                  animation="float-up"
-                  delay={index * 0.15}
-                >
-                  <div className="relative">
-                    {/* Connector line */}
-                    {index < processSteps.length - 1 && (
-                      <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-purple-500/50 to-blue-500/50" />
-                    )}
-                    
-                    <div className="relative z-10 text-center">
-                      <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white font-bold text-xl mb-4 shadow-lg shadow-purple-500/30">
-                        {step.number}
-                      </div>
-                      <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                      <p className="text-gray-400 text-sm">{step.description}</p>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-16">
+            {differentiators.map((diff, index) => (
+              <AnimatedWrapper
+                key={diff.title}
+                animation="float-up"
+                delay={index * 0.1}
+              >
+                <GlassCard className="p-6 text-center h-full">
+                  <div className="inline-flex p-3 rounded-xl bg-purple-500/10 text-purple-400 mb-4">
+                    {diff.icon}
                   </div>
-                </AnimatedWrapper>
-              ))}
-            </div>
+                  <h3 className="text-lg font-bold text-white mb-2">
+                    {diff.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-3">
+                    {diff.description}
+                  </p>
+                  <p className="text-purple-400 text-xs font-medium">
+                    {diff.proof}
+                  </p>
+                </GlassCard>
+              </AnimatedWrapper>
+            ))}
+          </div>
+          
+          {/* Trust badges */}
+          <div className="flex flex-wrap justify-center items-center gap-6 mt-12">
+            {["AWS Partner", "GCP Partner", "Azure Partner", "SOC 2 Type II", "ISO 27001"].map((badge) => (
+              <span 
+                key={badge}
+                className="px-4 py-2 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-gray-700"
+              >
+                {badge}
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Testimonial Section */}
+      {/* SECTION 6: TESTIMONIALS */}
       <section className="py-24 bg-gray-900/30 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-purple-500/5 to-transparent" />
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <AnimatedWrapper animation="fade-in-blur">
-              <GlassCard className="p-8 md:p-12">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                  {/* Quote */}
-                  <div className="lg:col-span-2">
-                    <Quote className="w-12 h-12 text-purple-500/30 mb-6" />
-                    <blockquote className="text-xl md:text-2xl text-white font-light leading-relaxed mb-8">
-                      "{featuredTestimonial.quote}"
-                    </blockquote>
-                    
-                    {/* Results */}
-                    <div className="flex flex-wrap gap-4 mb-8">
-                      {featuredTestimonial.results.map((result, index) => (
-                        <span 
-                          key={index}
-                          className="px-4 py-2 bg-purple-500/10 text-purple-300 rounded-full text-sm font-medium border border-purple-500/20"
-                        >
-                          {result}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    {/* Author */}
-                    <div className="flex items-center gap-4">
-                      <img 
-                        src={featuredTestimonial.image}
-                        alt={featuredTestimonial.name}
-                        className="w-14 h-14 rounded-full border-2 border-purple-500/30"
-                      />
-                      <div>
-                        <div className="font-bold text-white">{featuredTestimonial.name}</div>
-                        <div className="text-gray-400 text-sm">{featuredTestimonial.title}</div>
-                        <div className="text-purple-400 text-sm">{featuredTestimonial.company}</div>
-                      </div>
-                    </div>
+          <SectionHeader
+            badge="Testimonials"
+            title="What Our Clients Say"
+            description="Real results from real partnerships"
+            alignment="center"
+          />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16 max-w-5xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <AnimatedWrapper
+                key={testimonial.name}
+                animation="fade-in-blur"
+                delay={index * 0.2}
+              >
+                <GlassCard className="p-8 h-full">
+                  <Quote className="w-10 h-10 text-purple-500/30 mb-4" />
+                  <blockquote className="text-lg text-white font-light leading-relaxed mb-6">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {testimonial.results.map((result, i) => (
+                      <span 
+                        key={i}
+                        className="px-3 py-1 bg-purple-500/10 text-purple-300 rounded-full text-sm font-medium border border-purple-500/20"
+                      >
+                        {result}
+                      </span>
+                    ))}
                   </div>
                   
-                  {/* Video Play Button / CTA */}
-                  <div className="flex flex-col items-center justify-center">
-                    <div className="relative mb-6">
-                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-300 shadow-2xl shadow-purple-500/30">
-                        <Play className="w-12 h-12 text-white ml-2" />
-                      </div>
-                      <div className="absolute inset-0 rounded-full bg-purple-500/20 animate-ping" />
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-12 h-12 rounded-full border-2 border-purple-500/30"
+                    />
+                    <div>
+                      <div className="font-bold text-white">{testimonial.name}</div>
+                      <div className="text-gray-400 text-sm">{testimonial.title}</div>
+                      <div className="text-purple-400 text-sm">{testimonial.company}</div>
                     </div>
-                    <span className="text-gray-400 text-sm">Watch Case Study</span>
                   </div>
-                </div>
-              </GlassCard>
-            </AnimatedWrapper>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="py-24 relative">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left - Content */}
-            <AnimatedWrapper animation="slide-right">
-              <div>
-                <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
-                  Why DigiTransLab
-                </span>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                  Your Strategic Data Partner
-                </h2>
-                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                  We don't just build data platforms—we transform how organizations 
-                  think about and leverage their data for competitive advantage.
-                </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                  {whyChooseUs.map((item) => (
-                    <div 
-                      key={item.title}
-                      className="flex items-start gap-3 p-4 rounded-xl bg-gray-900/50 border border-gray-800"
-                    >
-                      <div className="flex-shrink-0 p-2 rounded-lg bg-purple-500/10 text-purple-400">
-                        {item.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-white mb-1">{item.title}</h4>
-                        <p className="text-sm text-gray-400">{item.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <GradientButton
-                  size="lg"
-                  onClick={() => navigate('/about')}
-                  rightIcon={<ArrowRight className="w-5 h-5" />}
-                >
-                  Learn About Us
-                </GradientButton>
-              </div>
-            </AnimatedWrapper>
-            
-            {/* Right - Stats Card */}
-            <AnimatedWrapper animation="slide-left">
-              <GlassCard className="p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl" />
-                
-                <h3 className="text-2xl font-bold text-white mb-8">
-                  Proven Track Record
-                </h3>
-                
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl">
-                    <div className="flex items-center gap-3">
-                      <Building2 className="w-5 h-5 text-purple-400" />
-                      <span className="text-gray-300">Enterprise Clients</span>
-                    </div>
-                    <span className="text-2xl font-bold text-white">150+</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl">
-                    <div className="flex items-center gap-3">
-                      <Zap className="w-5 h-5 text-blue-400" />
-                      <span className="text-gray-300">Projects Delivered</span>
-                    </div>
-                    <span className="text-2xl font-bold text-white">500+</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl">
-                    <div className="flex items-center gap-3">
-                      <Star className="w-5 h-5 text-yellow-400" />
-                      <span className="text-gray-300">Client Satisfaction</span>
-                    </div>
-                    <span className="text-2xl font-bold text-white">98%</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-xl">
-                    <div className="flex items-center gap-3">
-                      <Users className="w-5 h-5 text-green-400" />
-                      <span className="text-gray-300">Data Engineers</span>
-                    </div>
-                    <span className="text-2xl font-bold text-white">50+</span>
-                  </div>
-                </div>
-                
-                {/* Certifications */}
-                <div className="mt-8 pt-6 border-t border-gray-700">
-                  <p className="text-sm text-gray-400 mb-4">Certifications & Partnerships</p>
-                  <div className="flex flex-wrap gap-3">
-                    <span className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs">AWS Partner</span>
-                    <span className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs">Databricks Partner</span>
-                    <span className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs">SOC 2</span>
-                    <span className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs">ISO 27001</span>
-                  </div>
-                </div>
-              </GlassCard>
-            </AnimatedWrapper>
+                </GlassCard>
+              </AnimatedWrapper>
+            ))}
           </div>
         </div>
       </section>
 
 
-      {/* Final CTA Section */}
+      {/* SECTION 7: FINAL CTA */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-blue-900/20 to-indigo-900/30" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-500/10 rounded-full blur-3xl" />
@@ -530,10 +596,10 @@ export default function Home() {
               <GradientButton
                 size="lg"
                 variant="secondary"
-                onClick={() => navigate('/services')}
+                onClick={() => navigate('/products')}
                 rightIcon={<ChevronRight className="w-5 h-5" />}
               >
-                Explore Services
+                Explore Products
               </GradientButton>
             </div>
             

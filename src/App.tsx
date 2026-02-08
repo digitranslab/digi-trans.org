@@ -83,6 +83,7 @@ import LegacyModernization from "./components/pages/solutions/LegacyModernizatio
 // New Product Pages
 import AllamaPage from "./components/pages/products/AllamaPage";
 import DBlockPage from "./components/pages/products/DBlockPage";
+import Products from "./components/pages/Products";
 
 // New Service Pages (redesign)
 import AIConsultingPage from "./components/pages/services/AIConsultingPage";
@@ -203,6 +204,7 @@ function App() {
         <Route path="/products/kozmo-ai" element={<KozmoAI />} />
         
         {/* New Product Routes (redesign) */}
+        <Route path="/products" element={<Products />} />
         <Route path="/products/allama" element={<AllamaPage />} />
         <Route path="/products/dblock" element={<DBlockPage />} />
         

@@ -1,235 +1,246 @@
-import React from "react";
 import Navbar from "../../Navbar";
 import Footer from "../../Footer";
-import UniverseLights from "../../UniverseLights";
 import { motion } from "framer-motion";
+import { Cookie, Settings, BarChart3, Target, Shield, Mail, CheckCircle } from "lucide-react";
 
 export default function Cookies() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <div className="relative pt-32 pb-16">
-        <UniverseLights />
-        <div className="container mx-auto px-4">
+      {/* Hero Section */}
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-900/20 via-black to-black" />
+        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl font-bold mb-8">Cookie Policy</h1>
-            <div className="prose prose-invert max-w-none">
-              <p className="text-gray-400 mb-6">
-                Last updated: February 11, 2025
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">Who we are</h2>
-              <p className="text-gray-300 mb-6">
-                Digitrans is a software development company that provides a wide
-                range of tech-related services to startups and fast-growing
-                businesses worldwide with its registered office address:
-                Kentmanni tn 4 // Sakala tn 10, Tallinn, 10116, Estonia.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Why do we collect information about you?
-              </h2>
-              <p className="text-gray-300 mb-6">
-                We gather your personal data in full compliance with the GDPR,
-                and other data privacy legislation acts and utilize it solely
-                for the purposes of operating more efficiently and providing the
-                best possible client-oriented services.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                What kind of information do we gather?
-              </h2>
-              <p className="text-gray-300 mb-6">
-                We collect and utilize only your basic personal data when you
-                use our site. We can also gather and use some open-source
-                information, such as addresses to social networking sites.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                How do we collect your personal data?
-              </h2>
-              <p className="text-gray-300 mb-6">
-                We can either gather information by ourselves (through contact
-                forms) or utilize various tracking technologies (analytics
-                providers like Google Analytics, Statcounter, Yandex Metrika,
-                etc.), advertising networks (Google Adwords, Bing Ads, etc.) and
-                search engines.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Data retention time
-              </h2>
-              <p className="text-gray-300 mb-6">
-                We store your personal data for as long as we need it to perform
-                marketing analyzes or as long as we run a mutual business
-                collaboration with you. We will delete or anonymize such data
-                when it is no longer needed, or there is no legal basis to
-                process it.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Your user rights
-              </h2>
-              <p className="text-gray-300 mb-6">
-                All users are treated equally in compliance with the current
-                Privacy Policy and existing legal acts, and have the following
-                rights regarding data that we gather:
-              </p>
-              <ul className="list-disc pl-6 text-gray-300 mb-6">
-                <li>
-                  The right to request information on how your personal data is
-                  collected, processed and utilized
-                </li>
-                <li>The right to request access to the data that we acquire</li>
-                <li>The right to request the erasure of the information</li>
-                <li>
-                  The right to withdraw consent to the processing of marketing
-                  data at any time
-                </li>
-                <li>
-                  The right to object to our operations related to your personal
-                  information
-                </li>
-                <li>
-                  The right to restrict the processing of your personal data
-                </li>
-                <li>The right to data portability</li>
-                <li>The right to rectification</li>
-                <li>The right to appeal to the supervisory authority</li>
-              </ul>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Cookies policy
-              </h2>
-              <p className="text-gray-300 mb-6">
-                By pressing the pop-up "Accept" button, you provide your consent
-                for our use of cookies and agree to our Cookie policy. We use
-                cookies and other tracking technologies on our website to allow
-                for smoother user experience and site navigation.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                How to opt-out of cookies
-              </h2>
-              <div className="text-gray-300 mb-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Opting out of cookies in Internet Explorer
-                </h3>
-                <ol className="list-decimal pl-6 mb-4">
-                  <li>Choose "Tools"</li>
-                  <li>Click on "Internet Options"</li>
-                  <li>Click the "Privacy" tab</li>
-                  <li>Move the slider to choose your settings</li>
-                </ol>
-
-                <h3 className="text-xl font-semibold mb-2">
-                  Opting out of cookies in Safari
-                </h3>
-                <ol className="list-decimal pl-6 mb-4">
-                  <li>Choose "Preferences" from Safari menu</li>
-                  <li>Select "Security"</li>
-                  <li>Cookie settings are shown</li>
-                  <li>Choose your settings</li>
-                </ol>
-
-                <h3 className="text-xl font-semibold mb-2">
-                  Opting out of cookies in Google Chrome
-                </h3>
-                <ol className="list-decimal pl-6 mb-4">
-                  <li>Click on the "Tools" menu</li>
-                  <li>Select "Options"</li>
-                  <li>Find the "Privacy and Security" section</li>
-                  <li>Click "Cookies and other site data."</li>
-                  <li>
-                    Click the "Cookie settings" tab and choose your settings
-                  </li>
-                </ol>
-
-                <h3 className="text-xl font-semibold mb-2">
-                  Opting out of cookies in Mozilla Firefox
-                </h3>
-                <ol className="list-decimal pl-6 mb-4">
-                  <li>Click on "Menu", then "Options"</li>
-                  <li>Select "Privacy"</li>
-                  <li>Select "Cookies"</li>
-                  <li>Choose your settings</li>
-                </ol>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-orange-500/20 text-orange-400">
+                <Cookie className="w-8 h-8" />
               </div>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Contact information
-              </h2>
-              <p className="text-gray-300 mb-6">
-                Do you have any questions left about this Privacy Policy? We are
-                eager to answer your questions and provide you with more info on
-                how we handle your data. Please don't hesitate to drop us a line
-                at talk@digitrans.ai.
-              </p>
-
-              <h2 className="text-2xl font-semibold mt-8 mb-4">
-                Cookies declaration
-              </h2>
-              <p className="text-gray-300 mb-6">
-                This website uses cookies. We use our own and third-party
-                cookies to perform analysis of use and measurement of our
-                website to improve our services. You can change the settings or
-                get more information here.
-              </p>
-
-              <div className="text-gray-300 mb-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Necessary Cookies
-                </h3>
-                <p>
-                  Necessary cookies help make a website usable by enabling basic
-                  functions like page navigation and access to secure areas of
-                  the website. The website cannot function properly without
-                  these cookies.
-                </p>
-              </div>
-
-              <div className="text-gray-300 mb-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Preferences Cookies
-                </h3>
-                <p>
-                  Preference cookies enable a website to remember information
-                  that changes the way the website behaves or looks, like your
-                  preferred language or the region that you are in.
-                </p>
-              </div>
-
-              <div className="text-gray-300 mb-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Statistics Cookies
-                </h3>
-                <p>
-                  Statistic cookies help website owners to understand how
-                  visitors interact with websites by collecting and reporting
-                  information anonymously.
-                </p>
-              </div>
-
-              <div className="text-gray-300 mb-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Marketing Cookies
-                </h3>
-                <p>
-                  Marketing cookies are used to track visitors across websites.
-                  The intention is to display ads that are relevant and engaging
-                  for the individual user and thereby more valuable for
-                  publishers and third party advertisers.
-                </p>
-              </div>
+              <span className="text-orange-400 text-sm font-medium">Legal</span>
             </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+              Cookie Policy
+            </h1>
+            <p className="text-gray-400">Last updated: February 2026</p>
           </motion.div>
         </div>
-      </div>
+      </section>
+
+      {/* Content */}
+      <section className="pb-24">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-12"
+            >
+              {/* Introduction */}
+              <div className="bg-gray-900/50 rounded-2xl border border-gray-800 p-8">
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  This Cookie Policy explains how DigiTransLab uses cookies and similar tracking technologies 
+                  when you visit our website. We use cookies to enhance your browsing experience, analyse 
+                  website traffic, and understand where our visitors come from.
+                </p>
+              </div>
+
+              {/* What are Cookies */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-orange-500/20 text-orange-400">
+                    <Cookie className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">What Are Cookies?</h2>
+                </div>
+                <div className="pl-10">
+                  <p className="text-gray-300">
+                    Cookies are small text files that are stored on your device when you visit a website. 
+                    They help websites remember your preferences and understand how you interact with the site. 
+                    Cookies can be "persistent" (remaining on your device until deleted) or "session" 
+                    (deleted when you close your browser).
+                  </p>
+                </div>
+              </div>
+
+              {/* Types of Cookies */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-blue-500/20 text-blue-400">
+                    <Settings className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Types of Cookies We Use</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {[
+                    {
+                      icon: <Shield className="w-6 h-6" />,
+                      title: "Essential Cookies",
+                      description: "Required for the website to function properly. They enable basic features like page navigation and access to secure areas.",
+                      color: "green",
+                      required: true
+                    },
+                    {
+                      icon: <Settings className="w-6 h-6" />,
+                      title: "Preference Cookies",
+                      description: "Remember your settings and preferences, such as language selection and display options.",
+                      color: "blue",
+                      required: false
+                    },
+                    {
+                      icon: <BarChart3 className="w-6 h-6" />,
+                      title: "Analytics Cookies",
+                      description: "Help us understand how visitors interact with our website by collecting anonymous usage data.",
+                      color: "purple",
+                      required: false
+                    },
+                    {
+                      icon: <Target className="w-6 h-6" />,
+                      title: "Marketing Cookies",
+                      description: "Used to track visitors across websites to display relevant advertisements.",
+                      color: "orange",
+                      required: false
+                    }
+                  ].map((cookie, i) => (
+                    <div key={i} className={`bg-gray-900/50 rounded-xl border border-gray-800 p-6 hover:border-${cookie.color}-500/30 transition-colors`}>
+                      <div className="flex items-start justify-between mb-4">
+                        <div className={`p-2 rounded-lg bg-${cookie.color}-500/20 text-${cookie.color}-400`}>
+                          {cookie.icon}
+                        </div>
+                        {cookie.required && (
+                          <span className="text-xs px-2 py-1 bg-green-500/20 text-green-400 rounded-full">Required</span>
+                        )}
+                      </div>
+                      <h3 className="text-lg font-semibold text-white mb-2">{cookie.title}</h3>
+                      <p className="text-sm text-gray-400">{cookie.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Third-Party Cookies */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-purple-500/20 text-purple-400">
+                    <BarChart3 className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Third-Party Services</h2>
+                </div>
+                <div className="pl-10 space-y-4">
+                  <p className="text-gray-300">We use the following third-party services that may set cookies:</p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {[
+                      { name: "Google Analytics", purpose: "Website analytics" },
+                      { name: "LinkedIn", purpose: "Social sharing" },
+                      { name: "HubSpot", purpose: "Marketing automation" }
+                    ].map((service, i) => (
+                      <div key={i} className="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+                        <h4 className="font-semibold text-white mb-1">{service.name}</h4>
+                        <p className="text-sm text-gray-400">{service.purpose}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Managing Cookies */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-cyan-500/20 text-cyan-400">
+                    <Settings className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Managing Your Cookie Preferences</h2>
+                </div>
+                <div className="pl-10 space-y-4">
+                  <p className="text-gray-300">
+                    You can control and manage cookies in several ways. Most browsers allow you to:
+                  </p>
+                  <ul className="space-y-3">
+                    {[
+                      "View and delete cookies stored on your device",
+                      "Block all cookies or only third-party cookies",
+                      "Set preferences for specific websites",
+                      "Receive notifications when cookies are set"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-gray-400">
+                        <CheckCircle className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700 mt-4">
+                    <p className="text-sm text-gray-400">
+                      <strong className="text-white">Note:</strong> Blocking certain cookies may impact your 
+                      experience on our website and limit the functionality of some features.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Browser Settings */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-pink-500/20 text-pink-400">
+                    <Settings className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Browser Cookie Settings</h2>
+                </div>
+                <div className="pl-10">
+                  <p className="text-gray-300 mb-4">
+                    You can manage cookies through your browser settings. Here are links to cookie management 
+                    instructions for popular browsers:
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {[
+                      { name: "Chrome", url: "https://support.google.com/chrome/answer/95647" },
+                      { name: "Firefox", url: "https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" },
+                      { name: "Safari", url: "https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" },
+                      { name: "Edge", url: "https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" }
+                    ].map((browser, i) => (
+                      <a 
+                        key={i}
+                        href={browser.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-gray-800/50 rounded-lg p-4 border border-gray-700 text-center hover:border-pink-500/30 transition-colors"
+                      >
+                        <span className="text-white font-medium">{browser.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Section */}
+              <div className="bg-gradient-to-br from-orange-900/30 to-amber-900/30 rounded-2xl border border-orange-500/20 p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-lg bg-orange-500/20 text-orange-400">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-white">Questions?</h2>
+                </div>
+                <p className="text-gray-300 mb-4">
+                  If you have any questions about our use of cookies, please get in touch:
+                </p>
+                <a 
+                  href="/contact" 
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-lg transition-colors font-medium"
+                >
+                  Contact Us
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
