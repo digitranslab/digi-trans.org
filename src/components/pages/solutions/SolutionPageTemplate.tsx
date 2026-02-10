@@ -180,16 +180,16 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
                 alignment="center"
               />
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-12 max-w-7xl mx-auto items-stretch">
                 {solution.caseStudies.map((study, index) => (
-                  <AnimatedWrapper key={study.title} animation="float-up" delay={index * 0.15}>
-                    <GlassCard variant="gradient" className="h-full p-6 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
-                      <h3 className="text-xl font-bold text-white mb-3">{study.title}</h3>
-                      <p className="text-gray-400 text-sm mb-4">{study.description}</p>
-                      <div className="space-y-2">
+                  <AnimatedWrapper key={study.title} animation="float-up" delay={index * 0.15} className="h-full">
+                    <GlassCard variant="gradient" className="h-full p-5 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col">
+                      <h3 className="text-base font-bold text-white mb-2">{study.title}</h3>
+                      <p className="text-gray-400 text-xs mb-3 flex-grow">{study.description}</p>
+                      <div className="space-y-1.5">
                         {study.results.map((result) => (
-                          <div key={result} className="flex items-center gap-2 text-sm">
-                            <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
+                          <div key={result} className="flex items-center gap-2 text-xs">
+                            <CheckCircle className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
                             <span className="text-gray-300">{result}</span>
                           </div>
                         ))}

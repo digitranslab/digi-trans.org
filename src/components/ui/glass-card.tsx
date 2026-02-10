@@ -12,8 +12,13 @@ import { cn } from "@/lib/utils";
  */
 
 const glassCardVariants = cva(
-  // Base styles for all glass cards
-  "relative rounded-xl border transition-all duration-300",
+  // Base styles for all glass cards with AI purple hover effect
+  [
+    "relative rounded-xl border transition-all duration-300",
+    // AI purple glow hover effect for all variants
+    "hover:border-purple-500/60",
+    "hover:shadow-[0_0_30px_rgba(139,92,246,0.3),0_0_60px_rgba(139,92,246,0.15),inset_0_0_20px_rgba(139,92,246,0.05)]",
+  ].join(" "),
   {
     variants: {
       variant: {
@@ -30,13 +35,12 @@ const glassCardVariants = cva(
           "before:absolute before:inset-0 before:rounded-xl before:p-[1px]",
           "before:bg-gradient-to-br before:from-purple-500/50 before:to-blue-500/50",
           "before:-z-10 before:content-['']",
+          "hover:before:from-purple-400/70 hover:before:to-blue-400/70",
         ].join(" "),
         // Hover variant with enhanced effects on hover
         hover: [
           "bg-gray-900/50 backdrop-blur-md",
           "border-gray-800/50",
-          "hover:border-purple-500/50",
-          "hover:shadow-[0_0_40px_rgba(139,92,246,0.2)]",
           "hover:scale-[1.02]",
         ].join(" "),
       },

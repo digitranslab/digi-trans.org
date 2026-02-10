@@ -22,11 +22,12 @@ import {
   GitBranch,
   Play,
   Cloud,
-  Shield,
-  Building2,
+  Landmark,
+  HeartPulse,
+  ShoppingCart,
   Cpu,
-  Server,
-  LineChart,
+  Factory,
+  Building,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -129,7 +130,7 @@ const pillars = [
 const products = [
   {
     name: "Allama",
-    tagline: "Open-Source AI Security Automation",
+    tagline: "AI-Powered Security Automation",
     description: "Automate threat detection and response with AI-powered workflows. Self-hosted or cloud. 80+ integrations. Built for modern SOC teams.",
     status: "Live",
     href: "/products/allama",
@@ -139,7 +140,7 @@ const products = [
     name: "DBLOCK",
     tagline: "AI-Powered Data Workflow Automation",
     description: "Build, deploy, and manage AI applications with a visual flow-based interface. Create intelligent agents without writing code.",
-    status: "Development",
+    status: "Coming Soon",
     href: "/products/dblock",
     features: ["Visual Flow Editor", "AI Agent Builder", "MCP Support", "Enterprise Ready"],
   },
@@ -147,12 +148,12 @@ const products = [
 
 // Industries We Serve
 const industries = [
-  { name: "Financial Services", icon: <LineChart className="w-5 h-5" />, description: "Risk analytics, fraud detection, regulatory compliance" },
-  { name: "Healthcare", icon: <Heart className="w-5 h-5" />, description: "Clinical analytics, patient data platforms, research" },
+  { name: "Financial Services", icon: <Landmark className="w-5 h-5" />, description: "Risk analytics, fraud detection, regulatory compliance" },
+  { name: "Healthcare", icon: <HeartPulse className="w-5 h-5" />, description: "Clinical analytics, patient data platforms, research" },
   { name: "Technology", icon: <Cpu className="w-5 h-5" />, description: "Data infrastructure, ML platforms, automation" },
-  { name: "Retail & E-commerce", icon: <Building2 className="w-5 h-5" />, description: "Customer analytics, inventory optimization" },
-  { name: "Government", icon: <Shield className="w-5 h-5" />, description: "Secure data platforms, citizen services" },
-  { name: "Manufacturing", icon: <Server className="w-5 h-5" />, description: "IoT analytics, predictive maintenance" },
+  { name: "Retail & E-commerce", icon: <ShoppingCart className="w-5 h-5" />, description: "Customer analytics, inventory optimisation" },
+  { name: "Government", icon: <Building className="w-5 h-5" />, description: "Secure data platforms, citizen services" },
+  { name: "Manufacturing", icon: <Factory className="w-5 h-5" />, description: "IoT analytics, predictive maintenance" },
 ];
 
 // Core Values
@@ -167,6 +168,8 @@ const values = [
 const teamMembers = [
   { name: "Fatima Aarab", role: "Chief Executive Officer", bio: "10+ years leading enterprise technology transformations", image: "/images/management/fatima.jpeg" },
   { name: "Mohamed BenChaliah", role: "Chief Technology Officer", bio: "15+ years building scalable distributed systems", image: "/images/management/mohamed.png" },
+  { name: "Chakib", role: "Head of Engineering", bio: "Expert in cloud-native architecture and data platforms", image: "/images/management/chakib.jpeg" },
+  { name: "Chihabi", role: "Head of AI & Data", bio: "Specialist in ML systems and agentic AI solutions", image: "/images/management/chihabi.png" },
 ];
 
 // Global Offices

@@ -24,25 +24,25 @@ const gradientButtonVariants = cva(
   {
     variants: {
       variant: {
-        // Primary: Gradient from purple to blue with hover state
+        // Primary: Gradient from purple to blue with AI glow hover state
         primary: [
           "bg-gradient-to-r from-purple-600 to-blue-600",
           "text-white",
           "shadow-lg shadow-purple-500/25",
           "hover:from-purple-500 hover:to-blue-500",
-          "hover:shadow-xl hover:shadow-purple-500/30",
+          "hover:shadow-[0_0_25px_rgba(139,92,246,0.5),0_0_50px_rgba(139,92,246,0.3)]",
           "hover:scale-[1.02]",
           "active:scale-100",
         ].join(" "),
-        // Secondary: Dark filled style with gradient border
+        // Secondary: Dark filled style with AI glow border
         secondary: [
           "bg-gray-900/80",
           "text-white",
           "border border-purple-500/40",
           "shadow-md shadow-purple-500/10",
           "hover:bg-gray-800/90",
-          "hover:border-purple-400/60",
-          "hover:shadow-lg hover:shadow-purple-500/20",
+          "hover:border-purple-400/80",
+          "hover:shadow-[0_0_20px_rgba(139,92,246,0.4),0_0_40px_rgba(139,92,246,0.2)]",
           "hover:scale-[1.02]",
           "active:scale-100",
         ].join(" "),
@@ -56,13 +56,15 @@ const gradientButtonVariants = cva(
           "before:bg-gradient-to-r before:from-purple-500 before:to-blue-500",
           "before:-z-10 before:content-['']",
           "hover:bg-purple-500/10",
+          "hover:shadow-[0_0_20px_rgba(139,92,246,0.4),0_0_40px_rgba(139,92,246,0.2)]",
         ].join(" "),
-        // Ghost: Minimal styling
+        // Ghost: Minimal styling with subtle AI glow
         ghost: [
           "bg-transparent",
           "text-gray-300",
           "hover:text-white",
           "hover:bg-gray-800/50",
+          "hover:shadow-[0_0_15px_rgba(139,92,246,0.2)]",
         ].join(" "),
         // Link: Text-only with underline on hover
         link: [

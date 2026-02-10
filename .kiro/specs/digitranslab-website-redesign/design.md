@@ -892,7 +892,7 @@ export const seoData = {
     keywords: ["AI automation", "data platforms", "cloud security", "SOAR", "security automation"],
   },
   allama: {
-    title: "Allama | Open-Source AI Security Automation Platform",
+    title: "Allama | AI-Powered Security Automation Platform",
     description: "Turn 15-minute investigations into 30-second workflows. Enterprise SOAR capabilities at open-source pricing with AI-native automation.",
     keywords: ["SOAR", "security automation", "AI security", "open source", "threat detection"],
   },

@@ -8,7 +8,7 @@ A comprehensive reference document for creating the Allama product page on digit
 
 **Allama** is an open-source, AI-native security automation platform (SOAR) built for modern Security Operations Centres. It enables security teams to automate threat detection, investigation, and response using visual workflows and autonomous AI agents.
 
-**One-liner**: "Open-source AI security automation that turns 15-minute investigations into 30-second workflows."
+**One-liner**: "AI-Powered security automation that turns 15-minute investigations into 30-second workflows."
 
 **Tagline options**:
 - "Security Automation, Democratised"
