@@ -1,7 +1,7 @@
 /**
  * Services Page
  * 
- * Showcases DigiTransLab's three core service pillars with rich content
+ * Showcases Digitrans's three core service pillars with rich content
  * matching the Products page design style.
  */
 
@@ -14,6 +14,7 @@ import { GradientButton } from "../ui/gradient-button";
 import { SectionHeader } from "../ui/section-header";
 import { AnimatedWrapper } from "../ui/animated-wrapper";
 import { BackToTop } from "../ui/back-to-top";
+import { TypewriterGradientText } from "../ui/typewriter-text";
 import { 
   ArrowRight, 
   CheckCircle, 
@@ -188,9 +189,12 @@ export default function Services() {
             <span className="inline-block mb-4 px-4 py-1.5 bg-blue-900/40 text-blue-300 text-sm rounded-full border border-blue-500/30">
               Our Services
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Data & AI Services for the Enterprise
-            </h1>
+            <TypewriterGradientText
+              text="Data & AI Services for the Enterprise"
+              className="text-4xl md:text-6xl font-bold mb-6"
+              gradientClassName="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+              duration={1.8}
+            />
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               From modern data architecture to autonomous AI agents—we help enterprises 
               build intelligent data platforms that drive competitive advantage.
@@ -390,7 +394,7 @@ export default function Services() {
       <section className="py-24">
         <div className="container mx-auto px-4">
           <SectionHeader
-            badge="Why DigiTransLab"
+            badge="Why Digitrans"
             title="Your Trusted Data Partner"
             description="We combine deep technical expertise with strategic thinking"
             alignment="center"

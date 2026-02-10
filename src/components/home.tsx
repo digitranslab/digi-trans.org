@@ -172,7 +172,7 @@ const industries = [
   },
 ];
 
-// SECTION 5: Why DigiTransLab - 5 Differentiators
+// SECTION 5: Why Digitrans - 5 Differentiators
 const differentiators = [
   {
     icon: <Award className="w-6 h-6" />,
@@ -209,7 +209,7 @@ const differentiators = [
 // SECTION 6: Testimonials
 const testimonials = [
   {
-    quote: "DigiTransLab transformed our data infrastructure from a bottleneck into a competitive advantage. Their medallion architecture reduced query times by 10x.",
+    quote: "Digitrans transformed our data infrastructure from a bottleneck into a competitive advantage. Their medallion architecture reduced query times by 10x.",
     name: "Sarah Chen",
     title: "VP of Data Engineering",
     company: "Fortune 500 Retailer",
@@ -459,11 +459,11 @@ export default function Home() {
       <TechStackShowcase />
 
 
-      {/* SECTION 5: WHY DIGITRANSLAB */}
+      {/* SECTION 5: WHY DIGITRANS */}
       <section className="py-24 relative">
         <div className="container mx-auto px-4">
           <SectionHeader
-            badge="Why DigiTransLab"
+            badge="Why Digitrans"
             title="Your Strategic Data Partner"
             description="What sets us apart from the rest"
             alignment="center"

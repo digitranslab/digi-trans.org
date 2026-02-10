@@ -4,7 +4,7 @@ import { LazyImage } from "./lazy-image";
 import { motion } from "framer-motion";
 
 // Define the ContentItem type for the component
-export type ContentItemType = "blog" | "service" | "product";
+export type ContentItemType = string;
 
 export interface ContentItem {
   title: string;

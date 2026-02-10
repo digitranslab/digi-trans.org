@@ -2,7 +2,7 @@
  * DBLOCK Product Data File
  * 
  * Contains all content data for the DBLOCK product page.
- * DBLOCK is DigiTransLab's AI application development platform - we provide
+ * DBLOCK is Digitrans's AI application development platform - we provide
  * implementation, consulting, and managed services for building enterprise AI solutions.
  */
 

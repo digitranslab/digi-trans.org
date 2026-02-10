@@ -48,7 +48,7 @@ export default function Terms() {
               <div className="bg-gray-900/50 rounded-2xl border border-gray-800 p-8">
                 <p className="text-gray-300 text-lg leading-relaxed">
                   These Terms of Use ("Terms") constitute a legal agreement between you and/or the entity 
-                  you represent ("you" or "your") and DigiTransLab ("we", "us" or "DigiTransLab"). 
+                  you represent ("you" or "your") and Digitrans ("we", "us" or "Digitrans"). 
                   By accessing or using our website and services, you agree to be bound by these Terms.
                 </p>
               </div>
@@ -63,7 +63,7 @@ export default function Terms() {
                 </div>
                 <div className="pl-10 space-y-4">
                   <p className="text-gray-300">
-                    By accessing or using the DigiTransLab website (digitranslab.com) and any associated services, 
+                    By accessing or using the Digitrans website (digi-trans.org) and any associated services, 
                     you acknowledge that you have read, understood, and agree to be bound by these Terms. 
                     If you do not agree to these Terms, you must not access or use our services.
                   </p>
@@ -85,7 +85,7 @@ export default function Terms() {
                 </div>
                 <div className="pl-10 space-y-4">
                   <p className="text-gray-300">
-                    DigiTransLab provides data engineering, AI consulting, and software development services. 
+                    Digitrans provides data engineering, AI consulting, and software development services. 
                     Our services include but are not limited to:
                   </p>
                   <ul className="space-y-3">
@@ -116,7 +116,7 @@ export default function Terms() {
                 <div className="pl-10 space-y-4">
                   <p className="text-gray-300">
                     All content on this website, including text, graphics, logos, images, and software, 
-                    is the property of DigiTransLab or its content suppliers and is protected by 
+                    is the property of Digitrans or its content suppliers and is protected by 
                     international copyright laws.
                   </p>
                   <p className="text-gray-300">
@@ -143,7 +143,7 @@ export default function Terms() {
                 </div>
                 <div className="pl-10 space-y-4">
                   <p className="text-gray-300">
-                    To the fullest extent permitted by applicable law, DigiTransLab shall not be liable for 
+                    To the fullest extent permitted by applicable law, Digitrans shall not be liable for 
                     any indirect, incidental, special, consequential, or punitive damages, including but not limited to:
                   </p>
                   <ul className="space-y-3">
@@ -179,9 +179,9 @@ export default function Terms() {
                 <div className="pl-10">
                   <p className="text-gray-300">
                     Our website may contain links to third-party websites or services that are not owned 
-                    or controlled by DigiTransLab. We have no control over, and assume no responsibility for, 
+                    or controlled by Digitrans. We have no control over, and assume no responsibility for, 
                     the content, privacy policies, or practices of any third-party websites or services. 
-                    You acknowledge and agree that DigiTransLab shall not be responsible or liable for any 
+                    You acknowledge and agree that Digitrans shall not be responsible or liable for any 
                     damage or loss caused by your use of any such content, goods, or services.
                   </p>
                 </div>

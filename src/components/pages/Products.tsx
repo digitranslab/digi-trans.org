@@ -1,7 +1,7 @@
 /**
  * Products Page
  * 
- * Showcases all DigiTransLab products: Allama and DBLOCK
+ * Showcases all Digitrans products: Allama and DBLOCK
  * with detailed information and CTAs.
  */
 
@@ -14,6 +14,7 @@ import { GradientButton } from "../ui/gradient-button";
 import { SectionHeader } from "../ui/section-header";
 import { AnimatedWrapper } from "../ui/animated-wrapper";
 import { BackToTop } from "../ui/back-to-top";
+import { TypewriterGradientText } from "../ui/typewriter-text";
 import { 
   ArrowRight, 
   CheckCircle, 
@@ -36,7 +37,7 @@ const products = [
     name: "Allama",
     tagline: "Open-Source AI Security Automation",
     description: "Automate security workflows with intelligent AI agents that detect, analyse, and respond to threats in real-time. Built for modern SOC teams who need speed and precision.",
-    longDescription: "Allama is an open-source security automation platform that uses AI to streamline incident response, threat detection, and security operations. With 80+ integrations and a visual workflow builder, teams can automate repetitive tasks and focus on what matters most.",
+    longDescription: "Allama is an open-source AI security automation platform (SOAR) that uses AI to streamline incident response, threat detection, and security operations. With 80+ integrations and a visual workflow builder, teams can automate repetitive tasks and focus on what matters most.",
     benefits: [
       "Reduce incident response time by 90%",
       "Automate repetitive security tasks",
@@ -133,9 +134,12 @@ export default function Products() {
             <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
               Our Products
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Production-Ready AI Platforms
-            </h1>
+            <TypewriterGradientText
+              text="Production-Ready AI Platforms"
+              className="text-4xl md:text-6xl font-bold mb-6"
+              gradientClassName="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent"
+              duration={1.8}
+            />
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
               Open-source foundations with enterprise-grade support. Deploy on your infrastructure 
               or let us manage it for you.

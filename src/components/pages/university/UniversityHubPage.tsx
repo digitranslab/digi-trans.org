@@ -40,13 +40,13 @@ const UniversityHubPage: React.FC = () => {
       <main>
         {/* Hero Section */}
         <PageHero
-          badge="DigitransLab University"
+          badge="Digitrans University"
           title="Learn AI & Security Automation"
           description="Free tutorials, demos, and tech talks to help you master modern security operations and data engineering."
         >
           <div className="mt-8 flex flex-col sm:flex-row gap-4">
             <GradientButton size="lg" asChild>
-              <a href="https://youtube.com/@digitranslab" target="_blank" rel="noopener noreferrer">
+              <a href="https://youtube.com/@digitrans" target="_blank" rel="noopener noreferrer">
                 <Youtube className="w-5 h-5 mr-2" />
                 Subscribe on YouTube
               </a>
@@ -154,7 +154,7 @@ const UniversityHubPage: React.FC = () => {
                 Subscribe to our YouTube channel for weekly tutorials and tech talks.
               </p>
               <GradientButton size="lg" asChild>
-                <a href="https://youtube.com/@digitranslab" target="_blank" rel="noopener noreferrer">
+                <a href="https://youtube.com/@digitrans" target="_blank" rel="noopener noreferrer">
                   <Youtube className="w-5 h-5 mr-2" />
                   Subscribe Now
                 </a>

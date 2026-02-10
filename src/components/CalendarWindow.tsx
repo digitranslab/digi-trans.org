@@ -1,119 +1,59 @@
-import React, { useEffect, useState } from "react";
-import Cal, { getCalApi } from "@calcom/embed-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "./ui/dialog";
+/**
+ * CalendarWindow Component
+ * 
+ * Deprecated - Cal.com has been removed.
+ * This component now redirects to the Contact page.
+ */
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Calendar, MessageCircle, X } from "lucide-react";
+import { GradientButton } from "./ui/gradient-button";
 
 interface CalendarWindowProps {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
-  title?: string;
-  description?: string;
+  onClose: () => void;
 }
 
-export default function CalendarWindow({
-  open = false,
-  onOpenChange,
-  title = "Book a Consultation",
-  description = "Schedule a consultation with our team to discuss your project needs.",
-}: CalendarWindowProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+export default function CalendarWindow({ open, onClose }: CalendarWindowProps) {
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!open) return;
+  if (!open) return null;
 
-    let isMounted = true;
-    setIsLoading(true);
-    setError("");
-
-    const initializeCal = async () => {
-      try {
-        console.log("Initializing Cal.com");
-        const cal = await getCalApi();
-
-        if (!cal) {
-          console.error("Failed to load Cal API");
-          if (isMounted)
-            setError("Failed to load calendar. Please try again later.");
-          return;
-        }
-
-        cal("ui", {
-          theme: "dark",
-          styles: { branding: { brandColor: "#3b82f6" } },
-          hideEventTypeDetails: false,
-          layout: "month_view",
-        });
-
-        // Set up webhook handler for successful bookings
-        cal("on", {
-          action: "bookingSuccessful",
-          callback: (e) => {
-            console.log("Booking successful:", e.detail);
-            // Close the dialog after successful booking with a small delay
-            setTimeout(() => onOpenChange(false), 2000);
-          },
-        });
-
-        if (isMounted) setIsLoading(false);
-      } catch (err) {
-        console.error("Error initializing Cal.com:", err);
-        if (isMounted)
-          setError("Failed to initialize calendar. Please try again later.");
-      }
-    };
-
-    initializeCal();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [open, onOpenChange]);
+  const handleContactClick = () => {
+    onClose();
+    navigate("/contact");
+  };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[800px] bg-slate-900 text-white border-slate-800 z-[100]">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-white">
-            {title}
-          </DialogTitle>
-          <DialogDescription className="text-slate-400">
-            {description}
-          </DialogDescription>
-        </DialogHeader>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+      <div className="relative bg-gray-900 rounded-2xl border border-gray-800 p-8 max-w-md w-full mx-4">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+        >
+          <X className="w-6 h-6" />
+        </button>
 
-        <div className="mt-4 h-[600px] overflow-hidden relative">
-          {error ? (
-            <div className="absolute inset-0 flex items-center justify-center text-red-400">
-              {error}
-            </div>
-          ) : (
-            <>
-              {isLoading && (
-                <div className="absolute inset-0 flex items-center justify-center bg-slate-900/80 z-10">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-                </div>
-              )}
-              {open && (
-                <Cal
-                  calLink="digitransinc/consultation-digitrans"
-                  style={{ width: "100%", height: "100%", overflow: "scroll" }}
-                  config={{
-                    layout: "month_view",
-                    theme: "dark",
-                    hideEventTypeDetails: false,
-                  }}
-                />
-              )}
-            </>
-          )}
+        <div className="text-center">
+          <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 w-fit mx-auto mb-6">
+            <Calendar className="w-12 h-12 text-purple-400" />
+          </div>
+          
+          <h3 className="text-xl font-bold text-white mb-2">
+            Schedule a Consultation
+          </h3>
+          <p className="text-gray-400 mb-6">
+            Fill out our contact form and we'll get back to you within 24 hours 
+            to schedule a consultation at your convenience.
+          </p>
+
+          <GradientButton onClick={handleContactClick} className="w-full">
+            <MessageCircle className="w-5 h-5 mr-2" />
+            Go to Contact Form
+          </GradientButton>
         </div>
-      </DialogContent>
-    </Dialog>
+      </div>
+    </div>
   );
 }

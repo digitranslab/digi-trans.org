@@ -93,7 +93,7 @@ const clientCategories = [
 // Testimonials
 const testimonials = [
   {
-    quote: "DigiTransLab transformed our security operations. What used to take hours now happens in seconds. The ROI was visible within the first month.",
+    quote: "Digitrans transformed our security operations. What used to take hours now happens in seconds. The ROI was visible within the first month.",
     name: "Sarah Chen",
     title: "CISO",
     company: "Global Financial Corp",

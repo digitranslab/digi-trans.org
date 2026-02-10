@@ -496,7 +496,7 @@ export default function MultiAgentOrchestration() {
                 <div className="mt-8 p-6 bg-blue-900/20 rounded-xl border border-blue-800/30">
                   <h3 className="text-xl font-semibold mb-4 text-white">Ready to explore multi-agent orchestration for your analytics needs?</h3>
                   <p className="text-gray-300 mb-6">
-                    At Digitrans, we specialize in designing and implementing cutting-edge multi-agent systems tailored to your specific business challenges. Our team of experts can help you navigate the complexities of agent orchestration and unlock the full potential of your data.
+                    At Digitrans, we specialise in designing and implementing cutting-edge multi-agent systems tailored to your specific business challenges. Our team of experts can help you navigate the complexities of agent orchestration and unlock the full potential of your data.
                   </p>
                   <GradientButton
                     rightIcon={<ArrowRight className="h-5 w-5" />}

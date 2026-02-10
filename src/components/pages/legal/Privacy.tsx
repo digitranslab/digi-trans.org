@@ -47,7 +47,7 @@ export default function Privacy() {
               {/* Introduction */}
               <div className="bg-gray-900/50 rounded-2xl border border-gray-800 p-8">
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  At DigiTransLab, we are committed to protecting your privacy and ensuring the security 
+                  At Digitrans, we are committed to protecting your privacy and ensuring the security 
                   of your personal information. This Privacy Policy explains how we collect, use, disclose, 
                   and safeguard your information when you visit our website or use our services.
                 </p>

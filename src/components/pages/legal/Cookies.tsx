@@ -47,7 +47,7 @@ export default function Cookies() {
               {/* Introduction */}
               <div className="bg-gray-900/50 rounded-2xl border border-gray-800 p-8">
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  This Cookie Policy explains how DigiTransLab uses cookies and similar tracking technologies 
+                  This Cookie Policy explains how Digitrans uses cookies and similar tracking technologies 
                   when you visit our website. We use cookies to enhance your browsing experience, analyse 
                   website traffic, and understand where our visitors come from.
                 </p>

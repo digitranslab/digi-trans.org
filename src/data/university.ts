@@ -68,9 +68,9 @@ export const contentItems: ContentItem[] = [
     duration: "15 min",
     category: "tutorials",
     tags: ["Allama", "Getting Started", "SOAR"],
-    href: "https://youtube.com/@digitranslab",
+    href: "https://youtube.com/@digitrans",
     featured: true,
-    date: "2026-01-15",
+    date: "2025-09-15",
   },
   {
     id: "tut-2",
@@ -79,8 +79,8 @@ export const contentItems: ContentItem[] = [
     duration: "25 min",
     category: "tutorials",
     tags: ["Allama", "AI Agents", "LLM"],
-    href: "https://youtube.com/@digitranslab",
-    date: "2026-01-20",
+    href: "https://youtube.com/@digitrans",
+    date: "2025-10-02",
   },
   {
     id: "tut-3",
@@ -89,8 +89,8 @@ export const contentItems: ContentItem[] = [
     duration: "12 min",
     category: "tutorials",
     tags: ["Allama", "Splunk", "Integration"],
-    href: "https://youtube.com/@digitranslab",
-    date: "2026-01-25",
+    href: "https://youtube.com/@digitrans",
+    date: "2025-10-18",
   },
   {
     id: "tut-4",
@@ -99,8 +99,8 @@ export const contentItems: ContentItem[] = [
     duration: "30 min",
     category: "tutorials",
     tags: ["Data Engineering", "ETL", "Best Practices"],
-    href: "https://youtube.com/@digitranslab",
-    date: "2026-02-01",
+    href: "https://youtube.com/@digitrans",
+    date: "2025-11-05",
   },
   // Live Demos
   {
@@ -110,9 +110,9 @@ export const contentItems: ContentItem[] = [
     duration: "20 min",
     category: "live-demos",
     tags: ["Allama", "Phishing", "Demo"],
-    href: "https://youtube.com/@digitranslab",
+    href: "https://youtube.com/@digitrans",
     featured: true,
-    date: "2026-01-10",
+    date: "2025-09-10",
   },
   {
     id: "demo-2",
@@ -121,8 +121,8 @@ export const contentItems: ContentItem[] = [
     duration: "18 min",
     category: "live-demos",
     tags: ["Allama", "Threat Hunting", "AI"],
-    href: "https://youtube.com/@digitranslab",
-    date: "2026-01-18",
+    href: "https://youtube.com/@digitrans",
+    date: "2025-10-22",
   },
   {
     id: "demo-3",
@@ -131,8 +131,8 @@ export const contentItems: ContentItem[] = [
     duration: "15 min",
     category: "live-demos",
     tags: ["Allama", "Case Management"],
-    href: "https://youtube.com/@digitranslab",
-    date: "2026-02-05",
+    href: "https://youtube.com/@digitrans",
+    date: "2025-11-12",
   },
   // Tech Talks
   {
@@ -142,9 +142,9 @@ export const contentItems: ContentItem[] = [
     duration: "45 min",
     category: "tech-talks",
     tags: ["AI", "Security", "Future"],
-    href: "https://youtube.com/@digitranslab",
+    href: "https://youtube.com/@digitrans",
     featured: true,
-    date: "2026-01-05",
+    date: "2025-08-20",
   },
   {
     id: "talk-2",
@@ -153,8 +153,8 @@ export const contentItems: ContentItem[] = [
     duration: "35 min",
     category: "tech-talks",
     tags: ["Open Source", "Security", "Community"],
-    href: "https://youtube.com/@digitranslab",
-    date: "2026-01-22",
+    href: "https://youtube.com/@digitrans",
+    date: "2025-09-28",
   },
   {
     id: "talk-3",
@@ -163,20 +163,20 @@ export const contentItems: ContentItem[] = [
     duration: "40 min",
     category: "tech-talks",
     tags: ["LLM", "Security", "Production"],
-    href: "https://youtube.com/@digitranslab",
-    date: "2026-02-03",
+    href: "https://youtube.com/@digitrans",
+    date: "2025-11-01",
   },
   // Webinars
   {
     id: "web-1",
-    title: "Allama Community Meetup - February 2026",
+    title: "Allama Community Meetup",
     description: "Monthly community meetup with product updates and Q&A.",
     duration: "60 min",
     category: "webinars",
     tags: ["Community", "Allama", "Meetup"],
-    href: "https://youtube.com/@digitranslab",
+    href: "https://youtube.com/@digitrans",
     featured: true,
-    date: "2026-02-15",
+    date: "2025-12-10",
   },
   {
     id: "web-2",
@@ -185,8 +185,8 @@ export const contentItems: ContentItem[] = [
     duration: "90 min",
     category: "webinars",
     tags: ["Workshop", "SOC", "Automation"],
-    href: "https://youtube.com/@digitranslab",
-    date: "2026-02-20",
+    href: "https://youtube.com/@digitrans",
+    date: "2026-01-15",
   },
 ];
 

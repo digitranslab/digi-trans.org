@@ -240,7 +240,7 @@ function About() {
               <span className="block text-5xl md:text-6xl font-bold mb-6 mt-6">
                 Transforming Businesses Through Data & AI
               </span>
-              Digitrans is a global technology consultancy specializing in
+              Digitrans is a global technology consultancy specialising in
               enterprise-grade data analytics, cloud computing, and artificial
               intelligence solutions. Since 2012, we've been helping
               organizations across industries harness the power of their data to

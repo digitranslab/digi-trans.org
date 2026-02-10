@@ -1,5 +1,5 @@
 /**
- * WhyDigitransLabSection Component
+ * WhyDigitransSection Component
  * 
  * Displays five key differentiators with supporting proof points:
  * - AI-Native Approach
@@ -29,7 +29,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { SectionHeader } from "@/components/ui/section-header";
 import { differentiatorsData, type DifferentiatorData } from "@/data/homepage";
 
-interface WhyDigitransLabSectionProps {
+interface WhyDigitransSectionProps {
   data?: DifferentiatorData[];
 }
 
@@ -42,7 +42,7 @@ const iconMap: Record<string, React.ReactNode> = {
   Clock: <Clock className="w-6 h-6" />,
 };
 
-const WhyDigitransLabSection: React.FC<WhyDigitransLabSectionProps> = ({
+const WhyDigitransSection: React.FC<WhyDigitransSectionProps> = ({
   data = differentiatorsData,
 }) => {
   // Animation variants
@@ -92,7 +92,7 @@ const WhyDigitransLabSection: React.FC<WhyDigitransLabSectionProps> = ({
         >
           <SectionHeader
             badge="Why Choose Us"
-            title="The DigitransLab Difference"
+            title="The Digitrans Difference"
             description="We combine deep technical expertise with a proven methodology to deliver transformative results for our clients."
             alignment="center"
           />
@@ -210,4 +210,4 @@ const WhyDigitransLabSection: React.FC<WhyDigitransLabSectionProps> = ({
   );
 };
 
-export default WhyDigitransLabSection;
+export default WhyDigitransSection;

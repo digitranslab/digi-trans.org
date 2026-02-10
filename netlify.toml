@@ -9,6 +9,83 @@
 [build.processing]
   skip_processing = false
 
+# Service URL redirects - old 4-service structure to new 3-service
+[[redirects]]
+  from = "/services/ai-consulting"
+  to = "/services/ai-data-consulting"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/data-engineering"
+  to = "/services/big-data-architecture"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/cloud-solutions"
+  to = "/services/big-data-architecture"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/custom-development"
+  to = "/services/agentic-ai-data"
+  status = 301
+  force = true
+
+# Legacy service redirects
+[[redirects]]
+  from = "/services/big-data-analytics"
+  to = "/services/big-data-architecture"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/ai-solutions"
+  to = "/services/agentic-ai-data"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/cloud-computing"
+  to = "/services/big-data-architecture"
+  status = 301
+  force = true
+
+# Legacy solution redirects
+[[redirects]]
+  from = "/solutions/digital-transformation"
+  to = "/solutions/technology"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/solutions/enterprise-solutions"
+  to = "/services"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/solutions/data-security"
+  to = "/services/big-data-architecture"
+  status = 301
+  force = true
+
+# Careers redirects
+[[redirects]]
+  from = "/careers"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/careers/*"
+  to = "/contact"
+  status = 301
+  force = true
+
+# SPA fallback - must be last
 [[redirects]]
   from = "/*"
   to = "/index.html"

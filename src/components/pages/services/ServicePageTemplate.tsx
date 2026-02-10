@@ -86,7 +86,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
             <div className="container mx-auto px-4">
               <SectionHeader
                 badge="Why Choose Us"
-                title={service.valuePropsTitle || "The DigiTransLab Advantage"}
+                title={service.valuePropsTitle || "The Digitrans Advantage"}
                 description={service.valuePropsDescription || "What sets our service apart from the competition."}
                 alignment="center"
               />

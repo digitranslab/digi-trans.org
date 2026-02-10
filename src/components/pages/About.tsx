@@ -1,7 +1,7 @@
 /**
  * About Page Component
  * 
- * Comprehensive About page for DigitransLab matching AllamaPage design patterns.
+ * Comprehensive About page for Digitrans matching AllamaPage design patterns.
  * Includes rich sections with alternating layouts, metrics, and premium styling.
  */
 
@@ -43,7 +43,7 @@ import { TypewriterGradientText } from "@/components/ui/typewriter-text";
 const heroData = {
   tagline: "AI & Data Solutions Company",
   headline: "Transforming Business Through AI & Data",
-  description: "DigitransLab is an AI and Data consulting and software company. We provide AI agentic solutions, data architecture and engineering services, custom AI/Data software development, and open-source products deployed to your environment.",
+  description: "Digitrans is an AI and Data consulting and software company. We provide AI agentic solutions, data architecture and engineering services, custom AI/Data software development, and open-source products deployed to your environment.",
   primaryCTA: { label: "Schedule Consultation", href: "/contact" },
   secondaryCTA: { label: "Explore Products", href: "/products/allama" },
 };
@@ -181,10 +181,10 @@ const AboutPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-black">
       <SEO
-        title="About DigitransLab | AI & Data Solutions Company"
-        description="DigitransLab is an AI and Data consulting and software company providing agentic AI solutions, data engineering services, and open-source products."
+        title="About Digitrans | AI & Data Solutions Company"
+        description="Digitrans is an AI and Data consulting and software company providing agentic AI solutions, data engineering services, and open-source products."
         canonicalUrl="/about"
-        keywords={["AI consulting", "data engineering", "open source SOAR", "security automation", "DigitransLab"]}
+        keywords={["AI consulting", "data engineering", "open source SOAR", "security automation", "Digitrans"]}
       />
       <OrganizationSchema />
       <Navbar />
@@ -229,9 +229,9 @@ const AboutPage: React.FC = () => {
         <section className="py-20 relative">
           <div className="container mx-auto px-4">
             <SectionHeader
-              badge="Why DigitransLab"
+              badge="Why Digitrans"
               title="Enterprise Solutions, Open Source Values"
-              description="Four pillars that make DigitransLab the choice for modern enterprises."
+              description="Four pillars that make Digitrans the choice for modern enterprises."
               alignment="center"
             />
             
@@ -521,7 +521,7 @@ const AboutPage: React.FC = () => {
                 Ready to Transform Your Business?
               </h2>
               <p className="text-xl text-gray-300 mb-8">
-                Let's discuss how DigitransLab can help you harness the power of AI and data.
+                Let's discuss how Digitrans can help you harness the power of AI and data.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">

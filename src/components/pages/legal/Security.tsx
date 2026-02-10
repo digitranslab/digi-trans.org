@@ -47,7 +47,7 @@ export default function Security() {
               {/* Introduction */}
               <div className="bg-gray-900/50 rounded-2xl border border-gray-800 p-8">
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  At DigiTransLab, security is at the core of everything we do. We implement comprehensive 
+                  At Digitrans, security is at the core of everything we do. We implement comprehensive 
                   security measures to protect our systems, our clients' data, and the integrity of our services. 
                   This policy outlines our commitment to maintaining the highest security standards.
                 </p>

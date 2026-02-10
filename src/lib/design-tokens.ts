@@ -1,5 +1,5 @@
 /**
- * Design System Tokens for DigitransLab Website
+ * Design System Tokens for Digitrans Website
  * 
  * This file defines the core design tokens including colors, spacing,
  * typography, gradients, and shadows used throughout the application.

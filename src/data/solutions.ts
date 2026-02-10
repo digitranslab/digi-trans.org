@@ -183,6 +183,85 @@ export const solutionsData: Record<string, SolutionData> = {
     ],
     ctaText: "Modernise Your Manufacturing",
   },
+  "government": {
+    slug: "government",
+    hero: {
+      badge: "Government & Public Sector",
+      title: "AI & Data Solutions for Government",
+      description: "Secure, sovereign cloud solutions and AI platforms for public sector digital transformation with full compliance and data sovereignty.",
+    },
+    overview: "Government organisations face unique challenges in adopting AI and modernising data infrastructure. Stringent security requirements, data sovereignty concerns, and the need for transparency require specialised expertise. Our solutions are designed specifically for the public sector, combining technical excellence with deep understanding of government compliance and citizen service requirements.",
+    challenges: [
+      {
+        title: "Data Sovereignty",
+        description: "Ensure citizen data remains within national boundaries with full control over data residency and access.",
+        icon: "Shield",
+      },
+      {
+        title: "Legacy Modernisation",
+        description: "Transform legacy government systems without disrupting critical public services.",
+        icon: "Building",
+      },
+      {
+        title: "Citizen Services",
+        description: "Deliver seamless digital services that improve citizen experience and operational efficiency.",
+        icon: "Users",
+      },
+      {
+        title: "Security & Compliance",
+        description: "Meet stringent government security standards including ISO 27001, SOC 2, and national frameworks.",
+        icon: "Lock",
+      },
+    ],
+    services: [
+      {
+        title: "AI Consulting",
+        description: "Strategic AI roadmaps for government with security and compliance built-in.",
+        href: "/services/ai-consulting",
+      },
+      {
+        title: "Data Engineering",
+        description: "Sovereign data platforms with full audit trails and compliance reporting.",
+        href: "/services/data-engineering",
+      },
+      {
+        title: "Cloud Solutions",
+        description: "Government-grade cloud infrastructure with data residency guarantees.",
+        href: "/services/cloud-solutions",
+      },
+    ],
+    compliance: [
+      {
+        name: "ISO 27001",
+        description: "Information security management system certification.",
+      },
+      {
+        name: "SOC 2 Type II",
+        description: "Service organisation control compliance for security and availability.",
+      },
+      {
+        name: "GDPR",
+        description: "General Data Protection Regulation compliance for citizen data.",
+      },
+      {
+        name: "National Frameworks",
+        description: "Compliance with country-specific government security standards.",
+      },
+    ],
+    caseStudies: [
+      {
+        title: "National Data Platform",
+        description: "Built sovereign data platform for a national statistics agency enabling secure data sharing across departments.",
+        results: ["100% data sovereignty", "50+ department integration", "Real-time analytics"],
+      },
+      {
+        title: "Citizen Services Portal",
+        description: "Implemented AI-powered citizen services platform reducing processing times by 70%.",
+        results: ["70% faster processing", "24/7 availability", "95% citizen satisfaction"],
+      },
+    ],
+    ctaText: "Transform Public Services",
+  },
   "financial-services": {
     slug: "financial-services",
     hero: {

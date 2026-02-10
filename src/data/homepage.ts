@@ -111,7 +111,7 @@ export const pillarsData: PillarData[] = [
     icon: "Lightbulb",
     title: "Consulting",
     description: "Strategic AI and data consulting to help you identify opportunities, build roadmaps, and transform your business with intelligent automation.",
-    href: "/services/ai-consulting",
+    href: "/services/ai-data-consulting",
     features: [
       "AI Strategy & Roadmap",
       "Data Architecture Design",
@@ -123,7 +123,7 @@ export const pillarsData: PillarData[] = [
     icon: "Code",
     title: "Engineering",
     description: "Expert engineering teams that build scalable data platforms, cloud infrastructure, and custom AI solutions tailored to your needs.",
-    href: "/services/data-engineering",
+    href: "/services/big-data-architecture",
     features: [
       "Data Platform Development",
       "Cloud Infrastructure",
@@ -172,7 +172,7 @@ export const productsData: ProductData[] = [
       "Desktop & Docker Deploy",
     ],
     href: "/products/dblock",
-    status: "live",
+    status: "coming-soon",
     ctaLabel: "Learn More",
   },
 ];
@@ -263,7 +263,7 @@ export const differentiatorsData: DifferentiatorData[] = [
 // Testimonials Data - Requirements 7.1, 7.2
 export const testimonialsData: TestimonialData[] = [
   {
-    quote: "DigitransLab transformed our security operations. What used to take our team hours now happens in seconds with Allama. The ROI was evident within the first month.",
+    quote: "Digitrans transformed our security operations. What used to take our team hours now happens in seconds with Allama. The ROI was evident within the first month.",
     author: "Sarah Chen",
     title: "CISO",
     company: "Global Financial Corp",
@@ -285,7 +285,7 @@ export const testimonialsData: TestimonialData[] = [
 // Final CTA Section Data - Requirements 8.1, 8.2
 export const finalCTAData = {
   headline: "Ready to Transform Your Business?",
-  subheadline: "Join leading enterprises that trust DigitransLab for their AI and data transformation journey.",
+  subheadline: "Join leading enterprises that trust Digitrans for their AI and data transformation journey.",
   primaryCTA: {
     label: "Schedule Consultation",
     href: "/contact",

@@ -1,4 +1,12 @@
-import React, { useEffect } from "react";
+/**
+ * RegistrationModal Component
+ * 
+ * Deprecated - Cal.com has been removed.
+ * This component now redirects to the Contact page.
+ */
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -6,79 +14,81 @@ import {
   DialogTitle,
   DialogDescription,
 } from "./ui/dialog";
-import Cal, { getCalApi } from "@calcom/embed-react";
+import { Calendar, MessageCircle, Clock, Users, Globe } from "lucide-react";
+import { GradientButton } from "./ui/gradient-button";
 
 interface RegistrationModalProps {
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  title?: string;
+  description?: string;
 }
 
 export default function RegistrationModal({
-  open = true,
+  open,
   onOpenChange,
+  title = "Register for Consultation",
+  description = "Schedule a free consultation to discuss your needs.",
 }: RegistrationModalProps) {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "30-min-consultation" });
-      cal("ui", {
-        theme: "dark",
-        hideEventTypeDetails: false,
-        layout: "month_view",
-        cssVarsPerTheme: {
-          light: {
-            "--cal-brand": "#000000",
-            "--cal-brand-emphasis": "#000000",
-          },
-          dark: {
-            "--cal-brand": "#000000",
-            "--cal-brand-emphasis": "#000000",
-          },
-        },
-      });
+  const navigate = useNavigate();
 
-      // Set up webhook handler
-      cal("on", {
-        action: "bookingSuccessful",
-        callback: (e) => {
-          // Handle successful booking
-          console.log("Booking successful:", e.detail);
-
-          // Make API call to webhook
-          fetch("https://api.cal.com/v1/hooks", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer Webhook13579*-/",
-            },
-            body: JSON.stringify({
-              event: "BOOKING_CREATED",
-              payload: e.detail,
-            }),
-          });
-        },
-      });
-    })();
-  }, []);
+  const handleContactClick = () => {
+    onOpenChange(false);
+    navigate("/contact");
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] bg-slate-900 text-white border-slate-800 z-[100]">
+      <DialogContent className="sm:max-w-[500px] bg-gray-900 text-white border-gray-800 z-[100]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-white">
-            Book a Call
+            {title}
           </DialogTitle>
-          <DialogDescription className="text-slate-400">
-            Schedule a 30-minute consultation with our team.
+          <DialogDescription className="text-gray-400">
+            {description}
           </DialogDescription>
         </DialogHeader>
 
-        <div className="mt-4">
-          <Cal
-            namespace="30-min-consultation"
-            calLink="team-digitrans/30-min-consultation"
-            style={{ width: "100%", height: "500px", overflow: "scroll" }}
-            config={{ layout: "month_view", theme: "dark" }}
-          />
+        <div className="mt-6">
+          <div className="flex flex-col items-center text-center py-6">
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 mb-6">
+              <Calendar className="w-12 h-12 text-purple-400" />
+            </div>
+            
+            <h3 className="text-xl font-bold text-white mb-2">
+              Let's Get Started
+            </h3>
+            <p className="text-gray-400 mb-6 max-w-sm">
+              Fill out our contact form and we'll get back to you within 24 hours 
+              to schedule a consultation at your convenience.
+            </p>
+
+            <div className="space-y-3 w-full mb-6">
+              <div className="flex items-center gap-3 text-gray-300 justify-center">
+                <Clock className="w-5 h-5 text-purple-400" />
+                <span>30-minute video call</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-300 justify-center">
+                <Users className="w-5 h-5 text-purple-400" />
+                <span>Meet with our experts</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-300 justify-center">
+                <Globe className="w-5 h-5 text-purple-400" />
+                <span>Available worldwide</span>
+              </div>
+            </div>
+
+            <GradientButton size="lg" onClick={handleContactClick}>
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Go to Contact Form
+            </GradientButton>
+          </div>
+        </div>
+
+        <div className="mt-4 pt-4 border-t border-gray-800 text-center">
+          <p className="text-sm text-gray-500">
+            We typically respond within 24 hours during business days.
+          </p>
         </div>
       </DialogContent>
     </Dialog>

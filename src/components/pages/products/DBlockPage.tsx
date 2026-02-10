@@ -2,7 +2,7 @@
  * DBlockPage Component
  * 
  * The product page for DBLOCK - enterprise AI application platform.
- * DigiTransLab provides implementation, consulting, and managed services
+ * Digitrans provides implementation, consulting, and managed services
  * for building enterprise AI solutions.
  * 
  * Includes:
@@ -108,7 +108,7 @@ const DBlockPage: React.FC = () => {
             <SectionHeader
               badge="Why DBLOCK"
               title="Enterprise AI, Delivered"
-              description="Four reasons teams choose DigiTransLab for AI development."
+              description="Four reasons teams choose Digitrans for AI development."
               alignment="center"
             />
             

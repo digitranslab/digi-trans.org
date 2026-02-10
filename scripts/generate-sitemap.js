@@ -1,28 +1,48 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-// Define all routes in your application
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Define all routes in the application
 const routes = [
   "/",
   "/about",
   "/services",
-  "/services/big-data-analytics",
-  "/services/ai-solutions",
-  "/services/cloud-computing",
+  "/services/big-data-architecture",
+  "/services/agentic-ai-data",
+  "/services/ai-data-consulting",
+  "/services/mvp-development",
+  "/services/product-strategy",
+  "/services/full-stack-development",
+  "/services/devops-scaling",
+  "/services/ai-consultancy",
+  "/services/ai-accounting",
   "/solutions",
-  "/solutions/enterprise-solutions",
-  "/solutions/digital-transformation",
-  "/solutions/data-security",
-  "/clients",
-  "/clients/fortune-500-companies",
-  "/clients/gov-agencies",
-  "/clients/tech-startups",
+  "/solutions/financial-services",
+  "/solutions/healthcare",
+  "/solutions/technology",
+  "/solutions/retail",
+  "/solutions/manufacturing",
+  "/solutions/government",
+  "/solutions/technical-cofounder",
+  "/solutions/saas-consulting",
+  "/solutions/legacy-modernization",
+  "/products",
+  "/products/allama",
+  "/products/dblock",
   "/products/ledger",
   "/products/utrack",
   "/products/ember",
   "/products/godash",
   "/products/bigbytes",
   "/products/kozmo-ai",
+  "/clients",
+  "/clients/fortune-500-companies",
+  "/clients/gov-agencies",
+  "/clients/tech-startups",
+  "/portfolio",
   "/blog",
   "/blog/enabling-our-client-to-maximise-the-business-value-from-it",
   "/blog/building-enterprise-data-lakes",
@@ -32,9 +52,21 @@ const routes = [
   "/blog/digital-transformation-banking-success-story",
   "/blog/cloud-migration-healthcare-case-study",
   "/blog/ai-retail-personalization-case-study",
-  "/careers",
+  "/blog/multi-agent-orchestration-big-data-analytics",
+  "/university",
+  "/university/tutorials",
+  "/university/live-demos",
+  "/university/tech-talks",
+  "/university/webinars",
+  "/solutions-hub",
+  "/solutions-hub/iot-accelerator",
+  "/solutions-hub/ai-assistant",
+  "/solutions-hub/container-optimizer",
+  "/solutions-hub/devops-accelerator",
   "/contact",
+  "/locations",
   "/ceo-profile",
+  "/applications",
   "/privacy",
   "/terms",
   "/cookies",
@@ -54,7 +86,6 @@ routes.forEach((route) => {
   sitemap += `    <loc>${domain}${route}</loc>\n`;
   sitemap += `    <lastmod>${today}</lastmod>\n`;
 
-  // Set changefreq based on content type
   const changefreq = route.includes("/blog/")
     ? "monthly"
     : route === "/" || route === "/services" || route === "/solutions"
@@ -63,9 +94,7 @@ routes.forEach((route) => {
 
   sitemap += `    <changefreq>${changefreq}</changefreq>\n`;
 
-  // Set priority based on route depth and importance
   let priority = "0.5";
-
   if (route === "/") {
     priority = "1.0";
   } else if (
@@ -80,19 +109,14 @@ routes.forEach((route) => {
     route.startsWith("/products/")
   ) {
     priority = "0.8";
-  } else if (route === "/blog") {
+  } else if (route === "/blog" || route === "/university") {
     priority = "0.7";
-  } else if (route.startsWith("/blog/")) {
+  } else if (route.startsWith("/blog/") || route.startsWith("/university/")) {
     priority = "0.6";
   }
 
   sitemap += `    <priority>${priority}</priority>\n`;
 
-  // Add alternate language versions if you have them
-  // sitemap += `    <xhtml:link rel="alternate" hreflang="en" href="${domain}${route}" />\n`;
-  // sitemap += `    <xhtml:link rel="alternate" hreflang="fr" href="${domain}/fr${route}" />\n`;
-
-  // Add images for important pages (optional)
   if (
     route === "/" ||
     route.startsWith("/services/") ||
@@ -100,7 +124,7 @@ routes.forEach((route) => {
   ) {
     sitemap += `    <image:image>\n`;
     sitemap += `      <image:loc>${domain}/images/og-image.jpg</image:loc>\n`;
-    sitemap += `      <image:caption>Digitrans - Enterprise IT Consultancy</image:caption>\n`;
+    sitemap += `      <image:caption>Digitrans - AI &amp; Data Solutions</image:caption>\n`;
     sitemap += `    </image:image>\n`;
   }
 
@@ -109,36 +133,14 @@ routes.forEach((route) => {
 
 sitemap += "</urlset>";
 
-// Ensure the public directory exists
 const publicDir = path.join(__dirname, "..", "public");
 if (!fs.existsSync(publicDir)) {
   fs.mkdirSync(publicDir, { recursive: true });
 }
 
-// Write the sitemap file
 fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap);
-
-// Create a sitemap index file if you have multiple sitemaps
-// This is useful for large sites with many pages
-/*
-let sitemapIndex = '<?xml version="1.0" encoding="UTF-8"?>\n';
-sitemapIndex += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-sitemapIndex += '  <sitemap>\n';
-sitemapIndex += `    <loc>${domain}/sitemap.xml</loc>\n`;
-sitemapIndex += `    <lastmod>${today}</lastmod>\n`;
-sitemapIndex += '  </sitemap>\n';
-sitemapIndex += '  <sitemap>\n';
-sitemapIndex += `    <loc>${domain}/blog-sitemap.xml</loc>\n`;
-sitemapIndex += `    <lastmod>${today}</lastmod>\n`;
-sitemapIndex += '  </sitemap>\n';
-sitemapIndex += '</sitemapindex>';
-
-fs.writeFileSync(path.join(publicDir, "sitemap-index.xml"), sitemapIndex);
-*/
-
 console.log("Sitemap generated successfully!");
 
-// Generate a text file with URLs for easy submission to search engines
 let urlList = "";
 routes.forEach((route) => {
   urlList += `${domain}${route}\n`;

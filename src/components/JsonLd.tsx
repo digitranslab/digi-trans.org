@@ -26,8 +26,8 @@ export function OrganizationSchema({
   url = "https://digi-trans.org",
   logo = "https://digi-trans.org/logo.png",
   sameAs = [
-    "https://www.linkedin.com/company/digitranslab",
-    "https://twitter.com/digitranslab",
+    "https://www.linkedin.com/company/digitrans",
+    "https://twitter.com/digitrans",
     "https://github.com/digitranslab",
   ],
   address = {
@@ -140,8 +140,9 @@ export function ServiceSchema({
 
 interface ArticleSchemaProps {
   headline: string;
+  description?: string;
   datePublished: string;
-  dateModified: string;
+  dateModified?: string;
   image: string;
   authorName?: string;
   authorUrl?: string;
@@ -151,21 +152,23 @@ interface ArticleSchemaProps {
 
 export const ArticleSchema: React.FC<ArticleSchemaProps> = ({
   headline,
+  description,
   datePublished,
   dateModified,
   image,
-  authorName = "DigiTrans.org",
-  authorUrl = "https://digitrans.org",
-  publisherName = "DigiTrans.org",
-  publisherLogo = "https://digitrans.org/logo.png",
+  authorName = "Digitrans",
+  authorUrl = "https://digi-trans.org",
+  publisherName = "Digitrans",
+  publisherLogo = "https://digi-trans.org/logo.png",
 }) => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline,
+    ...(description && { description }),
     image,
     datePublished,
-    dateModified,
+    ...(dateModified && { dateModified }),
     author: {
       "@type": "Person",
       name: authorName,

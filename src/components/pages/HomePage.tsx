@@ -6,7 +6,7 @@
  * 2. ThreePillarsSection - Consulting, Engineering, Products
  * 3. ProductsShowcaseSection - Allama and DBLOCK products
  * 4. IndustriesSection - Five industry verticals
- * 5. WhyDigitransLabSection - Five differentiators
+ * 5. WhyDigitransSection - Five differentiators
  * 6. TestimonialsSection - Client testimonials
  * 7. FinalCTASection - Final call-to-action
  * 
@@ -23,7 +23,7 @@ import HeroSection from "@/components/sections/homepage/HeroSection";
 import ThreePillarsSection from "@/components/sections/homepage/ThreePillarsSection";
 import ProductsShowcaseSection from "@/components/sections/homepage/ProductsShowcaseSection";
 import IndustriesSection from "@/components/sections/homepage/IndustriesSection";
-import WhyDigitransLabSection from "@/components/sections/homepage/WhyDigitransLabSection";
+import WhyDigitransSection from "@/components/sections/homepage/WhyDigitransSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import FinalCTASection from "@/components/sections/homepage/FinalCTASection";
 import { testimonialsData } from "@/data/homepage";
@@ -46,8 +46,8 @@ const HomePage: React.FC = () => {
         {/* Section 4: Industries */}
         <IndustriesSection />
         
-        {/* Section 5: Why DigitransLab */}
-        <WhyDigitransLabSection />
+        {/* Section 5: Why Digitrans */}
+        <WhyDigitransSection />
         
         {/* Section 6: Testimonials */}
         <TestimonialsSection 
@@ -59,7 +59,7 @@ const HomePage: React.FC = () => {
             avatar: t.avatar,
           }))}
           title="What Our Clients Say"
-          description="Hear from the enterprises that have transformed their operations with DigitransLab."
+          description="Hear from the enterprises that have transformed their operations with Digitrans."
           badge="Testimonials"
         />
         

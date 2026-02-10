@@ -9,7 +9,7 @@ interface LazyImageProps {
   sizes?: string;
   srcSet?: string;
   priority?: boolean;
-  fetchpriority?: "high" | "low" | "auto";
+  fetchPriority?: "high" | "low" | "auto";
   decoding?: "async" | "auto" | "sync";
 }
 
@@ -22,15 +22,15 @@ export default function LazyImage({
   sizes,
   srcSet,
   priority = false,
-  fetchpriority = "auto",
+  fetchPriority = "auto",
   decoding = "async",
 }: LazyImageProps) {
   // If this is a priority image (like hero images or above-the-fold content)
   // we don't want to lazy load it
   const loadingAttribute = priority ? "eager" : "lazy";
 
-  // For priority images, set fetchpriority to high
-  const fetchPriorityAttribute = priority ? "high" : fetchpriority;
+  // For priority images, set fetchPriority to high
+  const fetchPriorityAttribute = priority ? "high" : fetchPriority;
 
   return (
     <img
@@ -42,7 +42,7 @@ export default function LazyImage({
       loading={loadingAttribute}
       sizes={sizes}
       srcSet={srcSet}
-      fetchpriority={fetchPriorityAttribute}
+      fetchPriority={fetchPriorityAttribute}
       decoding={decoding}
     />
   );

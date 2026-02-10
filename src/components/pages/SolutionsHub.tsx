@@ -43,7 +43,7 @@ const solutions = [
   {
     id: "ai-assistant",
     title: "AI-Powered Virtual Assistant",
-    description: "Exceed your KPIs and streamline operations with our AI-powered virtual assistant optimized for SaaS businesses.",
+    description: "Exceed your KPIs and streamline operations with our AI-powered virtual assistant optimised for SaaS businesses.",
     type: "PoC",
     industry: ["Industry agnostic"],
     license: "Digitrans",
@@ -54,7 +54,7 @@ const solutions = [
   },
   {
     id: "saas-container-optimizer",
-    title: "SaaS Container Optimizer",
+    title: "SaaS Container Optimiser",
     description: "Say goodbye to wasted resources, improve performance, and reduce infrastructure costs for your SaaS platform.",
     type: "PoC",
     industry: ["Software products", "SaaS"],
@@ -78,8 +78,8 @@ const solutions = [
   },
   {
     id: "auth-accelerator",
-    title: "Authorization Accelerator",
-    description: "Accelerate your time to market and reduce costs on essential solution functionality with our secure authorization platform.",
+    title: "Authorisation Accelerator",
+    description: "Accelerate your time to market and reduce costs on essential solution functionality with our secure authorisation platform.",
     type: "Accelerator",
     industry: ["Industry agnostic", "SaaS"],
     license: "Digitrans",
@@ -103,7 +103,7 @@ const solutions = [
   {
     id: "saas-analytics",
     title: "SaaS Analytics Suite",
-    description: "Comprehensive analytics and reporting solution designed specifically for SaaS businesses to track KPIs and user behavior.",
+    description: "Comprehensive analytics and reporting solution designed specifically for SaaS businesses to track KPIs and user behaviour.",
     type: "Product",
     industry: ["SaaS", "Analytics"],
     license: "Digitrans",
@@ -127,7 +127,7 @@ const solutions = [
   {
     id: "payment-system",
     title: "SaaS Payment Management",
-    description: "Streamline subscription management and payment processing with our customizable and flexible compensation management system.",
+    description: "Streamline subscription management and payment processing with our customisable and flexible compensation management system.",
     type: "Product",
     industry: ["FinTech", "SaaS"],
     license: "Digitrans",

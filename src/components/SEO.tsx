@@ -35,7 +35,7 @@ export default function SEO({
   description = "Transform your business with enterprise-grade data analytics, cloud computing, and artificial intelligence solutions from Digitrans.",
   keywords = defaultKeywords,
   canonicalUrl,
-  ogImage = "https://digitrans.ai/images/og-image.jpg",
+  ogImage = "https://digi-trans.org/images/og-image.jpg",
   ogType = "website",
   twitterCard = "summary_large_image",
   schema,
@@ -75,8 +75,8 @@ export default function SEO({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      <meta name="twitter:site" content="@digitranslab" />
-      <meta name="twitter:creator" content="@digitranslab" />
+      <meta name="twitter:site" content="@Digitrans" />
+      <meta name="twitter:creator" content="@Digitrans" />
 
       {/* Structured Data / JSON-LD */}
       {schema}

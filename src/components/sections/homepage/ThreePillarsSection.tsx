@@ -1,7 +1,7 @@
 /**
  * ThreePillarsSection Component
  * 
- * Displays the three core pillars of DigitransLab:
+ * Displays the three core pillars of Digitrans:
  * - Consulting
  * - Engineering
  * - Products

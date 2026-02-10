@@ -409,7 +409,7 @@ export default function DevOpsAccelerator() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Use cases of operational processes optimized with Digitrans DevOps Accelerator
+              Use cases of operational processes optimised with Digitrans DevOps Accelerator
             </h2>
           </motion.div>
 

@@ -1,7 +1,7 @@
 /**
  * Navigation Data Structure
  * 
- * Defines the navigation items and structure for the DigitransLab website.
+ * Defines the navigation items and structure for the Digitrans website.
  * This includes all primary sections and their sub-pages.
  * 
  * Requirements: 1.1
@@ -64,7 +64,7 @@ export const navigationItems: NavItem[] = [
       {
         label: "Allama",
         href: "/products/allama",
-        description: "Open-source AI workflow automation platform",
+        description: "Open-source AI security automation platform (SOAR)",
       },
       {
         label: "DBLOCK",
@@ -90,9 +90,24 @@ export const navigationItems: NavItem[] = [
         description: "Secure healthcare data automation",
       },
       {
+        label: "Retail & E-commerce",
+        href: "/solutions/retail",
+        description: "Customer 360, personalisation, and demand forecasting",
+      },
+      {
         label: "Technology",
         href: "/solutions/technology",
         description: "Solutions for tech companies",
+      },
+      {
+        label: "Manufacturing",
+        href: "/solutions/manufacturing",
+        description: "Predictive maintenance and supply chain analytics",
+      },
+      {
+        label: "Government",
+        href: "/solutions/government",
+        description: "Secure data platforms for the public sector",
       },
     ],
   },
@@ -134,9 +149,9 @@ export const navigationItems: NavItem[] = [
         description: "Latest insights and articles",
       },
       {
-        label: "Case Studies",
-        href: "/clients",
-        description: "Client success stories",
+        label: "Portfolio",
+        href: "/portfolio",
+        description: "Client success stories and case studies",
       },
     ],
   },

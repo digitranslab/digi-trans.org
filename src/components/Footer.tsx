@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         {/* Footer Links */}
         <div className="pt-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
             <div>
               <h3 className="text-white font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
@@ -69,6 +69,80 @@ const Footer = () => {
               </ul>
             </div>
             <div>
+              <h3 className="text-white font-semibold mb-4">Products</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="/products/allama"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Allama
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/products/dblock"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    DBLOCK
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Industries</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="/solutions/financial-services"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Financial Services
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/solutions/healthcare"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Healthcare
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/solutions/retail"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Retail
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/solutions/technology"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Technology
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/solutions/manufacturing"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Manufacturing
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/solutions/government"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    Government
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
               <h3 className="text-white font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">
                 <li>
@@ -110,7 +184,7 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="https://linkedin.com/company/digitranslab"
+                    href="https://linkedin.com/company/digitrans"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
@@ -152,7 +226,7 @@ const Footer = () => {
           <div className="border-t border-purple-500/20 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-gray-400 text-sm">
-                © 2026 DigiTransLab. All rights reserved.
+                © 2026 Digitrans. All rights reserved.
               </p>
               <div className="flex items-center gap-4 text-gray-400 text-sm">
                 <span>AWS Partner</span>

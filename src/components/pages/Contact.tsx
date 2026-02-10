@@ -127,10 +127,10 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-black text-white">
       <SEO
-        title="Contact DigitransLab | AI & Data Consulting"
-        description="Get in touch with DigitransLab for AI consulting, data engineering, and custom software development. Book a free consultation today."
+        title="Contact Digitrans | AI & Data Consulting"
+        description="Get in touch with Digitrans for AI consulting, data engineering, and custom software development. Book a free consultation today."
         canonicalUrl="/contact"
-        keywords={["AI consulting contact", "data engineering services", "book consultation", "DigitransLab contact"]}
+        keywords={["AI consulting contact", "data engineering services", "book consultation", "Digitrans contact"]}
       />
       <Navbar />
 

@@ -296,7 +296,7 @@ export default function DigitalTransformation() {
               </div>
               <div className="order-1 md:order-2">
                 <p className="text-xl text-gray-300 leading-relaxed text-left">
-                  At Digitrans, we help organizations navigate these challenges
+                  At Digitrans, we help organisations navigate these challenges
                   by providing a structured yet flexible approach to digital
                   transformation. Our methodology combines strategic vision with
                   practical implementation, ensuring that transformation

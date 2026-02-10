@@ -1,11 +1,12 @@
 /**
  * BookingModal Component
  * 
- * Uses Cal.com free tier for calendar booking.
- * Falls back to direct link if embed fails.
+ * Redirects users to the Contact page with Netlify Forms.
+ * Cal.com has been removed in favour of the contact form.
  */
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -13,12 +14,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "./ui/dialog";
-import { Calendar, ExternalLink, Loader2 } from "lucide-react";
+import { Calendar, MessageCircle, Clock, Users, Globe } from "lucide-react";
 import { GradientButton } from "./ui/gradient-button";
-
-// Cal.com configuration
-const CAL_LINK = "digitransinc/consultation-digitrans";
-const CAL_URL = `https://cal.com/${CAL_LINK}`;
 
 interface BookingModalProps {
   open: boolean;
@@ -33,57 +30,16 @@ export default function BookingModal({
   title = "Book a Consultation",
   description = "Schedule a free consultation to discuss your needs.",
 }: BookingModalProps) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [embedError, setEmbedError] = useState(false);
-  const [CalComponent, setCalComponent] = useState<React.ComponentType<any> | null>(null);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!open) return;
-
-    let isMounted = true;
-    setIsLoading(true);
-    setEmbedError(false);
-
-    const loadCalEmbed = async () => {
-      try {
-        const calModule = await import("@calcom/embed-react");
-        const { getCalApi } = calModule;
-        
-        if (!isMounted) return;
-        
-        setCalComponent(() => calModule.default);
-        
-        const cal = await getCalApi();
-        if (cal) {
-          cal("ui", {
-            theme: "dark",
-            styles: { branding: { brandColor: "#8b5cf6" } },
-            hideEventTypeDetails: false,
-            layout: "month_view",
-          });
-        }
-        
-        if (isMounted) setIsLoading(false);
-      } catch (err) {
-        console.error("Failed to load Cal.com embed:", err);
-        if (isMounted) {
-          setEmbedError(true);
-          setIsLoading(false);
-        }
-      }
-    };
-
-    const timer = setTimeout(loadCalEmbed, 100);
-
-    return () => {
-      isMounted = false;
-      clearTimeout(timer);
-    };
-  }, [open]);
+  const handleContactClick = () => {
+    onOpenChange(false);
+    navigate("/contact");
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[800px] bg-gray-900 text-white border-gray-800 z-[100]">
+      <DialogContent className="sm:max-w-[500px] bg-gray-900 text-white border-gray-800 z-[100]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-white">
             {title}
@@ -93,57 +49,45 @@ export default function BookingModal({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="mt-4 min-h-[500px] relative">
-          {isLoading && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900">
-              <Loader2 className="w-8 h-8 text-purple-500 animate-spin mb-4" />
-              <p className="text-gray-400">Loading calendar...</p>
+        <div className="mt-6">
+          <div className="flex flex-col items-center text-center py-6">
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 mb-6">
+              <Calendar className="w-12 h-12 text-purple-400" />
             </div>
-          )}
+            
+            <h3 className="text-xl font-bold text-white mb-2">
+              Let's Schedule a Call
+            </h3>
+            <p className="text-gray-400 mb-6 max-w-sm">
+              Fill out our contact form and we'll get back to you within 24 hours 
+              to schedule a consultation at your convenience.
+            </p>
 
-          {embedError ? (
-            <div className="flex flex-col items-center justify-center h-full py-12">
-              <Calendar className="w-16 h-16 text-purple-400 mb-6" />
-              <h3 className="text-xl font-bold text-white mb-2">
-                Book Your Consultation
-              </h3>
-              <p className="text-gray-400 text-center mb-6 max-w-md">
-                Click the button below to open our scheduling page.
-              </p>
-              <GradientButton asChild>
-                <a href={CAL_URL} target="_blank" rel="noopener noreferrer">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Open Scheduling Page
-                  <ExternalLink className="w-4 h-4 ml-2" />
-                </a>
-              </GradientButton>
+            <div className="space-y-3 w-full mb-6">
+              <div className="flex items-center gap-3 text-gray-300 justify-center">
+                <Clock className="w-5 h-5 text-purple-400" />
+                <span>30-minute video call</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-300 justify-center">
+                <Users className="w-5 h-5 text-purple-400" />
+                <span>Meet with our experts</span>
+              </div>
+              <div className="flex items-center gap-3 text-gray-300 justify-center">
+                <Globe className="w-5 h-5 text-purple-400" />
+                <span>Available worldwide</span>
+              </div>
             </div>
-          ) : (
-            CalComponent && open && (
-              <CalComponent
-                calLink={CAL_LINK}
-                style={{ width: "100%", height: "500px", overflow: "auto" }}
-                config={{
-                  layout: "month_view",
-                  theme: "dark",
-                  hideEventTypeDetails: false,
-                }}
-              />
-            )
-          )}
+
+            <GradientButton size="lg" onClick={handleContactClick}>
+              <MessageCircle className="w-5 h-5 mr-2" />
+              Go to Contact Form
+            </GradientButton>
+          </div>
         </div>
 
         <div className="mt-4 pt-4 border-t border-gray-800 text-center">
           <p className="text-sm text-gray-500">
-            Having trouble?{" "}
-            <a
-              href={CAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-400 hover:text-purple-300 underline"
-            >
-              Open calendar in new tab
-            </a>
+            We typically respond within 24 hours during business days.
           </p>
         </div>
       </DialogContent>

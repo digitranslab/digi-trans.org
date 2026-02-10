@@ -9,8 +9,9 @@
  * - Competitor comparisons
  * - Use cases
  * 
- * Allama is DigiTransLab's security automation platform - we provide
- * implementation, consulting, and managed services for enterprise security teams.
+ * Allama is Digitrans's open-source AI security automation platform (SOAR).
+ * We provide implementation, consulting, and managed services for enterprise
+ * security teams.
  * 
  * Requirements: 9.2, 9.4
  */
@@ -80,7 +81,7 @@ export interface AllamaData {
 
 // Hero Section Data
 export const heroData = {
-  tagline: "Enterprise Security Automation Platform",
+  tagline: "Open-Source AI Security Automation Platform",
   headline: "Automate Your Security Operations",
   description: "Allama transforms how security teams work. Our experts implement custom workflows, integrate your security stack, and deliver measurable ROI in weeks, not months.",
   primaryCTA: {

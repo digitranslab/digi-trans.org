@@ -8,7 +8,7 @@ import Services from "./components/pages/Services";
 import Solutions from "./components/pages/Solutions";
 import Clients from "./components/pages/Clients";
 import Portfolio from "./components/pages/Portfolio";
-import Careers from "./components/pages/Careers";
+// Careers page removed - routes redirect to /contact
 import Blog from "./components/pages/Blog";
 import BlogPost from "./components/pages/BlogPost";
 import EnablingClientMaximizeIT from "./components/pages/blog/EnablingClientMaximizeIT";
@@ -25,15 +25,10 @@ import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
 import CeoProfile from "./components/pages/CeoProfile";
 
-// Legacy service pages replaced by new redesigned versions
-import BigDataAnalyticsPage from "./components/pages/services/BigDataAnalyticsPage";
-import AiSolutionsPage from "./components/pages/services/AiSolutionsPage";
-import CloudComputingPage from "./components/pages/services/CloudComputingPage";
+// Legacy imports removed - these pages now redirect via <Navigate>
 
-// Legacy solution pages replaced by new redesigned versions
-import DigitalTransformationPage from "./components/pages/solutions/DigitalTransformationPage";
-import EnterpriseSolutionsPage from "./components/pages/solutions/EnterpriseSolutionsPage";
-import DataSecurity from "./components/pages/DataSecurity";
+// Legacy solution pages - now redirect to new equivalents
+import { Navigate } from "react-router-dom";
 import Fortune500 from "./components/pages/clients/Fortune500";
 import GovAgencies from "./components/pages/clients/GovAgencies";
 import TechStartups from "./components/pages/clients/TechStartups";
@@ -48,14 +43,8 @@ import Ember from "./components/pages/products/Ember";
 import GoDash from "./components/pages/products/GoDash";
 import BigBytes from "./components/pages/products/BigBytes";
 import KozmoAI from "./components/pages/products/KozmoAI";
-import CalendarPage from "./components/pages/CalendarPage";
-import SimpleCalendarTest from "./components/pages/SimpleCalendarTest";
-import SeniorDataEngineer from "./components/pages/careers/SeniorDataEngineer";
-import MachineLearningEngineer from "./components/pages/careers/MachineLearningEngineer";
-import CloudSolutionsArchitect from "./components/pages/careers/CloudSolutionsArchitect";
-import FullStackDeveloper from "./components/pages/careers/FullStackDeveloper";
-import DevOpsEngineer from "./components/pages/careers/DevOpsEngineer";
-import DataScientist from "./components/pages/careers/DataScientist";
+// Calendar pages removed - Cal.com replaced with Contact page
+// Career sub-page imports removed - routes redirect to /contact
 import Applications from "./components/pages/Applications";
 
 // Solutions Hub Pages
@@ -85,12 +74,6 @@ import AllamaPage from "./components/pages/products/AllamaPage";
 import DBlockPage from "./components/pages/products/DBlockPage";
 import Products from "./components/pages/Products";
 
-// New Service Pages (redesign)
-import AIConsultingPage from "./components/pages/services/AIConsultingPage";
-import DataEngineeringPage from "./components/pages/services/DataEngineeringPage";
-import CloudSolutionsPage from "./components/pages/services/CloudSolutionsPage";
-import CustomDevelopmentPage from "./components/pages/services/CustomDevelopmentPage";
-
 // New Consolidated Service Pages (3 categories)
 import BigDataArchitecturePage from "./components/pages/services/BigDataArchitecturePage";
 import AgenticAIDataPage from "./components/pages/services/AgenticAIDataPage";
@@ -102,6 +85,7 @@ import HealthcarePage from "./components/pages/solutions/HealthcarePage";
 import TechnologyPage from "./components/pages/solutions/TechnologyPage";
 import RetailPage from "./components/pages/solutions/RetailPage";
 import ManufacturingPage from "./components/pages/solutions/ManufacturingPage";
+import GovernmentPage from "./components/pages/solutions/GovernmentPage";
 
 // New Homepage
 import HomePage from "./components/pages/HomePage";
@@ -126,7 +110,7 @@ function App() {
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/portfolio" element={<Portfolio />} />
-        <Route path="/careers" element={<Careers />} />
+        <Route path="/careers" element={<Navigate to="/contact" replace />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route
@@ -171,10 +155,10 @@ function App() {
         <Route path="/ceo-profile" element={<CeoProfile />} />
         <Route
           path="/services/big-data-analytics"
-          element={<BigDataAnalyticsPage />}
+          element={<Navigate to="/services/big-data-architecture" replace />}
         />
-        <Route path="/services/ai-solutions" element={<AiSolutionsPage />} />
-        <Route path="/services/cloud-computing" element={<CloudComputingPage />} />
+        <Route path="/services/ai-solutions" element={<Navigate to="/services/agentic-ai-data" replace />} />
+        <Route path="/services/cloud-computing" element={<Navigate to="/services/big-data-architecture" replace />} />
         <Route path="/services/mvp-development" element={<MvpDevelopment />} />
         <Route path="/services/product-strategy" element={<ProductStrategy />} />
         <Route path="/services/full-stack-development" element={<FullStackDevelopment />} />
@@ -185,12 +169,12 @@ function App() {
         <Route path="/services/ai-accounting" element={<AIAccounting />} />
         <Route
           path="/solutions/digital-transformation"
-          element={<DigitalTransformationPage />}
+          element={<Navigate to="/solutions/technology" replace />}
         />
-        <Route path="/solutions/data-security" element={<DataSecurity />} />
+        <Route path="/solutions/data-security" element={<Navigate to="/services/big-data-architecture" replace />} />
         <Route
           path="/solutions/enterprise-solutions"
-          element={<EnterpriseSolutionsPage />}
+          element={<Navigate to="/services" replace />}
         />
         <Route path="/solutions/technical-cofounder" element={<TechnicalCofounder />} />
         <Route path="/solutions/saas-consulting" element={<SaaSConsulting />} />
@@ -210,11 +194,11 @@ function App() {
         <Route path="/products/allama" element={<AllamaPage />} />
         <Route path="/products/dblock" element={<DBlockPage />} />
         
-        {/* New Service Routes (redesign) */}
-        <Route path="/services/ai-consulting" element={<AIConsultingPage />} />
-        <Route path="/services/data-engineering" element={<DataEngineeringPage />} />
-        <Route path="/services/cloud-solutions" element={<CloudSolutionsPage />} />
-        <Route path="/services/custom-development" element={<CustomDevelopmentPage />} />
+        {/* Legacy Service Redirects - old 4-service structure to new 3-service */}
+        <Route path="/services/ai-consulting" element={<Navigate to="/services/ai-data-consulting" replace />} />
+        <Route path="/services/data-engineering" element={<Navigate to="/services/big-data-architecture" replace />} />
+        <Route path="/services/cloud-solutions" element={<Navigate to="/services/big-data-architecture" replace />} />
+        <Route path="/services/custom-development" element={<Navigate to="/services/agentic-ai-data" replace />} />
         
         {/* New Consolidated Service Routes (3 categories) */}
         <Route path="/services/big-data-architecture" element={<BigDataArchitecturePage />} />
@@ -227,6 +211,7 @@ function App() {
         <Route path="/solutions/technology" element={<TechnologyPage />} />
         <Route path="/solutions/retail" element={<RetailPage />} />
         <Route path="/solutions/manufacturing" element={<ManufacturingPage />} />
+        <Route path="/solutions/government" element={<GovernmentPage />} />
         
         {/* University Routes */}
         <Route path="/university" element={<UniversityHubPage />} />
@@ -235,26 +220,15 @@ function App() {
         <Route path="/university/tech-talks" element={<TechTalksPage />} />
         <Route path="/university/webinars" element={<WebinarsPage />} />
         
-        <Route path="/calendar" element={<CalendarPage />} />
-        <Route path="/simple-calendar" element={<SimpleCalendarTest />} />
-        <Route
-          path="/careers/senior-data-engineer"
-          element={<SeniorDataEngineer />}
-        />
-        <Route
-          path="/careers/machine-learning-engineer"
-          element={<MachineLearningEngineer />}
-        />
-        <Route
-          path="/careers/cloud-solutions-architect"
-          element={<CloudSolutionsArchitect />}
-        />
-        <Route
-          path="/careers/full-stack-developer"
-          element={<FullStackDeveloper />}
-        />
-        <Route path="/careers/devops-engineer" element={<DevOpsEngineer />} />
-        <Route path="/careers/data-scientist" element={<DataScientist />} />
+        <Route path="/calendar" element={<Navigate to="/contact" replace />} />
+        <Route path="/simple-calendar" element={<Navigate to="/contact" replace />} />
+        {/* Career routes redirect to contact */}
+        <Route path="/careers/senior-data-engineer" element={<Navigate to="/contact" replace />} />
+        <Route path="/careers/machine-learning-engineer" element={<Navigate to="/contact" replace />} />
+        <Route path="/careers/cloud-solutions-architect" element={<Navigate to="/contact" replace />} />
+        <Route path="/careers/full-stack-developer" element={<Navigate to="/contact" replace />} />
+        <Route path="/careers/devops-engineer" element={<Navigate to="/contact" replace />} />
+        <Route path="/careers/data-scientist" element={<Navigate to="/contact" replace />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/cookies" element={<Cookies />} />

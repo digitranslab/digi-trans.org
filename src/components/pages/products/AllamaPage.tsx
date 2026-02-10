@@ -2,7 +2,7 @@
  * AllamaPage Component
  * 
  * The main product page for Allama - enterprise security automation platform.
- * DigiTransLab provides implementation, consulting, and managed services
+ * Digitrans provides implementation, consulting, and managed services
  * for security teams.
  * 
  * Includes:
@@ -114,7 +114,7 @@ const AllamaPage: React.FC = () => {
             <SectionHeader
               badge="Why Allama"
               title="Security Automation, Delivered"
-              description="Four reasons security teams choose DigiTransLab."
+              description="Four reasons security teams choose Digitrans."
               alignment="center"
             />
             
