@@ -51,6 +51,138 @@ export interface SolutionData {
 }
 
 export const solutionsData: Record<string, SolutionData> = {
+  "retail": {
+    slug: "retail",
+    hero: {
+      badge: "Retail",
+      title: "AI & Data Solutions for Retail",
+      description: "Transform customer experiences and optimise operations with intelligent retail solutions powered by AI and real-time analytics.",
+    },
+    overview: "The retail industry is undergoing a fundamental transformation driven by changing consumer expectations, omnichannel demands, and intense competition. Our AI and data solutions help retailers deliver personalised experiences, optimise inventory and pricing, and build resilient supply chains. From demand forecasting to customer analytics, we enable data-driven retail operations that drive growth and profitability.",
+    challenges: [
+      {
+        title: "Demand Forecasting",
+        description: "Predict customer demand accurately across thousands of SKUs, locations, and channels to optimise inventory levels.",
+        icon: "TrendingUp",
+      },
+      {
+        title: "Customer Personalisation",
+        description: "Deliver personalised recommendations, offers, and experiences across all touchpoints in real-time.",
+        icon: "Users",
+      },
+      {
+        title: "Inventory Optimisation",
+        description: "Balance stock levels to minimise overstock and stockouts while maximising sales and margins.",
+        icon: "Package",
+      },
+      {
+        title: "Supply Chain Visibility",
+        description: "Gain end-to-end visibility into supply chain operations and respond quickly to disruptions.",
+        icon: "Truck",
+      },
+    ],
+    services: [
+      {
+        title: "AI Consulting",
+        description: "Strategic AI roadmaps for retail transformation and customer experience innovation.",
+        href: "/services/ai-consulting",
+      },
+      {
+        title: "Data Engineering",
+        description: "Unified customer data platforms and real-time analytics for retail operations.",
+        href: "/services/data-engineering",
+      },
+      {
+        title: "Custom Development",
+        description: "Bespoke retail applications including recommendation engines and pricing optimisation.",
+        href: "/services/custom-development",
+      },
+    ],
+    caseStudies: [
+      {
+        title: "Omnichannel Personalisation Engine",
+        description: "Built AI-powered personalisation platform for a major fashion retailer serving 10M+ customers.",
+        results: ["35% increase in conversion rate", "28% higher average order value", "Real-time recommendations"],
+      },
+      {
+        title: "Demand Forecasting System",
+        description: "Implemented ML-based demand forecasting across 500+ stores for a grocery chain.",
+        results: ["40% reduction in stockouts", "25% decrease in overstock", "£15M annual savings"],
+      },
+      {
+        title: "Dynamic Pricing Platform",
+        description: "Deployed AI-driven pricing optimisation for an electronics retailer.",
+        results: ["12% margin improvement", "Competitor price monitoring", "Automated repricing"],
+      },
+    ],
+    ctaText: "Transform Your Retail Operations",
+  },
+  "manufacturing": {
+    slug: "manufacturing",
+    hero: {
+      badge: "Manufacturing",
+      title: "AI & Data Solutions for Manufacturing",
+      description: "Drive operational excellence with Industry 4.0 solutions including predictive maintenance, quality AI, and smart factory analytics.",
+    },
+    overview: "Manufacturing organisations face pressure to improve efficiency, reduce costs, and maintain quality while adapting to supply chain volatility and workforce challenges. Our Industry 4.0 solutions leverage AI, IoT, and advanced analytics to transform factory operations. From predictive maintenance to quality control, we help manufacturers build smart, connected, and resilient operations.",
+    challenges: [
+      {
+        title: "Predictive Maintenance",
+        description: "Predict equipment failures before they occur to minimise unplanned downtime and maintenance costs.",
+        icon: "Settings",
+      },
+      {
+        title: "Quality Control",
+        description: "Detect defects in real-time using computer vision and AI to ensure consistent product quality.",
+        icon: "CheckCircle",
+      },
+      {
+        title: "Production Optimisation",
+        description: "Optimise production schedules, resource allocation, and throughput using AI-driven insights.",
+        icon: "Factory",
+      },
+      {
+        title: "Supply Chain Resilience",
+        description: "Build agile supply chains with real-time visibility and AI-powered risk management.",
+        icon: "Link",
+      },
+    ],
+    services: [
+      {
+        title: "AI Consulting",
+        description: "Industry 4.0 strategy and AI implementation roadmaps for manufacturing excellence.",
+        href: "/services/ai-consulting",
+      },
+      {
+        title: "Data Engineering",
+        description: "Industrial data platforms connecting OT and IT systems for unified analytics.",
+        href: "/services/data-engineering",
+      },
+      {
+        title: "Cloud Solutions",
+        description: "Scalable cloud infrastructure for manufacturing workloads and edge computing.",
+        href: "/services/cloud-solutions",
+      },
+    ],
+    caseStudies: [
+      {
+        title: "Predictive Maintenance Platform",
+        description: "Deployed AI-powered predictive maintenance across 200+ production lines for an automotive manufacturer.",
+        results: ["45% reduction in unplanned downtime", "30% lower maintenance costs", "ROI in 8 months"],
+      },
+      {
+        title: "Computer Vision Quality Control",
+        description: "Implemented real-time defect detection using AI for a semiconductor manufacturer.",
+        results: ["99.5% defect detection rate", "60% faster inspection", "£8M annual savings"],
+      },
+      {
+        title: "Digital Twin Implementation",
+        description: "Built digital twin platform for a chemical plant enabling simulation and optimisation.",
+        results: ["15% increase in throughput", "20% energy reduction", "Real-time process optimisation"],
+      },
+    ],
+    ctaText: "Modernise Your Manufacturing",
+  },
   "financial-services": {
     slug: "financial-services",
     hero: {

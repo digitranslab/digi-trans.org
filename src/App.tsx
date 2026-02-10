@@ -100,6 +100,8 @@ import AIDataConsultingPage from "./components/pages/services/AIDataConsultingPa
 import FinancialServicesPage from "./components/pages/solutions/FinancialServicesPage";
 import HealthcarePage from "./components/pages/solutions/HealthcarePage";
 import TechnologyPage from "./components/pages/solutions/TechnologyPage";
+import RetailPage from "./components/pages/solutions/RetailPage";
+import ManufacturingPage from "./components/pages/solutions/ManufacturingPage";
 
 // New Homepage
 import HomePage from "./components/pages/HomePage";
@@ -223,6 +225,8 @@ function App() {
         <Route path="/solutions/financial-services" element={<FinancialServicesPage />} />
         <Route path="/solutions/healthcare" element={<HealthcarePage />} />
         <Route path="/solutions/technology" element={<TechnologyPage />} />
+        <Route path="/solutions/retail" element={<RetailPage />} />
+        <Route path="/solutions/manufacturing" element={<ManufacturingPage />} />
         
         {/* University Routes */}
         <Route path="/university" element={<UniversityHubPage />} />
