@@ -229,11 +229,11 @@ const Footer = () => {
                 © 2026 Digitrans. All rights reserved.
               </p>
               <div className="flex items-center gap-4 text-gray-400 text-sm">
-                <span>AWS Partner</span>
+                <span>Open Source First</span>
                 <span>•</span>
-                <span>GCP Partner</span>
+                <span>Cloud Agnostic</span>
                 <span>•</span>
-                <span>Azure Partner</span>
+                <span>Enterprise Ready</span>
               </div>
             </div>
           </div>

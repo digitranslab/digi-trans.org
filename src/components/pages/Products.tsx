@@ -102,7 +102,7 @@ const whyOurProducts = [
   {
     icon: <Globe className="w-6 h-6" />,
     title: "Enterprise Ready",
-    description: "SOC 2 compliant with enterprise support available",
+    description: "Production-grade with enterprise support available",
   },
   {
     icon: <Zap className="w-6 h-6" />,

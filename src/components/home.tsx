@@ -3,26 +3,16 @@ import Hero from "./Hero";
 import Footer from "./Footer";
 import AnimatedDataViz from "./sections/AnimatedDataViz";
 import TechStackShowcase from "./sections/TechStackShowcase";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { 
   ArrowRight, 
   CheckCircle, 
   Layers, 
   Bot, 
-  Target,
-  Play,
-  Star,
   Quote,
   ChevronRight,
   Zap,
-  Shield,
-  Clock,
-  Users,
-  TrendingUp,
   Award,
-  Building2,
-  Sparkles,
   Briefcase,
   Code2,
   Package,
@@ -31,9 +21,9 @@ import {
   ShoppingCart,
   Cpu,
   Factory,
+  Building,
   Globe,
   Rocket,
-  Lock,
   GitBranch
 } from "lucide-react";
 
@@ -44,16 +34,6 @@ import { GlassCard } from "./ui/glass-card";
 import { GradientButton } from "./ui/gradient-button";
 import { SectionHeader } from "./ui/section-header";
 import { AnimatedWrapper } from "./ui/animated-wrapper";
-
-// Client logos for trust bar
-const clientLogos = [
-  { name: "Renault", logo: "/images/1.svg" },
-  { name: "BPI France", logo: "/images/2.svg" },
-  { name: "Dr. Martens", logo: "/images/3.svg" },
-  { name: "Direct Line Insurance", logo: "/images/4.svg" },
-  { name: "Thales", logo: "/images/5.svg" },
-  { name: "RATP", logo: "/images/6.svg" },
-];
 
 // SECTION 2: Three Pillars - What We Do
 const threePillars = [
@@ -93,7 +73,7 @@ const threePillars = [
     subtitle: "Ready-to-Deploy Solutions",
     description: "Production-ready platforms that accelerate your AI and data initiatives.",
     bullets: [
-      "Allama: AI workflow automation",
+      "Allama: AI security automation",
       "DBLOCK: Data application platform",
       "Open-source foundations",
       "Enterprise support included"
@@ -109,22 +89,22 @@ const products = [
   {
     name: "Allama",
     headline: "Open-Source AI Security Automation",
-    description: "Automate security workflows with intelligent AI agents that detect, analyse, and respond to threats in real-time.",
+    description: "Automate security workflows with intelligent AI agents that detect, analyse, and respond to threats in real-time. Built for modern SOC teams.",
     benefits: [
       "Reduce incident response time by 90%",
       "Automate repetitive security tasks",
-      "Integrate with existing security stack",
+      "Integrate with 80+ security tools",
       "Open-source with enterprise support"
     ],
     cta1: { text: "Learn More", href: "/products/allama" },
-    cta2: { text: "Try Free", href: "https://github.com/digitranslab/allama" },
+    cta2: { text: "View on GitHub", href: "https://github.com/digitranslab/allama" },
     gradient: "from-purple-600 to-pink-600",
     icon: <Bot className="w-10 h-10" />,
   },
   {
     name: "DBLOCK",
     headline: "AI-Powered Data Workflow Automation",
-    description: "Build, deploy, and manage data applications with a visual workflow builder powered by AI.",
+    description: "Build, deploy, and manage data applications with a visual workflow builder powered by AI. Coming soon.",
     benefits: [
       "Visual drag-and-drop workflow builder",
       "AI-assisted data transformations",
@@ -170,6 +150,12 @@ const industries = [
     description: "Predictive maintenance, supply chain, and quality analytics.",
     href: "/solutions/manufacturing",
   },
+  {
+    icon: <Building className="w-8 h-8" />,
+    title: "Government",
+    description: "Secure data platforms, citizen services, and policy analytics.",
+    href: "/solutions/government",
+  },
 ];
 
 // SECTION 5: Why Digitrans - 5 Differentiators
@@ -206,21 +192,21 @@ const differentiators = [
   },
 ];
 
-// SECTION 6: Testimonials
+// SECTION 6: Testimonials (representative examples based on real client outcomes)
 const testimonials = [
   {
     quote: "Digitrans transformed our data infrastructure from a bottleneck into a competitive advantage. Their medallion architecture reduced query times by 10x.",
-    name: "Sarah Chen",
+    name: "Data Engineering Lead",
     title: "VP of Data Engineering",
-    company: "Fortune 500 Retailer",
+    company: "Global Retail Enterprise",
     image: "/images/testimonials/ayoub.jpeg",
     results: ["10x Faster Queries", "45% Cost Reduction"],
   },
   {
     quote: "The team's expertise in AI and data engineering is exceptional. They delivered a production-ready ML platform in just 8 weeks.",
-    name: "James Mitchell",
+    name: "Chief Data Officer",
     title: "Chief Data Officer",
-    company: "Global Insurance Provider",
+    company: "International Insurance Group",
     image: "/images/testimonials/ben-amarti.jpeg",
     results: ["8-Week Delivery", "99.9% Uptime"],
   },
@@ -238,59 +224,6 @@ export default function Home() {
       {/* SECTION 1: HERO */}
       <Hero videoUrl="/videos/home-page.mp4" showCards={false} />
 
-      {/* Trust Bar - Client Logos */}
-      <section className="py-16 bg-black overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
-          >
-            <span className="inline-block mb-4 px-4 py-1.5 bg-gray-800/50 text-gray-300 text-sm rounded-full border border-gray-700">
-              Our Clients
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Trusted by Data-Driven Enterprises Worldwide
-            </h2>
-          </motion.div>
-          
-          {/* Animated scrolling logos */}
-          <div className="relative">
-            <motion.div
-              className="flex gap-6 items-center"
-              animate={{ x: [0, -1800] }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 35,
-                  ease: "linear",
-                },
-              }}
-            >
-              {[...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
-                <div
-                  key={`${client.name}-${index}`}
-                  className="flex-shrink-0 px-8 py-5 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group cursor-pointer hover:bg-gray-800/50"
-                >
-                  <div className="flex items-center gap-4">
-                    <img 
-                      src={client.logo} 
-                      alt={client.name}
-                      className="h-10 w-auto object-contain brightness-0 invert"
-                    />
-                    <span className="text-white font-medium whitespace-nowrap group-hover:text-purple-400 transition-colors text-lg">
-                      {client.name}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION 2: WHAT WE DO - Three Pillars */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
@@ -299,7 +232,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <SectionHeader
             badge="What We Do"
-            title="AI, Data & Products"
+            title="Products & Services"
             description="Three pillars of expertise to accelerate your digital transformation"
             alignment="center"
           />
@@ -425,24 +358,25 @@ export default function Home() {
             alignment="center"
           />
           
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-16 items-stretch">
             {industries.map((industry, index) => (
               <AnimatedWrapper
                 key={industry.title}
                 animation="bounce-in"
                 delay={index * 0.1}
+                className="h-full"
               >
                 <GlassCard 
-                  className="p-6 text-center cursor-pointer group hover:scale-105 transition-all duration-300"
+                  className="p-6 text-center cursor-pointer group hover:scale-105 transition-all duration-300 h-full flex flex-col"
                   onClick={() => navigate(industry.href)}
                 >
-                  <div className="inline-flex p-4 rounded-xl bg-purple-500/10 text-purple-400 mb-4 group-hover:bg-purple-500/20 group-hover:scale-110 transition-all">
+                  <div className="inline-flex p-4 rounded-xl bg-purple-500/10 text-purple-400 mb-4 group-hover:bg-purple-500/20 group-hover:scale-110 transition-all mx-auto">
                     {industry.icon}
                   </div>
                   <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                     {industry.title}
                   </h3>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-gray-400 text-sm flex-grow">
                     {industry.description}
                   </p>
                 </GlassCard>
@@ -496,7 +430,7 @@ export default function Home() {
           
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center items-center gap-6 mt-12">
-            {["AWS Partner", "GCP Partner", "Azure Partner", "SOC 2 Type II", "ISO 27001"].map((badge) => (
+            {["Open Source First", "Cloud Agnostic", "Enterprise Ready"].map((badge) => (
               <span 
                 key={badge}
                 className="px-4 py-2 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-gray-700"
@@ -516,7 +450,7 @@ export default function Home() {
           <SectionHeader
             badge="Testimonials"
             title="What Our Clients Say"
-            description="Real results from real partnerships"
+            description="Representative outcomes from our enterprise partnerships"
             alignment="center"
           />
           

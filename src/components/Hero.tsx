@@ -255,17 +255,17 @@ const Hero = ({
         >
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>AWS Partner</span>
+            <span>SOC 2 Type II</span>
           </div>
           <div className="w-px h-4 bg-gray-600"></div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>GCP Partner</span>
+            <span>ISO 27001</span>
           </div>
           <div className="w-px h-4 bg-gray-600"></div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>Azure Partner</span>
+            <span>Open Source First</span>
           </div>
         </motion.div>
 
@@ -274,7 +274,7 @@ const Hero = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-10"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
         >
           <GradientButton
             size="lg"
@@ -292,6 +292,67 @@ const Hero = ({
           >
             View Products
           </GradientButton>
+        </motion.div>
+
+        {/* Client logos - Animated scrolling */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
+          className="w-full overflow-hidden"
+        >
+          <p className="text-gray-400 text-sm mb-4 text-center">Trusted by data-driven enterprises worldwide</p>
+          <div className="relative">
+            <motion.div
+              className="flex gap-4 items-center"
+              animate={{ x: [0, -1800] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                },
+              }}
+            >
+              {[
+                { name: "Renault", logo: "/images/1.svg" },
+                { name: "BPI France", logo: "/images/2.svg" },
+                { name: "Dr. Martens", logo: "/images/3.svg" },
+                { name: "Direct Line", logo: "/images/4.svg" },
+                { name: "Thales", logo: "/images/5.svg" },
+                { name: "RATP", logo: "/images/6.svg" },
+                { name: "Renault", logo: "/images/1.svg" },
+                { name: "BPI France", logo: "/images/2.svg" },
+                { name: "Dr. Martens", logo: "/images/3.svg" },
+                { name: "Direct Line", logo: "/images/4.svg" },
+                { name: "Thales", logo: "/images/5.svg" },
+                { name: "RATP", logo: "/images/6.svg" },
+                { name: "Renault", logo: "/images/1.svg" },
+                { name: "BPI France", logo: "/images/2.svg" },
+                { name: "Dr. Martens", logo: "/images/3.svg" },
+                { name: "Direct Line", logo: "/images/4.svg" },
+                { name: "Thales", logo: "/images/5.svg" },
+                { name: "RATP", logo: "/images/6.svg" },
+              ].map((client, index) => (
+                <div
+                  key={`${client.name}-${index}`}
+                  className="flex-shrink-0 px-8 py-4 rounded-xl bg-gray-900/60 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 group cursor-pointer hover:bg-gray-800/50 backdrop-blur-sm"
+                >
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src={client.logo} 
+                      alt={client.name}
+                      className="h-10 w-auto object-contain brightness-0 invert"
+                    />
+                    <span className="text-white font-medium whitespace-nowrap group-hover:text-purple-400 transition-colors text-lg">
+                      {client.name}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
 
         {showCards && (

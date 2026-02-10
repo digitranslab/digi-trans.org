@@ -164,7 +164,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data = heroData }) => {
             <div className="w-px h-4 bg-gray-700 hidden sm:block" />
             <div className="flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-green-400" />
-              <span>AWS Partner</span>
+              <span>Open Source First</span>
             </div>
           </motion.div>
         </motion.div>

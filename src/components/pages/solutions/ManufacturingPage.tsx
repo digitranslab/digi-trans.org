@@ -9,7 +9,6 @@
  * Requirements: 12.1, 12.2
  */
 
-import React from "react";
 import { SolutionPageTemplate } from "./SolutionPageTemplate";
 import { solutionsData } from "@/data/solutions";
 

@@ -155,12 +155,12 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
                 alignment="center"
               />
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 max-w-5xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 max-w-5xl mx-auto items-stretch">
                 {solution.compliance.map((item, index) => (
-                  <AnimatedWrapper key={item.name} animation="flip-up" delay={index * 0.08}>
-                    <GlassCard className="p-4 hover:scale-105 transition-transform duration-300">
+                  <AnimatedWrapper key={item.name} animation="flip-up" delay={index * 0.08} className="h-full">
+                    <GlassCard className="p-4 hover:scale-105 transition-transform duration-300 h-full flex flex-col">
                       <h4 className="font-bold text-purple-400 mb-1">{item.name}</h4>
-                      <p className="text-xs text-gray-400">{item.description}</p>
+                      <p className="text-xs text-gray-400 flex-grow">{item.description}</p>
                     </GlassCard>
                   </AnimatedWrapper>
                 ))}

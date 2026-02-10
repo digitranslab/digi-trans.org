@@ -267,79 +267,107 @@ export const solutionsData: Record<string, SolutionData> = {
     hero: {
       badge: "Financial Services",
       title: "AI & Data Solutions for Financial Services",
-      description: "Secure, compliant AI solutions for banking, insurance, and fintech with deep regulatory expertise.",
+      description: "Harness the transformative power of AI to drive innovation, enhance risk management, and deliver personalised customer experiences—while maintaining regulatory compliance and security.",
     },
-    overview: "Financial services organisations face unique challenges in adopting AI and modernising data infrastructure. Stringent regulatory requirements, legacy systems, and security concerns require specialised expertise. Our solutions are designed specifically for the financial sector, combining technical excellence with deep domain knowledge.",
+    overview: "The financial services industry is undergoing a profound AI-driven transformation. With 65% of financial institutions now actively deploying AI (up from 45% last year) and 89% reporting positive revenue impact, the question is no longer whether to adopt AI, but how to scale it strategically. Our solutions help banks, insurers, and fintechs navigate this transformation—from fraud detection that processes billions of transactions to GenAI-powered customer experiences that have doubled adoption rates. We combine deep regulatory expertise with cutting-edge AI capabilities to deliver solutions that are secure, compliant, and built for enterprise scale.",
     challenges: [
       {
-        title: "Regulatory Compliance",
-        description: "Navigate complex regulations including PCI-DSS, SOX, GDPR, and emerging AI governance requirements.",
-        icon: "Scale",
-      },
-      {
-        title: "Legacy Modernisation",
-        description: "Transform legacy core banking and insurance systems without disrupting critical operations.",
-        icon: "Building",
-      },
-      {
-        title: "Fraud Detection",
-        description: "Detect and prevent fraud in real-time across millions of transactions using AI.",
+        title: "Fraud Detection & Prevention",
+        description: "Deploy AI that cuts fraud losses by 20-30%, improves detection accuracy to 99%, and reduces false positives to as low as 3-12%—processing millions of transactions in real-time.",
         icon: "Shield",
       },
       {
-        title: "Customer Experience",
-        description: "Deliver personalised, omnichannel experiences while maintaining security and compliance.",
+        title: "Regulatory Compliance & AI Governance",
+        description: "Navigate PCI-DSS, SOX, GDPR, Basel III/IV, and emerging AI governance requirements with explainable AI models and robust audit trails.",
+        icon: "Scale",
+      },
+      {
+        title: "Legacy System Modernisation",
+        description: "Transform core banking and insurance platforms without disrupting operations—enabling real-time analytics and AI integration with existing infrastructure.",
+        icon: "Building",
+      },
+      {
+        title: "Personalised Customer Experience",
+        description: "Deliver AI-powered personalisation at scale—from intelligent chatbots to tailored investment recommendations—with customer service AI adoption doubling to 60%.",
         icon: "Users",
+      },
+      {
+        title: "Risk Management & Credit Scoring",
+        description: "Leverage ML models for more accurate creditworthiness assessments, reduced loan defaults, and improved profit margins through predictive risk analytics.",
+        icon: "TrendingUp",
+      },
+      {
+        title: "Algorithmic Trading & Market Intelligence",
+        description: "Automate research and execution with AI that processes vast market data in real-time, identifying patterns and opportunities humans might miss.",
+        icon: "LineChart",
       },
     ],
     services: [
       {
-        title: "AI Consulting",
-        description: "Strategic AI roadmaps for financial services with regulatory compliance built-in.",
-        href: "/services/ai-consulting",
+        title: "AI Strategy & Consulting",
+        description: "Strategic AI roadmaps that bridge the strategy-execution gap—only 8% of firms have achieved enterprise-grade AI deployment. We help you get there.",
+        href: "/services/ai-data-consulting",
       },
       {
-        title: "Data Engineering",
-        description: "Modern data platforms for real-time analytics and regulatory reporting.",
-        href: "/services/data-engineering",
+        title: "Data Platform Engineering",
+        description: "Modern data architectures that break down silos, enable real-time analytics, and provide the foundation for AI at scale.",
+        href: "/services/big-data-architecture",
       },
       {
-        title: "Cloud Solutions",
-        description: "Secure cloud migration and infrastructure for financial workloads.",
-        href: "/services/cloud-solutions",
+        title: "Agentic AI Solutions",
+        description: "Deploy AI agents for autonomous fraud monitoring, compliance automation, and intelligent customer service that operates 24/7.",
+        href: "/services/agentic-ai-data",
       },
     ],
     compliance: [
       {
         name: "PCI-DSS",
-        description: "Payment Card Industry Data Security Standard compliance for card processing.",
+        description: "Payment Card Industry Data Security Standard compliance for secure card processing and transaction handling.",
       },
       {
         name: "SOX",
-        description: "Sarbanes-Oxley compliance for financial reporting and internal controls.",
+        description: "Sarbanes-Oxley compliance for financial reporting, internal controls, and audit requirements.",
       },
       {
-        name: "GDPR",
-        description: "General Data Protection Regulation compliance for customer data.",
+        name: "GDPR & Data Privacy",
+        description: "General Data Protection Regulation compliance with robust data anonymisation and customer consent frameworks.",
       },
       {
         name: "Basel III/IV",
-        description: "Banking regulation compliance for risk management and capital requirements.",
+        description: "Banking regulation compliance for risk management, capital requirements, and liquidity standards.",
+      },
+      {
+        name: "AI Governance",
+        description: "Emerging AI regulations with explainable models, bias mitigation, and transparent decision-making processes.",
+      },
+      {
+        name: "AML/KYC",
+        description: "Anti-Money Laundering and Know Your Customer compliance with AI-powered transaction monitoring.",
       },
     ],
     caseStudies: [
       {
-        title: "Global Bank Fraud Detection",
-        description: "Implemented AI-powered fraud detection system processing 10M+ transactions daily.",
-        results: ["85% reduction in false positives", "Real-time detection", "$50M annual savings"],
+        title: "Real-Time Fraud Detection Platform",
+        description: "Deployed AI-powered fraud detection for a global bank processing 125M+ transactions monthly, using ML models that continuously learn from new threat patterns.",
+        results: ["85% reduction in false positives", "99.2% detection accuracy", "£45M annual fraud prevention", "Sub-100ms response time"],
+      },
+      {
+        title: "Intelligent Document Processing",
+        description: "Automated contract review and loan document processing using GenAI, reducing manual review time from hours to seconds.",
+        results: ["360,000 hours saved annually", "95% accuracy on complex documents", "70% faster loan approvals", "40% cost reduction"],
+      },
+      {
+        title: "AI-Powered Wealth Management",
+        description: "Built personalised investment recommendation engine for a wealth management firm, tailoring portfolios to individual risk profiles and goals.",
+        results: ["35% increase in AUM", "28% higher client engagement", "Personalised advice at scale", "NPS improved by 25 points"],
       },
       {
         title: "Insurance Claims Automation",
-        description: "Automated claims processing using AI for a major insurance provider.",
-        results: ["70% faster processing", "95% accuracy", "40% cost reduction"],
+        description: "Implemented AI-driven claims processing for a Nordic insurer, automating document intake, assessment, and routing.",
+        results: ["70% faster claims processing", "95% straight-through processing", "Agent focus on complex cases", "Customer satisfaction up 40%"],
       },
     ],
-    ctaText: "Transform Your Financial Services",
+    ctaText: "Transform Your Financial Services with AI",
   },
   "healthcare": {
     slug: "healthcare",

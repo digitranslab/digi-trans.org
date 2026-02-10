@@ -28,15 +28,17 @@ import {
   Clock,
   Database,
   Sparkles,
-  BarChart3,
   Shield,
   Workflow,
   Brain,
-  Server,
-  LineChart,
   FileSearch,
   Settings,
-  TrendingUp
+  TrendingUp,
+  Landmark,
+  HeartPulse,
+  ShoppingCart,
+  Cpu,
+  Factory
 } from "lucide-react";
 
 // Main service offerings - 3 pillars
@@ -159,11 +161,11 @@ const whyChooseUs = [
 
 // Client logos/industries
 const industries = [
-  { name: "Financial Services", icon: <LineChart className="w-6 h-6" /> },
-  { name: "Healthcare", icon: <Shield className="w-6 h-6" /> },
-  { name: "Retail", icon: <BarChart3 className="w-6 h-6" /> },
-  { name: "Technology", icon: <Server className="w-6 h-6" /> },
-  { name: "Manufacturing", icon: <Settings className="w-6 h-6" /> },
+  { name: "Financial Services", icon: <Landmark className="w-6 h-6" /> },
+  { name: "Healthcare", icon: <HeartPulse className="w-6 h-6" /> },
+  { name: "Retail", icon: <ShoppingCart className="w-6 h-6" /> },
+  { name: "Technology", icon: <Cpu className="w-6 h-6" /> },
+  { name: "Manufacturing", icon: <Factory className="w-6 h-6" /> },
 ];
 
 export default function Services() {
@@ -226,10 +228,10 @@ export default function Services() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap justify-center gap-8 mt-16"
           >
-            {["AWS Partner", "GCP Partner", "Azure Partner", "Databricks Partner"].map((partner) => (
-              <div key={partner} className="flex items-center gap-2 text-gray-400">
+            {["Open Source First", "Cloud Agnostic", "Enterprise Ready", "Self-Hosted Option"].map((badge) => (
+              <div key={badge} className="flex items-center gap-2 text-gray-400">
                 <CheckCircle className="w-4 h-4 text-green-400" />
-                <span className="text-sm">{partner}</span>
+                <span className="text-sm">{badge}</span>
               </div>
             ))}
           </motion.div>

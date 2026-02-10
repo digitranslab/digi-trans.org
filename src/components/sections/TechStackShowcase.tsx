@@ -226,42 +226,6 @@ export default function TechStackShowcase() {
           ))}
         </motion.div>
       </div>
-
-      {/* Certification badges */}
-      <div className="container mx-auto px-4 mt-16">
-        <div className="flex flex-wrap justify-center items-center gap-6">
-          {[
-            { name: "AWS Partner", badge: "Advanced", icon: PlatformIcons["AWS"] },
-            { name: "Databricks", badge: "Partner", icon: PlatformIcons["Databricks"] },
-            { name: "Snowflake", badge: "Partner", icon: PlatformIcons["Snowflake"] },
-            { name: "SOC 2", badge: "Type II", icon: (
-              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="#22C55E">
-                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
-              </svg>
-            )},
-            { name: "ISO 27001", badge: "Certified", icon: (
-              <svg viewBox="0 0 24 24" className="w-4 h-4" fill="#22C55E">
-                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
-              </svg>
-            )},
-          ].map((cert, index) => (
-            <motion.div
-              key={cert.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800/50 border border-gray-700 hover:border-green-500/50 transition-colors"
-            >
-              <div className="w-4 h-4 flex items-center justify-center [&>svg]:w-4 [&>svg]:h-4">
-                {cert.icon}
-              </div>
-              <span className="text-sm text-white font-medium">{cert.name}</span>
-              <span className="text-xs text-gray-400">{cert.badge}</span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
