@@ -246,29 +246,6 @@ const Hero = ({
           make faster decisions, automate operations, and unlock new revenue streams.
         </motion.p>
 
-        {/* Trust signals */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
-          className="flex flex-wrap justify-center items-center gap-6 mb-8 text-sm text-gray-300"
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>SOC 2 Type II</span>
-          </div>
-          <div className="w-px h-4 bg-gray-600"></div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>ISO 27001</span>
-          </div>
-          <div className="w-px h-4 bg-gray-600"></div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-            <span>Open Source First</span>
-          </div>
-        </motion.div>
-
         {/* CTA buttons with improved styling */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
