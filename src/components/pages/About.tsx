@@ -92,7 +92,7 @@ const pillars = [
       "Change Management & Training",
     ],
     marketingAngle: "We don't just advise—we partner with you to ensure successful outcomes.",
-    image: null,
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
   },
   {
     id: "engineering",
@@ -107,7 +107,7 @@ const pillars = [
       "Real-Time Data Processing",
     ],
     marketingAngle: "Enterprise-grade engineering with startup agility.",
-    image: null,
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80",
   },
   {
     id: "products",
@@ -122,7 +122,7 @@ const pillars = [
       "Custom Integration Development",
     ],
     marketingAngle: "Enterprise capabilities, open-source freedom.",
-    image: null,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
   },
 ];
 
@@ -305,14 +305,14 @@ const AboutPage: React.FC = () => {
                     </div>
                     <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
                       <AnimatedWrapper animation="zoom-in" delay={0.2}>
-                        <GlassCard className="p-8 overflow-hidden hover:scale-[1.02] transition-all duration-300">
-                          <div className="aspect-video flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 inline-block mb-4">
-                                {React.cloneElement(pillar.icon, { className: "w-12 h-12" })}
-                              </div>
-                              <p className="text-xl font-bold text-white">{pillar.title}</p>
-                            </div>
+                        <GlassCard className="p-2 overflow-hidden hover:scale-[1.02] transition-all duration-300">
+                          <div className="aspect-video rounded-lg overflow-hidden">
+                            <img 
+                              src={pillar.image} 
+                              alt={pillar.title}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
                           </div>
                         </GlassCard>
                       </AnimatedWrapper>
