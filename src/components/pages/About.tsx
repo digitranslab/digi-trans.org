@@ -455,8 +455,8 @@ const AboutPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Leadership Team Section */}
-        <section className="py-20">
+        {/* Leadership Team Section - Temporarily deactivated */}
+        {/* <section className="py-20">
           <div className="container mx-auto px-4">
             <SectionHeader
               badge="Leadership"
@@ -484,7 +484,7 @@ const AboutPage: React.FC = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Global Presence Section */}
         <section className="py-20 bg-gray-900/30">
