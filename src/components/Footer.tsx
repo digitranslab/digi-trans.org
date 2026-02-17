@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         {/* Footer Links */}
         <div className="pt-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
             <div>
               <h3 className="text-white font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
@@ -89,59 +89,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Industries</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/solutions/financial-services"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Financial Services
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/solutions/healthcare"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Healthcare
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/solutions/retail"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Retail
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/solutions/technology"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Technology
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/solutions/manufacturing"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Manufacturing
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/solutions/government"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Government
-                  </a>
-                </li>
-              </ul>
-            </div>
+
             <div>
               <h3 className="text-white font-semibold mb-4">Legal</h3>
               <ul className="space-y-2">

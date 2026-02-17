@@ -14,6 +14,13 @@ export interface NavItem {
   children?: NavItem[];
   external?: boolean;
   badge?: string;
+  /** Sub-sections for grouped dropdowns (e.g., "By Industry", "By Role", "By Use Case") */
+  sections?: NavSection[];
+}
+
+export interface NavSection {
+  title: string;
+  items: NavItem[];
 }
 
 export interface NavigationConfig {
@@ -75,39 +82,105 @@ export const navigationItems: NavItem[] = [
     ],
   },
   {
-    label: "Industries",
+    label: "Solutions",
     href: "/industries",
-    description: "Industry-specific solutions",
-    children: [
+    description: "Solutions by industry and use case",
+    sections: [
       {
-        label: "Financial Services",
-        href: "/solutions/financial-services",
-        description: "AI solutions for banking and finance",
+        title: "By Industry",
+        items: [
+          {
+            label: "Financial Services",
+            href: "/solutions/financial-services",
+            description: "AI solutions for banking and finance",
+          },
+          {
+            label: "Government",
+            href: "/solutions/government",
+            description: "Secure data platforms for the public sector",
+          },
+          {
+            label: "Retail & E-commerce",
+            href: "/solutions/retail",
+            description: "Customer 360, personalisation, and demand forecasting",
+          },
+          {
+            label: "Manufacturing",
+            href: "/solutions/manufacturing",
+            description: "Predictive maintenance, quality control AI, and smart factory analytics",
+          },
+          {
+            label: "Energy & Mining",
+            href: "/solutions/energy-mining",
+            description: "AI for safety, energy management, and operational efficiency",
+          },
+          {
+            label: "Smart City",
+            href: "/solutions/smart-city",
+            description: "AI for smart grids, water, waste management, and urban infrastructure",
+          },
+          {
+            label: "Transportation & Logistics",
+            href: "/solutions/transportation-logistics",
+            description: "Route optimisation, fleet management, and supply chain AI",
+          },
+          {
+            label: "Hydrogen",
+            href: "/solutions/hydrogen",
+            description: "Digital solutions for hydrogen production, storage, and transportation",
+          },
+        ],
       },
+
       {
-        label: "Healthcare",
-        href: "/solutions/healthcare",
-        description: "Secure healthcare data automation",
-      },
-      {
-        label: "Retail & E-commerce",
-        href: "/solutions/retail",
-        description: "Customer 360, personalisation, and demand forecasting",
-      },
-      {
-        label: "Technology",
-        href: "/solutions/technology",
-        description: "Solutions for tech companies",
-      },
-      {
-        label: "Manufacturing",
-        href: "/solutions/manufacturing",
-        description: "Predictive maintenance and supply chain analytics",
-      },
-      {
-        label: "Government",
-        href: "/solutions/government",
-        description: "Secure data platforms for the public sector",
+        title: "By Use Case",
+        items: [
+          {
+            label: "Data Integration",
+            href: "/use-cases/data-integration",
+            description: "Unified data pipelines and integration",
+          },
+          {
+            label: "Supply Chain Optimization",
+            href: "/use-cases/supply-chain",
+            description: "End-to-end supply chain intelligence",
+          },
+          {
+            label: "Flow Optimization",
+            href: "/use-cases/flow-optimization",
+            description: "Process flow analysis and improvement",
+          },
+          {
+            label: "Production Optimization",
+            href: "/use-cases/production-optimization",
+            description: "Maximize production output and quality",
+          },
+          {
+            label: "Process Control",
+            href: "/use-cases/process-control",
+            description: "Real-time process monitoring and control",
+          },
+          {
+            label: "Quality Control",
+            href: "/use-cases/quality-control",
+            description: "AI-powered quality assurance",
+          },
+          {
+            label: "Predictive Maintenance",
+            href: "/use-cases/predictive-maintenance",
+            description: "Anticipate and prevent equipment failures",
+          },
+          {
+            label: "Energy Management",
+            href: "/use-cases/energy-management",
+            description: "Optimize energy consumption and costs",
+          },
+          {
+            label: "Safety & Risk Detection",
+            href: "/use-cases/safety-risk-detection",
+            description: "Proactive safety monitoring and risk mitigation",
+          },
+        ],
       },
     ],
   },
@@ -159,6 +232,23 @@ export const navigationItems: NavItem[] = [
     label: "About",
     href: "/about",
     description: "Our mission, vision, and story",
+    children: [
+      {
+        label: "About Us",
+        href: "/about",
+        description: "Our mission and story",
+      },
+      {
+        label: "Our Vision",
+        href: "/vision",
+        description: "Next-generation business efficiency through AI",
+      },
+      {
+        label: "Why Us",
+        href: "/why-us",
+        description: "Our differentiators, certifications, and partnerships",
+      },
+    ],
   },
   {
     label: "Contact",
@@ -190,6 +280,12 @@ export function findNavItemByHref(href: string, items: NavItem[] = navigationIte
       const found = findNavItemByHref(href, item.children);
       if (found) return found;
     }
+    if (item.sections) {
+      for (const section of item.sections) {
+        const found = findNavItemByHref(href, section.items);
+        if (found) return found;
+      }
+    }
   }
   return undefined;
 }
@@ -203,6 +299,15 @@ export function getParentNavItem(href: string, items: NavItem[] = navigationItem
       for (const child of item.children) {
         if (child.href === href) {
           return item;
+        }
+      }
+    }
+    if (item.sections) {
+      for (const section of item.sections) {
+        for (const sectionItem of section.items) {
+          if (sectionItem.href === href) {
+            return item;
+          }
         }
       }
     }
@@ -226,7 +331,18 @@ export function isNavItemActive(navItem: NavItem, currentPath: string): boolean 
   
   // Check children
   if (navItem.children) {
-    return navItem.children.some(child => isNavItemActive(child, currentPath));
+    if (navItem.children.some(child => isNavItemActive(child, currentPath))) {
+      return true;
+    }
+  }
+
+  // Check sections
+  if (navItem.sections) {
+    for (const section of navItem.sections) {
+      if (section.items.some(item => isNavItemActive(item, currentPath))) {
+        return true;
+      }
+    }
   }
   
   return false;

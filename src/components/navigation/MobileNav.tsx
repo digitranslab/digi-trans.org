@@ -75,7 +75,7 @@ function MobileNavItem({ item, index, onClose }: MobileNavItemProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const location = useLocation();
   const isActive = isNavItemActive(item, location.pathname);
-  const hasChildren = item.children && item.children.length > 0;
+  const hasChildren = (item.children && item.children.length > 0) || (item.sections && item.sections.length > 0);
 
   // Close expanded items when navigating
   useEffect(() => {
@@ -132,6 +132,30 @@ function MobileNavItem({ item, index, onClose }: MobileNavItemProps) {
             className="overflow-hidden"
           >
             <div className="pl-4 py-2 space-y-1">
+              {/* Render sections if present */}
+              {item.sections?.map((section) => (
+                <div key={section.title}>
+                  <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-purple-400">
+                    {section.title}
+                  </div>
+                  {section.items.map((child) => (
+                    <Link
+                      key={child.href}
+                      to={child.href}
+                      onClick={onClose}
+                      className={cn(
+                        "flex items-center justify-between py-2.5 px-4 rounded-lg",
+                        "text-sm text-gray-300",
+                        "hover:bg-white/10 hover:text-white transition-colors",
+                        location.pathname === child.href && "bg-purple-500/20 text-purple-300"
+                      )}
+                    >
+                      <span className="block">{child.label}</span>
+                    </Link>
+                  ))}
+                </div>
+              ))}
+              {/* Render regular children */}
               {item.children?.map((child) => (
                 <Link
                   key={child.href}

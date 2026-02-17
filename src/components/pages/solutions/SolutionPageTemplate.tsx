@@ -64,8 +64,19 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
               <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
                 {solution.hero.description}
               </p>
+
+              {solution.hero.image && (
+                <div className="mt-8 max-w-3xl mx-auto rounded-xl overflow-hidden border border-purple-500/20 shadow-2xl shadow-purple-500/10">
+                  <img 
+                    src={solution.hero.image} 
+                    alt={solution.hero.title}
+                    className="w-full h-64 md:h-80 object-cover"
+                    loading="eager"
+                  />
+                </div>
+              )}
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <GradientButton size="lg" onClick={() => navigate('/contact')}>
                   <Calendar className="w-5 h-5 mr-2" />
                   {solution.ctaText}

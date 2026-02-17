@@ -12,7 +12,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import type { NavItem } from "@/data/navigation";
+import type { NavItem, NavSection } from "@/data/navigation";
 import { isNavItemActive } from "@/data/navigation";
 
 interface NavDropdownProps {
@@ -68,7 +68,13 @@ export function NavDropdown({ item, className }: NavDropdownProps) {
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const isActive = isNavItemActive(item, location.pathname);
-  const hasChildren = item.children && item.children.length > 0;
+  const hasChildren = (item.children && item.children.length > 0) || (item.sections && item.sections.length > 0);
+  const hasSections = item.sections && item.sections.length > 0;
+
+  // Collect all items from sections for keyboard navigation
+  const allSectionItems = hasSections
+    ? item.sections!.flatMap(s => s.items)
+    : [];
 
   // Clear timeout on unmount
   useEffect(() => {
@@ -99,6 +105,10 @@ export function NavDropdown({ item, className }: NavDropdownProps) {
     (e: React.KeyboardEvent) => {
       if (!hasChildren) return;
 
+      const totalItems = hasSections
+        ? allSectionItems.length
+        : (item.children?.length ?? 0);
+
       switch (e.key) {
         case "Enter":
         case " ":
@@ -113,17 +123,17 @@ export function NavDropdown({ item, className }: NavDropdownProps) {
           if (!isOpen) {
             setIsOpen(true);
             setFocusedIndex(0);
-          } else if (item.children) {
+          } else {
             setFocusedIndex((prev) =>
-              prev < item.children!.length - 1 ? prev + 1 : 0
+              prev < totalItems - 1 ? prev + 1 : 0
             );
           }
           break;
         case "ArrowUp":
           e.preventDefault();
-          if (isOpen && item.children) {
+          if (isOpen) {
             setFocusedIndex((prev) =>
-              prev > 0 ? prev - 1 : item.children!.length - 1
+              prev > 0 ? prev - 1 : totalItems - 1
             );
           }
           break;
@@ -139,7 +149,7 @@ export function NavDropdown({ item, className }: NavDropdownProps) {
           break;
       }
     },
-    [hasChildren, isOpen, item.children]
+    [hasChildren, hasSections, isOpen, item.children, allSectionItems.length]
   );
 
   // Focus management for dropdown items
@@ -222,12 +232,15 @@ export function NavDropdown({ item, className }: NavDropdownProps) {
             animate="visible"
             exit="exit"
             className={cn(
-              "absolute left-0 top-full mt-2 min-w-[280px] z-50",
+              "absolute top-full mt-2 z-50",
               "rounded-xl overflow-hidden",
               // Glass morphism effect
               "bg-gray-900/95 backdrop-blur-xl",
               "border border-gray-800/50",
-              "shadow-xl shadow-black/20"
+              "shadow-xl shadow-black/20",
+              hasSections
+                ? "right-0 lg:left-auto"
+                : "left-0 min-w-[280px]"
             )}
           >
             {/* Gradient border effect */}
@@ -235,57 +248,109 @@ export function NavDropdown({ item, className }: NavDropdownProps) {
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20" />
             </div>
 
-            <div className="p-2">
-              {item.children?.map((child, index) => (
-                <motion.div
-                  key={child.href}
-                  custom={index}
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <Link
-                    ref={(el) => (itemRefs.current[index] = el)}
-                    to={child.href}
-                    onClick={() => {
-                      setIsOpen(false);
-                      setFocusedIndex(-1);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Escape") {
-                        e.preventDefault();
+            {hasSections ? (
+              /* Multi-column sectioned layout */
+              <div className="flex p-2 gap-1">
+                {item.sections!.map((section) => (
+                  <div key={section.title} className="min-w-[200px]">
+                    <div className="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-purple-400">
+                      {section.title}
+                    </div>
+                    {section.items.map((child) => {
+                      const flatIndex = allSectionItems.indexOf(child);
+                      return (
+                        <motion.div
+                          key={child.href}
+                          custom={flatIndex}
+                          variants={itemVariants}
+                          initial="hidden"
+                          animate="visible"
+                        >
+                          <Link
+                            ref={(el) => (itemRefs.current[flatIndex] = el)}
+                            to={child.href}
+                            onClick={() => {
+                              setIsOpen(false);
+                              setFocusedIndex(-1);
+                            }}
+                            onKeyDown={(e) => {
+                              if (e.key === "Escape") {
+                                e.preventDefault();
+                                setIsOpen(false);
+                                setFocusedIndex(-1);
+                                triggerRef.current?.focus();
+                              }
+                            }}
+                            className={cn(
+                              "block rounded-lg px-3 py-2 transition-colors",
+                              "hover:bg-white/10",
+                              "focus:outline-none focus-visible:bg-white/10",
+                              location.pathname === child.href && "bg-purple-500/20"
+                            )}
+                          >
+                            <span className="text-sm font-medium text-white whitespace-nowrap">
+                              {child.label}
+                            </span>
+                          </Link>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              /* Standard single-column dropdown */
+              <div className="p-2">
+                {item.children?.map((child, index) => (
+                  <motion.div
+                    key={child.href}
+                    custom={index}
+                    variants={itemVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <Link
+                      ref={(el) => (itemRefs.current[index] = el)}
+                      to={child.href}
+                      onClick={() => {
                         setIsOpen(false);
                         setFocusedIndex(-1);
-                        triggerRef.current?.focus();
-                      }
-                    }}
-                    className={cn(
-                      "block rounded-lg p-3 transition-colors",
-                      "hover:bg-white/10",
-                      "focus:outline-none focus-visible:bg-white/10",
-                      location.pathname === child.href && "bg-purple-500/20"
-                    )}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-white">
-                        {child.label}
-                      </span>
-                      {child.badge && (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                          {child.badge}
-                        </span>
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Escape") {
+                          e.preventDefault();
+                          setIsOpen(false);
+                          setFocusedIndex(-1);
+                          triggerRef.current?.focus();
+                        }
+                      }}
+                      className={cn(
+                        "block rounded-lg p-3 transition-colors",
+                        "hover:bg-white/10",
+                        "focus:outline-none focus-visible:bg-white/10",
+                        location.pathname === child.href && "bg-purple-500/20"
                       )}
-                    </div>
-                    {child.description && (
-                      <p className="mt-1 text-xs text-gray-400 line-clamp-2">
-                        {child.description}
-                      </p>
-                    )}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-white">
+                          {child.label}
+                        </span>
+                        {child.badge && (
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                            {child.badge}
+                          </span>
+                        )}
+                      </div>
+                      {child.description && (
+                        <p className="mt-1 text-xs text-gray-400 line-clamp-2">
+                          {child.description}
+                        </p>
+                      )}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+            )}
 
           </motion.div>
         )}

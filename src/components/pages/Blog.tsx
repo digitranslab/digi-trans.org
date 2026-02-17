@@ -24,6 +24,7 @@ import { SectionHeader } from "../ui/section-header";
 import { AnimatedWrapper } from "../ui/animated-wrapper";
 import SEO from "../SEO";
 import { TypewriterGradientText } from "../ui/typewriter-text";
+import { legacyBlogPosts } from "../../data/legacyBlog";
 
 const blogPosts = [
   {
@@ -101,6 +102,19 @@ const blogPosts = [
   },
 ];
 
+// Convert legacy blog posts to the same format as existing posts
+const legacyPostsMapped = legacyBlogPosts.map((post) => ({
+  title: post.title,
+  description: post.excerpt,
+  image: post.image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
+  date: post.date,
+  readTime: `${Math.max(5, Math.ceil(post.content.length / 1000))} min read`,
+  slug: post.slug,
+  category: post.category,
+}));
+
+const allBlogPosts = [...blogPosts, ...legacyPostsMapped];
+
 const categories = ["All", "Case Study", "AI/ML", "Data Engineering", "Cloud Computing", "Big Data"];
 
 export default function Blog() {
@@ -108,8 +122,8 @@ export default function Blog() {
   const [activeCategory, setActiveCategory] = useState("All");
   
   const filteredPosts = activeCategory === "All" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === activeCategory);
+    ? allBlogPosts 
+    : allBlogPosts.filter(post => post.category === activeCategory);
   
   const featuredPost = blogPosts.find(post => post.featured);
 

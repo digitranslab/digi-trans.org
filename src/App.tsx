@@ -87,8 +87,38 @@ import RetailPage from "./components/pages/solutions/RetailPage";
 import ManufacturingPage from "./components/pages/solutions/ManufacturingPage";
 import GovernmentPage from "./components/pages/solutions/GovernmentPage";
 
+// New Industry Pages
+import EnergyMiningPage from "./components/pages/solutions/EnergyMiningPage";
+import SmartCityPage from "./components/pages/solutions/SmartCityPage";
+import TransportationLogisticsPage from "./components/pages/solutions/TransportationLogisticsPage";
+import HydrogenPage from "./components/pages/solutions/HydrogenPage";
+
 // New Homepage
 import HomePage from "./components/pages/HomePage";
+
+// Use Case Pages
+import DataIntegrationPage from "./components/pages/use-cases/DataIntegrationPage";
+import SupplyChainPage from "./components/pages/use-cases/SupplyChainPage";
+import FlowOptimizationPage from "./components/pages/use-cases/FlowOptimizationPage";
+import ProductionOptimizationPage from "./components/pages/use-cases/ProductionOptimizationPage";
+import ProcessControlPage from "./components/pages/use-cases/ProcessControlPage";
+import QualityControlPage from "./components/pages/use-cases/QualityControlPage";
+import PredictiveMaintenancePage from "./components/pages/use-cases/PredictiveMaintenancePage";
+import EnergyManagementPage from "./components/pages/use-cases/EnergyManagementPage";
+import SafetyRiskPage from "./components/pages/use-cases/SafetyRiskPage";
+
+// Role Pages
+import CeoPage from "./components/pages/roles/CeoPage";
+import CdoPage from "./components/pages/roles/CdoPage";
+import CioPage from "./components/pages/roles/CioPage";
+import HeadOfDataLabPage from "./components/pages/roles/HeadOfDataLabPage";
+import HeadOfOperationsPage from "./components/pages/roles/HeadOfOperationsPage";
+
+// Vision Page
+import VisionPage from "./components/pages/VisionPage";
+
+// Why Us Page
+import WhyUsPage from "./components/pages/WhyUsPage";
 
 // University Pages
 import UniversityHubPage from "./components/pages/university/UniversityHubPage";
@@ -212,6 +242,34 @@ function App() {
         <Route path="/solutions/retail" element={<RetailPage />} />
         <Route path="/solutions/manufacturing" element={<ManufacturingPage />} />
         <Route path="/solutions/government" element={<GovernmentPage />} />
+        <Route path="/solutions/energy-mining" element={<EnergyMiningPage />} />
+        <Route path="/solutions/smart-city" element={<SmartCityPage />} />
+        <Route path="/solutions/transportation-logistics" element={<TransportationLogisticsPage />} />
+        <Route path="/solutions/hydrogen" element={<HydrogenPage />} />
+        
+        {/* Use Case Routes */}
+        <Route path="/use-cases/data-integration" element={<DataIntegrationPage />} />
+        <Route path="/use-cases/supply-chain" element={<SupplyChainPage />} />
+        <Route path="/use-cases/flow-optimization" element={<FlowOptimizationPage />} />
+        <Route path="/use-cases/production-optimization" element={<ProductionOptimizationPage />} />
+        <Route path="/use-cases/process-control" element={<ProcessControlPage />} />
+        <Route path="/use-cases/quality-control" element={<QualityControlPage />} />
+        <Route path="/use-cases/predictive-maintenance" element={<PredictiveMaintenancePage />} />
+        <Route path="/use-cases/energy-management" element={<EnergyManagementPage />} />
+        <Route path="/use-cases/safety-risk-detection" element={<SafetyRiskPage />} />
+        
+        {/* Role Routes */}
+        <Route path="/roles/ceo" element={<CeoPage />} />
+        <Route path="/roles/cdo" element={<CdoPage />} />
+        <Route path="/roles/cio" element={<CioPage />} />
+        <Route path="/roles/head-of-data-lab" element={<HeadOfDataLabPage />} />
+        <Route path="/roles/head-of-operations" element={<HeadOfOperationsPage />} />
+        
+        {/* Vision Page */}
+        <Route path="/vision" element={<VisionPage />} />
+        
+        {/* Why Us Page */}
+        <Route path="/why-us" element={<WhyUsPage />} />
         
         {/* University Routes */}
         <Route path="/university" element={<UniversityHubPage />} />

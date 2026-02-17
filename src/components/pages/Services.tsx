@@ -29,7 +29,6 @@ import {
   Database,
   Sparkles,
   Shield,
-  Workflow,
   Brain,
   FileSearch,
   Settings,
@@ -38,8 +37,16 @@ import {
   HeartPulse,
   ShoppingCart,
   Cpu,
-  Factory
+  Factory,
+  Search,
+  Code,
+  Server,
+  Lock,
+  Headphones,
+  FileCheck,
+  UserCheck
 } from "lucide-react";
+import { serviceMethodology } from "../../data/services-methodology";
 
 // Main service offerings - 3 pillars
 const services = [
@@ -357,6 +364,160 @@ export default function Services() {
                 </div>
               </AnimatedWrapper>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5-Step Methodology */}
+      <section className="py-24 bg-gradient-to-b from-black via-gray-900/50 to-black">
+        <div className="container mx-auto px-4">
+          <SectionHeader
+            badge="Our Methodology"
+            title="From Design to ROI"
+            description="Begin your Industry 4.0 journey at whichever point makes sense for you — our experts guide you every step of the way"
+            alignment="center"
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-16">
+            {serviceMethodology.steps.map((step, index) => (
+              <AnimatedWrapper
+                key={step.index}
+                animation="bounce-in"
+                delay={index * 0.1}
+              >
+                <GlassCard className="p-6 h-full relative overflow-hidden">
+                  <div className="text-5xl font-bold text-purple-500/20 absolute top-3 right-4">
+                    {step.index}
+                  </div>
+                  <div className="relative z-10">
+                    <h3 className="text-lg font-bold text-white mb-3 pr-8">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                  {index < serviceMethodology.steps.length - 1 && (
+                    <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-20">
+                      <ArrowRight className="w-5 h-5 text-purple-400" />
+                    </div>
+                  )}
+                </GlassCard>
+              </AnimatedWrapper>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Design & Build */}
+      <section className="py-24">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <AnimatedWrapper animation="fade-in-blur">
+              <div>
+                <span className="inline-block mb-4 px-4 py-1.5 bg-blue-900/40 text-blue-300 text-sm rounded-full border border-blue-500/30">
+                  Design & Build
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  {serviceMethodology.designBuild.title}
+                </h2>
+                <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                  {serviceMethodology.designBuild.content}
+                </p>
+                <div className="space-y-3">
+                  {serviceMethodology.designBuild.capabilities.map((cap, i) => (
+                    <div key={i} className="flex items-center gap-3 text-gray-300">
+                      <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                      <span>{cap}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </AnimatedWrapper>
+
+            <AnimatedWrapper animation="fade-in-blur" delay={0.2}>
+              <GlassCard className="p-8">
+                <h3 className="text-xl font-bold text-white mb-6">Our Team</h3>
+                <p className="text-gray-400 mb-6">
+                  Your industrial AI needs are taken care of by our team of:
+                </p>
+                <div className="space-y-4">
+                  {serviceMethodology.teamComposition.map((role, i) => {
+                    const icons = [
+                      <UserCheck key="uc" className="w-5 h-5" />,
+                      <Database key="db" className="w-5 h-5" />,
+                      <Code key="cd" className="w-5 h-5" />,
+                      <Brain key="br" className="w-5 h-5" />,
+                    ];
+                    return (
+                      <div
+                        key={i}
+                        className="flex items-center gap-4 p-3 rounded-lg bg-gray-900/50 border border-gray-800"
+                      >
+                        <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400">
+                          {icons[i]}
+                        </div>
+                        <span className="text-white font-medium">{role}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </GlassCard>
+            </AnimatedWrapper>
+          </div>
+        </div>
+      </section>
+
+      {/* Deploy & Run */}
+      <section className="py-24 bg-gradient-to-b from-gray-900/30 to-black">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <AnimatedWrapper animation="fade-in-blur" delay={0.1}>
+              <GlassCard className="p-8">
+                <h3 className="text-xl font-bold text-white mb-6">
+                  We've Got You Covered
+                </h3>
+                <div className="space-y-4">
+                  {serviceMethodology.deployRun.features.map((feature, i) => {
+                    const icons = [
+                      <Server key="sv" className="w-5 h-5" />,
+                      <FileCheck key="fc" className="w-5 h-5" />,
+                      <Search key="sr" className="w-5 h-5" />,
+                      <Headphones key="hp" className="w-5 h-5" />,
+                      <Lock key="lk" className="w-5 h-5" />,
+                    ];
+                    return (
+                      <div
+                        key={i}
+                        className="flex items-center gap-4 p-3 rounded-lg bg-gray-900/50 border border-gray-800"
+                      >
+                        <div className="p-2 rounded-lg bg-green-500/10 text-green-400">
+                          {icons[i]}
+                        </div>
+                        <span className="text-white font-medium">{feature}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </GlassCard>
+            </AnimatedWrapper>
+
+            <AnimatedWrapper animation="fade-in-blur" delay={0.2}>
+              <div>
+                <span className="inline-block mb-4 px-4 py-1.5 bg-green-900/40 text-green-300 text-sm rounded-full border border-green-500/30">
+                  Deploy & Run
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                  {serviceMethodology.deployRun.title}
+                </h2>
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  {serviceMethodology.deployRun.content}
+                </p>
+                <p className="text-gray-400 leading-relaxed">
+                  Operations are complex enough — we're here to make sure you have a partner in your corner to help shoulder the burden of running your AI ops day to day. Our security management services reinforce your company's security protocols, keeping your data and analytics safe and secure.
+                </p>
+              </div>
+            </AnimatedWrapper>
           </div>
         </div>
       </section>

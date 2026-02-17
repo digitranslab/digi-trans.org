@@ -28,6 +28,9 @@ import {
   Cpu,
   Factory,
   Building,
+  Briefcase,
+  GraduationCap,
+  Sparkles,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -42,9 +45,9 @@ import { TypewriterGradientText } from "@/components/ui/typewriter-text";
 
 // Hero Data
 const heroData = {
-  tagline: "AI & Data Solutions Company",
+  tagline: "Your Digital, Data & AI Scale-up Partner",
   headline: "Transforming Business Through AI & Data",
-  description: "Digitrans is an AI and Data consulting and software company. We provide AI agentic solutions, data architecture and engineering services, custom AI/Data software development, and open-source products deployed to your environment.",
+  description: "Digitrans enhances your operations by integrating customised digital solutions with a strategic vision. We align, build, and maintain your digital, data & AI roadmap, ensuring consistent reliability and efficiency worldwide.",
   primaryCTA: { label: "Schedule Consultation", href: "/contact" },
   secondaryCTA: { label: "Explore Products", href: "/products/allama" },
 };
@@ -82,8 +85,8 @@ const pillars = [
   {
     id: "consulting",
     icon: <Lightbulb className="w-6 h-6" />,
-    title: "Strategic Consulting",
-    description: "Expert guidance to navigate your AI and data transformation journey. We help you build the roadmap, evaluate technologies, and plan implementations that deliver real business value.",
+    title: "Explore & Frame",
+    description: "If you have not conducted your own analysis already, the Digitrans promise starts with a 360-degree survey of your operations. Using our findings, we provide expert recommendations on the ideal areas where data-powered solutions can bring value to your business.",
     capabilities: [
       "AI Readiness Assessment & Strategy",
       "Data Architecture & Governance",
@@ -91,38 +94,38 @@ const pillars = [
       "Implementation Roadmap Planning",
       "Change Management & Training",
     ],
-    marketingAngle: "We don't just advise—we partner with you to ensure successful outcomes.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+    marketingAngle: "We don't just advise — we partner with you to ensure successful outcomes.",
+    image: "/images/legacy/services/consulting-meeting.jpg",
   },
   {
     id: "engineering",
     icon: <Code className="w-6 h-6" />,
-    title: "Engineering Excellence",
-    description: "Robust data pipelines, cloud infrastructure, and AI systems built for enterprise scale. Our engineering teams deliver production-ready solutions that grow with your business.",
+    title: "Design & Build",
+    description: "We design, build, and enrich your data and digital ecosystems with custom applications, data storage and processing layers, AI models, APIs and backend services, to fit the specific requirements of your business. Our custom-designed solutions fit seamlessly into your current IT environment — edge, cloud, or hybrid.",
     capabilities: [
-      "Data Platform Architecture",
-      "Cloud-Native Development",
+      "Data Platform Architecture & Pipelines",
+      "Cloud-Native Development (AWS, GCP, Azure)",
       "AI/ML Model Development & Deployment",
       "DevOps & MLOps Automation",
-      "Real-Time Data Processing",
+      "Real-Time Data Processing & Analytics",
     ],
     marketingAngle: "Enterprise-grade engineering with startup agility.",
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80",
+    image: "/images/legacy/services/data-engineering.jpg",
   },
   {
     id: "products",
     icon: <Rocket className="w-6 h-6" />,
-    title: "Open-Source Products",
-    description: "Ready-to-deploy software that accelerates your transformation. Our products are open-source, self-hostable, and backed by enterprise support options.",
+    title: "Deploy, Run & Scale",
+    description: "We offer 24/7 DevOps and MLOps support across 5 continents. Our comprehensive SLAs cover IT, data infrastructure, ModelOps, data science and application support. We guarantee specific levels of system availability, performance, and support response time. We build it, you own it.",
     capabilities: [
-      "Allama - AI Security Automation Platform",
-      "DBLOCK - AI Workflow & Agent Builder",
-      "Self-Hosted Deployment Options",
-      "Enterprise Support & SLAs",
-      "Custom Integration Development",
+      "Allama — AI Security Automation Platform",
+      "DBLOCK — AI Workflow & Agent Builder",
+      "24/7 Global DevOps & MLOps Support",
+      "Guaranteed SLAs & Proactive Monitoring",
+      "IP Ownership — You Own What We Build",
     ],
     marketingAngle: "Enterprise capabilities, open-source freedom.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    image: "/images/legacy/services/chatbot-02.png",
   },
 ];
 
@@ -152,8 +155,11 @@ const industries = [
   { name: "Healthcare", icon: <HeartPulse className="w-5 h-5" />, description: "Clinical analytics, patient data platforms, research" },
   { name: "Technology", icon: <Cpu className="w-5 h-5" />, description: "Data infrastructure, ML platforms, automation" },
   { name: "Retail & E-commerce", icon: <ShoppingCart className="w-5 h-5" />, description: "Customer analytics, inventory optimisation" },
-  { name: "Government", icon: <Building className="w-5 h-5" />, description: "Secure data platforms, citizen services" },
-  { name: "Manufacturing", icon: <Factory className="w-5 h-5" />, description: "IoT analytics, predictive maintenance" },
+  { name: "Manufacturing", icon: <Factory className="w-5 h-5" />, description: "IoT analytics, predictive maintenance, quality control AI" },
+  { name: "Energy & Mining", icon: <Zap className="w-5 h-5" />, description: "Safety monitoring, energy management, process optimisation" },
+  { name: "Smart City", icon: <Building className="w-5 h-5" />, description: "Smart grids, water networks, urban infrastructure AI" },
+  { name: "Transportation & Logistics", icon: <Globe className="w-5 h-5" />, description: "Route optimisation, fleet management, supply chain AI" },
+  { name: "Government", icon: <Landmark className="w-5 h-5" />, description: "Secure data platforms, citizen services" },
 ];
 
 // Core Values
@@ -164,21 +170,62 @@ const values = [
   { icon: <TrendingUp className="w-6 h-6" />, title: "Continuous Growth", description: "Learning, innovation, and pushing boundaries." },
 ];
 
+// State-of-the-art Specialist Areas (from legacy Why Us page)
+const expertiseAreas = [
+  {
+    title: "Software Engineering",
+    skills: ["Cloud Architecture", "Edge Architecture", "Back-end & Front-end Engineering", "UX/UI Design", "Quality Assurance", "DevOps & Monitoring"],
+  },
+  {
+    title: "Data Engineering & Management",
+    skills: ["Strategy & Security", "Architecture & Storage", "Processing & Analysis", "Visualisation", "MLOps"],
+  },
+  {
+    title: "Industrial Expertise",
+    skills: ["Production & Maintenance", "Quality & Logistics", "Process Control & Automation", "Rotating & Mechanical Engineering", "Electrical Engineering"],
+  },
+  {
+    title: "Applied Science",
+    skills: ["Applied Mathematics", "Hydraulics & Thermodynamics", "Optimisation & Operations Research", "Geosciences"],
+  },
+  {
+    title: "AI, Machine Learning & Deep Learning",
+    skills: ["Time Series Forecasting", "Computer Vision", "NLP", "Physics-Informed ML", "Neural Networks & Transfer Learning"],
+  },
+];
+
 // Leadership Team
 const teamMembers = [
-  { name: "Fatima Aarab", role: "Chief Executive Officer", bio: "10+ years leading enterprise technology transformations", image: "/images/management/fatima.jpeg" },
-  { name: "Mohamed BenChaliah", role: "Chief Technology Officer", bio: "15+ years building scalable distributed systems", image: "/images/management/mohamed.png" },
-  { name: "Chakib", role: "Head of Engineering", bio: "Expert in cloud-native architecture and data platforms", image: "/images/management/chakib.jpeg" },
-  { name: "Chihabi", role: "Head of AI & Data", bio: "Specialist in ML systems and agentic AI solutions", image: "/images/management/chihabi.png" },
+  { name: "Mohamed BenChaliah", role: "Co-Founder, CEO", bio: "Master's in Software Engineering from Mines ParisTech. Deployed IT and data systems across 20+ countries on five continents. Leads the team in delivering safer, more efficient business operations.", image: "/images/management/mohamed.png" },
+  { name: "Chakib Ougued", role: "Head of Labs", bio: "Runs Digitrans Labs, dedicated to accelerating delivery of tech-enabled services through R&D. Two decades of experience in computer science and analytics. Graduate of Ecole Polytechnique and Télécom Paris.", image: "/images/management/chakib.jpeg" },
+  { name: "Fatima BenChaliah", role: "Head of Marketing & Communication", bio: "Overseen successful implementation and adoption of Digitrans solutions on industrial sites across four continents.", image: "/images/management/fatima.jpeg" },
 ];
 
 // Global Offices
 const offices = [
-  { city: "Dubai", country: "UAE", type: "Headquarters", description: "MENA operations hub" },
-  { city: "London", country: "UK", type: "EMEA Hub", description: "European operations" },
-  { city: "Paris", country: "France", type: "EU Office", description: "Continental Europe" },
-  { city: "Casablanca", country: "Morocco", type: "Africa Hub", description: "African operations" },
+  { city: "Dubai", country: "UAE", type: "Headquarters", description: "MENA operations hub", image: "/assets/offices/dubai.webp" },
+  { city: "London", country: "UK", type: "EMEA Hub", description: "European operations", image: "/assets/offices/london.webp" },
+  { city: "Paris", country: "France", type: "EU Office", description: "Continental Europe", image: "/assets/offices/paris.webp" },
+  { city: "Casablanca", country: "Morocco", type: "Africa Hub", description: "African operations", image: "/assets/offices/casa.webp" },
 ];
+
+// Careers / Join Our Team
+const careersContent = {
+  headline: "Shape the Future of Industry",
+  tagline: "Are you ready to be part of the future? Or better yet, build it?",
+  description:
+    "Digitrans was born out of a need to improve the quality of information in industrial operations, and with dedication, hard work, and unwavering focus, we have been moving steadily towards that goal, day after day, year after year. We want to continue growing, improving, and bringing innovation to industrial operations, so it's important to us that we maintain the same dedication when it comes to our own team members and in-house operations.",
+  candidatesDescription:
+    "We are on the lookout for talented, visionary, and creative people with strong backgrounds in engineering, math, and tech — people who are ready to evolve quickly and grow in their roles as we grow as a company.",
+  workEnvironment:
+    "We work hard to cultivate a work environment that is inspiring, positive, and gives our team room to learn, improve their skills, and learn new ones. Join us in building the factories of the future.",
+  traits: [
+    { icon: <GraduationCap className="w-5 h-5" />, title: "Engineering & Math", description: "Strong analytical and technical foundations" },
+    { icon: <Code className="w-5 h-5" />, title: "Tech & Software", description: "Modern development and data engineering skills" },
+    { icon: <Sparkles className="w-5 h-5" />, title: "Creative & Visionary", description: "Innovative thinkers who push boundaries" },
+    { icon: <TrendingUp className="w-5 h-5" />, title: "Growth Mindset", description: "Ready to evolve and learn continuously" },
+  ],
+};
 
 const AboutPage: React.FC = () => {
   return (
@@ -379,7 +426,7 @@ const AboutPage: React.FC = () => {
               alignment="center"
             />
             
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
               {industries.map((industry, index) => (
                 <AnimatedWrapper key={industry.name} animation="scale-in" delay={index * 0.05}>
                   <GlassCard className="p-4 hover:scale-[1.05] transition-all duration-300">
@@ -400,6 +447,32 @@ const AboutPage: React.FC = () => {
         {/* Mission & Vision Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
+            {/* State-of-the-art Specialists */}
+            <SectionHeader
+              badge="Our Expertise"
+              title="State-of-the-Art Specialists"
+              description="From data engineering to deep learning, our team of experts has every aspect of your project covered."
+              alignment="center"
+            />
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mt-12 max-w-6xl mx-auto mb-20">
+              {expertiseAreas.map((area, index) => (
+                <AnimatedWrapper key={area.title} animation="scale-in" delay={index * 0.08}>
+                  <GlassCard className="h-full p-5 hover:scale-[1.03] transition-all duration-300">
+                    <h4 className="font-bold text-white text-sm mb-3 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">{area.title}</h4>
+                    <ul className="space-y-1.5">
+                      {area.skills.map((skill) => (
+                        <li key={skill} className="text-xs text-gray-400 flex items-start gap-1.5">
+                          <Check className="w-3 h-3 text-green-400 mt-0.5 flex-shrink-0" />
+                          <span>{skill}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </GlassCard>
+                </AnimatedWrapper>
+              ))}
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <AnimatedWrapper animation="slide-right">
                 <GlassCard variant="gradient" className="h-full p-8 hover:scale-[1.02] transition-all duration-300">
@@ -408,8 +481,10 @@ const AboutPage: React.FC = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">Our Mission</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    To empower organisations with transformative AI and data solutions that drive innovation, 
-                    efficiency, and competitive advantage in the digital age.
+                    To help industrial businesses improve safety, operational efficiency, and agility through 
+                    advances in data and AI technology. We build data-driven software and algorithms that unlock 
+                    new operating models, then take charge of operating and maintaining these solutions so they 
+                    continue to support our clients' most critical operations safely and reliably, over the long term.
                   </p>
                 </GlassCard>
               </AnimatedWrapper>
@@ -420,8 +495,10 @@ const AboutPage: React.FC = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">Our Vision</h3>
                   <p className="text-gray-300 leading-relaxed">
-                    To be the global leader in enterprise technology transformation, setting new standards 
-                    for consulting excellence while building a community of visionary technologists.
+                    We believe in a world where data and AI technologies will allow industrial operations to be 
+                    safer and more efficient, consuming fewer resources while producing less waste, for a minimal 
+                    footprint with maximum uptime. We build it, you own it — unlike point software solutions, you 
+                    own and control the algorithms and software we develop and manage for you.
                   </p>
                 </GlassCard>
               </AnimatedWrapper>
@@ -486,6 +563,116 @@ const AboutPage: React.FC = () => {
           </div>
         </section> */}
 
+        {/* Company History Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <SectionHeader
+              badge="Our Journey"
+              title="From Industrial Operations to Global AI Partner"
+              description="A decade of building data-powered solutions for industry."
+              alignment="center"
+            />
+            
+            <div className="max-w-3xl mx-auto mt-12 space-y-6">
+              {[
+                { year: "2011", text: "The team started building a field operations data management platform, undergoing an intense phase of R&D." },
+                { year: "2014", text: "The platform went live for the first time in Africa, pushing the young company to develop its ability to face challenges on a global scale." },
+                { year: "2016", text: "Digitrans started exploring new verticals as demand for its integrated AI-deployment platform rose steadily within the industrial sector." },
+                { year: "2018", text: "The company opened new offices in Paris and expanded its European operations." },
+                { year: "2024", text: "Present on five continents, serving Fortune 500 companies across 150+ industrial sites. ISO 27001 certified." },
+              ].map((milestone, index) => (
+                <AnimatedWrapper key={milestone.year} animation="slide-up" delay={index * 0.1}>
+                  <div className="flex gap-6 items-start">
+                    <div className="flex-shrink-0 w-16 text-right">
+                      <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                        {milestone.year}
+                      </span>
+                    </div>
+                    <div className="flex-shrink-0 flex flex-col items-center">
+                      <div className="w-3 h-3 bg-purple-500 rounded-full" />
+                      {index < 4 && <div className="w-0.5 h-full bg-purple-500/20 mt-1" />}
+                    </div>
+                    <p className="text-gray-300 pb-4">{milestone.text}</p>
+                  </div>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Join Our Team / Careers Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <SectionHeader
+              badge="Careers"
+              title={careersContent.headline}
+              description={careersContent.tagline}
+              alignment="center"
+            />
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
+              <AnimatedWrapper animation="slide-right">
+                <GlassCard variant="gradient" className="h-full p-8 hover:scale-[1.02] transition-all duration-300">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 w-fit mb-4">
+                    <Briefcase className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Our Culture</h3>
+                  <p className="text-gray-300 leading-relaxed mb-4">{careersContent.description}</p>
+                  <p className="text-gray-300 leading-relaxed">{careersContent.workEnvironment}</p>
+                </GlassCard>
+              </AnimatedWrapper>
+              <AnimatedWrapper animation="slide-left">
+                <GlassCard variant="gradient" className="h-full p-8 hover:scale-[1.02] transition-all duration-300">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 w-fit mb-4">
+                    <Users className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Who We're Looking For</h3>
+                  <p className="text-gray-300 leading-relaxed mb-6">{careersContent.candidatesDescription}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {careersContent.traits.map((trait) => (
+                      <div key={trait.title} className="flex items-start gap-3 p-3 rounded-lg bg-white/5">
+                        <div className="text-purple-400 mt-0.5">{trait.icon}</div>
+                        <div>
+                          <p className="text-white text-sm font-medium">{trait.title}</p>
+                          <p className="text-gray-400 text-xs">{trait.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </GlassCard>
+              </AnimatedWrapper>
+            </div>
+
+            <AnimatedWrapper animation="fade-up-slow" className="mt-8 text-center">
+              <GradientButton size="lg" asChild>
+                <Link to="/contact">
+                  <Briefcase className="w-5 h-5 mr-2" />
+                  Get in Touch to Apply
+                </Link>
+              </GradientButton>
+            </AnimatedWrapper>
+          </div>
+        </section>
+
+        {/* ISO 27001 & Certifications */}
+        <section className="py-16 bg-gray-900/30">
+          <div className="container mx-auto px-4">
+            <AnimatedWrapper animation="fade-in-blur" className="max-w-3xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <img src="/images/legacy/about/iso-certification.png" alt="ISO 27001" className="h-16 object-contain" />
+                <div className="inline-flex items-center gap-3 px-4 py-2 bg-green-900/30 rounded-full border border-green-500/30">
+                  <Check className="w-5 h-5 text-green-400" />
+                  <span className="text-green-300 font-medium">ISO 27001 Certified</span>
+                </div>
+              </div>
+              <p className="text-gray-400">
+                Digitrans is ISO 27001 certified, a globally recognised standard for information security management. 
+                Your data and analytics are safe and secure with us.
+              </p>
+            </AnimatedWrapper>
+          </div>
+        </section>
+
         {/* Global Presence Section */}
         <section className="py-20 bg-gray-900/30">
           <div className="container mx-auto px-4">
@@ -499,12 +686,16 @@ const AboutPage: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
               {offices.map((office, index) => (
                 <AnimatedWrapper key={office.city} animation="float-up" delay={index * 0.1}>
-                  <GlassCard variant="hover" className="p-6 text-center hover:scale-[1.05] transition-all duration-300">
-                    <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full mx-auto mb-4" />
-                    <h4 className="font-bold text-white text-lg">{office.city}</h4>
-                    <p className="text-gray-400 text-sm">{office.country}</p>
-                    <p className="text-purple-400 text-xs mt-2">{office.type}</p>
-                    <p className="text-gray-500 text-xs mt-1">{office.description}</p>
+                  <GlassCard variant="hover" className="p-0 overflow-hidden text-center hover:scale-[1.05] transition-all duration-300">
+                    <div className="h-32 overflow-hidden">
+                      <img src={office.image} alt={office.city} className="w-full h-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-bold text-white text-lg">{office.city}</h4>
+                      <p className="text-gray-400 text-sm">{office.country}</p>
+                      <p className="text-purple-400 text-xs mt-2">{office.type}</p>
+                      <p className="text-gray-500 text-xs mt-1">{office.description}</p>
+                    </div>
                   </GlassCard>
                 </AnimatedWrapper>
               ))}

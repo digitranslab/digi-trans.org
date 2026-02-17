@@ -1,8 +1,9 @@
 /**
- * Clients Page - Redesigned
+ * Clients Page - Enriched with Legacy Content
  * 
- * Showcases client success stories and testimonials with a modern design
- * matching the product pages style.
+ * Showcases client success stories, customer-focused messaging about hands-on
+ * partnership and AI-powered operational improvements, and testimonials.
+ * Content enriched from legacy digitrans-website/our-customers/index.html.
  */
 
 import React from "react";
@@ -18,7 +19,13 @@ import {
   Users,
   Calendar,
   ArrowRight,
-  Check
+  Check,
+  Handshake,
+  Brain,
+  Shield,
+  Globe,
+  Factory,
+  Zap
 } from "lucide-react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
@@ -40,7 +47,6 @@ const caseStudies = [
       { metric: "35%", label: "Efficiency Gain" },
       { metric: "99.9%", label: "Uptime" },
     ],
-    icon: "Landmark",
   },
   {
     title: "Healthcare Provider Cloud Migration",
@@ -52,7 +58,6 @@ const caseStudies = [
       { metric: "10x", label: "Faster Access" },
       { metric: "100%", label: "Compliance" },
     ],
-    icon: "Building2",
   },
   {
     title: "Retail AI Personalization",
@@ -64,7 +69,6 @@ const caseStudies = [
       { metric: "45%", label: "Higher LTV" },
       { metric: "3x", label: "Engagement" },
     ],
-    icon: "TrendingUp",
   },
 ];
 
@@ -87,6 +91,40 @@ const clientCategories = [
     title: "Startups",
     count: "100+",
     description: "High-growth startups from seed to Series C",
+  },
+];
+
+// Featured industrial customers from legacy site
+const featuredCustomers = [
+  { name: "TotalEnergies", industry: "Energy", logo: "/images/legacy/partners/totalenergies.svg", image: "/images/legacy/clients/totalenergies-project.jpg" },
+  { name: "SNCF", industry: "Transportation", logo: "/images/legacy/partners/sncf.svg", image: "/images/legacy/clients/richemont-project.jpg" },
+  { name: "Groupe ADP", industry: "Aviation & Logistics", logo: "/images/legacy/partners/groupe-adp.svg", image: "/images/legacy/clients/adp-project.jpg" },
+  { name: "Suez", industry: "Environmental Services", logo: "/images/legacy/partners/suez.svg", image: "/images/legacy/clients/alperia-project.jpg" },
+  { name: "Alperia", industry: "Energy", logo: "/images/legacy/partners/alperia.svg", image: "/images/legacy/clients/alperia-project.jpg" },
+  { name: "Hummink", industry: "Advanced Manufacturing", logo: "/images/legacy/clients/logo-hummink.png", image: "/images/legacy/clients/hummink-project.jpg" },
+];
+
+// Partnership approach highlights
+const partnershipHighlights = [
+  {
+    icon: Handshake,
+    title: "Hands-On Partnership",
+    description: "We work hand in hand with our customers to build, deploy, and operate solutions that harness the power of data and AI technology.",
+  },
+  {
+    icon: Brain,
+    title: "AI-Powered Operations",
+    description: "Our AI solutions underpin critical industrial operations so our customers can count on them to run reliably, anywhere in the world, at all times.",
+  },
+  {
+    icon: Shield,
+    title: "Safety & Efficiency",
+    description: "We streamline operations, boost efficiency, and make the workplace safer for everybody through advances in data and AI.",
+  },
+  {
+    icon: Factory,
+    title: "Industrial Expertise",
+    description: "Deep domain knowledge across energy, mining, manufacturing, smart cities, and transportation enables us to deliver solutions that truly fit.",
   },
 ];
 
@@ -138,7 +176,7 @@ export default function Clients() {
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
               <span className="inline-block mb-4 px-4 py-1.5 bg-blue-900/40 text-blue-300 text-sm rounded-full border border-blue-500/30">
-                Client Success Stories
+                Our Customers
               </span>
               
               <TypewriterGradientText 
@@ -148,17 +186,133 @@ export default function Clients() {
                 duration={1.8}
               />
               
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                We've helped organizations across industries achieve measurable results through AI, automation, and digital transformation.
+              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                We work hand in hand with our customers to build, deploy, and operate solutions 
+                that harness the power of data and AI technology to streamline operations, boost 
+                efficiency, and make the workplace safer for everybody.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <GradientButton size="lg" onClick={() => navigate('/contact')}>
                   <Calendar className="w-5 h-5 mr-2" />
-                  Start Your Success Story
+                  Schedule a Meeting
                 </GradientButton>
               </div>
             </AnimatedWrapper>
+          </div>
+        </section>
+
+        {/* Partnership Approach - Legacy content enrichment */}
+        <section className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <SectionHeader
+              badge="Our Approach"
+              title="A True Partnership"
+              description="We don't just deliver solutions — we build, deploy, and operate AI systems that underpin your most critical industrial operations."
+              alignment="center"
+            />
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+              {partnershipHighlights.map((highlight, index) => (
+                <AnimatedWrapper key={highlight.title} animation="scale-up-bounce" delay={index * 0.1}>
+                  <GlassCard variant="gradient" className="h-full p-6 hover:scale-[1.02] transition-transform duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400">
+                        <highlight.icon className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-white mb-2">{highlight.title}</h3>
+                        <p className="text-gray-400 text-sm leading-relaxed">{highlight.description}</p>
+                      </div>
+                    </div>
+                  </GlassCard>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Industrial Customers */}
+        <section className="py-16 bg-gray-900/30">
+          <div className="container mx-auto px-4">
+            <SectionHeader
+              badge="Industrial Partners"
+              title="Powering Critical Operations Worldwide"
+              description="Our AI solutions support the operations of leading industrial organizations across energy, transportation, and beyond."
+              alignment="center"
+            />
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-12">
+              {featuredCustomers.map((customer, index) => (
+                <AnimatedWrapper key={customer.name} animation="float-up" delay={index * 0.08}>
+                  <GlassCard className="p-5 text-center hover:scale-105 transition-transform duration-300">
+                    <div className="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                      <img src={customer.logo} alt={customer.name} className="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                    </div>
+                    <h4 className="text-white font-semibold mb-1">{customer.name}</h4>
+                    <p className="text-xs text-gray-500">{customer.industry}</p>
+                  </GlassCard>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Client Projects Gallery */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <SectionHeader
+              badge="Portfolio"
+              title="Client Projects"
+              description="A glimpse into the industrial AI solutions we've delivered."
+              alignment="center"
+            />
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
+              {featuredCustomers.filter(c => c.image).slice(0, 6).map((customer, index) => (
+                <AnimatedWrapper key={customer.name + '-project'} animation="scale-up-bounce" delay={index * 0.1}>
+                  <GlassCard className="overflow-hidden hover:scale-[1.03] transition-transform duration-300">
+                    <div className="aspect-video overflow-hidden">
+                      <img 
+                        src={customer.image} 
+                        alt={`${customer.name} project`}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="text-white font-semibold">{customer.name}</h4>
+                      <p className="text-xs text-gray-400">{customer.industry}</p>
+                    </div>
+                  </GlassCard>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Cloud Partners */}
+        <section className="py-12 bg-gray-900/30">
+          <div className="container mx-auto px-4">
+            <p className="text-center text-gray-400 mb-8 text-sm">Cloud & Technology Partners</p>
+            <div className="flex flex-wrap justify-center items-center gap-12">
+              {[
+                { src: "/images/legacy/partners/aws.svg", alt: "AWS" },
+                { src: "/images/legacy/partners/azure.svg", alt: "Microsoft Azure" },
+                { src: "/images/legacy/partners/google-cloud.svg", alt: "Google Cloud" },
+              ].map((partner, index) => (
+                <motion.div
+                  key={partner.alt}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="h-10 opacity-60 hover:opacity-100 transition-opacity"
+                >
+                  <img src={partner.src} alt={partner.alt} className="h-full object-contain" />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -195,19 +349,12 @@ export default function Clients() {
         <section className="py-16 bg-gray-900/30">
           <div className="container mx-auto px-4">
             <p className="text-center text-gray-400 mb-8">Trusted by leading organizations worldwide</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-              {industryLogos.map((logo, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="w-16 h-16 md:w-20 md:h-20 opacity-60 hover:opacity-100 transition-opacity"
-                >
-                  <img src={logo} alt={`Client ${index + 1}`} className="w-full h-full object-contain" />
-                </motion.div>
-              ))}
+            <div className="max-w-4xl mx-auto mb-8">
+              <img 
+                src="/images/legacy/partners/all-logos.png" 
+                alt="Our clients and partners" 
+                className="w-full h-auto object-contain opacity-80"
+              />
             </div>
           </div>
         </section>
@@ -298,20 +445,32 @@ export default function Clients() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
+        {/* CTA Section - Enriched with legacy "Ready for Industry 4.0?" messaging */}
+        <section className="py-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/10 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="zoom-in" className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-                Ready to Join Our Success Stories?
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                Ready for Industry 4.0?
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Let's discuss how we can help you achieve similar results.
+              <p className="text-xl text-gray-300 mb-4">
+                Experience the future of industrial operations.
               </p>
-              <GradientButton size="lg" onClick={() => navigate('/contact')}>
-                <Calendar className="w-5 h-5 mr-2" />
-                Schedule a Consultation
-              </GradientButton>
+              <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+                Don't just take our word for it — see how AI has helped our customers 
+                revolutionize their industrial operations. Schedule a meeting to discuss 
+                how we can do the same for you.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <GradientButton size="lg" onClick={() => navigate('/contact')}>
+                  <Calendar className="w-5 h-5 mr-2" />
+                  Schedule a Meeting
+                </GradientButton>
+                <GradientButton variant="outline" size="lg" onClick={() => navigate('/services')}>
+                  Explore Our Services
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </GradientButton>
+              </div>
             </AnimatedWrapper>
           </div>
         </section>
