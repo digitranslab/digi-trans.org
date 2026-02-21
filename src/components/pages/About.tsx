@@ -643,14 +643,14 @@ const AboutPage: React.FC = () => {
               </AnimatedWrapper>
             </div>
 
-            <AnimatedWrapper animation="fade-up-slow" className="mt-8 text-center">
+            <div className="mt-8 text-center">
               <GradientButton size="lg" asChild>
                 <Link to="/contact">
                   <Briefcase className="w-5 h-5 mr-2" />
                   Get in Touch to Apply
                 </Link>
               </GradientButton>
-            </AnimatedWrapper>
+            </div>
           </div>
         </section>
 
@@ -659,7 +659,6 @@ const AboutPage: React.FC = () => {
           <div className="container mx-auto px-4">
             <AnimatedWrapper animation="fade-in-blur" className="max-w-3xl mx-auto text-center">
               <div className="flex items-center justify-center gap-4 mb-4">
-                <img src="/images/legacy/about/iso-certification.png" alt="ISO 27001" className="h-16 object-contain" />
                 <div className="inline-flex items-center gap-3 px-4 py-2 bg-green-900/30 rounded-full border border-green-500/30">
                   <Check className="w-5 h-5 text-green-400" />
                   <span className="text-green-300 font-medium">ISO 27001 Certified</span>
