@@ -15,6 +15,7 @@ import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { TypewriterGradientText } from "@/components/ui/typewriter-text";
+import { HeroBackground, HeroBottomFade, CTABackground } from "@/components/ui/hero-background";
 import type { ServiceData } from "@/data/services";
 import type { ServiceData as NewServiceData } from "@/data/services-new";
 
@@ -45,19 +46,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
             ═══════════════════════════════════════════ */}
         <section className="relative pt-36 pb-24 overflow-hidden">
           {/* Animated background */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
-              <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
-              <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
-            </div>
-            {/* Grid pattern overlay */}
-            <div className="absolute inset-0 opacity-[0.03]" style={{
-              backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }} />
-          </div>
+          <HeroBackground />
           
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
@@ -86,7 +75,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
           </div>
 
           {/* Bottom fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
+          <HeroBottomFade />
         </section>
 
 
@@ -485,11 +474,7 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
             CTA — Bold closing section
             ═══════════════════════════════════════════ */}
         <section className="py-24 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-950/30 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 right-[20%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
-          </div>
+          <CTABackground />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent leading-tight">

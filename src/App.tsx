@@ -297,7 +297,7 @@ function App() {
         <Route path="/university" element={<UniversityHubPage />} />
         <Route path="/university/tutorials" element={<TutorialsPage />} />
         <Route path="/university/live-demos" element={<LiveDemosPage />} />
-        <Route path="/university/tech-talks" element={<TechTalksPage />} />
+        <Route path="/university/tech-talks" element={<Navigate to="/university/webinars" replace />} />
         <Route path="/university/webinars" element={<WebinarsPage />} />
         
         <Route path="/calendar" element={<Navigate to="/contact" replace />} />

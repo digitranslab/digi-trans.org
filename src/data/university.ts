@@ -46,15 +46,9 @@ export const categories: CategoryInfo[] = [
     icon: "Play",
   },
   {
-    slug: "tech-talks",
-    title: "Tech Talks",
-    description: "Discussions on AI trends, data architecture, and security automation.",
-    icon: "Mic",
-  },
-  {
     slug: "webinars",
-    title: "Webinars",
-    description: "Live sessions with Q&A, guest speakers, and community events.",
+    title: "Webinars & Tech Talks",
+    description: "Live sessions, tech talks, community meetups, and workshops.",
     icon: "Video",
   },
 ];
@@ -192,6 +186,10 @@ export const contentItems: ContentItem[] = [
 
 // Helper functions
 export const getContentByCategory = (category: ContentCategory): ContentItem[] => {
+  if (category === "webinars") {
+    // Merge webinars and tech-talks into one view
+    return contentItems.filter((item) => item.category === "webinars" || item.category === "tech-talks");
+  }
   return contentItems.filter((item) => item.category === category);
 };
 

@@ -11,6 +11,8 @@ import Footer from "@/components/Footer";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { TypewriterGradientText } from "@/components/ui/typewriter-text";
+import { HeroBackground, CTABackground } from "@/components/ui/hero-background";
+import { useTheme } from "@/contexts/ThemeContext";
 
 // Tab definitions
 const tabs = [
@@ -79,6 +81,7 @@ interface CardItem {
 
 function ServiceCard({ item, index }: { item: CardItem; index: number }) {
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   return (
     <AnimatedWrapper animation="fade-up" delay={index * 0.06}>
@@ -110,7 +113,7 @@ function ServiceCard({ item, index }: { item: CardItem; index: number }) {
               />
             </div>
             {/* Hover overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: theme === "dark" ? "linear-gradient(to top, rgba(0,0,0,0.4), transparent)" : "none" }} />
           </div>
         </div>
       </div>
@@ -144,11 +147,7 @@ const OurServicesPage: React.FC = () => {
       <main>
         {/* Hero */}
         <section className="relative pt-36 pb-12 overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/30 via-black/80 to-black" />
-            <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/10 rounded-full blur-[100px] animate-pulse" />
-            <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/8 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
-          </div>
+          <HeroBackground />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto">
               <span className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30 backdrop-blur-sm">
@@ -207,11 +206,7 @@ const OurServicesPage: React.FC = () => {
 
         {/* CTA */}
         <section className="py-24 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-950/30 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 right-[20%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
-          </div>
+          <CTABackground />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent leading-tight">

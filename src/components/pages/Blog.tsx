@@ -24,6 +24,8 @@ import { SectionHeader } from "../ui/section-header";
 import { AnimatedWrapper } from "../ui/animated-wrapper";
 import SEO from "../SEO";
 import { TypewriterGradientText } from "../ui/typewriter-text";
+import { HeroBackground } from "@/components/ui/hero-background";
+import { useTheme } from "@/contexts/ThemeContext";
 import { legacyBlogPosts } from "../../data/legacyBlog";
 
 const blogPosts = [
@@ -119,6 +121,7 @@ const categories = ["All", "Case Study", "AI/ML", "Data Engineering", "Cloud Com
 
 export default function Blog() {
   const navigate = useNavigate();
+  const { theme } = useTheme();
   const [activeCategory, setActiveCategory] = useState("All");
   
   const filteredPosts = activeCategory === "All" 
@@ -140,9 +143,7 @@ export default function Blog() {
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+          <HeroBackground />
           
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
@@ -177,7 +178,7 @@ export default function Blog() {
                           alt={featuredPost.title}
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent lg:hidden" />
+                        <div className="absolute inset-0 lg:hidden" style={{ background: theme === "dark" ? "linear-gradient(to right, rgba(0,0,0,0.6), transparent)" : "none" }} />
                       </div>
                       <div className="p-8 lg:p-12 flex flex-col justify-center">
                         <span className="inline-block w-fit px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-full mb-4">
@@ -241,8 +242,8 @@ export default function Blog() {
                           alt={post.title}
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <span className="absolute bottom-3 left-3 px-2 py-1 bg-gray-900/80 text-xs text-gray-300 rounded">
+                        <div className="absolute inset-0" style={{ background: theme === "dark" ? "linear-gradient(to top, rgba(0,0,0,0.6), transparent)" : "none" }} />
+                        <span className="absolute bottom-3 left-3 px-2 py-1 text-xs rounded" style={{ backgroundColor: theme === "dark" ? "rgba(17,24,39,0.8)" : "rgba(255,255,255,0.9)", color: theme === "dark" ? "#d1d5db" : "#374151" }}>
                           {post.category}
                         </span>
                       </div>

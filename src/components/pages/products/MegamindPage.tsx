@@ -15,6 +15,7 @@ import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { TypewriterGradientText } from "@/components/ui/typewriter-text";
+import { HeroBackground, HeroBottomFade, CTABackground } from "@/components/ui/hero-background";
 import { MegamindLogo } from "@/components/ui/megamind-logo";
 import {
   heroData,
@@ -53,18 +54,7 @@ const MegamindPage: React.FC = () => {
             HERO — Immersive gradient with floating orbs
             ═══════════════════════════════════════════ */}
         <section className="relative pt-36 pb-24 overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
-              <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
-              <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
-            </div>
-            <div className="absolute inset-0 opacity-[0.03]" style={{
-              backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }} />
-          </div>
+          <HeroBackground />
           
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
@@ -89,7 +79,7 @@ const MegamindPage: React.FC = () => {
               </div>
             </AnimatedWrapper>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
+          <HeroBottomFade />
         </section>
 
         {/* ═══════════════════════════════════════════
@@ -357,11 +347,7 @@ const MegamindPage: React.FC = () => {
             CTA — Bold closing section
             ═══════════════════════════════════════════ */}
         <section className="py-24 relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-950/30 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 right-[20%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
-          </div>
+          <CTABackground />
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
               <MegamindLogo size={48} className="text-purple-400 mx-auto mb-6" />

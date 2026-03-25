@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { GradientButton } from "./ui/gradient-button";
 import { AnimatedWrapper } from "./ui/animated-wrapper";
 import { ArrowRight } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface HeroProps {
   headline?: string;
@@ -18,6 +19,7 @@ const Hero = ({
   showBookCallButton = false,
 }: HeroProps) => {
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   return (
     <div className="relative w-full h-[800px] bg-black overflow-hidden pt-24">
@@ -49,7 +51,7 @@ const Hero = ({
         <div className="overflow-hidden">
           <AnimatedWrapper animation="fade-up" delay={0.2} duration={0.8}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
-              <span className="bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
+              <span className={`bg-clip-text text-transparent ${theme === "dark" ? "bg-gradient-to-r from-white via-purple-200 to-white" : "bg-gradient-to-r from-gray-900 via-purple-700 to-gray-900"}`}>
                 Turn Data Into
               </span>
               <br />

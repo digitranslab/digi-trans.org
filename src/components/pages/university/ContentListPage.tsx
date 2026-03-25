@@ -17,6 +17,7 @@ import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import { ContentCard } from "@/components/ui/content-card";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { TypewriterGradientText } from "@/components/ui/typewriter-text";
+import { HeroBackground } from "@/components/ui/hero-background";
 import { SectionHeader } from "@/components/ui/section-header";
 import { 
   getContentByCategory, 
@@ -48,20 +49,7 @@ export function ContentListPage({ category }: ContentListPageProps) {
             ═══════════════════════════════════════════ */}
         <section className="relative pt-36 pb-24 overflow-hidden">
           {/* Animated background */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
-            {/* Floating gradient orbs */}
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
-              <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
-              <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
-            </div>
-            {/* Grid pattern overlay */}
-            <div className="absolute inset-0 opacity-[0.03]" style={{
-              backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
-            }} />
-          </div>
+          <HeroBackground />
 
           {/* Hero content */}
           <div className="relative container mx-auto px-4">

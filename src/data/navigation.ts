@@ -101,14 +101,9 @@ export const navigationItems: NavItem[] = [
         description: "Recorded product demonstrations",
       },
       {
-        label: "Tech Talks",
-        href: "/university/tech-talks",
-        description: "AI trends and architecture discussions",
-      },
-      {
-        label: "Webinars",
+        label: "Webinars & Tech Talks",
         href: "/university/webinars",
-        description: "Upcoming and past webinar recordings",
+        description: "Live sessions, tech talks, and community events",
       },
     ],
   },

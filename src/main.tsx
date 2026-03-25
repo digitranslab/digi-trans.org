@@ -23,12 +23,16 @@ if (typeof window !== "undefined") {
   });
 }
 
+import { ThemeProvider } from "./contexts/ThemeContext";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter basename={basename}>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <ThemeProvider>
+      <HelmetProvider>
+        <BrowserRouter basename={basename}>
+          <App />
+        </BrowserRouter>
+      </HelmetProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 );
