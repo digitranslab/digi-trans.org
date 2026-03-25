@@ -180,18 +180,21 @@ li {
    Uses broad selectors since Tailwind classes can't be targeted as compound selectors.
    ═══════════════════════════════════════════ */
 
-/* ── Page & Section Backgrounds — PURE WHITE ── */
+/* ── Page & Section Backgrounds — VERY LIGHT GRAY ── */
 html.light .min-h-screen.bg-black,
 html.light .min-h-screen.text-white,
-html.light .bg-black { background-color: #ffffff !important; }
+html.light .bg-black { background-color: #f9fafb !important; }
 html.light .min-h-screen.text-white { color: #111827 !important; }
-html.light .bg-black\/90 { background-color: rgba(255,255,255,0.95) !important; }
-html.light .bg-black\/95 { background-color: rgba(255,255,255,0.97) !important; }
+html.light .bg-black\/90 { background-color: rgba(249,250,251,0.95) !important; }
+html.light .bg-black\/95 { background-color: rgba(249,250,251,0.97) !important; }
 
 /* NUCLEAR: Kill ALL section-level gradient overlays in light mode */
+html.light section > .absolute.inset-0,
 html.light main > section > .absolute.inset-0,
-html.light main > section > .absolute.inset-0 > [class*="bg-gradient"],
-html.light main > section[class*="bg-gradient"] { background: transparent !important; }
+html.light section > .absolute.inset-0[class*="bg-gradient"],
+html.light main > section > .absolute.inset-0[class*="bg-gradient"],
+html.light main > section[class*="bg-gradient"],
+html.light section[class*="bg-gradient"] { background: transparent !important; }
 
 /* ── Images should NOT be affected by light theme filters ── */
 html.light img { filter: none !important; opacity: 1 !important; }
@@ -232,44 +235,45 @@ html.light .text-gray-400 { color: #4b5563 !important; }
 html.light .text-gray-500 { color: #6b7280 !important; }
 html.light .text-gray-600 { color: #4b5563 !important; }
 
-/* ── Purple Accents — keep vibrant ── */
-html.light .text-purple-300 { color: #7c3aed !important; }
-html.light .text-purple-400 { color: #6d28d9 !important; }
-html.light .text-purple-400\/80 { color: rgba(109,40,217,0.8) !important; }
+/* ── Accent Colors — Green/Emerald for light theme (Unsloth-inspired) ── */
+html.light .text-purple-300 { color: #059669 !important; }
+html.light .text-purple-400 { color: #059669 !important; }
+html.light .text-purple-400\/80 { color: rgba(5,150,105,0.8) !important; }
+html.light .text-purple-200 { color: #059669 !important; }
 
-/* ── Floating Gradient Orbs — very subtle in light ── */
-html.light .bg-purple-600\/15 { background-color: rgba(124,58,237,0.04) !important; }
-html.light .bg-purple-600\/10 { background-color: rgba(124,58,237,0.03) !important; }
-html.light .bg-blue-600\/15 { background-color: rgba(37,99,235,0.04) !important; }
-html.light .bg-blue-600\/10 { background-color: rgba(37,99,235,0.03) !important; }
-html.light .bg-blue-600\/8 { background-color: rgba(37,99,235,0.02) !important; }
-html.light .bg-indigo-600\/10 { background-color: rgba(79,70,229,0.03) !important; }
-html.light .bg-purple-500\/8 { background-color: rgba(124,58,237,0.03) !important; }
-html.light .bg-purple-500\/10 { background-color: rgba(124,58,237,0.04) !important; }
-html.light .bg-purple-500\/3 { background-color: rgba(124,58,237,0.015) !important; }
+/* ── Floating Gradient Orbs — green tint in light ── */
+html.light .bg-purple-600\/15 { background-color: rgba(16,185,129,0.04) !important; }
+html.light .bg-purple-600\/10 { background-color: rgba(16,185,129,0.03) !important; }
+html.light .bg-blue-600\/15 { background-color: rgba(13,148,136,0.04) !important; }
+html.light .bg-blue-600\/10 { background-color: rgba(13,148,136,0.03) !important; }
+html.light .bg-blue-600\/8 { background-color: rgba(13,148,136,0.02) !important; }
+html.light .bg-indigo-600\/10 { background-color: rgba(16,185,129,0.03) !important; }
+html.light .bg-purple-500\/8 { background-color: rgba(16,185,129,0.03) !important; }
+html.light .bg-purple-500\/10 { background-color: rgba(16,185,129,0.04) !important; }
+html.light .bg-purple-500\/3 { background-color: rgba(16,185,129,0.015) !important; }
 
-/* ── Badge & Pill Backgrounds ── */
-html.light .bg-purple-900\/40 { background-color: rgba(124,58,237,0.08) !important; }
-html.light .bg-purple-900\/30 { background-color: rgba(124,58,237,0.06) !important; }
-html.light .bg-purple-500\/10 { background-color: rgba(124,58,237,0.06) !important; }
-html.light .bg-purple-500\/15 { background-color: rgba(124,58,237,0.08) !important; }
-html.light .bg-blue-500\/10 { background-color: rgba(37,99,235,0.06) !important; }
-html.light .bg-blue-500\/15 { background-color: rgba(37,99,235,0.08) !important; }
-html.light .bg-cyan-500\/10 { background-color: rgba(6,182,212,0.06) !important; }
-html.light .bg-cyan-500\/15 { background-color: rgba(6,182,212,0.08) !important; }
+/* ── Badge & Pill Backgrounds — green ── */
+html.light .bg-purple-900\/40 { background-color: rgba(5,150,105,0.08) !important; }
+html.light .bg-purple-900\/30 { background-color: rgba(5,150,105,0.06) !important; }
+html.light .bg-purple-500\/10 { background-color: rgba(5,150,105,0.06) !important; }
+html.light .bg-purple-500\/15 { background-color: rgba(5,150,105,0.08) !important; }
+html.light .bg-blue-500\/10 { background-color: rgba(13,148,136,0.06) !important; }
+html.light .bg-blue-500\/15 { background-color: rgba(13,148,136,0.08) !important; }
+html.light .bg-cyan-500\/10 { background-color: rgba(13,148,136,0.06) !important; }
+html.light .bg-cyan-500\/15 { background-color: rgba(13,148,136,0.08) !important; }
 html.light .bg-emerald-500\/15 { background-color: rgba(16,185,129,0.08) !important; }
 html.light .bg-green-500\/10 { background-color: rgba(34,197,94,0.06) !important; }
 html.light .bg-green-500\/20 { background-color: rgba(34,197,94,0.1) !important; }
 
-/* ── Badge Borders ── */
-html.light .border-purple-500\/30 { border-color: rgba(124,58,237,0.25) !important; }
-html.light .border-purple-500\/20 { border-color: rgba(124,58,237,0.18) !important; }
-html.light .border-blue-500\/30 { border-color: rgba(37,99,235,0.25) !important; }
+/* ── Badge Borders — green ── */
+html.light .border-purple-500\/30 { border-color: rgba(5,150,105,0.25) !important; }
+html.light .border-purple-500\/20 { border-color: rgba(5,150,105,0.18) !important; }
+html.light .border-blue-500\/30 { border-color: rgba(13,148,136,0.25) !important; }
 html.light .border-green-500\/30 { border-color: rgba(34,197,94,0.25) !important; }
 
-/* ── Icon Containers ── */
-html.light .from-purple-500\/20 { --tw-gradient-from: rgba(124,58,237,0.1) !important; }
-html.light .to-blue-500\/20 { --tw-gradient-to: rgba(37,99,235,0.1) !important; }
+/* ── Icon Containers — green tint ── */
+html.light .from-purple-500\/20 { --tw-gradient-from: rgba(5,150,105,0.1) !important; }
+html.light .to-blue-500\/20 { --tw-gradient-to: rgba(13,148,136,0.1) !important; }
 
 /* ── Hero Video — hide in light mode ── */
 html.light video { opacity: 0.08 !important; }
@@ -313,9 +317,9 @@ html.light [class*="bg-gradient"][class*="from-purple-950"][class*="to-gray-900"
 }
 
 /* Blue-900/40 badge backgrounds */
-html.light .bg-blue-900\/40 { background-color: rgba(37,99,235,0.08) !important; }
-html.light .text-blue-300 { color: #2563eb !important; }
-html.light .border-blue-500\/30 { border-color: rgba(37,99,235,0.2) !important; }
+html.light .bg-blue-900\/40 { background-color: rgba(13,148,136,0.08) !important; }
+html.light .text-blue-300 { color: #14b8a6 !important; }
+html.light .border-blue-500\/30 { border-color: rgba(13,148,136,0.2) !important; }
 
 /* ── Client Logo Boxes ── */
 html.light .bg-gray-900\/60 { background-color: rgba(255,255,255,0.9) !important; }
@@ -349,19 +353,30 @@ html.light [class*="from-blue-900"] { --tw-gradient-from: rgba(37,99,235,0.03) !
 html.light [class*="from-indigo-900"] { --tw-gradient-from: rgba(79,70,229,0.03) !important; }
 
 /* ── Promo Banner ── */
-html.light .bg-purple-900\/80 { background-color: rgba(124,58,237,0.08) !important; }
-html.light .text-purple-200 { color: #6d28d9 !important; }
+html.light .bg-purple-900\/80 { background-color: rgba(5,150,105,0.08) !important; }
+html.light .text-purple-200 { color: #059669 !important; }
 
 /* ── Gradient button secondary variant ── */
-html.light .bg-white\/10 { background-color: rgba(124,58,237,0.06) !important; }
-html.light .border-white\/20 { border-color: rgba(124,58,237,0.15) !important; }
+html.light .bg-white\/10 { background-color: rgba(5,150,105,0.06) !important; }
+html.light .border-white\/20 { border-color: rgba(5,150,105,0.15) !important; }
 
-/* ── Hover states ── */
-html.light .hover\:border-purple-500\/30:hover { border-color: rgba(124,58,237,0.3) !important; }
-html.light .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08) !important; }
-html.light .hover\:text-purple-400:hover { color: #6d28d9 !important; }
-html.light .group-hover\:text-purple-300 { color: #7c3aed !important; }
-html.light .group-hover\:text-purple-400 { color: #6d28d9 !important; }
+/* ── Hover states — green ── */
+html.light .hover\:border-purple-500\/30:hover { border-color: rgba(5,150,105,0.3) !important; }
+html.light .hover\:bg-purple-500\/10:hover { background-color: rgba(5,150,105,0.08) !important; }
+html.light .hover\:text-purple-400:hover { color: #059669 !important; }
+html.light .group-hover\:text-purple-300 { color: #10b981 !important; }
+html.light .group-hover\:text-purple-400 { color: #059669 !important; }
+
+/* ── GlassCard gradient variant — green border + no purple glow ── */
+html.light .hover\:border-purple-500\/60:hover { border-color: rgba(5,150,105,0.4) !important; }
+html.light [class*="hover:shadow"][class*="purple"] { --tw-shadow: none !important; box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important; }
+html.light .before\:from-purple-500\/50::before { --tw-gradient-from: rgba(5,150,105,0.3) !important; }
+html.light .before\:to-blue-500\/50::before { --tw-gradient-to: rgba(13,148,136,0.3) !important; }
+html.light .hover\:before\:from-purple-400\/70:hover::before { --tw-gradient-from: rgba(5,150,105,0.5) !important; }
+html.light .hover\:before\:to-blue-400\/70:hover::before { --tw-gradient-to: rgba(13,148,136,0.5) !important; }
+
+/* ── GlassCard purple-500/20 backgrounds ── */
+html.light .bg-purple-500\/20 { background-color: rgba(5,150,105,0.12) !important; }
 
 /* ── Green check indicators — keep visible ── */
 html.light .text-green-400 { color: #16a34a !important; }
@@ -378,41 +393,50 @@ html.light .bg-red-500\/20 { background-color: rgba(239,68,68,0.08) !important; 
 html.light .border-red-500\/30 { border-color: rgba(239,68,68,0.2) !important; }
 
 /* ── Blue accents ── */
-html.light .text-blue-400 { color: #2563eb !important; }
-html.light .text-blue-300 { color: #3b82f6 !important; }
-html.light .text-cyan-400 { color: #0891b2 !important; }
+html.light .text-blue-400 { color: #0d9488 !important; }
+html.light .text-blue-300 { color: #14b8a6 !important; }
+html.light .text-cyan-400 { color: #0d9488 !important; }
 html.light .text-emerald-400 { color: #059669 !important; }
 
 /* ── Gradient button overrides ── */
-html.light .from-purple-600 { --tw-gradient-from: #7c3aed !important; }
-html.light .to-blue-600 { --tw-gradient-to: #2563eb !important; }
+html.light .from-purple-600 { --tw-gradient-from: #059669 !important; }
+html.light .to-blue-600 { --tw-gradient-to: #0d9488 !important; }
 
 /* ── SectionHeader gradient title — make darker for light mode ── */
-html.light .from-purple-400 { --tw-gradient-from: #6d28d9 !important; }
-html.light .via-blue-400 { --tw-gradient-via: #2563eb !important; }
-html.light .to-indigo-400 { --tw-gradient-to: #4338ca !important; }
-html.light .to-blue-400 { --tw-gradient-to: #2563eb !important; }
-html.light .to-cyan-400 { --tw-gradient-to: #0891b2 !important; }
-html.light .to-pink-400 { --tw-gradient-to: #db2777 !important; }
+html.light .from-purple-400 { --tw-gradient-from: #111827 !important; }
+html.light .via-blue-400 { --tw-gradient-via: #059669 !important; }
+html.light .to-indigo-400 { --tw-gradient-to: #10b981 !important; }
+html.light .to-blue-400 { --tw-gradient-to: #0d9488 !important; }
+html.light .to-cyan-400 { --tw-gradient-to: #0d9488 !important; }
+html.light .to-pink-400 { --tw-gradient-to: #059669 !important; }
 
 /* ── Navbar Dropdown — light background in light mode ── */
 html.light .bg-gray-900\/95 { background-color: rgba(255,255,255,0.98) !important; }
 html.light .shadow-black\/20 { box-shadow: 0 10px 40px rgba(0,0,0,0.08), 0 2px 10px rgba(0,0,0,0.04) !important; }
-html.light .hover\:bg-white\/10:hover { background-color: rgba(124,58,237,0.06) !important; }
-html.light .bg-white\/10 { background-color: rgba(124,58,237,0.04) !important; }
+html.light .hover\:bg-white\/10:hover { background-color: rgba(5,150,105,0.06) !important; }
+html.light .bg-white\/10 { background-color: rgba(5,150,105,0.04) !important; }
 html.light .focus-visible\:ring-offset-black { --tw-ring-offset-color: #ffffff !important; }
 
-/* ── Footer "Get in Touch" aurora banner — keep dark for contrast ── */
-html.light footer { color: white; }
-html.light footer .text-white { color: white !important; }
-html.light footer .text-gray-400 { color: #9ca3af !important; }
-html.light footer .text-gray-500 { color: #6b7280 !important; }
-html.light footer .text-gray-600 { color: #4b5563 !important; }
-html.light footer .bg-black { background-color: #111827 !important; }
-html.light footer .bg-gray-900\/50 { background-color: rgba(31,41,55,0.5) !important; }
-html.light footer .border-gray-800\/50 { border-color: rgba(55,65,81,0.5) !important; }
-html.light footer .border-gray-800\/40 { border-color: rgba(55,65,81,0.4) !important; }
-html.light footer .border-gray-800\/60 { border-color: rgba(55,65,81,0.6) !important; }
+/* ── Footer — light theme: dark text, keep aurora banner dark ── */
+html.light footer { color: #111827; }
+html.light footer .text-white { color: #111827 !important; }
+html.light footer .text-gray-400 { color: #6b7280 !important; }
+html.light footer .text-gray-500 { color: #9ca3af !important; }
+html.light footer .text-gray-600 { color: #6b7280 !important; }
+html.light footer .bg-black { background-color: #f9fafb !important; }
+html.light footer .bg-gray-800\/60 { background-color: rgba(243,244,246,0.8) !important; }
+html.light footer .border-gray-800\/50 { border-color: #e5e7eb !important; }
+html.light footer .border-gray-800\/40 { border-color: #e5e7eb !important; }
+html.light footer .border-gray-800\/60 { border-color: #d1d5db !important; }
+html.light footer .border-gray-700\/40 { border-color: #e5e7eb !important; }
+html.light footer .text-purple-400 { color: #059669 !important; }
+html.light footer a.text-gray-400:hover { color: #111827 !important; }
+html.light footer a.text-xs { color: #6b7280 !important; }
+html.light footer a.text-xs:hover { color: #111827 !important; }
+/* Aurora banner stays dark */
+html.light footer > .relative.overflow-hidden { color: white; }
+html.light footer > .relative.overflow-hidden .text-white,
+html.light footer > .relative.overflow-hidden h2 { color: white !important; }
 
 /* ── Scrollbar ── */
 html.light ::-webkit-scrollbar-track { background: #f3f4f6; }

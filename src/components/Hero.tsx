@@ -51,7 +51,7 @@ const Hero = ({
         <div className="overflow-hidden">
           <AnimatedWrapper animation="fade-up" delay={0.2} duration={0.8}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
-              <span className={`bg-clip-text text-transparent ${theme === "dark" ? "bg-gradient-to-r from-white via-purple-200 to-white" : "bg-gradient-to-r from-gray-900 via-purple-700 to-gray-900"}`}>
+              <span className={`bg-clip-text text-transparent ${theme === "dark" ? "bg-gradient-to-r from-white via-purple-200 to-white" : "bg-gradient-to-r from-gray-900 via-emerald-700 to-gray-900"}`}>
                 Turn Data Into
               </span>
               <br />

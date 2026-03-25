@@ -65,7 +65,7 @@ const Navbar = ({
               "hidden lg:flex items-center justify-center w-9 h-9 rounded-lg transition-all duration-300",
               theme === "dark"
                 ? "bg-gray-800/60 border border-gray-700/50 text-gray-400 hover:text-yellow-400 hover:border-yellow-500/30"
-                : "bg-gray-100 border border-gray-200 text-gray-600 hover:text-purple-600 hover:border-purple-300"
+                : "bg-gray-100 border border-gray-200 text-gray-600 hover:text-emerald-600 hover:border-emerald-300"
             )}
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >

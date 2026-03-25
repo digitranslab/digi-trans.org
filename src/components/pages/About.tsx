@@ -126,11 +126,11 @@ const careersContent = {
 };
 
 const milestones = [
-  { year: "2011", text: "The team started building a field operations data management platform, undergoing an intense phase of R&D." },
-  { year: "2014", text: "The platform went live for the first time in Africa, pushing the young company to develop its ability to face challenges on a global scale." },
-  { year: "2016", text: "Digitrans started exploring new verticals as demand for its integrated AI-deployment platform rose steadily within the industrial sector." },
-  { year: "2018", text: "The company opened new offices in Paris and expanded its European operations." },
-  { year: "2024", text: "Present on five continents, serving Fortune 500 companies across 150+ industrial sites. ISO 27001 certified." },
+  { year: "2023", text: "Digitrans founded in March 2023 in Dubai by a team of data engineers and AI specialists with deep industrial experience. Immediate focus on sovereign AI consulting and data platform engineering for enterprise clients." },
+  { year: "2023", text: "First major engagements secured — delivering data architecture and AI strategy consulting for manufacturing and energy clients across the MENA region. London office established to serve European markets." },
+  { year: "2024", text: "Rapid growth across three continents. Launched Megamind (open-source sovereign AI platform) and Allama (AI security automation). Achieved ISO 27001 certification. Expanded to 50+ enterprise clients." },
+  { year: "2025", text: "Megamind surpasses 4.5M downloads. Digitrans Lab releases Jan-v1 model (91.1% SimpleQA accuracy). Casablanca office opened for African operations. 150+ enterprise clients across financial services, manufacturing, energy, and government." },
+  { year: "2026", text: "Present on five continents with offices in Dubai (HQ), London, and Casablanca. 500+ projects delivered, 50PB+ data processed. Recognised as a leading sovereign AI consultancy for regulated industries." },
 ];
 
 const AboutPage = () => {
@@ -396,7 +396,7 @@ const AboutPage = () => {
         <section className="py-20 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
           <div className="container mx-auto px-4 relative z-10">
-            <SectionHeader badge="Our Journey" title="From Industrial Operations to Global AI Partner" description="A decade of building data-powered solutions for industry." alignment="center" />
+            <SectionHeader badge="Our Journey" title="From Founding to Global AI Partner" description="Three years of rapid growth — from a Dubai startup to a five-continent sovereign AI consultancy." alignment="center" />
             <div className="max-w-3xl mx-auto mt-14 space-y-0">
               {milestones.map((milestone, i) => (
                 <AnimatedWrapper key={milestone.year} animation="fade-up-slow" delay={i * 0.08}>

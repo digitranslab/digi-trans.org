@@ -20,8 +20,8 @@ export function HeroBackground({ accent = "purple" }: HeroBackgroundProps) {
       ? "linear-gradient(to bottom, rgba(30,58,138,0.4), rgba(0,0,0,0.8), #000)"
       : "linear-gradient(to bottom, rgba(88,28,135,0.4), rgba(0,0,0,0.8), #000)"
     : accent === "blue"
-      ? "linear-gradient(to bottom, rgba(37,99,235,0.04), rgba(255,255,255,0.95), #fff)"
-      : "linear-gradient(to bottom, rgba(124,58,237,0.04), rgba(255,255,255,0.95), #fff)";
+      ? "linear-gradient(to bottom, rgba(37,99,235,0.04), rgba(249,250,251,0.95), #f9fafb)"
+      : "linear-gradient(to bottom, rgba(124,58,237,0.04), rgba(249,250,251,0.95), #f9fafb)";
 
   const orbOpacity = isDark ? 0.15 : 0.04;
   const gridOpacity = isDark ? 0.03 : 0.015;
@@ -62,7 +62,7 @@ export function HeroBottomFade() {
   return (
     <div
       className="absolute bottom-0 left-0 right-0 h-24"
-      style={{ background: `linear-gradient(to top, ${theme === "dark" ? "#000" : "#fff"}, transparent)` }}
+      style={{ background: `linear-gradient(to top, ${theme === "dark" ? "#000" : "#f9fafb"}, transparent)` }}
     />
   );
 }
