@@ -7,7 +7,7 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import * as LucideIcons from "lucide-react";
-import { ArrowRight, Calendar, Sparkles } from "lucide-react";
+import { ArrowRight, Calendar, CheckCircle, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { GradientButton } from "@/components/ui/gradient-button";
@@ -126,7 +126,7 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
                         <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">{service.title}</h3>
                         <p className="text-sm text-gray-500 leading-relaxed mb-4">{service.description}</p>
                         <span className="text-purple-400 text-sm flex items-center gap-1.5">
-                          Learn more <ArrowRight className="w-3.5 h-3.5" />
+                          Learn more <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" />
                         </span>
                       </div>
                     </div>
@@ -176,8 +176,8 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
                         <p className="text-sm text-gray-500 leading-relaxed mb-5 flex-1">{study.description}</p>
                         <ul className="space-y-1.5 pt-4 border-t border-gray-800/50">
                           {study.results.map((result) => (
-                            <li key={result} className="flex items-center gap-2 text-sm text-gray-400">
-                              <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+                            <li key={result} className="flex items-start gap-2 text-sm text-gray-300">
+                              <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
                               {result}
                             </li>
                           ))}

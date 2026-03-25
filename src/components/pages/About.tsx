@@ -19,7 +19,6 @@ import {
   TrendingUp,
   Rocket,
   GitBranch,
-  Play,
   Cloud,
   Landmark,
   HeartPulse,
@@ -535,7 +534,7 @@ const AboutPage = () => {
               <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">Let's discuss how Digitrans can help you harness the power of AI and data.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                 <GradientButton size="lg" asChild>
-                  <Link to="/contact"><Play className="w-5 h-5 mr-2" />Schedule Consultation</Link>
+                  <Link to="/contact"><Calendar className="w-5 h-5 mr-2" />Schedule Consultation</Link>
                 </GradientButton>
                 <GradientButton variant="secondary" size="lg" asChild>
                   <a href="https://github.com/digitranslab" target="_blank" rel="noopener noreferrer"><GitBranch className="w-5 h-5 mr-2" />View on GitHub</a>

@@ -1,58 +1,12 @@
-import React from "react";
-import { motion } from "framer-motion";
-
-const Line = ({ delay }: { delay: number }) => (
-  <motion.div
-    initial={{ opacity: 1, top: "-2%", left: `${Math.random() * 100}%` }}
-    animate={{
-      opacity: [0.8, 1, 0.8],
-      top: ["-2%", "104%"],
-    }}
-    transition={{
-      duration: 8,
-      delay,
-      repeat: Infinity,
-      ease: "linear",
-    }}
-    style={{
-      position: "absolute",
-      width: "1px",
-      height: "100px",
-      background: `linear-gradient(180deg, 
-        transparent 0%, 
-        rgba(167, 139, 250, 0.3) 10%,
-        rgba(167, 139, 250, 0.8) 50%,
-        rgba(167, 139, 250, 0.3) 90%,
-        transparent 100%
-      )`,
-      filter: "blur(0.3px)",
-    }}
-  />
-);
-
+/**
+ * GridBackground - Simplified
+ *
+ * Previously rendered falling animated lines and a dot pattern as a global background.
+ * Now returns null because every page has its own floating gradient orbs and grid overlay
+ * in the hero section, making the global background redundant and a source of visual noise.
+ *
+ * Retained as a component (returning null) so App.tsx doesn't need modification.
+ */
 export default function GridBackground() {
-  return (
-    <div
-      className="fixed inset-0 overflow-hidden pointer-events-none"
-      style={{ zIndex: -1 }}
-    >
-      <div className="absolute inset-0 bg-black z-[-2]" />
-      <div className="absolute inset-0 z-[-1]">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgb(147 197 253) 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-            backgroundPosition: "0 0",
-          }}
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        {/* Falling Lines */}
-        {Array.from({ length: 50 }).map((_, i) => (
-          <Line key={`line-${i}`} delay={i * 0.2} />
-        ))}
-      </div>
-    </div>
-  );
+  return null;
 }

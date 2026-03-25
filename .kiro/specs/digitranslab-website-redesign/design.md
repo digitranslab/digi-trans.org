@@ -1,1312 +1,491 @@
-# Design Document: DigitransLab Website Redesign
+# Design Document: Digitrans Website Premium Design Coherence Overhaul
 
 ## Overview
 
-This design document outlines the technical architecture and implementation approach for the DigitransLab website redesign. The redesign transforms the existing React/TypeScript website into a comprehensive platform showcasing AI agentic automation services, products (Allama, DBLOCK), industry solutions, and educational content through the University learning hub.
+This design document defines the migration strategy for bringing every page and component in the Digitrans website into alignment with the Premium Design Language already established in the Homepage, Footer, MegamindPage, AllamaPage, DBlockPage, ModelsPage, ServicePageTemplate, OurServicesPage, and AnimatedDataViz.
 
-The implementation leverages the existing technology stack (Vite, Tailwind CSS, Framer Motion, shadcn/ui) while introducing new page components, an enhanced navigation system, and a cohesive design system with glass morphism effects and purple/blue gradient accents.
+The overhaul is purely visual/CSS — no business logic, data models, or API changes are involved. The work consists of:
+1. Replacing legacy components (GlassCard, Card, framer-motion page animations, UniverseLights) with premium equivalents
+2. Applying consistent visual patterns (backdrop-blur cards, floating gradient orbs, grid overlays, gradient text)
+3. Standardizing on the shared design system components (SectionHeader, TypewriterGradientText, GradientButton, AnimatedWrapper)
+
+The gold standard references are:
+- **MegamindPage.tsx** — product page reference
+- **ServicePageTemplate.tsx** — template page reference
+- **home.tsx** — homepage reference
+- **Footer.tsx** — footer reference
+- **OurServicesPage.tsx** — services hub reference
 
 ## Architecture
 
-### High-Level Architecture
+### Current State
+
+The codebase has two co-existing visual systems:
 
 ```mermaid
-graph TB
-    subgraph "Client Layer"
-        App[App.tsx - Router]
-        Nav[Navigation System]
-        Pages[Page Components]
-        UI[UI Components]
+graph TD
+    subgraph "Premium Design Language (Target)"
+        A[MegamindPage] --> DS[Design System Components]
+        B[ServicePageTemplate] --> DS
+        C[home.tsx] --> DS
+        D[Footer] --> DS
+        E[OurServicesPage] --> DS
+        F[AllamaPage / DBlockPage] --> DS
+        DS --> S1[SectionHeader]
+        DS --> S2[TypewriterGradientText]
+        DS --> S3[GradientButton]
+        DS --> S4[AnimatedWrapper]
     end
-    
-    subgraph "Page Structure"
-        Home[Homepage - 7 Sections]
-        Products[Product Pages]
-        Services[Service Pages]
-        Solutions[Solution Pages]
-        University[University Hub]
-        Resources[Resources Section]
-        Company[Company Section]
-        Contact[Contact Page]
+
+    subgraph "Legacy Design Patterns (To Remove)"
+        L1[GlassCard] --> LP[Legacy Pages]
+        L2[framer-motion page anims] --> LP
+        L3[UniverseLights] --> LP
+        L4[Card / Button shadcn] --> LP
+        LP --> P1[About, Contact, Blog...]
+        LP --> P2[Legacy Services]
+        LP --> P3[Legacy Products]
+        LP --> P4[Client Sub-Pages]
+        LP --> P5[SolutionsHub]
     end
-    
-    subgraph "Shared Components"
-        Hero[Hero Component]
-        Cards[Card Components]
-        CTAs[CTA Components]
-        Forms[Form Components]
-        Animations[Animation Wrappers]
-    end
-    
-    App --> Nav
-    App --> Pages
-    Pages --> Home
-    Pages --> Products
-    Pages --> Services
-    Pages --> Solutions
-    Pages --> University
-    Pages --> Resources
-    Pages --> Company
-    Pages --> Contact
-    
-    Home --> Hero
-    Home --> Cards
-    Home --> CTAs
-    Products --> Hero
-    Products --> Cards
-    Services --> Hero
-    Services --> Forms
-    
-    UI --> Cards
-    UI --> CTAs
-    UI --> Forms
-    UI --> Animations
 ```
 
-### Routing Architecture
+### Target State
+
+All pages converge to a single visual system. Every page uses the same component library, color palette, spacing conventions, and animation patterns.
 
 ```mermaid
-graph LR
-    subgraph "Primary Routes"
-        Root["/"]
-        ServicesRoot["/services"]
-        ProductsRoot["/products"]
-        SolutionsRoot["/solutions"]
-        UniversityRoot["/university"]
-        ResourcesRoot["/resources"]
-        CompanyRoot["/company"]
-        ContactRoot["/contact"]
+graph TD
+    subgraph "Unified Premium Design Language"
+        DS[Design System Components]
+        DS --> S1[SectionHeader]
+        DS --> S2[TypewriterGradientText]
+        DS --> S3[GradientButton]
+        DS --> S4[AnimatedWrapper]
+        
+        T1[ServicePageTemplate] --> DS
+        T2[SolutionPageTemplate] --> DS
+        T3[UseCasePageTemplate] --> DS
+        T4[RolePageTemplate] --> DS
+        T5[ContentListPage] --> DS
+        T6[BlogPost template] --> DS
+        
+        SP1[About / Contact / Blog] --> DS
+        SP2[Portfolio / Clients / Products] --> DS
+        SP3[Locations / CeoProfile] --> DS
+        SP4[VisionPage / WhyUsPage] --> DS
+        SP5[Legal Pages x8] --> DS
+        SP6[SolutionsHub + sub-pages] --> DS
+        SP7[Legacy Services x6] --> DS
+        SP8[Legacy Products x6] --> DS
+        SP9[Blog Posts x9] --> DS
+        SP10[Client Sub-Pages x3] --> DS
+        SP11[Applications] --> DS
     end
     
-    subgraph "Service Sub-routes"
-        AI["/ai-consulting"]
-        Data["/data-engineering"]
-        Cloud["/cloud-solutions"]
-        Custom["/custom-development"]
+    subgraph "Deprecated (No Imports)"
+        GC[GlassCard - deprecated]
+        UL[UniverseLights - unused]
     end
-    
-    subgraph "Product Sub-routes"
-        Allama["/allama"]
-        DBlock["/dblock"]
-    end
-    
-    subgraph "Solution Sub-routes"
-        Finance["/financial-services"]
-        Health["/healthcare"]
-        Tech["/technology"]
-    end
-    
-    subgraph "University Sub-routes"
-        Tutorials["/tutorials"]
-        Demos["/live-demos"]
-        Talks["/tech-talks"]
-        Webinars["/webinars"]
-    end
-    
-    ServicesRoot --> AI
-    ServicesRoot --> Data
-    ServicesRoot --> Cloud
-    ServicesRoot --> Custom
-    
-    ProductsRoot --> Allama
-    ProductsRoot --> DBlock
-    
-    SolutionsRoot --> Finance
-    SolutionsRoot --> Health
-    SolutionsRoot --> Tech
-    
-    UniversityRoot --> Tutorials
-    UniversityRoot --> Demos
-    UniversityRoot --> Talks
-    UniversityRoot --> Webinars
 ```
+
+### Migration Strategy
+
+The migration follows a priority order that maximizes visual impact:
+
+1. **Templates first** — SolutionPageTemplate, UseCasePageTemplate, RolePageTemplate, ContentListPage (affects 29 routes via data-driven rendering)
+2. **Shared components** — GridBackground, Hero, Navbar alignment, PromoBanner
+3. **Standalone pages** — About, Contact, Blog, Portfolio, Clients, Products hub, Locations, CeoProfile, VisionPage, WhyUsPage, SolutionsHub, Applications
+4. **Legacy pages** — Legacy services (6), legacy solutions (3), legacy products (6), client sub-pages (3), solutions hub sub-pages (4), blog posts (9)
+5. **Legal pages** — Old set (4) + new set (4)
+6. **Cleanup** — GlassCard deprecation, framer-motion audit, color palette audit
 
 ## Components and Interfaces
 
-### Navigation Component
+### Design System Components (Existing — No Changes)
 
-```typescript
-// src/components/navigation/MainNav.tsx
-interface NavItem {
-  label: string;
-  href: string;
-  children?: NavItem[];
-}
+These components are already built and form the target design system:
 
-interface MainNavProps {
-  items: NavItem[];
-  currentPath: string;
-}
-
-// Navigation structure
-const navigationItems: NavItem[] = [
-  {
-    label: "Services",
-    href: "/services",
-    children: [
-      { label: "AI Consulting", href: "/services/ai-consulting" },
-      { label: "Data Engineering", href: "/services/data-engineering" },
-      { label: "Cloud Solutions", href: "/services/cloud-solutions" },
-      { label: "Custom Development", href: "/services/custom-development" },
-    ],
-  },
-  {
-    label: "Products",
-    href: "/products",
-    children: [
-      { label: "Allama", href: "/products/allama" },
-      { label: "DBLOCK", href: "/products/dblock" },
-    ],
-  },
-  {
-    label: "Solutions",
-    href: "/solutions",
-    children: [
-      { label: "Financial Services", href: "/solutions/financial-services" },
-      { label: "Healthcare", href: "/solutions/healthcare" },
-      { label: "Technology", href: "/solutions/technology" },
-    ],
-  },
-  {
-    label: "University",
-    href: "/university",
-    children: [
-      { label: "Tutorials", href: "/university/tutorials" },
-      { label: "Live Demos", href: "/university/live-demos" },
-      { label: "Tech Talks", href: "/university/tech-talks" },
-      { label: "Webinars", href: "/university/webinars" },
-    ],
-  },
-  {
-    label: "Resources",
-    href: "/resources",
-    children: [
-      { label: "Blog", href: "/resources/blog" },
-      { label: "Case Studies", href: "/resources/case-studies" },
-      { label: "Documentation", href: "/resources/documentation" },
-    ],
-  },
-  {
-    label: "Company",
-    href: "/company",
-    children: [
-      { label: "About", href: "/company/about" },
-      { label: "Team", href: "/company/team" },
-      { label: "Careers", href: "/company/careers" },
-      { label: "Investors", href: "/company/investors" },
-    ],
-  },
-  { label: "Contact", href: "/contact" },
-];
+#### SectionHeader
+```tsx
+<SectionHeader
+  badge="Optional Badge"           // purple pill badge above title
+  title="Section Title"            // gradient text by default
+  description="Optional subtitle"  // gray-400 text below
+  alignment="center"               // "center" | "left"
+  gradientTitle={true}             // gradient or white title
+  titleAs="h2"                     // semantic heading level
+/>
 ```
 
-### Homepage Section Components
-
-```typescript
-// src/components/sections/homepage/HeroSection.tsx
-interface HeroSectionProps {
-  headline: string;
-  subheadline?: string;
-  primaryCTA: CTAProps;
-  secondaryCTA: CTAProps;
-  trustBadges?: TrustBadge[];
-  videoUrl?: string;
-}
-
-interface CTAProps {
-  label: string;
-  href: string;
-  variant: "primary" | "secondary";
-  onClick?: () => void;
-}
-
-interface TrustBadge {
-  icon?: React.ReactNode;
-  label: string;
-  value?: string;
-}
-
-// src/components/sections/homepage/ThreePillarsSection.tsx
-interface Pillar {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  href: string;
-  features: string[];
-}
-
-interface ThreePillarsSectionProps {
-  pillars: Pillar[];
-}
-
-// src/components/sections/homepage/ProductsShowcaseSection.tsx
-interface ProductCard {
-  name: string;
-  tagline: string;
-  description: string;
-  features: string[];
-  href: string;
-  status: "live" | "coming-soon";
-  ctaLabel: string;
-}
-
-interface ProductsShowcaseSectionProps {
-  products: ProductCard[];
-}
-
-// src/components/sections/homepage/IndustriesSection.tsx
-interface Industry {
-  icon: React.ReactNode;
-  name: string;
-  description: string;
-  href: string;
-}
-
-interface IndustriesSectionProps {
-  industries: Industry[];
-}
-
-// src/components/sections/homepage/WhyDigitransLabSection.tsx
-interface Differentiator {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  metric?: {
-    value: string;
-    label: string;
-  };
-}
-
-interface WhyDigitransLabSectionProps {
-  differentiators: Differentiator[];
-}
-
-// src/components/sections/homepage/TestimonialsSection.tsx
-interface Testimonial {
-  quote: string;
-  author: string;
-  title: string;
-  company: string;
-  avatar?: string;
-}
-
-interface TestimonialsSectionProps {
-  testimonials: Testimonial[];
-}
-
-// src/components/sections/homepage/FinalCTASection.tsx
-interface FinalCTASectionProps {
-  headline: string;
-  subheadline?: string;
-  primaryCTA: CTAProps;
-  secondaryCTA: CTAProps;
-}
+#### TypewriterGradientText
+```tsx
+<TypewriterGradientText
+  text="Hero Heading Text"
+  className="text-4xl md:text-5xl lg:text-6xl font-bold"
+  delay={0}
+  duration={1.5}
+  showCursor={true}
+/>
 ```
 
-### Product Page Components
-
-```typescript
-// src/components/pages/products/AllamaPage.tsx
-interface AllamaFeature {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  capabilities: string[];
-}
-
-interface Integration {
-  category: string;
-  tools: string[];
-}
-
-interface CompetitorComparison {
-  aspect: string;
-  allama: string;
-  competitor: string;
-}
-
-interface AllamaPageProps {
-  hero: {
-    tagline: string;
-    headline: string;
-    description: string;
-    primaryCTA: CTAProps;
-    secondaryCTA: CTAProps;
-  };
-  valuePropositions: {
-    title: string;
-    description: string;
-    icon: React.ReactNode;
-  }[];
-  features: AllamaFeature[];
-  integrations: Integration[];
-  deploymentOptions: {
-    name: string;
-    description: string;
-    features: string[];
-  }[];
-  competitorComparisons: {
-    competitor: string;
-    comparisons: CompetitorComparison[];
-  }[];
-}
-
-// src/components/pages/products/DBlockPage.tsx
-interface DBlockPageProps {
-  hero: {
-    headline: string;
-    teaser: string;
-  };
-  emailSignup: {
-    placeholder: string;
-    buttonLabel: string;
-    onSubmit: (email: string) => Promise<void>;
-  };
-}
+#### GradientButton
+```tsx
+<GradientButton
+  variant="primary"    // "primary" | "secondary" | "outline" | "ghost" | "link"
+  size="lg"            // "sm" | "md" | "lg" | "xl" | "icon"
+  leftIcon={<Calendar className="w-5 h-5" />}
+  onClick={() => navigate("/contact")}
+>
+  Book a Consultation
+</GradientButton>
 ```
 
-### University Hub Components
-
-```typescript
-// src/components/pages/university/UniversityHub.tsx
-interface ContentItem {
-  id: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  duration?: string;
-  category: "tutorial" | "live-demo" | "tech-talk" | "webinar";
-  tags: string[];
-  date: string;
-  href: string;
-}
-
-interface UniversityHubProps {
-  featuredContent: ContentItem[];
-  categories: {
-    name: string;
-    slug: string;
-    description: string;
-    icon: React.ReactNode;
-  }[];
-}
-
-// src/components/pages/university/ContentListPage.tsx
-interface ContentListPageProps {
-  category: string;
-  title: string;
-  description: string;
-  items: ContentItem[];
-  filters?: {
-    topics: string[];
-    durations: string[];
-  };
-}
+#### AnimatedWrapper
+```tsx
+<AnimatedWrapper
+  animation="fadeUp"   // "fadeUp" | "fadeDown" | "fadeLeft" | "fadeRight" | "scale" | "blur" | etc.
+  delay={0.1}
+  duration={0.6}
+  once={true}
+  amount={0.3}
+>
+  <div>Content to animate on scroll</div>
+</AnimatedWrapper>
 ```
 
-### Shared UI Components
 
-```typescript
-// src/components/ui/glass-card.tsx
-interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "default" | "gradient" | "hover";
-  children: React.ReactNode;
-}
+### Premium Design Language Specification
 
-// src/components/ui/gradient-button.tsx
-interface GradientButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "outline";
-  size?: "sm" | "md" | "lg";
-  asChild?: boolean;
-}
+Every page must implement these exact patterns:
 
-// src/components/ui/section-header.tsx
-interface SectionHeaderProps {
-  badge?: string;
-  title: string;
-  description?: string;
-  alignment?: "left" | "center";
-}
-
-// src/components/ui/animated-wrapper.tsx
-interface AnimatedWrapperProps {
-  children: React.ReactNode;
-  animation?: "fade-up" | "fade-in" | "slide-left" | "slide-right";
-  delay?: number;
-  duration?: number;
-}
-
-// src/components/ui/breadcrumbs.tsx
-interface BreadcrumbItem {
-  label: string;
-  href?: string;
-}
-
-interface BreadcrumbsProps {
-  items: BreadcrumbItem[];
-}
+#### Page Shell
+```tsx
+<div className="min-h-screen bg-black">
+  <Navbar />
+  <main>
+    {/* Hero section */}
+    {/* Content sections */}
+    {/* CTA section */}
+  </main>
+  <Footer />
+</div>
 ```
+
+#### Hero Section Pattern
+```tsx
+<section className="relative pt-36 pb-24 overflow-hidden">
+  {/* Animated background */}
+  <div className="absolute inset-0">
+    <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
+    {/* Floating gradient orbs */}
+    <div className="absolute top-0 left-0 w-full h-full">
+      <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
+      <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
+    </div>
+    {/* Grid pattern overlay */}
+    <div className="absolute inset-0 opacity-[0.03]" style={{
+      backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
+      backgroundSize: "60px 60px",
+    }} />
+  </div>
+  {/* Content */}
+  <div className="relative container mx-auto px-4">
+    <TypewriterGradientText text="Page Title" className="text-4xl md:text-5xl lg:text-6xl font-bold" />
+    <p className="text-xl text-gray-300/90 max-w-3xl">Subtitle text</p>
+  </div>
+</section>
+```
+
+#### Backdrop Blur Card Pattern
+```tsx
+{/* Standard card */}
+<div className="group bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-8 hover:border-purple-500/30 transition-all duration-300">
+  {/* Hover gradient overlay */}
+  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+  {/* Icon container */}
+  <div className="w-14 h-14 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl flex items-center justify-center mb-6">
+    <Icon className="w-7 h-7 text-purple-400" />
+  </div>
+  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-purple-300 transition-colors">{title}</h3>
+  <p className="text-gray-400">{description}</p>
+</div>
+```
+
+#### Numbered Item Pattern
+```tsx
+<div className="flex gap-6">
+  <span className="text-4xl font-mono text-gray-600">{String(index + 1).padStart(2, '0')}</span>
+  <div>
+    <h3 className="text-xl font-semibold text-white mb-2">{title}</h3>
+    <p className="text-gray-400">{description}</p>
+  </div>
+</div>
+```
+
+#### Content Section Pattern
+```tsx
+<section className="py-20 relative">
+  <div className="container mx-auto px-4">
+    <SectionHeader badge="Badge" title="Section Title" description="Description" />
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+      {items.map((item, i) => (
+        <AnimatedWrapper key={i} animation="fadeUp" delay={i * 0.1}>
+          {/* Backdrop blur card */}
+        </AnimatedWrapper>
+      ))}
+    </div>
+  </div>
+</section>
+```
+
+#### Bottom CTA Section Pattern
+```tsx
+<section className="py-24 relative overflow-hidden">
+  <div className="absolute inset-0">
+    <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
+    <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
+  </div>
+  <div className="relative container mx-auto px-4 text-center">
+    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+        Ready to Get Started?
+      </span>
+    </h2>
+    <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Description</p>
+    <GradientButton size="lg" leftIcon={<Calendar className="w-5 h-5" />} onClick={() => navigate("/contact")}>
+      Book a Consultation
+    </GradientButton>
+  </div>
+</section>
+```
+
+#### Color Palette
+| Token | Usage | Value |
+|-------|-------|-------|
+| Primary accent | Icons, borders, hover states | `purple-400` / `purple-500` |
+| Secondary accent | Gradient endpoints, orbs | `blue-400` / `blue-500` |
+| Tertiary accent | Gradient endpoints | `indigo-400` |
+| Card background | Card fills | `bg-gray-900/50` |
+| Card border | Default borders | `border-gray-800/50` |
+| Card hover border | Hover state | `hover:border-purple-500/30` |
+| Page background | All pages | `bg-black` |
+| Primary text | Headings | `text-white` |
+| Body text | Descriptions | `text-gray-300/90` or `text-gray-400` |
+| Secondary text | Captions, labels | `text-gray-500` |
+| Numbered items | Mono numbers | `text-gray-600` |
+| Success indicators | Checkmarks | `green-400` / `emerald-500` |
+| Gradient text | Section headings | `from-purple-400 via-blue-400 to-indigo-400` |
+
+### Legacy Components to Remove/Replace
+
+| Legacy Component | Replacement |
+|-----------------|-------------|
+| `GlassCard` | Inline `bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl` |
+| `Card` (shadcn) | Same inline backdrop-blur card pattern |
+| `motion.div` (page-level) | `AnimatedWrapper` |
+| `UniverseLights` | Remove entirely (floating gradient orbs are per-section) |
+| `Button` (shadcn) | `GradientButton` |
+| `ProgressBar` | Remove (not part of premium design) |
+| `BackToTop` | Remove (not part of premium design) |
+| `StickyCTA` | Remove (not part of premium design) |
+| `RegistrationModal` | `GradientButton` navigating to `/contact` |
+| `Dialog` (for cards) | Direct navigation to target page |
+
+### Import Replacement Map
+
+For each page being migrated, replace these imports:
+
+```tsx
+// REMOVE these imports:
+import { motion } from "framer-motion";
+import { GlassCard } from "@/components/ui/glass-card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import UniverseLights from "@/components/UniverseLights";
+import { ProgressBar } from "@/components/ui/progress-bar";
+import { BackToTop } from "@/components/ui/back-to-top";
+import { StickyCTA } from "@/components/ui/sticky-cta";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
+// ADD these imports (as needed):
+import { GradientButton } from "@/components/ui/gradient-button";
+import { SectionHeader } from "@/components/ui/section-header";
+import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
+import { TypewriterGradientText } from "@/components/ui/typewriter-text";
+```
+
 
 ## Data Models
 
-### Page Content Data Structures
+No data model changes are required. This is a purely visual/CSS overhaul. All existing data structures, API calls, route definitions, and content remain unchanged.
 
-```typescript
-// src/data/homepage.ts
-export interface HomepageData {
-  hero: {
-    headline: string;
-    subheadline: string;
-    primaryCTA: { label: string; href: string };
-    secondaryCTA: { label: string; href: string };
-    trustBadges: { label: string; value: string }[];
-  };
-  pillars: {
-    icon: string;
-    title: string;
-    description: string;
-    href: string;
-    features: string[];
-  }[];
-  products: {
-    name: string;
-    tagline: string;
-    description: string;
-    features: string[];
-    href: string;
-    status: "live" | "coming-soon";
-  }[];
-  industries: {
-    icon: string;
-    name: string;
-    description: string;
-    href: string;
-  }[];
-  differentiators: {
-    icon: string;
-    title: string;
-    description: string;
-    metric?: { value: string; label: string };
-  }[];
-  testimonials: {
-    quote: string;
-    author: string;
-    title: string;
-    company: string;
-  }[];
-}
-
-// src/data/allama.ts
-export interface AllamaData {
-  hero: {
-    tagline: string;
-    headline: string;
-    description: string;
-  };
-  valuePropositions: {
-    icon: string;
-    title: string;
-    description: string;
-    stats?: { value: string; label: string };
-  }[];
-  features: {
-    icon: string;
-    title: string;
-    description: string;
-    capabilities: string[];
-    marketingAngle: string;
-  }[];
-  integrations: {
-    category: string;
-    tools: string[];
-  }[];
-  deploymentOptions: {
-    name: string;
-    description: string;
-    features: string[];
-    recommended?: boolean;
-  }[];
-  competitors: {
-    name: string;
-    comparisons: {
-      aspect: string;
-      allama: string;
-      competitor: string;
-    }[];
-  }[];
-  useCases: {
-    title: string;
-    problem: string;
-    solution: string;
-    result: string;
-  }[];
-}
-
-// src/data/services.ts
-export interface ServiceData {
-  slug: string;
-  title: string;
-  description: string;
-  hero: {
-    headline: string;
-    subheadline: string;
-  };
-  deliverables: {
-    title: string;
-    description: string;
-  }[];
-  process: {
-    step: number;
-    title: string;
-    description: string;
-  }[];
-  relatedCaseStudies: string[];
-  relatedProducts: string[];
-}
-
-// src/data/solutions.ts
-export interface SolutionData {
-  slug: string;
-  industry: string;
-  title: string;
-  description: string;
-  hero: {
-    headline: string;
-    subheadline: string;
-  };
-  challenges: {
-    title: string;
-    description: string;
-  }[];
-  services: string[];
-  compliance?: string[];
-  caseStudies: string[];
-}
-
-// src/data/university.ts
-export interface UniversityContentItem {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  duration: string;
-  category: "tutorial" | "live-demo" | "tech-talk" | "webinar";
-  tags: string[];
-  publishedDate: string;
-  videoUrl?: string;
-  externalUrl?: string;
-}
-```
-
-### Design System Tokens
-
-```typescript
-// src/lib/design-tokens.ts
-export const colors = {
-  primary: {
-    50: "#faf5ff",
-    100: "#f3e8ff",
-    200: "#e9d5ff",
-    300: "#d8b4fe",
-    400: "#c084fc",
-    500: "#a855f7",
-    600: "#9333ea",
-    700: "#7c3aed",
-    800: "#6b21a8",
-    900: "#581c87",
-  },
-  secondary: {
-    50: "#eff6ff",
-    100: "#dbeafe",
-    200: "#bfdbfe",
-    300: "#93c5fd",
-    400: "#60a5fa",
-    500: "#3b82f6",
-    600: "#2563eb",
-    700: "#1d4ed8",
-    800: "#1e40af",
-    900: "#1e3a8a",
-  },
-  accent: {
-    50: "#eef2ff",
-    100: "#e0e7ff",
-    200: "#c7d2fe",
-    300: "#a5b4fc",
-    400: "#818cf8",
-    500: "#6366f1",
-    600: "#4f46e5",
-    700: "#4338ca",
-    800: "#3730a3",
-    900: "#312e81",
-  },
-  gray: {
-    50: "#f9fafb",
-    100: "#f3f4f6",
-    200: "#e5e7eb",
-    300: "#d1d5db",
-    400: "#9ca3af",
-    500: "#6b7280",
-    600: "#4b5563",
-    700: "#374151",
-    800: "#1f2937",
-    900: "#111827",
-    950: "#030712",
-  },
-};
-
-export const spacing = {
-  0: "0",
-  1: "0.25rem",  // 4px
-  2: "0.5rem",   // 8px
-  3: "0.75rem",  // 12px
-  4: "1rem",     // 16px
-  5: "1.25rem",  // 20px
-  6: "1.5rem",   // 24px
-  8: "2rem",     // 32px
-  10: "2.5rem",  // 40px
-  12: "3rem",    // 48px
-  16: "4rem",    // 64px
-  20: "5rem",    // 80px
-  24: "6rem",    // 96px
-};
-
-export const typography = {
-  fontFamily: {
-    sans: ["Inter", "system-ui", "sans-serif"],
-    mono: ["JetBrains Mono", "monospace"],
-  },
-  fontSize: {
-    xs: ["0.75rem", { lineHeight: "1rem" }],
-    sm: ["0.875rem", { lineHeight: "1.25rem" }],
-    base: ["1rem", { lineHeight: "1.5rem" }],
-    lg: ["1.125rem", { lineHeight: "1.75rem" }],
-    xl: ["1.25rem", { lineHeight: "1.75rem" }],
-    "2xl": ["1.5rem", { lineHeight: "2rem" }],
-    "3xl": ["1.875rem", { lineHeight: "2.25rem" }],
-    "4xl": ["2.25rem", { lineHeight: "2.5rem" }],
-    "5xl": ["3rem", { lineHeight: "1" }],
-    "6xl": ["3.75rem", { lineHeight: "1" }],
-  },
-};
-
-export const shadows = {
-  glow: {
-    purple: "0 0 40px rgba(139, 92, 246, 0.3)",
-    blue: "0 0 40px rgba(59, 130, 246, 0.3)",
-  },
-  card: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-};
-
-export const gradients = {
-  primary: "linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%)",
-  secondary: "linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%)",
-  background: "linear-gradient(180deg, #000000 0%, #111827 100%)",
-  card: "linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%)",
-};
-```
-
-
-
-## File Structure
-
-```
-src/
-├── components/
-│   ├── navigation/
-│   │   ├── MainNav.tsx           # Primary navigation with dropdowns
-│   │   ├── MobileNav.tsx         # Mobile hamburger menu
-│   │   └── NavDropdown.tsx       # Dropdown menu component
-│   │
-│   ├── sections/
-│   │   ├── homepage/
-│   │   │   ├── HeroSection.tsx
-│   │   │   ├── ThreePillarsSection.tsx
-│   │   │   ├── ProductsShowcaseSection.tsx
-│   │   │   ├── IndustriesSection.tsx
-│   │   │   ├── WhyDigitransLabSection.tsx
-│   │   │   ├── TestimonialsSection.tsx
-│   │   │   └── FinalCTASection.tsx
-│   │   │
-│   │   └── shared/
-│   │       ├── PageHero.tsx      # Reusable hero for inner pages
-│   │       ├── CTASection.tsx    # Reusable CTA section
-│   │       └── FeatureGrid.tsx   # Reusable feature grid
-│   │
-│   ├── pages/
-│   │   ├── HomePage.tsx          # New homepage with 7 sections
-│   │   │
-│   │   ├── products/
-│   │   │   ├── AllamaPage.tsx
-│   │   │   └── DBlockPage.tsx
-│   │   │
-│   │   ├── services/
-│   │   │   ├── AIConsultingPage.tsx
-│   │   │   ├── DataEngineeringPage.tsx
-│   │   │   ├── CloudSolutionsPage.tsx
-│   │   │   └── CustomDevelopmentPage.tsx
-│   │   │
-│   │   ├── solutions/
-│   │   │   ├── FinancialServicesPage.tsx
-│   │   │   ├── HealthcarePage.tsx
-│   │   │   └── TechnologyPage.tsx
-│   │   │
-│   │   ├── university/
-│   │   │   ├── UniversityHubPage.tsx
-│   │   │   ├── TutorialsPage.tsx
-│   │   │   ├── LiveDemosPage.tsx
-│   │   │   ├── TechTalksPage.tsx
-│   │   │   └── WebinarsPage.tsx
-│   │   │
-│   │   ├── resources/
-│   │   │   ├── CaseStudiesPage.tsx
-│   │   │   └── DocumentationPage.tsx
-│   │   │
-│   │   └── company/
-│   │       ├── AboutPage.tsx
-│   │       ├── TeamPage.tsx
-│   │       └── InvestorsPage.tsx
-│   │
-│   └── ui/
-│       ├── glass-card.tsx        # Glass morphism card
-│       ├── gradient-button.tsx   # Gradient CTA button
-│       ├── section-header.tsx    # Section title component
-│       ├── animated-wrapper.tsx  # Framer Motion wrapper
-│       ├── content-card.tsx      # University content card
-│       └── comparison-table.tsx  # Product comparison table
-│
-├── data/
-│   ├── homepage.ts               # Homepage content data
-│   ├── allama.ts                 # Allama product data
-│   ├── services.ts               # Services content data
-│   ├── solutions.ts              # Solutions content data
-│   ├── university.ts             # University content data
-│   └── navigation.ts             # Navigation structure
-│
-└── lib/
-    ├── design-tokens.ts          # Design system tokens
-    └── utils.ts                  # Utility functions (existing)
-```
-
-## Animation Specifications
-
-### Page Transitions
-
-```typescript
-// Framer Motion variants for page transitions
-export const pageTransition = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
-  transition: { duration: 0.3, ease: "easeInOut" },
-};
-```
-
-### Section Animations
-
-```typescript
-// Staggered children animation for sections
-export const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-export const staggerItem = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
-```
-
-### Hover Effects
-
-```typescript
-// Card hover animation
-export const cardHover = {
-  rest: { scale: 1, boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)" },
-  hover: {
-    scale: 1.02,
-    boxShadow: "0 20px 40px rgba(139, 92, 246, 0.2)",
-    transition: { duration: 0.3, ease: "easeOut" },
-  },
-};
-
-// Button hover animation
-export const buttonHover = {
-  rest: { scale: 1 },
-  hover: { scale: 1.05 },
-  tap: { scale: 0.98 },
-};
-```
-
-### Reduced Motion Support
-
-```typescript
-// Hook for respecting user preferences
-export const useReducedMotion = () => {
-  const [reducedMotion, setReducedMotion] = useState(false);
-  
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mediaQuery.matches);
-    
-    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }, []);
-  
-  return reducedMotion;
-};
-```
-
-## SEO Implementation
-
-### Meta Tags Structure
-
-```typescript
-// src/components/SEO.tsx enhancement
-interface SEOProps {
-  title: string;
-  description: string;
-  keywords?: string[];
-  ogImage?: string;
-  ogType?: "website" | "article" | "product";
-  canonicalUrl?: string;
-  structuredData?: object;
-}
-
-// Page-specific SEO data
-export const seoData = {
-  homepage: {
-    title: "DigitransLab | AI & Data Solutions That Transform Business",
-    description: "Consulting and software company specialising in AI agentic automation for Data platforms and Cloud security. Explore Allama, our open-source SOAR platform.",
-    keywords: ["AI automation", "data platforms", "cloud security", "SOAR", "security automation"],
-  },
-  allama: {
-    title: "Allama | AI-Powered Security Automation Platform",
-    description: "Turn 15-minute investigations into 30-second workflows. Enterprise SOAR capabilities at open-source pricing with AI-native automation.",
-    keywords: ["SOAR", "security automation", "AI security", "open source", "threat detection"],
-  },
-  // ... additional pages
-};
-```
-
-### Structured Data
-
-```typescript
-// JSON-LD for organisation
-export const organisationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organisation",
-  name: "DigitransLab",
-  url: "https://digitranslab.com",
-  logo: "https://digitranslab.com/logo.png",
-  description: "AI & Data Solutions consulting and software company",
-  sameAs: [
-    "https://github.com/digitranslab",
-    "https://twitter.com/digitranslab",
-    "https://linkedin.com/company/digitranslab",
-  ],
-};
-
-// JSON-LD for product (Allama)
-export const allamaProductSchema = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Allama",
-  applicationCategory: "SecurityApplication",
-  operatingSystem: "Linux, Docker, Kubernetes",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  description: "Open-source AI-native security automation platform (SOAR)",
-};
-```
-
-
+The only data-adjacent concern is ensuring that template pages (SolutionPageTemplate, UseCasePageTemplate, RolePageTemplate, ContentListPage) continue to correctly render their data-driven content after the visual migration. The data interfaces (`ServiceData`, `SolutionData`, `UseCaseData`, `RoleData`) are not modified.
 
 ## Correctness Properties
 
-*A property is a characteristic or behaviour that should hold true across all valid executions of a system—essentially, a formal statement about what the system should do. Properties serve as the bridge between human-readable specifications and machine-verifiable correctness guarantees.*
-
-### Property 1: Route Accessibility
-
-*For all* defined routes in the website structure (services, products, solutions, university, resources, company pages), navigating to that route SHALL render a valid page component without errors.
-
-**Validates: Requirements 1.3, 9.1, 10.1, 11.1, 12.1, 13.1, 14.2, 14.3, 15.1, 16.1**
-
-### Property 2: Navigation Item Completeness
-
-*For all* primary navigation items, the navigation component SHALL render the item with a label and href, and if the item has children, all child items SHALL also have labels and hrefs.
-
-**Validates: Requirements 1.1, 1.2**
-
-### Property 3: Active Navigation State
-
-*For any* valid route path, the navigation system SHALL correctly identify and highlight the corresponding navigation item as active.
-
-**Validates: Requirements 1.4**
-
-### Property 4: Breadcrumb Conditional Rendering
-
-*For any* page route, breadcrumbs SHALL be rendered if and only if the route is not the homepage ("/").
-
-**Validates: Requirements 1.5**
-
-### Property 5: Content Card Field Completeness
-
-*For all* content items (pillars, industries, testimonials, university content, team members), the rendered card SHALL display all required fields as specified in the data model.
-
-**Validates: Requirements 3.2, 5.2, 7.2, 13.3, 14.4, 15.4**
-
-### Property 6: Internal Link Validity
-
-*For all* internal links rendered on industry cards, service pages, and solution pages, the href SHALL correspond to a valid route that exists in the application.
-
-**Validates: Requirements 5.3, 11.4, 12.4**
-
-### Property 7: Service Page Section Completeness
-
-*For all* service pages, the page SHALL render sections for: Hero, service description, key deliverables, process overview, and contact CTA.
-
-**Validates: Requirements 11.2**
-
-### Property 8: Solution Page Section Completeness
-
-*For all* solution pages, the page SHALL render sections for: industry-specific hero, key challenges, relevant services, and contact CTA.
-
-**Validates: Requirements 12.2**
-
-### Property 9: Solution Page Compliance Display
-
-*For all* solution pages that have compliance requirements defined in their data, the page SHALL display those compliance considerations.
-
-**Validates: Requirements 12.3**
-
-### Property 10: University Content Filtering
-
-*For any* filter selection (category or topic), the filtered content list SHALL contain only items that match the selected filter criteria.
-
-**Validates: Requirements 13.4**
-
-### Property 11: University Content Search
-
-*For any* search query, the search results SHALL contain only content items where the title, description, or tags contain the search term.
-
-**Validates: Requirements 13.5**
-
-### Property 12: Email Subscription Validation
-
-*For any* email input to the DBLOCK signup form, the form SHALL accept valid email formats and reject invalid formats before submission.
-
-**Validates: Requirements 10.4**
-
-### Property 13: Contact Form Validation
-
-*For any* contact form submission, the form SHALL validate that all required fields (name, email, message) are non-empty and email is valid format before allowing submission.
-
-**Validates: Requirements 16.3**
-
-### Property 14: SEO Meta Tag Presence
-
-*For all* pages in the application, the page SHALL render meta tags for title and description.
-
-**Validates: Requirements 19.1**
-
-### Property 15: Semantic HTML Structure
-
-*For all* pages, the page SHALL use semantic HTML elements (header, main, nav, footer) and maintain proper heading hierarchy (h1 followed by h2, etc.).
-
-**Validates: Requirements 19.4, 19.5**
-
-### Property 16: Structured Data Validity
-
-*For all* pages with structured data, the JSON-LD SHALL be valid JSON and conform to Schema.org specifications.
-
-**Validates: Requirements 19.2**
-
-### Property 17: Sitemap Completeness
-
-*For all* public routes in the application, the sitemap.xml SHALL contain an entry for that route.
-
-**Validates: Requirements 19.3**
-
-### Property 18: Reduced Motion Preference
-
-*For any* user with prefers-reduced-motion enabled, animation components SHALL disable or reduce animations accordingly.
-
-**Validates: Requirements 20.4**
-
-### Property 19: Mobile Navigation Behaviour
-
-*For any* viewport width below the mobile breakpoint (640px), the navigation SHALL render as a hamburger menu instead of the full navigation bar.
-
-**Validates: Requirements 18.2**
-
-### Property 20: Backward Compatibility
-
-*For all* existing routes (products/kozmo-ai, products/bigbytes, products/godash, products/ledger, products/utrack, products/ember, and existing service/solution routes), the routes SHALL continue to render their original components without errors.
-
-**Validates: Requirements 21.2, 21.3, 21.4**
-
-### Property 21: Differentiator Metric Display
-
-*For all* differentiators that have a metric defined in their data, the rendered component SHALL display the metric value and label.
-
-**Validates: Requirements 6.2**
-
-### Property 22: Featured University Content
-
-*For all* content categories (tutorials, live-demos, tech-talks, webinars), the University Hub landing page SHALL display at least one featured item from each category.
-
-**Validates: Requirements 13.2**
+*A property is a characteristic or behavior that should hold true across all valid executions of a system — essentially, a formal statement about what the system should do. Properties serve as the bridge between human-readable specifications and machine-verifiable correctness guarantees.*
+
+This feature is a UI/CSS design overhaul with no business logic, data transformations, or algorithmic behavior. All 38 requirements specify visual patterns (CSS classes, component usage, color values, spacing) and component replacement (GlassCard → inline cards, framer-motion → AnimatedWrapper).
+
+None of the acceptance criteria are amenable to property-based testing because:
+- They describe visual appearance, not computable input/output relationships
+- They specify which CSS classes and components to use, not behavioral invariants
+- They require visual inspection or static code analysis (grep), not runtime property verification
+- Accessibility criteria (Req 38) require manual testing with assistive technologies
+
+**No correctness properties are defined for this feature.**
+
+Verification will be done through:
+1. Visual review of each page after migration
+2. Static code analysis (grep for GlassCard imports, framer-motion page-level imports)
+3. Manual responsive testing across breakpoints
+4. Accessibility audit with browser dev tools
 
 ## Error Handling
 
-### Route Error Handling
+Since this is a visual redesign with no new logic, error handling concerns are minimal:
 
-```typescript
-// 404 Not Found handling
-const NotFoundPage: React.FC = () => (
-  <div className="min-h-screen flex items-center justify-center">
-    <div className="text-center">
-      <h1 className="text-4xl font-bold text-white mb-4">Page Not Found</h1>
-      <p className="text-gray-400 mb-8">The page you're looking for doesn't exist.</p>
-      <GradientButton href="/">Return Home</GradientButton>
-    </div>
-  </div>
-);
+1. **Netlify Forms preservation (Req 5.6)**: The Contact page redesign must preserve the `form-name` attribute, honeypot field, and AJAX submission handler. Failure to preserve these would break form submissions silently. Verify by submitting a test form after migration.
 
-// Error boundary for component errors
-class ErrorBoundary extends React.Component<
-  { children: React.ReactNode; fallback?: React.ReactNode },
-  { hasError: boolean }
-> {
-  state = { hasError: false };
-  
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error("Component error:", error, errorInfo);
-  }
-  
-  render() {
-    if (this.state.hasError) {
-      return this.props.fallback || <div>Something went wrong.</div>;
-    }
-    return this.props.children;
-  }
-}
-```
+2. **Route integrity**: No routes are added or removed. All existing routes in `App.tsx` remain unchanged. The redesign only modifies the visual rendering of page components.
 
-### Form Error Handling
+3. **Component import errors**: When removing legacy imports (GlassCard, Card, Button, Dialog), ensure no remaining JSX references those components. TypeScript compilation will catch missing references.
 
-```typescript
-// Contact form validation errors
-interface FormErrors {
-  name?: string;
-  email?: string;
-  message?: string;
-  company?: string;
-}
+4. **framer-motion exceptions**: The following components are explicitly allowed to retain framer-motion usage:
+   - `AnimatedDataViz` — counter animations
+   - `Hero` — client logo infinite scroll
+   - `TypewriterGradientText` / `TypewriterText` — clip-path reveal animation
+   - `GridBackground` — if retained (may be simplified or removed per Req 26)
 
-const validateContactForm = (data: ContactFormData): FormErrors => {
-  const errors: FormErrors = {};
-  
-  if (!data.name?.trim()) {
-    errors.name = "Name is required";
-  }
-  
-  if (!data.email?.trim()) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    errors.email = "Please enter a valid email address";
-  }
-  
-  if (!data.message?.trim()) {
-    errors.message = "Message is required";
-  }
-  
-  return errors;
-};
-
-// Email subscription validation
-const validateEmail = (email: string): string | null => {
-  if (!email?.trim()) {
-    return "Email is required";
-  }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return "Please enter a valid email address";
-  }
-  return null;
-};
-```
-
-### Data Loading Error Handling
-
-```typescript
-// Loading states for async data
-interface LoadingState<T> {
-  data: T | null;
-  loading: boolean;
-  error: Error | null;
-}
-
-// Error display component
-const ErrorMessage: React.FC<{ error: Error; retry?: () => void }> = ({
-  error,
-  retry,
-}) => (
-  <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
-    <p className="text-red-400">{error.message}</p>
-    {retry && (
-      <button
-        onClick={retry}
-        className="mt-2 text-sm text-red-300 hover:text-red-200"
-      >
-        Try again
-      </button>
-    )}
-  </div>
-);
-```
-
-### Navigation Error Handling
-
-```typescript
-// Handle invalid navigation attempts
-const handleNavigation = (href: string) => {
-  try {
-    // Validate internal links
-    if (href.startsWith("/")) {
-      navigate(href);
-    } else if (href.startsWith("http")) {
-      window.open(href, "_blank", "noopener,noreferrer");
-    }
-  } catch (error) {
-    console.error("Navigation error:", error);
-    // Fallback to homepage
-    navigate("/");
-  }
-};
-```
+5. **SEO metadata (Req 36)**: Pages using direct `document.title` manipulation should be migrated to the `SEO` component. Missing metadata won't cause errors but will affect search rankings.
 
 ## Testing Strategy
 
-### Unit Testing
+### Approach
 
-Unit tests will verify specific examples and edge cases for individual components:
+This is a visual/CSS migration. Traditional unit tests and property-based tests are not applicable because the requirements specify visual patterns, not behavioral logic. The testing strategy focuses on verification methods appropriate for UI redesign work.
 
-1. **Component Rendering Tests**
-   - Verify each section component renders without errors
-   - Test that required props are correctly displayed
-   - Test conditional rendering logic (e.g., "Coming Soon" badge on DBLOCK)
+### Visual Verification (Primary)
 
-2. **Form Validation Tests**
-   - Test email validation with valid and invalid inputs
-   - Test required field validation
-   - Test form submission handlers
+Each page must be visually reviewed after migration to confirm:
+- bg-black background renders correctly
+- Floating gradient orbs are visible and positioned correctly
+- Grid overlay is subtle (opacity-[0.03]) and not competing with content
+- Backdrop-blur cards have correct border, background, and hover effects
+- Typography uses correct sizes and colors per the palette
+- Responsive layout works at mobile (375px), tablet (768px), and desktop (1280px+)
 
-3. **Navigation Tests**
-   - Test dropdown menu toggle behaviour
-   - Test mobile menu open/close
-   - Test active state calculation
+### Static Code Analysis (Automated)
 
-4. **Data Transformation Tests**
-   - Test filter functions for university content
-   - Test search matching logic
-   - Test breadcrumb generation from routes
+After all migrations are complete, run these verification checks:
 
-### Property-Based Testing
+```bash
+# Verify no GlassCard imports remain in page components
+grep -r "GlassCard" src/components/pages/ --include="*.tsx"
+# Expected: 0 results
 
-Property-based tests will use a testing library (e.g., fast-check) to verify universal properties:
+# Verify no page-level framer-motion imports (excluding allowed exceptions)
+grep -r "from \"framer-motion\"" src/components/pages/ --include="*.tsx"
+# Expected: 0 results in page files (exceptions are in ui/ and sections/)
 
-**Configuration**: Minimum 100 iterations per property test
+# Verify no UniverseLights imports remain
+grep -r "UniverseLights" src/components/ --include="*.tsx"
+# Expected: 0 results
 
-**Test Tagging Format**: `Feature: digitranslab-website-redesign, Property {number}: {property_text}`
+# Verify no Card imports from shadcn in page components
+grep -r "from.*ui/card" src/components/pages/ --include="*.tsx"
+# Expected: 0 results
 
-1. **Property 1: Route Accessibility**
-   - Generate all defined routes
-   - Verify each renders a valid component
+# Verify all pages import AnimatedWrapper (spot check)
+grep -r "AnimatedWrapper" src/components/pages/ --include="*.tsx" | wc -l
+# Expected: high count across all page files
+```
 
-2. **Property 2: Navigation Item Completeness**
-   - Generate navigation items with varying structures
-   - Verify all items have required fields
+### Functional Smoke Tests
 
-3. **Property 5: Content Card Field Completeness**
-   - Generate content items with all required fields
-   - Verify rendered output contains all fields
+After migration, manually verify these critical paths:
+1. **Contact form submission** — Netlify Forms still works (Req 5.6)
+2. **Navigation** — All routes render without errors
+3. **Hero video** — Homepage video background still plays (Req 27.6)
+4. **Client logo scroll** — Homepage logo carousel still animates (Req 27.6)
+5. **Blog post rendering** — Dynamic blog posts render correctly
+6. **Template data rendering** — All 10 industry pages, 9 use case pages, 5 role pages render their data correctly
 
-4. **Property 10: University Content Filtering**
-   - Generate random content items and filter criteria
-   - Verify filtered results match criteria
+### Accessibility Verification
 
-5. **Property 11: University Content Search**
-   - Generate random content items and search queries
-   - Verify search results contain query terms
+Use browser dev tools and Lighthouse to verify:
+- Color contrast ratios meet WCAG 2.1 AA (4.5:1 normal text, 3:1 large text)
+- Keyboard focus indicators are visible against dark backgrounds
+- Semantic HTML structure is maintained (header, main, section, nav, footer)
+- Images and icons have alt text or aria-labels
 
-6. **Property 12: Email Subscription Validation**
-   - Generate random strings (valid and invalid emails)
-   - Verify validation correctly accepts/rejects
+### No Property-Based Tests
 
-7. **Property 13: Contact Form Validation**
-   - Generate random form data combinations
-   - Verify validation correctly identifies invalid submissions
+This feature has no correctness properties and therefore no property-based tests. All requirements are visual/CSS specifications that cannot be meaningfully validated through automated property-based testing. The testing strategy relies on visual review, static code analysis, and functional smoke tests as described above.
 
-8. **Property 17: Sitemap Completeness**
-   - Generate list of all public routes
-   - Verify sitemap contains all routes
+## File-by-File Migration Plan
 
-9. **Property 18: Reduced Motion Preference**
-   - Test with reduced motion enabled/disabled
-   - Verify animation behaviour changes accordingly
+### Priority 1: Templates (High Impact — affects 29+ routes)
 
-10. **Property 20: Backward Compatibility**
-    - Generate list of existing routes
-    - Verify all existing routes still render correctly
+| File | Routes Affected | Key Changes |
+|------|----------------|-------------|
+| `src/components/pages/solutions/SolutionPageTemplate.tsx` | 10 industry pages | Replace GlassCard → backdrop-blur cards, add orbs/grid, use design system components |
+| `src/components/pages/use-cases/UseCasePageTemplate.tsx` | 9 use case pages | Verify/align with premium patterns, replace any remaining legacy patterns |
+| `src/components/pages/roles/RolePageTemplate.tsx` | 5 role pages | Verify/align with premium patterns, ensure CheckCircle green gradient |
+| `src/components/pages/university/ContentListPage.tsx` | 4 university pages | Replace legacy patterns with premium design |
+| `src/components/pages/BlogPost.tsx` | 9+ blog routes | Redesign article layout with backdrop-blur content area |
 
-### Integration Testing
+### Priority 2: Shared Components
 
-Integration tests will verify component interactions:
+| File | Impact | Key Changes |
+|------|--------|-------------|
+| `src/components/GridBackground.tsx` | All pages | Remove falling lines, remove dot pattern, simplify to minimal bg-black or remove entirely |
+| `src/components/Hero.tsx` | Homepage | Replace framer-motion → AnimatedWrapper, remove UniverseLights, replace Card → backdrop-blur cards, remove Dialog |
 
-1. **Navigation Flow Tests**
-   - Test navigation from homepage to all major sections
-   - Test breadcrumb navigation back to parent pages
-   - Test mobile navigation flow
+### Priority 3: Standalone Pages
 
-2. **Form Submission Flow Tests**
-   - Test complete contact form submission flow
-   - Test email subscription flow on DBLOCK page
+| File | Key Changes |
+|------|-------------|
+| `src/components/pages/About.tsx` or `src/components/About.tsx` | Full premium redesign |
+| `src/components/pages/Contact.tsx` | Premium redesign, preserve Netlify Forms |
+| `src/components/pages/Blog.tsx` | Premium redesign for listing page |
+| `src/components/pages/Portfolio.tsx` | Premium redesign |
+| `src/components/pages/Clients.tsx` | Premium redesign |
+| `src/components/pages/Products.tsx` | Premium redesign |
+| `src/components/pages/Locations.tsx` | Premium redesign, remove RegistrationModal |
+| `src/components/pages/CeoProfile.tsx` | Premium redesign, remove Dialog |
+| `src/components/pages/VisionPage.tsx` | Verify/align premium patterns |
+| `src/components/pages/WhyUsPage.tsx` | Verify/align premium patterns |
+| `src/components/pages/university/UniversityHubPage.tsx` | Verify/align premium patterns |
+| `src/components/pages/SolutionsHub.tsx` | Premium redesign |
+| `src/components/pages/Applications.tsx` | Premium redesign |
 
-3. **Search and Filter Integration**
-   - Test university hub search with filter combinations
-   - Test content category navigation
+### Priority 4: Legacy Pages
 
-### Visual Regression Testing (Recommended)
+| Category | Files | Key Changes |
+|----------|-------|-------------|
+| Legacy Services (6) | `MvpDevelopment.tsx`, `ProductStrategy.tsx`, `FullStackDevelopment.tsx`, `DevOpsScaling.tsx`, `AIConsultancy.tsx`, `AIAccounting.tsx` | Full premium redesign each |
+| Legacy Solutions (3) | `TechnicalCofounder.tsx`, `SaaSConsulting.tsx`, `LegacyModernization.tsx` | Full premium redesign each |
+| Legacy Products (6) | `Ledger.tsx`, `uTrack.tsx`, `Ember.tsx`, `GoDash.tsx`, `BigBytes.tsx`, `KozmoAI.tsx` | Full premium redesign each |
+| Client Sub-Pages (3) | `Fortune500.tsx`, `GovAgencies.tsx`, `TechStartups.tsx` | Full premium redesign each |
+| Solutions Hub Sub-Pages (4) | `IoTAccelerator.tsx`, `AIAssistant.tsx`, `ContainerOptimizer.tsx`, `DevOpsAccelerator.tsx` | Full premium redesign each |
+| Blog Posts (9) | `EnablingClientMaximizeIT.tsx`, `BuildingEnterpriseDataLakes.tsx`, `MLOpsBestPractices.tsx`, `CloudNativeArchitecturePatterns.tsx`, `RealTimeAnalyticsKafka.tsx`, `DigitalTransformationBanking.tsx`, `CloudMigrationHealthcare.tsx`, `AIRetailPersonalization.tsx`, `MultiAgentOrchestration.tsx` | Premium redesign each |
 
-For visual consistency verification:
+### Priority 5: Legal Pages
 
-1. **Responsive Layout Tests**
-   - Capture screenshots at mobile, tablet, and desktop breakpoints
-   - Compare against baseline images
+| Category | Files | Key Changes |
+|----------|-------|-------------|
+| Old Legal (4) | `Privacy.tsx`, `Terms.tsx`, `Cookies.tsx`, `Security.tsx` | Replace framer-motion → AnimatedWrapper, align hero pattern |
+| New Legal (4) | `DataRetention.tsx`, `DataProtectionAddendum.tsx`, `CodeOfConduct.tsx`, `ModernSlavery.tsx` | Replace framer-motion → AnimatedWrapper |
 
-2. **Animation Tests**
-   - Verify hover states and transitions
-   - Test reduced motion behaviour
+### Priority 6: Cleanup & Audit
 
-3. **Theme Consistency Tests**
-   - Verify colour palette application
-   - Test glass morphism effects
+| Task | Description |
+|------|-------------|
+| GlassCard deprecation | Add deprecation comment to `src/components/ui/glass-card.tsx`, verify zero page-level imports |
+| framer-motion audit | Verify only allowed exceptions retain framer-motion imports |
+| Color palette audit | Grep for off-palette colors (pink-400, yellow-400) in primary UI elements |
+| SEO component migration | Replace direct `document.title` usage with `SEO` component |
+| Responsive spot-check | Test all migrated pages at 375px, 768px, 1280px |

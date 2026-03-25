@@ -1,488 +1,356 @@
-# Implementation Plan: DigitransLab Website Redesign
+# Implementation Plan: Digitrans Website Premium Design Coherence Overhaul
 
 ## Overview
 
-This implementation plan breaks down the website redesign into discrete coding tasks. The approach prioritises foundational components first (design system, navigation), then builds out page sections incrementally, ensuring each step integrates with existing code and maintains backward compatibility.
+Migrate all pages and components from legacy design patterns (GlassCard, framer-motion page animations, UniverseLights, shadcn Card/Button) to the established Premium Design Language. Work follows the 6-priority order from the design document: templates → shared components → standalone pages → legacy pages → legal pages → cleanup & audit. All code is TypeScript/React (TSX).
 
 ## Tasks
 
-- [x] 1. Set up design system foundation and shared UI components
-  - [x] 1.1 Create design tokens file at src/lib/design-tokens.ts
-    - Define colour palette (primary purple, secondary blue, accent indigo, grays)
-    - Define spacing system (4px/8px base grid)
-    - Define typography tokens (font families, sizes)
-    - Define gradient and shadow tokens
-    - _Requirements: 17.1, 17.2, 17.5_
-
-  - [x] 1.2 Create GlassCard component at src/components/ui/glass-card.tsx
-    - Implement backdrop-blur and gradient border styling
-    - Support variant props (default, gradient, hover)
-    - Integrate with existing Card component patterns
-    - _Requirements: 17.4_
-
-  - [x] 1.3 Create GradientButton component at src/components/ui/gradient-button.tsx
-    - Implement primary gradient style (purple to blue)
-    - Implement secondary outline style
-    - Support size variants (sm, md, lg)
-    - Integrate with existing Button component patterns
-    - _Requirements: 17.3_
-
-  - [x] 1.4 Create SectionHeader component at src/components/ui/section-header.tsx
-    - Support badge, title, and description props
-    - Support left and centre alignment
-    - Apply gradient text styling for titles
-    - _Requirements: 17.2_
-
-  - [x] 1.5 Create AnimatedWrapper component at src/components/ui/animated-wrapper.tsx
-    - Implement Framer Motion viewport animations
-    - Support fade-up, fade-in, slide-left, slide-right variants
-    - Implement useReducedMotion hook for accessibility
-    - _Requirements: 20.1, 20.4_
-
-  - [x] 1.6 Write property tests for design system components
-    - **Property 18: Reduced Motion Preference**
-    - Test that AnimatedWrapper respects prefers-reduced-motion
-    - **Validates: Requirements 20.4**
-
-- [x] 2. Checkpoint - Verify design system components
-  - Ensure all UI components render correctly
-  - Verify Tailwind classes are applied properly
-  - Ask the user if questions arise
-
-- [x] 3. Implement enhanced navigation system
-  - [x] 3.1 Create navigation data structure at src/data/navigation.ts
-    - Define NavItem interface with label, href, children
-    - Create navigationItems array with all sections and sub-pages
-    - _Requirements: 1.1_
-
-  - [x] 3.2 Create NavDropdown component at src/components/navigation/NavDropdown.tsx
-    - Implement hover-triggered dropdown menu
-    - Style with glass morphism effect
-    - Support keyboard navigation
-    - _Requirements: 1.2_
-
-  - [x] 3.3 Create MainNav component at src/components/navigation/MainNav.tsx
-    - Render primary navigation items with dropdowns
-    - Implement active state highlighting based on current route
-    - Integrate with existing Navbar styling
-    - _Requirements: 1.1, 1.4_
-
-  - [x] 3.4 Create MobileNav component at src/components/navigation/MobileNav.tsx
-    - Implement hamburger menu toggle
-    - Create slide-out navigation panel
-    - Support nested navigation items
-    - _Requirements: 18.2_
-
-  - [x] 3.5 Update Navbar component to use new navigation system
-    - Replace existing navigation with MainNav/MobileNav
-    - Maintain existing styling and logo
-    - Ensure responsive breakpoint switching
-    - _Requirements: 1.1, 18.2_
-
-  - [x] 3.6 Create enhanced Breadcrumbs component at src/components/Breadcrumbs.tsx
-    - Generate breadcrumb items from current route
-    - Exclude breadcrumbs on homepage
-    - Style consistently with design system
-    - _Requirements: 1.5_
-
-  - [x] 3.7 Write property tests for navigation
-    - **Property 2: Navigation Item Completeness**
-    - **Property 3: Active Navigation State**
-    - **Property 4: Breadcrumb Conditional Rendering**
-    - **Property 19: Mobile Navigation Behaviour**
-    - **Validates: Requirements 1.1, 1.2, 1.4, 1.5, 18.2**
-
-- [x] 4. Checkpoint - Verify navigation system
-  - Test navigation dropdowns on desktop
-  - Test mobile hamburger menu
-  - Verify active states and breadcrumbs
-  - Ask the user if questions arise
-
-- [x] 5. Implement homepage sections
-  - [x] 5.1 Create homepage data file at src/data/homepage.ts
-    - Define hero content (headline, CTAs, trust badges)
-    - Define three pillars data (Consulting, Engineering, Products)
-    - Define products showcase data (Allama, DBLOCK)
-    - Define industries data (5 verticals)
-    - Define differentiators data (5 items with metrics)
-    - Define testimonials data (placeholder format)
-    - _Requirements: 2.1, 2.2, 2.3, 3.1, 4.1, 5.1, 6.1, 7.1_
-
-  - [x] 5.2 Create HeroSection component at src/components/sections/homepage/HeroSection.tsx
-    - Display headline "AI & Data Solutions That Transform Business"
-    - Render two CTAs: "Schedule Consultation" and "Explore Products"
-    - Display trust badges with metrics
-    - Implement staggered entrance animations
-    - _Requirements: 2.1, 2.2, 2.3, 2.4_
-
-  - [x] 5.3 Create ThreePillarsSection component at src/components/sections/homepage/ThreePillarsSection.tsx
-    - Render three pillar cards (Consulting, Engineering, Products)
-    - Each card shows icon, title, description, features, link
-    - Apply GlassCard styling with hover effects
-    - _Requirements: 3.1, 3.2, 3.3, 3.4_
-
-  - [x] 5.4 Create ProductsShowcaseSection component at src/components/sections/homepage/ProductsShowcaseSection.tsx
-    - Render Allama card with tagline, features, "Learn More" CTA
-    - Render DBLOCK card with "Coming Soon" badge
-    - Apply gradient borders and glass morphism
-    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
-
-  - [x] 5.5 Create IndustriesSection component at src/components/sections/homepage/IndustriesSection.tsx
-    - Render five industry cards (Financial Services, Healthcare, Technology, Retail, Government)
-    - Each card shows icon and value proposition
-    - Link to corresponding solution pages
-    - Implement responsive grid layout
-    - _Requirements: 5.1, 5.2, 5.3, 5.4_
-
-  - [x] 5.6 Create WhyDigitransLabSection component at src/components/sections/homepage/WhyDigitransLabSection.tsx
-    - Render five differentiators with proof points
-    - Display metrics/statistics where applicable
-    - Apply visual highlighting for key numbers
-    - _Requirements: 6.1, 6.2, 6.3, 6.4_
-
-  - [x] 5.7 Update TestimonialsSection component at src/components/sections/TestimonialsSection.tsx
-    - Ensure testimonials display quote, author, title, company
-    - Apply entrance animations when in view
-    - Support placeholder data format
-    - _Requirements: 7.1, 7.2, 7.4_
-
-  - [x] 5.8 Create FinalCTASection component at src/components/sections/homepage/FinalCTASection.tsx
-    - Display compelling headline
-    - Render two CTAs: "Schedule Consultation" and "Explore Products"
-    - Link to /contact and /products/allama respectively
-    - _Requirements: 8.1, 8.2, 8.3, 8.4_
-
-  - [x] 5.9 Create new HomePage component at src/components/pages/HomePage.tsx
-    - Compose all seven sections in order
-    - Integrate with existing Navbar and Footer
-    - Maintain existing page structure patterns
-    - _Requirements: 2.1-8.4_
-
-  - [x] 5.10 Write property tests for homepage sections
-    - **Property 5: Content Card Field Completeness** (pillars, industries, testimonials)
-    - **Property 6: Internal Link Validity** (industry cards)
-    - **Property 21: Differentiator Metric Display**
-    - **Validates: Requirements 3.2, 5.2, 5.3, 6.2, 7.2**
-
-- [x] 6. Checkpoint - Verify homepage implementation
-  - Review all seven sections render correctly
-  - Test navigation links from homepage
-  - Verify responsive behaviour
-  - Ask the user if questions arise
-
-- [x] 7. Implement Allama product page
-  - [x] 7.1 Create Allama data file at src/data/allama.ts
-    - Define hero content with tagline
-    - Define four value propositions (Alert Fatigue, AI-Native, Open Source, Enterprise-Grade)
-    - Define features (Workflow Builder, AI Agents, Integrations, Case Management)
-    - Define integration categories and tools
-    - Define deployment options (Docker, AWS ECS, Kubernetes)
-    - Define competitor comparisons (Splunk SOAR, XSOAR, Tines/Torq)
-    - Define use cases
-    - _Requirements: 9.2, 9.4_
-
-  - [x] 7.2 Create ComparisonTable component at src/components/ui/comparison-table.tsx
-    - Render competitor comparison data in table format
-    - Highlight Allama advantages
-    - Apply consistent styling
-    - _Requirements: 9.7_
-
-  - [x] 7.3 Create ArchitectureDiagram component at src/components/pages/products/ArchitectureDiagram.tsx
-    - Render technical architecture visual
-    - Use SVG or styled divs for diagram
-    - _Requirements: 9.6_
-
-  - [x] 7.4 Create AllamaPage component at src/components/pages/products/AllamaPage.tsx
-    - Hero section with tagline and CTAs
-    - Value propositions section
-    - Feature deep dive sections
-    - Integration list by category
-    - Deployment options section
-    - Competitive comparison tables
-    - Final CTAs (Get Started Free, Book a Demo, Read Documentation)
-    - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7_
-
-  - [x] 7.5 Write unit tests for Allama page
-    - Test all sections render correctly
-    - Test CTA links point to correct destinations
-    - _Requirements: 9.1-9.7_
-
-- [x] 8. Implement DBLOCK product page
-  - [x] 8.1 Create DBlockPage component at src/components/pages/products/DBlockPage.tsx
-    - Hero with "Coming Soon" status
-    - Teaser description
-    - Email signup form for launch notifications
-    - Implement email validation
-    - _Requirements: 10.1, 10.2, 10.3, 10.4_
-
-  - [x] 8.2 Write property test for email validation
-    - **Property 12: Email Subscription Validation**
-    - Test valid and invalid email formats
-    - **Validates: Requirements 10.4**
-
-- [x] 9. Checkpoint - Verify product pages
-  - Test Allama page renders all sections
-  - Test DBLOCK email signup validation
-  - Verify navigation to product pages
-  - Ask the user if questions arise
-
-- [x] 10. Implement service pages
-  - [x] 10.1 Create services data file at src/data/services.ts
-    - Define data for AI Consulting, Data Engineering, Cloud Solutions, Custom Development
-    - Include hero, deliverables, process, related content for each
-    - _Requirements: 11.1, 11.2_
-
-  - [x] 10.2 Create PageHero component at src/components/sections/shared/PageHero.tsx
-    - Reusable hero for inner pages
-    - Support headline, subheadline, breadcrumbs
-    - Apply consistent styling
-    - _Requirements: 11.2_
-
-  - [x] 10.3 Create ServicePageTemplate component at src/components/pages/services/ServicePageTemplate.tsx
-    - Hero section
-    - Service description
-    - Key deliverables grid
-    - Process overview
-    - Related case studies
-    - Contact CTA
-    - _Requirements: 11.2, 11.3_
-
-  - [x] 10.4 Create AIConsultingPage at src/components/pages/services/AIConsultingPage.tsx
-    - Use ServicePageTemplate with AI Consulting data
-    - Include links to related solutions and products
-    - _Requirements: 11.1, 11.4_
-
-  - [x] 10.5 Create DataEngineeringPage at src/components/pages/services/DataEngineeringPage.tsx
-    - Use ServicePageTemplate with Data Engineering data
-    - _Requirements: 11.1, 11.4_
-
-  - [x] 10.6 Create CloudSolutionsPage at src/components/pages/services/CloudSolutionsPage.tsx
-    - Use ServicePageTemplate with Cloud Solutions data
-    - _Requirements: 11.1, 11.4_
-
-  - [x] 10.7 Create CustomDevelopmentPage at src/components/pages/services/CustomDevelopmentPage.tsx
-    - Use ServicePageTemplate with Custom Development data
-    - _Requirements: 11.1, 11.4_
-
-  - [x] 10.8 Write property tests for service pages
-    - **Property 7: Service Page Section Completeness**
-    - **Property 6: Internal Link Validity** (service page links)
-    - **Validates: Requirements 11.2, 11.4**
-
-- [x] 11. Implement solution pages
-  - [x] 11.1 Create solutions data file at src/data/solutions.ts
-    - Define data for Financial Services, Healthcare, Technology
-    - Include challenges, services, compliance, case studies for each
-    - _Requirements: 12.1, 12.2, 12.3_
-
-  - [x] 11.2 Create SolutionPageTemplate component at src/components/pages/solutions/SolutionPageTemplate.tsx
-    - Industry-specific hero
-    - Key challenges section
-    - Relevant services grid
-    - Compliance considerations (conditional)
-    - Case studies
-    - Contact CTA
-    - _Requirements: 12.2, 12.3_
-
-  - [x] 11.3 Create FinancialServicesPage at src/components/pages/solutions/FinancialServicesPage.tsx
-    - Use SolutionPageTemplate with Financial Services data
-    - Include compliance section (PCI-DSS, SOX, etc.)
-    - _Requirements: 12.1, 12.3, 12.4_
-
-  - [x] 11.4 Create HealthcarePage at src/components/pages/solutions/HealthcarePage.tsx
-    - Use SolutionPageTemplate with Healthcare data
-    - Include compliance section (HIPAA, etc.)
-    - _Requirements: 12.1, 12.3, 12.4_
-
-  - [x] 11.5 Create TechnologyPage at src/components/pages/solutions/TechnologyPage.tsx
-    - Use SolutionPageTemplate with Technology data
-    - _Requirements: 12.1, 12.4_
-
-  - [x] 11.6 Write property tests for solution pages
-    - **Property 8: Solution Page Section Completeness**
-    - **Property 9: Solution Page Compliance Display**
-    - **Validates: Requirements 12.2, 12.3**
-
-- [x] 12. Checkpoint - Verify service and solution pages
-  - Test all service pages render correctly
-  - Test all solution pages render correctly
-  - Verify internal links work
-  - Ask the user if questions arise
-
-- [x] 13. Implement University learning hub
-  - [x] 13.1 Create university data file at src/data/university.ts
-    - Define content items for tutorials, live-demos, tech-talks, webinars
-    - Include placeholder content with thumbnails, titles, durations, tags
-    - _Requirements: 13.1, 13.3_
-
-  - [x] 13.2 Create ContentCard component at src/components/ui/content-card.tsx
-    - Display thumbnail, title, duration, category tag, description
-    - Apply hover effects
-    - Link to content detail or external URL
-    - _Requirements: 13.3_
-
-  - [x] 13.3 Create UniversityHubPage at src/components/pages/university/UniversityHubPage.tsx
-    - Featured content from each category
-    - Category navigation cards
-    - Search input
-    - _Requirements: 13.1, 13.2, 13.5_
-
-  - [x] 13.4 Create ContentListPage template at src/components/pages/university/ContentListPage.tsx
-    - Category header
-    - Filter controls (category, topic)
-    - Content grid with ContentCards
-    - Search functionality
-    - _Requirements: 13.4, 13.5_
-
-  - [x] 13.5 Create TutorialsPage at src/components/pages/university/TutorialsPage.tsx
-    - Use ContentListPage with tutorials filter
-    - _Requirements: 13.1_
-
-  - [x] 13.6 Create LiveDemosPage at src/components/pages/university/LiveDemosPage.tsx
-    - Use ContentListPage with live-demos filter
-    - _Requirements: 13.1_
-
-  - [x] 13.7 Create TechTalksPage at src/components/pages/university/TechTalksPage.tsx
-    - Use ContentListPage with tech-talks filter
-    - _Requirements: 13.1_
-
-  - [x] 13.8 Create WebinarsPage at src/components/pages/university/WebinarsPage.tsx
-    - Use ContentListPage with webinars filter
-    - _Requirements: 13.1_
-
-  - [x] 13.9 Write property tests for University hub
-    - **Property 10: University Content Filtering**
-    - **Property 11: University Content Search**
-    - **Property 22: Featured University Content**
-    - **Property 5: Content Card Field Completeness** (university content)
-    - **Validates: Requirements 13.2, 13.3, 13.4, 13.5**
-
-- [x] 14. Checkpoint - Verify University hub
-  - Test hub landing page displays featured content
-  - Test filtering and search functionality
-  - Test all category pages render correctly
-  - Ask the user if questions arise
-
-- [x] 15. Implement resources and company pages
-  - [x] 15.1 Create CaseStudiesPage at src/components/pages/resources/CaseStudiesPage.tsx
-    - List case studies with featured image, title, excerpt, date, category
-    - Link to individual case study pages
-    - _Requirements: 14.2, 14.4_
-
-  - [x] 15.2 Create DocumentationPage at src/components/pages/resources/DocumentationPage.tsx
-    - Links to product documentation (Allama docs, etc.)
-    - Organised by product/topic
-    - _Requirements: 14.3_
-
-  - [x] 15.3 Create AboutPage at src/components/pages/company/AboutPage.tsx
-    - Company mission and vision
-    - Company values
-    - History/timeline
-    - _Requirements: 15.1, 15.2_
-
-  - [x] 15.4 Create TeamPage at src/components/pages/company/TeamPage.tsx
-    - Team member cards with photo, name, title, bio
-    - Leadership section
-    - _Requirements: 15.1, 15.4_
-
-  - [x] 15.5 Create InvestorsPage at src/components/pages/company/InvestorsPage.tsx
-    - Investor relations information
-    - Key metrics and milestones
-    - _Requirements: 15.1_
-
-  - [x] 15.6 Write property tests for company pages
-    - **Property 5: Content Card Field Completeness** (team members)
-    - **Validates: Requirements 15.4**
-
-- [x] 16. Update Contact page
-  - [x] 16.1 Enhance Contact page at src/components/pages/Contact.tsx
-    - Ensure contact form with name, email, company, message fields
-    - Implement form validation
-    - Display email, phone, office locations
-    - Integrate calendar booking component
-    - _Requirements: 16.1, 16.2, 16.3, 16.4_
-
-  - [x] 16.2 Write property test for contact form validation
-    - **Property 13: Contact Form Validation**
-    - Test required field validation
-    - Test email format validation
-    - **Validates: Requirements 16.3**
-
-- [x] 17. Checkpoint - Verify resources, company, and contact pages
-  - Test all pages render correctly
-  - Test contact form validation
-  - Verify calendar booking integration
-  - Ask the user if questions arise
-
-- [x] 18. Update routing and integrate all pages
-  - [x] 18.1 Update App.tsx with new routes
-    - Add routes for all new service pages
-    - Add routes for all new solution pages
-    - Add routes for product pages (Allama, DBLOCK)
-    - Add routes for University hub and sub-pages
-    - Add routes for resources pages
-    - Add routes for company pages
-    - Ensure existing routes are preserved
-    - _Requirements: 1.3, 21.2, 21.4_
-
-  - [x] 18.2 Update homepage route to use new HomePage component
-    - Replace existing Home component with new HomePage
-    - Ensure backward compatibility
-    - _Requirements: 21.3_
-
-  - [x] 18.3 Write property tests for routing
-    - **Property 1: Route Accessibility**
-    - **Property 20: Backward Compatibility**
-    - Test all new routes render correctly
-    - Test existing routes still work
-    - **Validates: Requirements 1.3, 21.2, 21.3, 21.4**
-
-- [x] 19. Implement SEO enhancements
-  - [x] 19.1 Create SEO data file at src/data/seo.ts
-    - Define meta tags for all pages
-    - Define structured data schemas
-    - _Requirements: 19.1, 19.2_
-
-  - [x] 19.2 Enhance SEO component at src/components/SEO.tsx
-    - Support page-specific meta tags
-    - Support JSON-LD structured data injection
-    - _Requirements: 19.1, 19.2_
-
-  - [x] 19.3 Add SEO component to all new pages
-    - Include appropriate title, description, keywords
-    - Add structured data where applicable
-    - _Requirements: 19.1, 19.2_
-
-  - [x] 19.4 Update sitemap generation script
-    - Include all new public routes
-    - _Requirements: 19.3_
-
-  - [x] 19.5 Verify semantic HTML on all pages
-    - Ensure proper use of header, main, nav, footer, article, section
-    - Verify heading hierarchy (h1 → h2 → h3)
-    - _Requirements: 19.4, 19.5_
-
-  - [x] 19.6 Write property tests for SEO
-    - **Property 14: SEO Meta Tag Presence**
-    - **Property 15: Semantic HTML Structure**
-    - **Property 16: Structured Data Validity**
-    - **Property 17: Sitemap Completeness**
-    - **Validates: Requirements 19.1, 19.2, 19.3, 19.4, 19.5**
-
-- [x] 20. Final checkpoint - Complete integration testing
-  - Run all property tests
-  - Verify all pages render correctly
-  - Test navigation flow through entire site
-  - Verify mobile responsiveness
-  - Test form submissions
-  - Verify SEO implementation
-  - Ask the user if questions arise
+- [x] 1. Priority 1: Template Redesigns (High Impact — 29+ routes)
+
+  - [x] 1.1 Redesign SolutionPageTemplate with Premium Design Language
+    - Replace all GlassCard usage with inline backdrop-blur card patterns
+    - Add floating gradient orbs (purple/blue/indigo at 10-15% opacity) and grid overlay (opacity-[0.03], 60px) to hero section
+    - Use TypewriterGradientText for hero heading, SectionHeader for section titles, GradientButton with Calendar icon for CTAs
+    - Replace all framer-motion page-level animations with AnimatedWrapper
+    - Use numbered items with font-mono text-gray-600 and padStart(2, '0')
+    - Add hover transitions (duration-300 to duration-500) on all interactive cards
+    - Add bottom CTA section with gradient text heading and ambient blur orbs
+    - Verify all 10 industry pages render correctly after changes
+    - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9_
+
+  - [x] 1.2 Verify and align UseCasePageTemplate with Premium Design Language
+    - Ensure all benefit and industry link cards use backdrop-blur card patterns
+    - Verify floating gradient orbs and grid overlay in hero section
+    - Replace any remaining framer-motion page-level animations with AnimatedWrapper
+    - Ensure SectionHeader component is used for all section titles with badge, title, description props
+    - Verify all 9 use case pages render correctly
+    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
+
+  - [x] 1.3 Verify and align RolePageTemplate with Premium Design Language
+    - Ensure all value proposition and use case link cards use backdrop-blur card patterns
+    - Verify floating gradient orbs and grid overlay in hero section
+    - Replace any remaining framer-motion page-level animations with AnimatedWrapper
+    - Ensure CheckCircle icons use green gradient backgrounds for value proposition items
+    - Verify all 5 role pages render correctly
+    - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5_
+
+  - [x] 1.4 Redesign ContentListPage template with Premium Design Language
+    - Replace legacy card patterns with backdrop-blur cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Verify all 4 university content pages (Tutorials, Live Demos, Tech Talks, Webinars) render correctly
+    - _Requirements: 16.1, 16.2, 16.3, 16.4, 16.5_
+
+  - [x] 1.5 Redesign BlogPost template with Premium Design Language
+    - Set bg-black background with floating gradient orbs in hero area
+    - Style article content area with bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl
+    - Use TypewriterGradientText for post title
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Style inline code and code blocks with bg-gray-800/50 border border-gray-700/50 rounded-lg
+    - Verify all 9 blog post pages render correctly
+    - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6_
+
+- [x] 2. Checkpoint — Verify template migrations
+  - Ensure all template-driven pages render correctly with premium design
+  - Spot-check at least one page per template (1 industry, 1 use case, 1 role, 1 university, 1 blog post)
+  - Ensure all tests pass, ask the user if questions arise.
+
+- [x] 3. Priority 2: Shared Components
+
+  - [x] 3.1 Redesign GridBackground component
+    - Remove falling animated lines (Line components with framer-motion)
+    - Remove radial-gradient dot pattern
+    - Simplify to minimal bg-black background that doesn't compete with per-page floating gradient orbs
+    - Remove all framer-motion imports and usage
+    - If component is no longer needed, remove GridBackground import and rendering from App component
+    - _Requirements: 26.1, 26.2, 26.3, 26.4, 26.5_
+
+  - [x] 3.2 Redesign Hero component
+    - Replace framer-motion animations with AnimatedWrapper or CSS animations for entrance effects
+    - Remove UniverseLights component import and rendering
+    - Remove particle effects div with animate-float classes if they conflict with premium design
+    - Replace Card components with backdrop-blur card patterns for service cards grid
+    - Remove Dialog component for service card details, replace with navigation to service page
+    - Maintain video background, client logo scroll, and CTA buttons functionality
+    - Use premium color palette for all gradient text and decorative elements
+    - _Requirements: 27.1, 27.2, 27.3, 27.4, 27.5, 27.6, 27.7_
+
+  - [ ]* 3.3 Verify Navbar component alignment with Premium Design Language
+    - Confirm bg-black/90 backdrop-blur-lg styling
+    - Confirm border-white/10 or border-gray-800/50 bottom border
+    - Confirm top-12 positioning below PromoBanner when visible
+    - Verify MainNav dropdown menus use bg-gray-900/95 backdrop-blur-lg border border-gray-800/50 rounded-xl
+    - Verify MobileNav uses bg-gray-900/98 backdrop-blur-lg border border-gray-800/50
+    - Verify NavDropdown hover states use text-purple-400 and bg-purple-500/10
+    - _Requirements: 28.1, 28.2, 28.3, 28.4, 28.5, 28.6_
+
+  - [ ]* 3.4 Verify PromoBanner component alignment
+    - Confirm premium-styled implementation is retained for future activation
+    - Verify bg-gradient-to-r from-purple-900/80 to-indigo-900/80 backdrop-blur-sm styling
+    - Verify text-purple-200 for banner text and text-purple-400 for links
+    - _Requirements: 29.1, 29.2, 29.3_
+
+- [-] 4. Priority 3: Standalone Pages
+
+  - [x] 4.1 Redesign About page with Premium Design Language
+    - Replace all GlassCard usage with backdrop-blur card patterns
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Apply premium color palette consistently across all sections
+    - Add bottom CTA section with gradient text heading and GradientButton with Calendar icon
+    - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6_
+
+  - [x] 4.2 Redesign Contact page with Premium Design Language
+    - Replace GlassCard usage with backdrop-blur card patterns for form container and info cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading
+    - Style form inputs with bg-gray-900/50, border-gray-800/50, focus:border-purple-500/50
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Preserve Netlify Forms functionality (honeypot field, AJAX submission, form-name attribute)
+    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6_
+
+  - [~] 4.3 Redesign Blog listing page with Premium Design Language
+    - Replace GlassCard usage with backdrop-blur card patterns for blog post cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Style category filter tags with bg-purple-900/40 text-purple-300 border border-purple-500/30 rounded-full
+    - Style search input with bg-gray-900/50 border-gray-800/50
+    - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
+
+  - [~] 4.4 Redesign Portfolio page with Premium Design Language
+    - Replace GlassCard usage with backdrop-blur card patterns for project cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Style metric badges with gradient text (from-purple-400 to-blue-400)
+    - Remove all direct framer-motion imports
+    - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5, 8.6_
+
+  - [~] 4.5 Redesign Clients page with Premium Design Language
+    - Replace GlassCard usage with backdrop-blur card patterns for case study and testimonial cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Remove all direct framer-motion imports
+    - Style result metrics with gradient text
+    - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6_
+
+  - [~] 4.6 Redesign Products hub page with Premium Design Language
+    - Replace GlassCard usage with backdrop-blur card patterns for product cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Remove all direct framer-motion imports and GlassCard usage
+    - Use GradientButton with ArrowRight icon for product navigation CTAs
+    - _Requirements: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6_
+
+  - [~] 4.7 Redesign Locations page with Premium Design Language
+    - Replace GlassCard and Card usage with backdrop-blur card patterns for location cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Remove all GlassCard, Card, and direct framer-motion imports
+    - Remove RegistrationModal import, replace with GradientButton navigating to /contact
+    - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6_
+
+  - [~] 4.8 Redesign CeoProfile page with Premium Design Language
+    - Replace GlassCard and Card usage with backdrop-blur card patterns for experience and achievement cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Remove all GlassCard, Card, Dialog, and direct framer-motion imports
+    - Use premium color palette for all text and decorative elements
+    - _Requirements: 14.1, 14.2, 14.3, 14.4, 14.5, 14.6_
+
+  - [~] 4.9 Verify and align VisionPage with Premium Design Language
+    - Ensure all content cards use backdrop-blur card patterns
+    - Verify floating gradient orbs and grid overlay in hero section
+    - Ensure TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Replace any remaining framer-motion page-level animations with AnimatedWrapper
+    - Verify premium color palette consistency
+    - Add bottom CTA section with gradient text heading and GradientButton
+    - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5, 11.6_
+
+  - [~] 4.10 Verify and align WhyUsPage with Premium Design Language
+    - Ensure all differentiator and certification cards use backdrop-blur card patterns
+    - Verify floating gradient orbs and grid overlay in hero section
+    - Ensure TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Replace any remaining framer-motion page-level animations with AnimatedWrapper
+    - Verify premium color palette consistency
+    - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5_
+
+  - [~] 4.11 Verify and align UniversityHubPage with Premium Design Language
+    - Ensure all category and content cards use backdrop-blur card patterns
+    - Verify floating gradient orbs and grid overlay in hero section
+    - Ensure TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Ensure AnimatedWrapper for all animations
+    - Style search input with bg-gray-900/50 border-gray-800/50
+    - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5_
+
+  - [~] 4.12 Redesign SolutionsHub page with Premium Design Language
+    - Replace GlassCard and Card usage with backdrop-blur card patterns for solution cards
+    - Add floating gradient orbs and grid overlay to hero section
+    - Use TypewriterGradientText for hero heading, SectionHeader for section titles
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Remove all GlassCard, Card, Button, and direct framer-motion imports
+    - _Requirements: 23.1, 23.2, 23.3, 23.4, 23.5_
+
+  - [~] 4.13 Redesign Applications page with Premium Design Language
+    - Apply backdrop-blur card patterns, floating gradient orbs, and grid overlay
+    - Use TypewriterGradientText for hero heading
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - Use GradientButton for all CTAs
+    - _Requirements: 35.1, 35.2, 35.3, 35.4_
+
+- [ ] 5. Checkpoint — Verify standalone page migrations
+  - Visually review all standalone pages for premium design consistency
+  - Verify Contact form submission still works (Netlify Forms)
+  - Ensure all tests pass, ask the user if questions arise.
+
+- [ ] 6. Priority 4: Legacy Pages
+
+  - [ ] 6.1 Redesign legacy service pages — MvpDevelopment and ProductStrategy
+    - Apply full Premium Design Language to both pages: backdrop-blur cards, floating gradient orbs, grid overlay
+    - Use TypewriterGradientText, SectionHeader, GradientButton, AnimatedWrapper
+    - Remove all framer-motion imports, Card imports, ProgressBar, BackToTop, StickyCTA, UniverseLights usage
+    - _Requirements: 19.1, 19.2, 19.7_
+
+  - [ ] 6.2 Redesign legacy service pages — FullStackDevelopment and DevOpsScaling
+    - Apply full Premium Design Language to both pages
+    - Remove all legacy component imports and usage
+    - _Requirements: 19.3, 19.4, 19.7_
+
+  - [ ] 6.3 Redesign legacy service pages — AIConsultancy and AIAccounting
+    - Apply full Premium Design Language to both pages
+    - Remove all legacy component imports and usage
+    - _Requirements: 19.5, 19.6, 19.7_
+
+  - [ ] 6.4 Redesign legacy solution pages — TechnicalCofounder, SaaSConsulting, LegacyModernization
+    - Apply full Premium Design Language to all 3 pages: backdrop-blur cards, floating gradient orbs, grid overlay
+    - Remove all framer-motion imports, Card imports, UniverseLights usage
+    - _Requirements: 20.1, 20.2, 20.3, 20.4_
+
+  - [ ] 6.5 Redesign legacy product pages — Ledger, uTrack, Ember
+    - Apply full Premium Design Language to all 3 pages: backdrop-blur cards, floating gradient orbs, grid overlay
+    - Remove all framer-motion imports, Card imports, Button imports, BlogCard imports, UniverseLights usage
+    - _Requirements: 21.1, 21.2, 21.3, 21.7_
+
+  - [ ] 6.6 Redesign legacy product pages — GoDash, BigBytes, KozmoAI
+    - Apply full Premium Design Language to all 3 pages
+    - Remove all legacy component imports and usage
+    - _Requirements: 21.4, 21.5, 21.6, 21.7_
+
+  - [ ] 6.7 Redesign client sub-pages — Fortune500, GovAgencies, TechStartups
+    - Apply full Premium Design Language to all 3 pages: backdrop-blur cards, floating gradient orbs, grid overlay
+    - Remove all framer-motion imports, Card imports, UniverseLights usage
+    - _Requirements: 22.1, 22.2, 22.3, 22.4_
+
+  - [ ] 6.8 Redesign solutions hub sub-pages — IoTAccelerator, AIAssistant, ContainerOptimizer, DevOpsAccelerator
+    - Apply full Premium Design Language to all 4 pages: backdrop-blur cards, floating gradient orbs, grid overlay
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - _Requirements: 24.1, 24.2, 24.3, 24.4, 24.5_
+
+  - [ ] 6.9 Redesign blog post pages — EnablingClientMaximizeIT, BuildingEnterpriseDataLakes, MLOpsBestPractices
+    - Apply full Premium Design Language: backdrop-blur cards, floating gradient orbs, TypewriterGradientText for title
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - _Requirements: 25.1, 25.2, 25.3, 25.4, 25.5_
+
+  - [ ] 6.10 Redesign blog post pages — CloudNativeArchitecturePatterns, RealTimeAnalyticsKafka, DigitalTransformationBanking
+    - Apply full Premium Design Language to all 3 pages
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - _Requirements: 25.1, 25.2, 25.3, 25.4, 25.5_
+
+  - [ ] 6.11 Redesign blog post pages — CloudMigrationHealthcare, AIRetailPersonalization, MultiAgentOrchestration
+    - Apply full Premium Design Language to all 3 pages
+    - Replace framer-motion page-level animations with AnimatedWrapper
+    - _Requirements: 25.1, 25.2, 25.3, 25.4, 25.5_
+
+- [ ] 7. Checkpoint — Verify legacy page migrations
+  - Spot-check at least one page per category (1 legacy service, 1 legacy solution, 1 legacy product, 1 client sub-page, 1 solutions hub sub-page, 1 blog post)
+  - Ensure all tests pass, ask the user if questions arise.
+
+- [ ] 8. Priority 5: Legal Pages
+
+  - [ ] 8.1 Align old legal pages — Privacy, Terms, Cookies, Security
+    - Replace framer-motion animations with AnimatedWrapper on all 4 pages
+    - Wrap content sections with bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl instead of raw bg-gray-900/50 with motion.div
+    - Align hero pattern to match the new legal pages for visual consistency
+    - _Requirements: 17.1, 17.2, 17.3, 17.4, 17.5, 17.6_
+
+  - [ ] 8.2 Align new legal pages — DataRetention, DataProtectionAddendum, CodeOfConduct, ModernSlavery
+    - Replace framer-motion animations with AnimatedWrapper on all 4 pages
+    - Ensure AnimatedWrapper is used for all entrance animations
+    - _Requirements: 18.1, 18.2, 18.3, 18.4, 18.5_
+
+- [ ] 9. Priority 6: Cleanup & Audit
+
+  - [ ] 9.1 Deprecate GlassCard component and verify zero page-level imports
+    - Add deprecation comment to src/components/ui/glass-card.tsx
+    - Run grep to verify zero GlassCard imports in src/components/pages/
+    - If any remain, replace with inline backdrop-blur card patterns
+    - _Requirements: 30.1, 30.2, 30.3_
+
+  - [ ] 9.2 Audit framer-motion usage across all page components
+    - Run grep for framer-motion imports in src/components/pages/
+    - Verify only allowed exceptions retain framer-motion (AnimatedDataViz, Hero client logo scroll, GridBackground if retained)
+    - Add code comments documenting reason for any retained framer-motion usage
+    - _Requirements: 31.1, 31.2, 31.3, 31.4_
+
+  - [ ]* 9.3 Audit color palette consistency across all pages
+    - Grep for off-palette colors (pink-400, yellow-400, etc.) in primary UI elements
+    - Replace any off-palette colors with standard purple/blue/indigo palette
+    - Verify gradient text pattern uses from-purple-400 via-blue-400 to-indigo-400 consistently
+    - _Requirements: 32.1, 32.2, 32.3, 32.4, 32.5, 32.6, 32.7_
+
+  - [ ]* 9.4 Audit typography and spacing consistency
+    - Verify hero sections use pt-36 pb-24, content sections use py-20, CTA sections use py-24
+    - Verify hero headings use text-4xl md:text-5xl lg:text-6xl font-bold
+    - Verify body text uses text-gray-300/90 or text-gray-400, secondary text uses text-gray-500
+    - _Requirements: 33.1, 33.2, 33.3, 33.4, 33.5, 33.6_
+
+  - [ ]* 9.5 Audit card hover and transition consistency
+    - Verify all backdrop-blur cards use hover:border-purple-500/30 and transition-all duration-300
+    - Verify group hover gradient overlay (from-purple-500/5 to-blue-500/5) with opacity transition duration-500
+    - Verify heading hover effects use group-hover:text-purple-300
+    - Verify link cards include ArrowRight with group-hover:translate-x-1
+    - _Requirements: 34.1, 34.2, 34.3, 34.4, 34.5_
+
+  - [ ] 9.6 Migrate SEO metadata to SEO component
+    - Find pages using direct document.title or meta tag manipulation
+    - Replace with SEO component using title, description, canonicalUrl props
+    - Ensure page titles follow "{Page Title} | Digitrans" pattern
+    - Ensure meta descriptions are descriptive and unique per page
+    - _Requirements: 36.1, 36.2, 36.3, 36.4_
+
+  - [ ]* 9.7 Responsive design spot-check across all migrated pages
+    - Test all migrated pages at 375px, 768px, 1280px breakpoints
+    - Verify responsive text sizing, card grid layouts, container padding
+    - Verify floating gradient orbs don't cause horizontal overflow on mobile
+    - Verify CTA button groups stack vertically on mobile (flex-col sm:flex-row)
+    - _Requirements: 37.1, 37.2, 37.3, 37.4, 37.5_
+
+  - [ ]* 9.8 Accessibility compliance verification
+    - Verify semantic HTML structure (header, main, section, nav, footer)
+    - Verify keyboard focus indicators are visible against dark backgrounds
+    - Verify color contrast meets WCAG 2.1 AA minimums (4.5:1 normal, 3:1 large text)
+    - Verify images/icons have alt text or aria-label attributes
+    - Verify navigation components have aria-label for landmark regions
+    - Verify Contact page form elements have associated labels or aria-labels
+    - _Requirements: 38.1, 38.2, 38.3, 38.4, 38.5, 38.6_
+
+- [ ] 10. Final checkpoint — Verify complete migration
+  - Run static code analysis: grep for GlassCard, framer-motion, UniverseLights, Card (shadcn) imports in page components
+  - Verify zero legacy imports remain (except documented exceptions)
+  - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
 
-- All tasks including property tests are required for comprehensive coverage
-- Each task references specific requirements for traceability
-- Checkpoints ensure incremental validation
-- Property tests validate universal correctness properties
-- Unit tests validate specific examples and edge cases
-- The implementation preserves all existing functionality while adding new features
+- Tasks marked with `*` are optional and can be skipped for faster MVP
+- Each task references specific requirement clauses for traceability
+- Checkpoints at tasks 2, 5, 7, and 10 ensure incremental validation
+- The design document's Premium Design Language specification (hero pattern, card pattern, CTA pattern, color palette) should be referenced during each task implementation
+- Gold standard references: MegamindPage.tsx, ServicePageTemplate.tsx, home.tsx, Footer.tsx, OurServicesPage.tsx

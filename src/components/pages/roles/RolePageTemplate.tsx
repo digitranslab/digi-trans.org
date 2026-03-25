@@ -40,9 +40,11 @@ export function RolePageTemplate({ role }: RolePageTemplateProps) {
         <section className="relative pt-36 pb-24 overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
-            <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
-            <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
-            <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
+              <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+              <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
+            </div>
             <div className="absolute inset-0 opacity-[0.03]" style={{
               backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
               backgroundSize: "60px 60px",
@@ -54,11 +56,10 @@ export function RolePageTemplate({ role }: RolePageTemplateProps) {
                 <Sparkles className="w-3.5 h-3.5" />
                 {role.hero.badge}
               </span>
-              <TypewriterGradientText text={role.hero.title} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight" duration={1.8} />
-              <p className="text-xl text-purple-200/80 mb-4 font-medium">{role.hero.subtitle}</p>
+              <TypewriterGradientText text={role.hero.title} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" duration={1.8} />
+              <p className="text-lg md:text-xl text-gray-300/90 mb-4 font-medium">{role.hero.subtitle}</p>
               <p className="text-lg text-gray-300/90 mb-10 max-w-3xl mx-auto leading-relaxed">{role.hero.description}</p>
-              <GradientButton size="lg" onClick={() => navigate("/contact")}>
-                <Calendar className="w-5 h-5 mr-2" />
+              <GradientButton size="lg" leftIcon={<Calendar className="w-5 h-5" />} onClick={() => navigate("/contact")}>
                 Schedule a Meeting
               </GradientButton>
             </AnimatedWrapper>
@@ -85,7 +86,7 @@ export function RolePageTemplate({ role }: RolePageTemplateProps) {
                         </div>
                         <div>
                           <h3 className="text-base font-semibold text-white group-hover:text-purple-300 transition-colors">{prop.title}</h3>
-                          {prop.description && <p className="text-sm text-gray-500 leading-relaxed mt-1.5">{prop.description}</p>}
+                          {prop.description && <p className="text-sm text-gray-400 leading-relaxed mt-1.5">{prop.description}</p>}
                         </div>
                       </div>
                     </div>
@@ -154,8 +155,7 @@ export function RolePageTemplate({ role }: RolePageTemplateProps) {
                 {role.ctaText}
               </h2>
               <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">{role.ctaSubtitle}</p>
-              <GradientButton size="lg" onClick={() => navigate("/contact")}>
-                <Calendar className="w-5 h-5 mr-2" />
+              <GradientButton size="lg" leftIcon={<Calendar className="w-5 h-5" />} onClick={() => navigate("/contact")}>
                 Schedule a Meeting
               </GradientButton>
             </AnimatedWrapper>

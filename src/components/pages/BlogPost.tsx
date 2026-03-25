@@ -1,3 +1,14 @@
+/**
+ * BlogPost Component — Premium Design Language
+ * 
+ * Renders individual blog post pages with bg-black background,
+ * floating gradient orbs in hero, backdrop-blur content area,
+ * TypewriterGradientText for title, AnimatedWrapper for animations,
+ * and styled code blocks.
+ * 
+ * Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6
+ */
+
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { Clock } from "lucide-react";
@@ -5,22 +16,18 @@ import { useParams } from "react-router-dom";
 import { AnimatedWrapper } from "../ui/animated-wrapper";
 import { TypewriterGradientText } from "../ui/typewriter-text";
 
-interface BlogPostProps {
-  post: {
+export default function BlogPost() {
+  const { slug } = useParams();
+
+  // Blog post content mapping
+  const blogPosts: Record<string, {
     title: string;
     description: string;
     image: string;
     date: string;
     readTime: string;
     content?: string;
-  };
-}
-
-export default function BlogPost() {
-  const { slug } = useParams();
-
-  // Blog post content mapping
-  const blogPosts = {
+  }> = {
     "real-time-analytics-kafka": {
       title: "Real-time Analytics with Apache Kafka",
       description:
@@ -51,9 +58,9 @@ props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
 // Send events
-Producer<String, JsonNode> producer = new KafkaProducer<>(props);
-ProducerRecord<String, JsonNode> record = 
-    new ProducerRecord<>("events", event);
+Producer&lt;String, JsonNode&gt; producer = new KafkaProducer&lt;&gt;(props);
+ProducerRecord&lt;String, JsonNode&gt; record = 
+    new ProducerRecord&lt;&gt;("events", event);
 producer.send(record);</code></pre>
 
           <h3>2. Stream Processing</h3>
@@ -127,7 +134,7 @@ builder.stream("events")
             <li><strong>Message Queues:</strong> Asynchronous communication between services</li>
           </ul>
 
-          <h3>3. Containerization & Orchestration</h3>
+          <h3>3. Containerization &amp; Orchestration</h3>
           <ul>
             <li><strong>Container Patterns:</strong> Sidecar, Ambassador, Adapter patterns</li>
             <li><strong>Kubernetes Patterns:</strong> Multi-container pods, operators, controllers</li>
@@ -217,7 +224,7 @@ kafka.subscribe('order.created', async (event) => {
           <h2>Technology Stack</h2>
           <ul>
             <li>Model Training: TensorFlow, PyTorch</li>
-            <li>Experiment Tracking: MLflow, Weights & Biases</li>
+            <li>Experiment Tracking: MLflow, Weights &amp; Biases</li>
             <li>Feature Store: Feast, Tecton</li>
             <li>Model Serving: TensorFlow Serving, Seldon Core</li>
             <li>Monitoring: Prometheus, Grafana</li>
@@ -318,52 +325,94 @@ kafka.subscribe('order.created', async (event) => {
     },
   };
 
-  const post = blogPosts[slug];
+  const post = blogPosts[slug as string];
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black">
       <Navbar />
 
-      <article className="pt-32 pb-16 bg-black">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <AnimatedWrapper animation="fade-up-slow">
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-[400px] object-cover rounded-lg mb-8"
-            />
-          </AnimatedWrapper>
-
-          <AnimatedWrapper animation="fade-up" delay={0.1}>
-            <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
-              <span>{post.date}</span>
-              <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                {post.readTime}
-              </span>
+      <article>
+        {/* ═══════════════════════════════════════════
+            PREMIUM HERO — Floating orbs + post image
+            ═══════════════════════════════════════════ */}
+        <section className="relative pt-36 pb-24 overflow-hidden">
+          {/* Animated background */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
+            {/* Floating gradient orbs */}
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
+              <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+              <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
             </div>
-          </AnimatedWrapper>
+            {/* Grid pattern overlay */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }} />
+          </div>
 
-          <AnimatedWrapper animation="fade-up" delay={0.2}>
-            <TypewriterGradientText 
-              text={post.title}
-              className="text-4xl md:text-5xl font-bold mb-6"
-              gradientClassName="bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent"
-              duration={1.8}
-            />
-          </AnimatedWrapper>
+          <div className="relative container mx-auto px-4 max-w-4xl">
+            <AnimatedWrapper animation="fade-up-slow">
+              <img
+                src={post.image}
+                alt={post.title}
+                className="w-full h-[400px] object-cover rounded-2xl mb-8 border border-gray-800/50"
+              />
+            </AnimatedWrapper>
 
-          <AnimatedWrapper animation="fade-up" delay={0.3}>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-xl text-gray-400 mb-8">{post.description}</p>
+            <AnimatedWrapper animation="fade-up" delay={0.1}>
+              <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
+                <span>{post.date}</span>
+                <span className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  {post.readTime}
+                </span>
+              </div>
+            </AnimatedWrapper>
 
-              {post.content ? (
-                <div dangerouslySetInnerHTML={{ __html: post.content }} />
-              ) : (
-                <p className="text-gray-400">Full content coming soon...</p>
-              )}
-            </div>
-          </AnimatedWrapper>
-        </div>
+            <AnimatedWrapper animation="fade-up" delay={0.2}>
+              <TypewriterGradientText 
+                text={post.title}
+                className="text-4xl md:text-5xl font-bold mb-6"
+                duration={1.8}
+              />
+            </AnimatedWrapper>
+
+            <AnimatedWrapper animation="fade-up" delay={0.3}>
+              <p className="text-xl text-gray-300/90">{post.description}</p>
+            </AnimatedWrapper>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            CONTENT AREA — Backdrop-blur card with styled code blocks
+            ═══════════════════════════════════════════ */}
+        <section className="pb-24 relative">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <AnimatedWrapper animation="fade-up" delay={0.4}>
+              <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-8 md:p-12">
+                {post.content ? (
+                  <div 
+                    className="prose prose-lg prose-invert max-w-none
+                      [&_pre]:bg-gray-800/50 [&_pre]:border [&_pre]:border-gray-700/50 [&_pre]:rounded-lg [&_pre]:p-4 [&_pre]:overflow-x-auto
+                      [&_code]:bg-gray-800/50 [&_code]:border [&_code]:border-gray-700/50 [&_code]:rounded-lg [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-sm [&_code]:text-purple-300
+                      [&_pre_code]:bg-transparent [&_pre_code]:border-0 [&_pre_code]:p-0 [&_pre_code]:rounded-none
+                      [&_h2]:text-white [&_h2]:font-bold [&_h2]:mt-10 [&_h2]:mb-4
+                      [&_h3]:text-gray-200 [&_h3]:font-semibold [&_h3]:mt-8 [&_h3]:mb-3
+                      [&_p]:text-gray-300/90 [&_p]:leading-relaxed
+                      [&_li]:text-gray-300/90
+                      [&_strong]:text-white
+                      [&_a]:text-purple-400 [&_a:hover]:text-purple-300"
+                    dangerouslySetInnerHTML={{ __html: post.content }} 
+                  />
+                ) : (
+                  <p className="text-gray-400">Full content coming soon...</p>
+                )}
+              </div>
+            </AnimatedWrapper>
+          </div>
+        </section>
       </article>
 
       <Footer />

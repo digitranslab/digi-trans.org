@@ -3,13 +3,13 @@
  * 
  * Displays content items for the University learning hub.
  * Shows thumbnail, title, duration, category tag, and description.
+ * Uses Premium Design Language backdrop-blur card patterns.
  * 
- * Requirements: 13.3
+ * Requirements: 13.3, 16.1
  */
 
 import React from "react";
-import { Clock, ExternalLink } from "lucide-react";
-import { GlassCard } from "./glass-card";
+import { Clock } from "lucide-react";
 import type { ContentItem } from "@/data/university";
 
 interface ContentCardProps {
@@ -39,9 +39,12 @@ export function ContentCard({ content, className }: ContentCardProps) {
       rel="noopener noreferrer"
       className={className}
     >
-      <GlassCard variant="hover" className="h-full p-0 overflow-hidden">
+      <div className="group relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300">
+        {/* Hover gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+
         {/* Thumbnail placeholder */}
-        <div className="aspect-video bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center relative">
+        <div className="relative aspect-video bg-gradient-to-br from-purple-900/50 to-blue-900/50 flex items-center justify-center">
           <div className="text-4xl text-purple-400/50">▶</div>
           {/* Duration badge */}
           <div className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 bg-black/70 rounded text-xs text-white">
@@ -50,7 +53,7 @@ export function ContentCard({ content, className }: ContentCardProps) {
           </div>
         </div>
         
-        <div className="p-4">
+        <div className="relative p-4">
           {/* Category tag */}
           <span
             className={`inline-block px-2 py-0.5 text-xs rounded-full border mb-2 ${
@@ -61,7 +64,7 @@ export function ContentCard({ content, className }: ContentCardProps) {
           </span>
           
           {/* Title */}
-          <h3 className="font-bold text-white mb-2 line-clamp-2 group-hover:text-purple-400 transition-colors">
+          <h3 className="font-bold text-white mb-2 line-clamp-2 group-hover:text-purple-300 transition-colors">
             {content.title}
           </h3>
           
@@ -82,7 +85,7 @@ export function ContentCard({ content, className }: ContentCardProps) {
             ))}
           </div>
         </div>
-      </GlassCard>
+      </div>
     </a>
   );
 }
