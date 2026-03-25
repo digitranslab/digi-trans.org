@@ -36,7 +36,7 @@ export const categories: CategoryInfo[] = [
   {
     slug: "tutorials",
     title: "Tutorials",
-    description: "Step-by-step video guides for Allama, DBLOCK, and general AI/Data topics.",
+    description: "Step-by-step video guides for Allama, Dblock, and general AI/Data topics.",
     icon: "BookOpen",
   },
   {

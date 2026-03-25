@@ -1,8 +1,8 @@
 /**
- * DBLOCK Product Data File
+ * Dblock Product Data File
  * 
- * Contains all content data for the DBLOCK product page.
- * DBLOCK is Digitrans's AI application development platform - we provide
+ * Contains all content data for the Dblock product page.
+ * Dblock is Digitrans's AI application development platform - we provide
  * implementation, consulting, and managed services for building enterprise AI solutions.
  */
 
@@ -35,11 +35,11 @@ export interface UseCase {
 
 // Hero Section Data
 export const heroData = {
-  tagline: "Enterprise AI Application Platform",
+  tagline: "Enterprise AI Application Platform — Coming Soon",
   headline: "Build AI Applications That Deliver Results",
-  description: "DBLOCK accelerates your AI initiatives. Our experts design, build, and deploy custom AI applications—from RAG systems to intelligent agents—tailored to your business needs.",
+  description: "Dblock accelerates your AI initiatives. Gartner predicts 40% of enterprise apps will integrate AI agents by end of 2026. Our experts design, build, and deploy custom AI applications — from RAG systems to multi-agent orchestration — tailored to your business needs.",
   primaryCTA: {
-    label: "Schedule a Consultation",
+    label: "Join the Waitlist",
     href: "/contact",
   },
   secondaryCTA: {
@@ -53,7 +53,7 @@ export const valuePropositions: ValueProposition[] = [
   {
     icon: "Rocket",
     title: "Rapid AI Development",
-    description: "Our AI engineers build production-ready applications in weeks. Visual development accelerates iteration while our expertise ensures enterprise-grade quality.",
+    description: "Our AI engineers build production-ready applications in weeks. Visual development accelerates iteration while our expertise ensures enterprise-grade quality. RAG reduces hallucinations by 67% in production environments.",
     metric: {
       value: "3-4x",
       label: "Faster Development",
@@ -61,17 +61,17 @@ export const valuePropositions: ValueProposition[] = [
   },
   {
     icon: "Bot",
-    title: "Intelligent Agents",
-    description: "We build AI agents that automate complex workflows—from customer support to document processing. Agents that think, decide, and act on your behalf.",
+    title: "Multi-Agent Orchestration",
+    description: "We build AI agent systems that automate complex workflows — from customer support to document processing. Specialized agents working in parallel with intelligent routing and human-in-the-loop for critical decisions.",
     metric: {
-      value: "Custom",
-      label: "Agent Solutions",
+      value: "40%",
+      label: "Enterprise Apps with AI Agents by 2026",
     },
   },
   {
     icon: "Shield",
-    title: "Enterprise Security",
-    description: "Deploy AI with confidence. We implement proper data governance, access controls, and audit trails. Your data stays secure and compliant.",
+    title: "Enterprise Security & Compliance",
+    description: "Deploy AI with confidence. We implement proper data governance, access controls, audit trails, and compliance frameworks. SOC2, GDPR, HIPAA ready. Your data stays secure and within your boundary.",
     metric: {
       value: "SOC 2",
       label: "Compliant",
@@ -79,11 +79,11 @@ export const valuePropositions: ValueProposition[] = [
   },
   {
     icon: "TrendingUp",
-    title: "Measurable ROI",
-    description: "Every AI project we deliver is tied to business outcomes. We track metrics that matter—cost savings, efficiency gains, revenue impact.",
+    title: "Measurable Business Impact",
+    description: "Every AI project we deliver is tied to business outcomes. We track metrics that matter — cost savings, efficiency gains, revenue impact. The agentic automation market is projected to reach $55B by 2036.",
     metric: {
-      value: "Proven",
-      label: "Business Value",
+      value: "$55B",
+      label: "Agentic Market by 2036",
     },
   },
 ];
@@ -126,7 +126,7 @@ export const features: Feature[] = [
     id: "integration",
     icon: "Plug",
     title: "Enterprise Integration",
-    description: "We connect DBLOCK to your existing systems—CRM, ERP, databases, and APIs—creating AI solutions that fit your workflow.",
+    description: "We connect Dblock to your existing systems—CRM, ERP, databases, and APIs—creating AI solutions that fit your workflow.",
     capabilities: [
       "Any LLM provider (OpenAI, Anthropic, Azure, etc.)",
       "Any vector store (Pinecone, Weaviate, etc.)",
@@ -142,7 +142,7 @@ export const features: Feature[] = [
     id: "managed-ai",
     icon: "Headphones",
     title: "Managed AI Services",
-    description: "Let our AI experts manage your DBLOCK deployment. We monitor, optimize, and evolve your AI applications as your needs grow.",
+    description: "Let our AI experts manage your Dblock deployment. We monitor, optimize, and evolve your AI applications as your needs grow.",
     capabilities: [
       "24/7 platform monitoring",
       "Model performance optimization",

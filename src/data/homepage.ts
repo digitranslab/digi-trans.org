@@ -4,7 +4,7 @@
  * Contains all content data for the homepage sections including:
  * - Hero content (headline, CTAs, trust badges)
  * - Three pillars data (Consulting, Engineering, Products)
- * - Products showcase data (Allama, DBLOCK)
+ * - Products showcase data (Allama, Dblock)
  * - Industries data (5 verticals)
  * - Differentiators data (5 items with metrics)
  * - Testimonials data (placeholder format)
@@ -94,14 +94,14 @@ export const heroData: HeroData = {
     href: "/contact",
   },
   secondaryCTA: {
-    label: "Explore Products",
-    href: "/products/allama",
+    label: "Explore Megamind",
+    href: "/products/megamind",
   },
   trustBadges: [
     { label: "Industrial Sites", value: "150+" },
     { label: "Continents", value: "5" },
     { label: "Uptime SLA", value: "99.9%" },
-    { label: "Years Experience", value: "13+" },
+    { label: "Megamind Downloads", value: "4.5M+" },
   ],
 };
 
@@ -114,9 +114,9 @@ export const pillarsData: PillarData[] = [
     href: "/services/ai-data-consulting",
     features: [
       "AI Strategy & Roadmap",
+      "AI Consulting Services",
       "Data Architecture Design",
       "360° Operations Survey",
-      "Digital Transformation",
     ],
   },
   {
@@ -137,16 +137,30 @@ export const pillarsData: PillarData[] = [
     description: "24/7 DevOps and MLOps support across 5 continents. We build it, you own it — full IP ownership with guaranteed SLAs and proactive monitoring.",
     href: "/products/allama",
     features: [
+      "Megamind AI Platform",
       "Allama SOAR Platform",
-      "DBLOCK (Coming Soon)",
+      "Dblock (Coming Soon)",
       "24/7 Global Support",
-      "Guaranteed SLAs",
     ],
   },
 ];
 
 // Products Showcase Data - Requirements 4.1, 4.2, 4.3
 export const productsData: ProductData[] = [
+  {
+    name: "Megamind",
+    tagline: "Open-source AI platform",
+    description: "ChatGPT alternative supporting local and cloud models. Run AI privately with full data sovereignty, MCP tool integration, and OpenAI-compatible API. By digitranslab on GitHub.",
+    features: [
+      "Local & Cloud Models",
+      "MCP Tool Integration",
+      "Custom AI Assistants",
+      "OpenAI-Compatible API",
+    ],
+    href: "/products/megamind",
+    status: "live",
+    ctaLabel: "Learn More",
+  },
   {
     name: "Allama",
     tagline: "Open-source security automation platform",
@@ -162,7 +176,7 @@ export const productsData: ProductData[] = [
     ctaLabel: "Learn More",
   },
   {
-    name: "DBLOCK",
+    name: "Dblock",
     tagline: "Open-source AI application builder",
     description: "Python-based framework for building AI applications with a visual editor. Supports agents, MCP, and any LLM or vector store—no vendor lock-in.",
     features: [

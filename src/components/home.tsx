@@ -14,8 +14,6 @@ import {
   Zap,
   Award,
   Briefcase,
-  Code2,
-  Package,
   Landmark,
   HeartPulse,
   ShoppingCart,
@@ -24,7 +22,10 @@ import {
   Building,
   Globe,
   Rocket,
-  GitBranch
+  GitBranch,
+  Brain,
+  Shield,
+  Sparkles
 } from "lucide-react";
 
 import { StickyCTA } from "./ui/sticky-cta";
@@ -35,52 +36,91 @@ import { GradientButton } from "./ui/gradient-button";
 import { SectionHeader } from "./ui/section-header";
 import { AnimatedWrapper } from "./ui/animated-wrapper";
 
-// SECTION 2: Three Pillars - What We Do
-const threePillars = [
+// EXPERIENCE & IMPACT STATS (inspired by Bain/McKinsey credibility patterns)
+const impactStats = [
+  { value: "4.5M+", label: "Megamind Downloads", description: "Open-source platform adoption" },
+  { value: "500+", label: "Projects Delivered", description: "Across data & AI engagements" },
+  { value: "150+", label: "Enterprise Clients", description: "Global organizations served" },
+  { value: "50PB+", label: "Data Processed", description: "At enterprise scale" },
+];
+
+// AI CONSULTING CAPABILITIES (structured like EY's 5 domains / Bain's 4 capability groups)
+const aiCapabilities = [
   {
-    icon: <Briefcase className="w-8 h-8" />,
-    title: "Consulting",
-    subtitle: "Strategic AI & Data Advisory",
-    description: "Expert guidance to define your data strategy, AI roadmap, and transformation journey.",
-    bullets: [
-      "Data strategy & governance frameworks",
-      "AI readiness assessments",
-      "Technology selection & architecture",
-      "Change management & training"
-    ],
-    href: "/services",
-    cta: "Explore Consulting",
-    gradient: "from-purple-500 to-indigo-500",
+    icon: <Brain className="w-7 h-7" />,
+    title: "AI Strategy & Assessment",
+    description: "Evaluate organizational readiness, identify high-ROI automation opportunities, and design sovereign AI architectures aligned with business objectives.",
+    href: "/services/ai-consulting",
+    gradient: "from-purple-500 to-violet-500",
   },
   {
-    icon: <Code2 className="w-8 h-8" />,
-    title: "Engineering",
-    subtitle: "Build & Deploy at Scale",
-    description: "End-to-end implementation of modern data platforms and AI solutions.",
-    bullets: [
-      "Data platform engineering",
-      "ML/AI model development",
-      "Real-time streaming pipelines",
-      "Cloud migration & optimisation"
-    ],
-    href: "/services",
-    cta: "View Engineering",
+    icon: <Bot className="w-7 h-7" />,
+    title: "Agentic AI Implementation",
+    description: "Build autonomous AI agents using MCP that work independently for hours on research, analysis, and report generation — not just chatbots, but systems that do real work.",
+    href: "/services/agentic-ai",
     gradient: "from-blue-500 to-cyan-500",
   },
   {
-    icon: <Package className="w-8 h-8" />,
-    title: "Products",
-    subtitle: "Ready-to-Deploy Solutions",
-    description: "Production-ready platforms that accelerate your AI and data initiatives.",
-    bullets: [
-      "Allama: AI security automation",
-      "DBLOCK: Data application platform",
-      "Open-source foundations",
-      "Enterprise support included"
-    ],
-    href: "/products",
-    cta: "Discover Products",
+    icon: <Shield className="w-7 h-7" />,
+    title: "Sovereign AI Deployment",
+    description: "Deploy AI entirely within your infrastructure — on-premise, air-gapped, or private cloud. Complete data residency compliance for regulated industries.",
+    href: "/services/sovereign-ai",
+    gradient: "from-green-500 to-emerald-500",
+  },
+  {
+    icon: <Sparkles className="w-7 h-7" />,
+    title: "Custom Model Fine-Tuning",
+    description: "Train domain-specific models (1.7B–4B parameters) on your data. Our Jan-v1 achieves 91.1% SimpleQA accuracy — outperforming models 17x its size.",
+    href: "/models",
     gradient: "from-orange-500 to-amber-500",
+  },
+];
+
+// SECTION 2: Services - What We Do (2 groups × 2 services)
+const serviceGroups = [
+  {
+    groupTitle: "Data Architecture & Engineering",
+    groupDescription: "Design, build, and scale modern data infrastructure",
+    services: [
+      {
+        icon: <Layers className="w-6 h-6" />,
+        title: "Big Data Architecture",
+        description: "Medallion architecture, lakehouses, real-time streaming pipelines, and cloud-native data platforms — designed for petabyte scale.",
+        bullets: ["Lakehouse & medallion architecture", "Real-time streaming (Kafka, Spark)", "Cloud-native on AWS, GCP, Azure", "Data governance & quality frameworks"],
+        href: "/services/big-data-architecture",
+        metric: { value: "50PB+", label: "Data processed" },
+      },
+      {
+        icon: <Briefcase className="w-6 h-6" />,
+        title: "AI & Data Strategy",
+        description: "Roadmaps, governance frameworks, and data maturity assessments that align your data investments with business outcomes.",
+        bullets: ["AI readiness assessment", "Data governance & compliance", "Technology evaluation & selection", "Implementation roadmap planning"],
+        href: "/services/ai-data-consulting",
+        metric: { value: "150+", label: "Clients advised" },
+      },
+    ],
+  },
+  {
+    groupTitle: "Sovereign AI & Consulting",
+    groupDescription: "Deploy AI you own, control, and trust",
+    services: [
+      {
+        icon: <Bot className="w-6 h-6" />,
+        title: "Agentic AI & Automation",
+        description: "Autonomous AI agents using MCP that work independently on research, analysis, and operations — not chatbots, but systems that do real work.",
+        bullets: ["Multi-agent orchestration via MCP", "Workflow automation (n8n, LangGraph)", "Custom tool & API integration", "Human-in-the-loop governance"],
+        href: "/services/agentic-ai",
+        metric: { value: "90%", label: "Task automation" },
+      },
+      {
+        icon: <Shield className="w-6 h-6" />,
+        title: "Sovereign AI",
+        description: "Deploy AI entirely within your infrastructure — on-premise, air-gapped, or private cloud. Complete data residency for regulated industries.",
+        bullets: ["On-premise & air-gapped deployment", "Custom model fine-tuning from $100", "GDPR, HIPAA, SOC2 compliance", "Zero data leaves your boundary"],
+        href: "/services/sovereign-ai",
+        metric: { value: "100%", label: "Data sovereignty" },
+      },
+    ],
   },
 ];
 
@@ -102,7 +142,22 @@ const products = [
     icon: <Bot className="w-10 h-10" />,
   },
   {
-    name: "DBLOCK",
+    name: "Megamind",
+    headline: "Self-Hosted Sovereign AI Platform",
+    description: "Deploy AI entirely within your infrastructure. Open-source platform with 4.5M+ downloads powering sovereign AI for regulated industries — on-premise, air-gapped, or private cloud.",
+    benefits: [
+      "100% sovereign — zero data leaves your boundary",
+      "Self-hosted with GDPR, HIPAA, SOC2 compliance",
+      "Fine-tuned models running on 8–16GB RAM",
+      "MCP integrations for enterprise tool connectivity"
+    ],
+    cta1: { text: "Explore Megamind", href: "/products/megamind" },
+    cta2: { text: "View on GitHub", href: "https://github.com/digitranslab/megamind" },
+    gradient: "from-violet-600 to-purple-600",
+    icon: <Brain className="w-10 h-10" />,
+  },
+  {
+    name: "Dblock",
     headline: "AI-Powered Data Workflow Automation",
     description: "Build, deploy, and manage data applications with a visual workflow builder powered by AI. Coming soon.",
     benefits: [
@@ -163,26 +218,26 @@ const differentiators = [
   {
     icon: <Award className="w-6 h-6" />,
     title: "Proven Experience",
-    description: "10+ years delivering enterprise data solutions",
+    description: "10+ years delivering enterprise data & AI solutions",
     proof: "500+ projects across 150+ clients",
   },
   {
-    icon: <Zap className="w-6 h-6" />,
-    title: "Massive Scale",
-    description: "Built to handle enterprise workloads",
-    proof: "50PB+ data processed, 1B+ events daily",
+    icon: <Brain className="w-6 h-6" />,
+    title: "AI-Native Platform",
+    description: "Megamind: 4.5M+ downloads, 16K+ community",
+    proof: "91.1% SimpleQA accuracy (Jan-v1)",
   },
   {
     icon: <GitBranch className="w-6 h-6" />,
     title: "Open-Source First",
-    description: "No vendor lock-in, full transparency",
-    proof: "Contributors to major OSS projects",
+    description: "Apache 2.0 — no vendor lock-in, full transparency",
+    proof: "100+ contributors, 2,800+ PRs merged",
   },
   {
-    icon: <Globe className="w-6 h-6" />,
-    title: "Cloud Agnostic",
-    description: "Deploy anywhere, migrate anytime",
-    proof: "AWS, GCP, Azure certified partners",
+    icon: <Shield className="w-6 h-6" />,
+    title: "Sovereign AI",
+    description: "On-premise, air-gapped, private cloud",
+    proof: "GDPR, HIPAA, SOC2, FedRAMP ready",
   },
   {
     icon: <Rocket className="w-6 h-6" />,
@@ -224,61 +279,75 @@ export default function Home() {
       {/* SECTION 1: HERO */}
       <Hero videoUrl="/videos/home-page.mp4" showCards={false} />
 
-      {/* SECTION 2: WHAT WE DO - Three Pillars */}
+      {/* SECTION 2: WHAT WE DO - Services */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/10 rounded-full blur-[100px] animate-pulse" />
+          <div className="absolute bottom-20 right-[15%] w-96 h-96 bg-blue-600/8 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "2s" }} />
+        </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <SectionHeader
             badge="What We Do"
-            title="Products & Services"
-            description="Three pillars of expertise to accelerate your digital transformation"
+            title="Data & AI Services"
+            description="Two practice areas, four specialized services — from data infrastructure to sovereign AI deployment"
             alignment="center"
           />
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16">
-            {threePillars.map((pillar, index) => (
-              <AnimatedWrapper
-                key={pillar.title}
-                animation="scale-up-bounce"
-                delay={index * 0.15}
-              >
-                <GlassCard 
-                  variant="gradient"
-                  className="p-8 h-full cursor-pointer group hover:scale-[1.02] transition-all duration-300"
-                  onClick={() => navigate(pillar.href)}
-                >
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${pillar.gradient} bg-opacity-20 text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    {pillar.icon}
+          <div className="max-w-6xl mx-auto mt-16 space-y-16">
+            {serviceGroups.map((group, gi) => (
+              <div key={group.groupTitle}>
+                <AnimatedWrapper animation="fade-up" delay={gi * 0.1}>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="h-px flex-1 bg-gradient-to-r from-purple-500/40 to-transparent" />
+                    <span className="text-xs font-semibold uppercase tracking-wider text-purple-400">{group.groupTitle}</span>
+                    <div className="h-px flex-1 bg-gradient-to-l from-purple-500/40 to-transparent" />
                   </div>
-                  
-                  <h3 className="text-2xl font-bold mb-2 text-white group-hover:text-purple-400 transition-colors">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-purple-400 text-sm font-medium mb-4">
-                    {pillar.subtitle}
-                  </p>
-                  
-                  <p className="text-gray-400 mb-6 leading-relaxed">
-                    {pillar.description}
-                  </p>
-                  
-                  <ul className="space-y-2 mb-6">
-                    {pillar.bullets.map((bullet, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-gray-300">
-                        <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="flex items-center gap-2 text-gray-400 group-hover:text-purple-400 group-hover:gap-4 transition-all mt-auto">
-                    <span className="text-sm font-medium">{pillar.cta}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                </GlassCard>
-              </AnimatedWrapper>
+                  <p className="text-center text-sm text-gray-500 mb-8">{group.groupDescription}</p>
+                </AnimatedWrapper>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {group.services.map((service, si) => (
+                    <AnimatedWrapper key={service.title} animation="float-up" delay={(gi * 2 + si) * 0.08}>
+                      <div 
+                        className="group relative h-full cursor-pointer"
+                        onClick={() => navigate(service.href)}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400">
+                              {service.icon}
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">{service.title}</h3>
+                            </div>
+                            {service.metric && (
+                              <div className="text-right">
+                                <div className="text-lg font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">{service.metric.value}</div>
+                                <div className="text-xs text-gray-500">{service.metric.label}</div>
+                              </div>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-400 leading-relaxed mb-4">{service.description}</p>
+                          <ul className="space-y-2 mb-4">
+                            {service.bullets.map((bullet, i) => (
+                              <li key={i} className="flex items-center gap-2 text-sm text-gray-300">
+                                <CheckCircle className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
+                                {bullet}
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="flex items-center gap-2 text-purple-400 text-sm font-medium group-hover:gap-3 transition-all">
+                            <span>Learn more</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </div>
+                        </div>
+                      </div>
+                    </AnimatedWrapper>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -294,7 +363,7 @@ export default function Home() {
             alignment="center"
           />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16 max-w-7xl mx-auto">
             {products.map((product, index) => (
               <AnimatedWrapper
                 key={product.name}
@@ -344,6 +413,72 @@ export default function Home() {
                 </GlassCard>
               </AnimatedWrapper>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIENCE & IMPACT */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-transparent to-blue-900/10" />
+        <div className="container mx-auto px-4 relative z-10">
+          <SectionHeader
+            badge="Experience & Impact"
+            title="Proven at Scale"
+            description="Trusted by enterprises worldwide to deliver AI and data solutions that work"
+            alignment="center"
+          />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 max-w-5xl mx-auto">
+            {impactStats.map((stat, index) => (
+              <AnimatedWrapper key={stat.label} animation="scale-up-bounce" delay={index * 0.1}>
+                <div className="text-center">
+                  <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-lg font-semibold text-white mb-1">{stat.label}</div>
+                  <div className="text-sm text-gray-500">{stat.description}</div>
+                </div>
+              </AnimatedWrapper>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI CONSULTING CAPABILITIES */}
+      <section className="py-24 bg-gradient-to-b from-black via-gray-900/50 to-black">
+        <div className="container mx-auto px-4">
+          <SectionHeader
+            badge="AI Consulting Services"
+            title="End-to-End AI Transformation"
+            description="From strategy to production — we help organizations implement AI they own, control, and trust"
+            alignment="center"
+          />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 max-w-5xl mx-auto">
+            {aiCapabilities.map((cap, index) => (
+              <AnimatedWrapper key={cap.title} animation="fade-in-blur" delay={index * 0.12}>
+                <GlassCard 
+                  className="p-8 h-full cursor-pointer group hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
+                  onClick={() => navigate(cap.href)}
+                >
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${cap.gradient} opacity-5 rounded-full blur-2xl group-hover:opacity-15 transition-opacity`} />
+                  <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${cap.gradient} text-white mb-4`}>
+                    {cap.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">{cap.title}</h3>
+                  <p className="text-gray-400 leading-relaxed mb-4">{cap.description}</p>
+                  <div className="flex items-center gap-2 text-purple-400 text-sm font-medium group-hover:gap-3 transition-all">
+                    <span>Learn more</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
+                </GlassCard>
+              </AnimatedWrapper>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <GradientButton size="lg" onClick={() => navigate('/services/ai-consulting')} rightIcon={<ArrowRight className="w-5 h-5" />}>
+              Explore All AI Services
+            </GradientButton>
           </div>
         </div>
       </section>
@@ -430,7 +565,7 @@ export default function Home() {
           
           {/* Trust badges */}
           <div className="flex flex-wrap justify-center items-center gap-6 mt-12">
-            {["Open Source First", "Cloud Agnostic", "Enterprise Ready"].map((badge) => (
+            {["Open Source First", "Sovereign AI Ready", "Cloud Agnostic", "Apache 2.0 Licensed"].map((badge) => (
               <span 
                 key={badge}
                 className="px-4 py-2 bg-gray-800/50 text-gray-300 rounded-full text-sm border border-gray-700"
@@ -510,12 +645,12 @@ export default function Home() {
             </span>
             
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-              Let's Build Your Data Advantage
+              Let's Build Your AI Advantage
             </h2>
             
             <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-              Schedule a free consultation to discuss how we can help you build 
-              intelligent data platforms that drive competitive advantage.
+              Schedule a free consultation to discuss how we can help you implement 
+              AI that drives competitive advantage — from strategy to autonomous agents.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

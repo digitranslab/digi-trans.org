@@ -1,29 +1,16 @@
 /**
- * DBlockPage Component
+ * DBlockPage Component — Premium Redesign
  * 
- * The product page for DBLOCK - enterprise AI application platform.
- * Digitrans provides implementation, consulting, and managed services
- * for building enterprise AI solutions.
- * 
- * Includes:
- * - Hero section with tagline and CTAs
- * - Value propositions section
- * - Feature deep dive sections
- * - Technology integrations
- * - Use cases
+ * Product page for Dblock — enterprise AI application platform.
+ * Redesigned with premium visual language matching MegamindPage/ServicePageTemplate.
  */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as LucideIcons from "lucide-react";
-import { 
-  Check,
-  Calendar,
-  Users
-} from "lucide-react";
+import { Calendar, Users, Check, Sparkles, ArrowRight, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { GlassCard } from "@/components/ui/glass-card";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
@@ -36,170 +23,88 @@ import {
   componentCategories,
 } from "@/data/dblock";
 
-// Helper to get Lucide icon by name
-const getIcon = (iconName: string) => {
+const getIcon = (iconName: string, className: string = "w-6 h-6") => {
   const Icon = (LucideIcons as any)[iconName];
-  return Icon ? <Icon className="w-6 h-6" /> : null;
+  return Icon ? <Icon className={className} /> : null;
 };
 
 const DBlockPage: React.FC = () => {
   const navigate = useNavigate();
-  
+
+  useEffect(() => {
+    document.title = "Dblock — Enterprise AI Application Platform | Digitrans";
+    document.querySelector('meta[name="description"]')?.setAttribute("content",
+      "Dblock accelerates enterprise AI initiatives. From RAG systems to multi-agent orchestration — custom AI applications designed, built, and deployed by our experts."
+    );
+  }, []);
+
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
-      
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 overflow-hidden">
-          {/* Background Effects */}
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          
+        {/* ═══════════════════════════════════════════
+            HERO — Immersive gradient with floating orbs
+            ═══════════════════════════════════════════ */}
+        <section className="relative pt-36 pb-24 overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-950/40 via-black/80 to-black" />
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-20 left-[10%] w-72 h-72 bg-blue-600/15 rounded-full blur-[100px] animate-pulse" />
+              <div className="absolute top-40 right-[15%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+              <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
+            </div>
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: "linear-gradient(rgba(59,130,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.3) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }} />
+          </div>
+
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
-              {/* Badge */}
-              <span className="inline-block mb-4 px-4 py-1.5 bg-blue-900/40 text-blue-300 text-sm rounded-full border border-blue-500/30">
+              <span className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 bg-blue-900/40 text-blue-300 text-sm rounded-full border border-blue-500/30 backdrop-blur-sm">
+                <Clock className="w-3.5 h-3.5" />
                 {heroData.tagline}
               </span>
-              
-              {/* Headline */}
-              <TypewriterGradientText 
+              <TypewriterGradientText
                 text={heroData.headline}
-                className="text-4xl md:text-6xl font-bold mb-6"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
                 gradientClassName="bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent"
                 duration={1.8}
               />
-              
-              {/* Description */}
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                {heroData.description}
-              </p>
-              
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <GradientButton size="lg" onClick={() => navigate('/contact')}>
+              <p className="text-lg md:text-xl text-gray-300/90 mb-10 max-w-3xl mx-auto leading-relaxed">{heroData.description}</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <GradientButton size="lg" onClick={() => navigate(heroData.primaryCTA.href)}>
                   <Calendar className="w-5 h-5 mr-2" />
                   {heroData.primaryCTA.label}
                 </GradientButton>
-                <GradientButton variant="secondary" size="lg" onClick={() => navigate('/clients')}>
+                <GradientButton variant="secondary" size="lg" onClick={() => navigate(heroData.secondaryCTA.href)}>
                   <Users className="w-5 h-5 mr-2" />
                   {heroData.secondaryCTA.label}
                 </GradientButton>
               </div>
-              
-              {/* Hero Screenshot */}
-              <div className="relative max-w-5xl mx-auto">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-30 blur-lg" />
-                <img 
-                  src="/images/products/dblock/workspace.png" 
-                  alt="DBLOCK Visual Flow Editor"
-                  className="relative w-full h-auto rounded-xl shadow-2xl border border-gray-800"
-                />
-              </div>
             </AnimatedWrapper>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
         </section>
 
-        {/* Value Propositions Section */}
-        <section className="py-20 relative">
+        {/* ═══════════════════════════════════════════
+            IMPACT METRICS — Gradient stat bar
+            ═══════════════════════════════════════════ */}
+        <section className="py-16 relative">
           <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="Why DBLOCK"
-              title="Enterprise AI, Delivered"
-              description="Four reasons teams choose Digitrans for AI development."
-              alignment="center"
-            />
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-              {valuePropositions.map((prop, index) => (
-                <AnimatedWrapper key={prop.title} animation="scale-up-bounce" delay={index * 0.1}>
-                  <GlassCard variant="gradient" className="h-full p-6 hover:scale-[1.02] transition-all duration-300">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400">
-                        {getIcon(prop.icon)}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+              {valuePropositions.map((prop, i) => (
+                <AnimatedWrapper key={prop.title} animation="scale-in" delay={i * 0.08}>
+                  <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative bg-gray-900/60 backdrop-blur-sm border border-gray-800/60 rounded-2xl p-6 text-center hover:border-blue-500/40 transition-all duration-300">
+                      <div className="inline-flex p-2.5 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400 mb-3">
+                        {getIcon(prop.icon, "w-5 h-5")}
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white mb-2">{prop.title}</h3>
-                        <p className="text-gray-400 text-sm mb-4">{prop.description}</p>
-                        {prop.metric && (
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                              {prop.metric.value}
-                            </span>
-                            <span className="text-sm text-gray-500">{prop.metric.label}</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </GlassCard>
-                </AnimatedWrapper>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Features Deep Dive Section */}
-        <section className="py-20 bg-gray-900/30">
-          <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="Services"
-              title="AI Solutions We Deliver"
-              description="End-to-end AI development from strategy to production."
-              alignment="center"
-            />
-            
-            <div className="space-y-16 mt-12">
-              {features.map((feature, index) => (
-                <AnimatedWrapper 
-                  key={feature.id} 
-                  animation={index % 2 === 0 ? "slide-right" : "slide-left"}
-                >
-                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
-                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                  }`}>
-                    <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white">
-                          {getIcon(feature.icon)}
-                        </div>
-                        <h3 className="text-2xl font-bold text-white">{feature.title}</h3>
-                      </div>
-                      <p className="text-gray-400 mb-6">{feature.description}</p>
-                      <ul className="space-y-2 mb-6">
-                        {feature.capabilities.map((cap, capIndex) => (
-                          <AnimatedWrapper key={cap} animation="slide-up" delay={capIndex * 0.05}>
-                            <li className="flex items-start gap-2 text-gray-300">
-                              <Check className="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" />
-                              <span>{cap}</span>
-                            </li>
-                          </AnimatedWrapper>
-                        ))}
-                      </ul>
-                      <p className="text-blue-400 italic">"{feature.marketingAngle}"</p>
-                    </div>
-                    <div className={`${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                      <AnimatedWrapper animation="zoom-in" delay={0.2}>
-                        <GlassCard className="p-4 overflow-hidden hover:scale-[1.02] transition-all duration-300">
-                        {feature.image ? (
-                          <img 
-                            src={feature.image} 
-                            alt={`${feature.title} screenshot`}
-                            className="w-full h-auto rounded-lg shadow-2xl"
-                          />
-                        ) : (
-                          <div className="aspect-video flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 inline-block mb-4">
-                                {getIcon(feature.icon)}
-                              </div>
-                              <p className="text-gray-400">{feature.title} Preview</p>
-                            </div>
-                          </div>
-                        )}
-                      </GlassCard>
-                    </AnimatedWrapper>
+                      {prop.metric && (
+                        <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-1">{prop.metric.value}</div>
+                      )}
+                      <p className="text-sm text-gray-400">{prop.metric?.label || prop.title}</p>
                     </div>
                   </div>
                 </AnimatedWrapper>
@@ -208,66 +113,181 @@ const DBlockPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Component Categories Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="Integrations"
-              title="We Integrate With Your Stack"
-              description="Connect to any LLM, vector store, or enterprise system."
-              alignment="center"
-            />
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              {componentCategories.map((category, index) => (
-                <AnimatedWrapper key={category.category} animation="float-up" delay={index * 0.05}>
-                  <GlassCard className="p-4 h-full min-h-[180px] hover:scale-[1.03] transition-all duration-300">
-                    <h4 className="font-bold text-blue-400 mb-3">{category.category}</h4>
-                    <ul className="space-y-1">
-                      {category.items.map((item) => (
-                        <li key={item} className="text-sm text-gray-400">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </GlassCard>
+        {/* ═══════════════════════════════════════════
+            VALUE PROPOSITIONS — Numbered cards
+            ═══════════════════════════════════════════ */}
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <SectionHeader badge="Why Dblock" title="Enterprise AI, Delivered" description="Four reasons teams choose Digitrans for AI development." alignment="center" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14 max-w-5xl mx-auto">
+              {valuePropositions.map((prop, i) => (
+                <AnimatedWrapper key={prop.title} animation="float-up" delay={i * 0.06}>
+                  <div className="group relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-blue-400">
+                          {getIcon(prop.icon, "w-5 h-5")}
+                        </div>
+                        <span className="text-xs font-mono text-gray-600">{String(i + 1).padStart(2, '0')}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">{prop.title}</h3>
+                      <p className="text-sm text-gray-500 leading-relaxed">{prop.description}</p>
+                    </div>
+                  </div>
                 </AnimatedWrapper>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Use Cases Section */}
-        <section className="py-20 bg-gray-900/30">
+        {/* ═══════════════════════════════════════════
+            FEATURES — Alternating layout with visual panels
+            ═══════════════════════════════════════════ */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="Use Cases"
-              title="AI Solutions We Build"
-              description="From knowledge systems to intelligent agents."
-              alignment="center"
-            />
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-              {useCases.map((useCase, index) => (
-                <AnimatedWrapper key={useCase.title} animation="flip-up" delay={index * 0.1}>
-                  <GlassCard className="h-full min-h-[140px] p-6 hover:scale-[1.03] transition-all duration-300">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400">
-                        {getIcon(useCase.icon)}
+            <SectionHeader badge="Services" title="AI Solutions We Deliver" description="End-to-end AI development from strategy to production." alignment="center" />
+            <div className="max-w-6xl mx-auto mt-14 space-y-20">
+              {features.map((feature, i) => (
+                <AnimatedWrapper key={feature.id} animation={i % 2 === 0 ? "slide-right" : "slide-left"}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div className={i % 2 === 1 ? "lg:order-2" : ""}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                          {getIcon(feature.icon, "w-5 h-5")}
+                        </div>
+                        <h3 className="text-2xl font-bold text-white">{feature.title}</h3>
                       </div>
-                      <div>
-                        <h4 className="text-lg font-bold text-white mb-2">{useCase.title}</h4>
-                        <p className="text-gray-400 text-sm">{useCase.description}</p>
+                      <p className="text-gray-400 mb-6 leading-relaxed">{feature.description}</p>
+                      <ul className="space-y-2.5 mb-6">
+                        {feature.capabilities.map((cap) => (
+                          <li key={cap} className="flex items-start gap-3 text-gray-300">
+                            <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-green-500/80 to-emerald-500/80 flex items-center justify-center">
+                              <Check className="w-3 h-3 text-white" />
+                            </div>
+                            <span>{cap}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="text-sm text-blue-400/80 italic border-l-2 border-blue-500/30 pl-4">"{feature.marketingAngle}"</p>
+                    </div>
+                    <div className={i % 2 === 1 ? "lg:order-1" : ""}>
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl blur-2xl" />
+                        <div className="relative bg-gray-900/70 backdrop-blur-sm border border-gray-800/50 rounded-3xl overflow-hidden">
+                          {feature.image ? (
+                            <img src={feature.image} alt={`${feature.title}`} className="w-full h-auto" />
+                          ) : (
+                            <div className="p-8 min-h-[280px] flex items-center justify-center">
+                              <div className="text-center">
+                                <div className="inline-flex p-5 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
+                                  {getIcon(feature.icon, "w-10 h-10 text-blue-400")}
+                                </div>
+                                <p className="text-lg font-semibold text-white mb-2">{feature.title}</p>
+                                <p className="text-sm text-gray-500">{feature.capabilities.length} capabilities</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </GlassCard>
+                  </div>
                 </AnimatedWrapper>
               ))}
             </div>
           </div>
         </section>
+
+        {/* ═══════════════════════════════════════════
+            INTEGRATIONS — Category cards
+            ═══════════════════════════════════════════ */}
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <SectionHeader badge="Integrations" title="We Integrate With Your Stack" description="Connect to any LLM, vector store, or enterprise system." alignment="center" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-14 max-w-6xl mx-auto">
+              {componentCategories.map((category, i) => (
+                <AnimatedWrapper key={category.category} animation="float-up" delay={i * 0.06}>
+                  <div className="group relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-5 hover:border-blue-500/30 transition-all duration-300">
+                      <h4 className="font-semibold text-blue-400 mb-3 text-sm uppercase tracking-wider">{category.category}</h4>
+                      <ul className="space-y-2">
+                        {category.items.map((item) => (
+                          <li key={item} className="flex items-center gap-2 text-sm text-gray-400">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500/60" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            USE CASES — Grid cards
+            ═══════════════════════════════════════════ */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <SectionHeader badge="Use Cases" title="AI Solutions We Build" description="From knowledge systems to intelligent agents." alignment="center" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14 max-w-6xl mx-auto">
+              {useCases.map((useCase, i) => (
+                <AnimatedWrapper key={useCase.title} animation="float-up" delay={i * 0.06}>
+                  <div className="group relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-blue-500/30 transition-all duration-300">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-blue-400">
+                          {getIcon(useCase.icon, "w-5 h-5")}
+                        </div>
+                        <span className="text-xs font-mono text-gray-600">{String(i + 1).padStart(2, '0')}</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">{useCase.title}</h3>
+                      <p className="text-sm text-gray-500 leading-relaxed">{useCase.description}</p>
+                    </div>
+                  </div>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            CTA — Bold closing section
+            ═══════════════════════════════════════════ */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-950/30 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 right-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
+            <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent leading-tight">
+                Build AI Applications That Deliver
+              </h2>
+              <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
+                From RAG systems to multi-agent orchestration — our experts design, build, and deploy custom AI applications tailored to your business.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <GradientButton size="lg" onClick={() => navigate("/contact")}>
+                  <Calendar className="w-5 h-5 mr-2" />
+                  Join the Waitlist
+                </GradientButton>
+                <GradientButton variant="secondary" size="lg" onClick={() => navigate("/clients")}>
+                  <ArrowRight className="w-5 h-5 mr-2" />
+                  View Case Studies
+                </GradientButton>
+              </div>
+            </AnimatedWrapper>
+          </div>
+        </section>
       </main>
-      
       <Footer />
     </div>
   );

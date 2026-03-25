@@ -4,7 +4,7 @@
  * The main homepage that composes all seven sections:
  * 1. HeroSection - Main headline, CTAs, trust badges
  * 2. ThreePillarsSection - Consulting, Engineering, Products
- * 3. ProductsShowcaseSection - Allama and DBLOCK products
+ * 3. ProductsShowcaseSection - Allama and Dblock products
  * 4. IndustriesSection - Five industry verticals
  * 5. WhyDigitransSection - Five differentiators
  * 6. TestimonialsSection - Client testimonials

@@ -1,17 +1,14 @@
-/**
- * AIConsultingPage Component
- * 
- * Service page for AI Consulting using ServicePageTemplate.
- * 
- * Requirements: 11.1, 11.4
- */
-
-import React from "react";
+import { useEffect } from "react";
 import { ServicePageTemplate } from "./ServicePageTemplate";
-import { servicesData } from "@/data/services";
+import { newServicesData } from "@/data/services-new";
 
-const AIConsultingPage: React.FC = () => {
-  return <ServicePageTemplate service={servicesData["ai-consulting"]} />;
-};
+export default function AIConsultingPage() {
+  useEffect(() => {
+    document.title = "AI Consulting Services — Strategy to Autonomous Agents | Digitrans";
+    document.querySelector('meta[name="description"]')?.setAttribute("content",
+      "End-to-end AI consulting from strategy to autonomous agent deployment. Digitrans Lab helps organizations implement AI they own, control, and trust."
+    );
+  }, []);
 
-export default AIConsultingPage;
+  return <ServicePageTemplate service={newServicesData["ai-consulting"]} />;
+}

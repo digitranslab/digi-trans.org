@@ -79,6 +79,13 @@ import BigDataArchitecturePage from "./components/pages/services/BigDataArchitec
 import AgenticAIDataPage from "./components/pages/services/AgenticAIDataPage";
 import AIDataConsultingPage from "./components/pages/services/AIDataConsultingPage";
 
+// Megamind AI Offering Pages
+import MegamindPage from "./components/pages/products/MegamindPage";
+import ModelsPage from "./components/pages/ModelsPage";
+import AIConsultingPage from "./components/pages/services/AIConsultingPage";
+import SovereignAIPage from "./components/pages/services/SovereignAIPage";
+import AgenticAIServicePage from "./components/pages/services/AgenticAIServicePage";
+
 // New Solution Pages (redesign)
 import FinancialServicesPage from "./components/pages/solutions/FinancialServicesPage";
 import HealthcarePage from "./components/pages/solutions/HealthcarePage";
@@ -225,7 +232,6 @@ function App() {
         <Route path="/products/dblock" element={<DBlockPage />} />
         
         {/* Legacy Service Redirects - old 4-service structure to new 3-service */}
-        <Route path="/services/ai-consulting" element={<Navigate to="/services/ai-data-consulting" replace />} />
         <Route path="/services/data-engineering" element={<Navigate to="/services/big-data-architecture" replace />} />
         <Route path="/services/cloud-solutions" element={<Navigate to="/services/big-data-architecture" replace />} />
         <Route path="/services/custom-development" element={<Navigate to="/services/agentic-ai-data" replace />} />
@@ -234,6 +240,15 @@ function App() {
         <Route path="/services/big-data-architecture" element={<BigDataArchitecturePage />} />
         <Route path="/services/agentic-ai-data" element={<AgenticAIDataPage />} />
         <Route path="/services/ai-data-consulting" element={<AIDataConsultingPage />} />
+        
+        {/* Megamind AI Offering Routes */}
+        <Route path="/products/megamind" element={<MegamindPage />} />
+        <Route path="/services/ai-consulting" element={<AIConsultingPage />} />
+        <Route path="/services/sovereign-ai" element={<SovereignAIPage />} />
+        <Route path="/services/agentic-ai" element={<AgenticAIServicePage />} />
+        <Route path="/models" element={<ModelsPage />} />
+        <Route path="/platform/megamind" element={<Navigate to="/products/megamind" replace />} />
+        <Route path="/platform/models" element={<Navigate to="/models" replace />} />
         
         {/* New Solution Routes (redesign) */}
         <Route path="/solutions/financial-services" element={<FinancialServicesPage />} />

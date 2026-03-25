@@ -1,189 +1,138 @@
-import { Linkedin } from "lucide-react";
+import { Linkedin, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { GradientButton } from "./ui/gradient-button";
+
+const offices = [
+  {
+    city: "Dubai",
+    label: "HQ",
+    address: ["Dubai Internet City", "Building 1, Office 301", "Dubai, UAE"],
+  },
+  {
+    city: "London",
+    address: ["1 King's Cross Bridge", "London", "N1 9NW"],
+  },
+  {
+    city: "Casablanca",
+    address: ["Technopark, Route de Nouaceur", "Casablanca", "20000"],
+  },
+];
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
-    <footer
-      className="relative bg-black/50 backdrop-blur-sm text-white py-16 border-t border-purple-500/20"
-      style={{ zIndex: 1 }}
-    >
-      <div className="container mx-auto px-4">
-        {/* Footer Links */}
-        <div className="pt-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
-            <div>
-              <h3 className="text-white font-semibold mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/about"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/blog"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/contact"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Services</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/services/big-data-architecture"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Big Data Architecture
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/agentic-ai-data"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Agentic AI for Data
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/services/ai-data-consulting"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    AI & Data Consulting
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Products</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/products/allama"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Allama
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/products/dblock"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    DBLOCK
-                  </a>
-                </li>
-              </ul>
+    <footer className="relative bg-black text-white" style={{ zIndex: 1 }}>
+      {/* Get in Touch Banner */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-indigo-900/80 to-purple-900/80" />
+        <div className="absolute inset-0 opacity-[0.05]" style={{
+          backgroundImage: "linear-gradient(rgba(139,92,246,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.4) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }} />
+        <div className="container mx-auto px-4 py-10 relative z-10">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Get in touch</h2>
+            <GradientButton size="lg" onClick={() => navigate("/contact")}>
+              Contact Us
+            </GradientButton>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer Content */}
+      <div className="border-t border-gray-800/60">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Find Us */}
+            <div className="lg:col-span-2">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-6">Find Us</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                {offices.map((office) => (
+                  <div key={office.city}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <MapPin className="w-3.5 h-3.5 text-purple-400" />
+                      <span className="text-sm font-medium text-white">
+                        {office.city}
+                        {office.label && (
+                          <span className="text-purple-400 ml-1.5 text-xs">· {office.label}</span>
+                        )}
+                      </span>
+                    </div>
+                    <div className="space-y-0.5 pl-5.5">
+                      {office.address.map((line, i) => (
+                        <p key={i} className="text-xs text-gray-500">{line}</p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
+            {/* Follow Us */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Legal</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="/privacy"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/terms"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Terms & Conditions
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/cookies"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Cookie Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/security"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    Security
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4">Connect</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="https://linkedin.com/company/digitrans"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
-                  >
-                    <Linkedin className="h-4 w-4" /> LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/digitranslab"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
-                  >
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://discord.com/invite/2mK6h9rp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
-                  >
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-                    </svg>
-                    Discord
-                  </a>
-                </li>
-              </ul>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-6">Follow Us</h3>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://linkedin.com/company/digitrans"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-gray-800/60 border border-gray-700/40 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500/40 transition-all"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://github.com/digitranslab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-gray-800/60 border border-gray-700/40 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500/40 transition-all"
+                  aria-label="GitHub"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://discord.com/invite/2mK6h9rp"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-gray-800/60 border border-gray-700/40 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500/40 transition-all"
+                  aria-label="Discord"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                  </svg>
+                </a>
+                <a
+                  href="https://x.com/digitaboratoire"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-gray-800/60 border border-gray-700/40 flex items-center justify-center text-gray-400 hover:text-white hover:border-purple-500/40 transition-all"
+                  aria-label="X (Twitter)"
+                >
+                  <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                </a>
+              </div>
+
+              {/* Quick Links */}
+              <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+                <a href="/about" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">About</a>
+                <a href="/blog" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Blog</a>
+                <a href="/privacy" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Privacy</a>
+                <a href="/terms" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Terms</a>
+                <a href="/security" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Security</a>
+              </div>
             </div>
           </div>
 
-          {/* Bottom Footer */}
-          <div className="border-t border-purple-500/20 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-gray-400 text-sm">
-                © 2026 Digitrans. All rights reserved.
-              </p>
-              <div className="flex items-center gap-4 text-gray-400 text-sm">
-                <span>Open Source First</span>
-                <span>•</span>
-                <span>Cloud Agnostic</span>
-                <span>•</span>
-                <span>Enterprise Ready</span>
-              </div>
-            </div>
+          {/* Bottom Bar */}
+          <div className="border-t border-gray-800/40 mt-10 pt-6">
+            <p className="text-xs text-gray-600 text-center">
+              © 2026 Digitrans. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

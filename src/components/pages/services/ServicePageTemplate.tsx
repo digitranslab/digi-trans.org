@@ -1,27 +1,16 @@
 /**
- * ServicePageTemplate Component - Redesigned
+ * ServicePageTemplate Component - Premium Redesign
  * 
- * Modern, rich template for service pages matching product page style.
- * Includes:
- * - Hero section with gradient effects
- * - Value propositions
- * - Key deliverables grid
- * - Process timeline
- * - Technologies section
- * - Case study highlights
- * - FAQ section
- * - Contact CTA
- * 
- * Requirements: 11.2, 11.3
+ * Professional, captivating template for AI & Data service pages.
+ * Designed to convey deep technical expertise and enterprise credibility.
  */
 
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as LucideIcons from "lucide-react";
-import { ArrowRight, Check, Calendar, ChevronDown } from "lucide-react";
+import { ArrowRight, Check, Calendar, ChevronDown, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { GlassCard } from "@/components/ui/glass-card";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
@@ -33,7 +22,6 @@ interface ServicePageTemplateProps {
   service: ServiceData | NewServiceData;
 }
 
-// Helper to get Lucide icon by name
 const getIcon = (iconName: string, className: string = "w-6 h-6") => {
   const Icon = (LucideIcons as any)[iconName];
   return Icon ? <Icon className={className} /> : null;
@@ -42,31 +30,49 @@ const getIcon = (iconName: string, className: string = "w-6 h-6") => {
 export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = React.useState<number | null>(null);
+  const [activeUseCase, setActiveUseCase] = React.useState(0);
+
+  const useCases = 'useCases' in service ? service.useCases : undefined;
+  const keyBenefits = 'keyBenefits' in service ? service.keyBenefits : undefined;
 
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
       
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+        {/* ═══════════════════════════════════════════
+            HERO — Immersive gradient with floating orbs
+            ═══════════════════════════════════════════ */}
+        <section className="relative pt-36 pb-24 overflow-hidden">
+          {/* Animated background */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
+              <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+              <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
+            </div>
+            {/* Grid pattern overlay */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }} />
+          </div>
           
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
-              <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
+              <span className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30 backdrop-blur-sm">
+                <Sparkles className="w-3.5 h-3.5" />
                 {service.hero.badge}
               </span>
               
               <TypewriterGradientText 
                 text={service.hero.title}
-                className="text-4xl md:text-6xl font-bold mb-6"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
                 duration={1.8}
               />
               
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-300/90 mb-10 max-w-3xl mx-auto leading-relaxed">
                 {service.hero.description}
               </p>
               
@@ -78,32 +84,34 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
               </div>
             </AnimatedWrapper>
           </div>
+
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
         </section>
 
-        {/* Value Propositions */}
+
+        {/* ═══════════════════════════════════════════
+            VALUE PROPS — Impact metrics bar
+            ═══════════════════════════════════════════ */}
         {service.valueProps && (
-          <section className="py-20 relative">
+          <section className="py-16 relative">
             <div className="container mx-auto px-4">
-              <SectionHeader
-                badge="Why Choose Us"
-                title={service.valuePropsTitle || "The Digitrans Advantage"}
-                description={service.valuePropsDescription || "What sets our service apart from the competition."}
-                alignment="center"
-              />
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
                 {service.valueProps.map((prop, index) => (
-                  <AnimatedWrapper key={prop.title} animation="scale-up-bounce" delay={index * 0.1}>
-                    <GlassCard variant="gradient" className="h-full p-6 text-center min-h-[200px] hover:scale-105 transition-transform duration-300">
-                      <div className="inline-flex p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 mb-4">
-                        {getIcon(prop.icon)}
+                  <AnimatedWrapper key={prop.title} animation="scale-in" delay={index * 0.08}>
+                    <div className="relative group">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="relative bg-gray-900/60 backdrop-blur-sm border border-gray-800/60 rounded-2xl p-6 text-center hover:border-purple-500/40 transition-all duration-300">
+                        <div className="inline-flex p-2.5 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 mb-3">
+                          {getIcon(prop.icon, "w-5 h-5")}
+                        </div>
+                        <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-1">
+                          {prop.metric}
+                        </div>
+                        <h3 className="text-sm font-semibold text-white mb-1">{prop.title}</h3>
+                        <p className="text-xs text-gray-500">{prop.description}</p>
                       </div>
-                      <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-2">
-                        {prop.metric}
-                      </div>
-                      <h3 className="text-lg font-bold text-white mb-2">{prop.title}</h3>
-                      <p className="text-gray-400 text-sm">{prop.description}</p>
-                    </GlassCard>
+                    </div>
                   </AnimatedWrapper>
                 ))}
               </div>
@@ -111,119 +119,201 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
           </section>
         )}
 
-        {/* Overview Section */}
-        <section className="py-16 bg-gray-900/30">
+        {/* ═══════════════════════════════════════════
+            OVERVIEW — Split layout with benefits
+            ═══════════════════════════════════════════ */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <AnimatedWrapper animation="fade-in-blur">
-                <p className="text-xl text-gray-300 leading-relaxed text-center">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+              {/* Overview text */}
+              <AnimatedWrapper animation="slide-right" className="lg:col-span-3">
+                <span className="inline-flex items-center px-3 py-1 mb-4 text-xs font-medium uppercase tracking-wider rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                  Overview
+                </span>
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-snug">
+                  {service.valuePropsTitle || "The Digitrans Advantage"}
+                </h2>
+                <p className="text-gray-400 leading-relaxed text-base">
                   {service.overview}
                 </p>
-                
-                {/* Key Benefits */}
-                {'keyBenefits' in service && service.keyBenefits && (
-                  <div className="mt-8 flex flex-wrap justify-center gap-3">
-                    {service.keyBenefits.map((benefit, index) => (
-                      <span 
-                        key={index}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 text-purple-300 text-sm rounded-full border border-purple-500/20"
-                      >
-                        <Check className="w-4 h-4 text-green-400" />
-                        {benefit}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </AnimatedWrapper>
+
+              {/* Key benefits sidebar */}
+              {keyBenefits && (
+                <AnimatedWrapper animation="slide-left" className="lg:col-span-2">
+                  <div className="bg-gradient-to-br from-purple-950/40 to-gray-900/60 border border-purple-500/20 rounded-2xl p-6">
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-purple-400 mb-4">Key Benefits</h3>
+                    <div className="space-y-3">
+                      {keyBenefits.map((benefit, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <div className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
+                            <Check className="w-3 h-3 text-white" />
+                          </div>
+                          <span className="text-sm text-gray-300 leading-snug">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </AnimatedWrapper>
+              )}
             </div>
           </div>
         </section>
 
-        {/* Deliverables Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
+        {/* ═══════════════════════════════════════════
+            DELIVERABLES — Numbered cards grid
+            ═══════════════════════════════════════════ */}
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
             <SectionHeader
               badge="What We Deliver"
-              title="Key Deliverables"
-              description="Tangible outcomes you can expect from our engagement."
+              title="Capabilities & Deliverables"
+              description="Tangible outcomes backed by deep technical expertise."
               alignment="center"
             />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-14 max-w-7xl mx-auto">
               {service.deliverables.map((deliverable, index) => (
-                <AnimatedWrapper key={deliverable.title} animation="float-up" delay={index * 0.08}>
-                  <GlassCard className="h-full p-6 min-h-[200px] hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 w-fit mb-4">
-                      {getIcon(deliverable.icon)}
+                <AnimatedWrapper key={deliverable.title} animation="float-up" delay={index * 0.06}>
+                  <div className="group relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-5 hover:border-purple-500/30 transition-all duration-300">
+                      {/* Number + Icon header */}
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400">
+                          {getIcon(deliverable.icon, "w-5 h-5")}
+                        </div>
+                        <span className="text-xs font-mono text-gray-600">{String(index + 1).padStart(2, '0')}</span>
+                      </div>
+                      <h3 className="text-base font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">{deliverable.title}</h3>
+                      <p className="text-sm text-gray-500 leading-relaxed">{deliverable.description}</p>
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{deliverable.title}</h3>
-                    <p className="text-gray-400 text-sm">{deliverable.description}</p>
-                  </GlassCard>
+                  </div>
                 </AnimatedWrapper>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Use Cases Section */}
-        {'useCases' in service && service.useCases && service.useCases.length > 0 && (
-          <section className="py-20 bg-gray-900/30">
+
+        {/* ═══════════════════════════════════════════
+            USE CASES — Interactive showcase
+            ═══════════════════════════════════════════ */}
+        {useCases && useCases.length > 0 && (
+          <section className="py-20">
             <div className="container mx-auto px-4">
               <SectionHeader
                 badge="Applications"
                 title="Real-World Use Cases"
-                description="How organizations are applying these capabilities."
+                description="How leading organizations apply these capabilities to drive measurable impact."
                 alignment="center"
               />
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto">
-                {service.useCases.map((useCase, index) => (
-                  <AnimatedWrapper key={useCase.title} animation="slide-up" delay={index * 0.12}>
-                    <GlassCard className="h-full p-6 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
-                      <h3 className="text-xl font-bold text-white mb-3">{useCase.title}</h3>
-                      <p className="text-gray-400 text-sm mb-4">{useCase.description}</p>
-                      <div className="space-y-2">
-                        {useCase.benefits.map((benefit, i) => (
-                          <div key={i} className="flex items-center gap-2 text-sm">
-                            <Check className="w-4 h-4 text-green-400 flex-shrink-0" />
+              <div className="max-w-6xl mx-auto mt-14">
+                {/* Use case tabs — browser-tab style */}
+                <AnimatedWrapper animation="fade-in">
+                  <div className={`grid grid-cols-2 sm:grid-cols-3 ${useCases.length <= 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-6'} gap-px bg-gray-800/40 rounded-xl overflow-hidden border border-gray-800/60 mb-12`}>
+                    {useCases.map((uc, index) => (
+                      <button
+                        key={uc.title}
+                        onClick={() => setActiveUseCase(index)}
+                        className={`relative px-4 py-3.5 text-sm font-medium transition-all duration-200 text-center ${
+                          activeUseCase === index
+                            ? "bg-purple-600/20 text-white border-b-2 border-purple-500"
+                            : "bg-gray-900/80 text-gray-500 hover:bg-gray-900/60 hover:text-gray-300 border-b-2 border-transparent"
+                        }`}
+                      >
+                        {uc.title}
+                      </button>
+                    ))}
+                  </div>
+                </AnimatedWrapper>
+
+                {/* Active use case detail */}
+                <AnimatedWrapper animation="fade-in-blur" key={activeUseCase}>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                        {useCases[activeUseCase].title}
+                      </h3>
+                      <p className="text-gray-400 mb-6 leading-relaxed">
+                        {useCases[activeUseCase].description}
+                      </p>
+                      <div className="space-y-3">
+                        {useCases[activeUseCase].benefits.map((benefit, i) => (
+                          <div key={i} className="flex items-start gap-3">
+                            <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-green-500/80 to-emerald-500/80 flex items-center justify-center">
+                              <Check className="w-3 h-3 text-white" />
+                            </div>
                             <span className="text-gray-300">{benefit}</span>
                           </div>
                         ))}
                       </div>
-                    </GlassCard>
-                  </AnimatedWrapper>
-                ))}
+                      <div className="mt-8">
+                        <GradientButton size="md" onClick={() => navigate('/contact')}>
+                          Discuss This Use Case
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </GradientButton>
+                      </div>
+                    </div>
+                    
+                    {/* Visual panel */}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-3xl blur-2xl" />
+                      <div className="relative bg-gray-900/70 backdrop-blur-sm border border-gray-800/50 rounded-3xl p-8 min-h-[300px] flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="inline-flex p-5 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 mb-4">
+                            <Sparkles className="w-10 h-10 text-purple-400" />
+                          </div>
+                          <p className="text-lg font-semibold text-white mb-2">{useCases[activeUseCase].title}</p>
+                          <p className="text-sm text-gray-500">{useCases[activeUseCase].benefits.length} key outcomes</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedWrapper>
               </div>
             </div>
           </section>
         )}
 
-        {/* Process Section */}
-        <section className="py-20 bg-gray-900/30">
-          <div className="container mx-auto px-4">
+        {/* ═══════════════════════════════════════════
+            PROCESS — Connected timeline
+            ═══════════════════════════════════════════ */}
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
             <SectionHeader
               badge="Our Approach"
-              title="How We Work"
-              description="A proven methodology that delivers results."
+              title="Engagement Process"
+              description="A proven methodology refined across 500+ enterprise engagements."
               alignment="center"
             />
             
-            <div className="max-w-5xl mx-auto mt-12">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="max-w-4xl mx-auto mt-14">
+              <div className="relative">
+                {/* Vertical line */}
+                <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/50 via-blue-500/50 to-purple-500/50 md:-translate-x-px" />
+                
                 {service.process.map((step, index) => (
-                  <AnimatedWrapper key={step.step} animation="bounce-in" delay={index * 0.15}>
-                    <div className="relative">
-                      {/* Connector line */}
-                      {index < service.process.length - 1 && (
-                        <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-purple-500 to-blue-500" />
-                      )}
-                      <div className="relative z-10 text-center">
-                        <div className="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-xl mb-4 hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-500/30">
-                          {step.step}
-                        </div>
-                        <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                        <p className="text-gray-400 text-sm">{step.description}</p>
+                  <AnimatedWrapper key={step.step} animation={index % 2 === 0 ? "slide-right" : "slide-left"} delay={index * 0.1}>
+                    <div className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
+                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                    }`}>
+                      {/* Content */}
+                      <div className={`flex-1 ml-16 md:ml-0 ${index % 2 === 0 ? "md:text-right md:pr-12" : "md:text-left md:pl-12"}`}>
+                        <h3 className="text-lg font-bold text-white mb-1">{step.title}</h3>
+                        <p className="text-sm text-gray-400 leading-relaxed">{step.description}</p>
                       </div>
+                      
+                      {/* Step number node */}
+                      <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-purple-500/30 z-10">
+                        {step.step}
+                      </div>
+                      
+                      {/* Spacer for alternating layout */}
+                      <div className="hidden md:block flex-1" />
                     </div>
                   </AnimatedWrapper>
                 ))}
@@ -232,69 +322,37 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
           </div>
         </section>
 
-        {/* Technologies Section */}
+        {/* ═══════════════════════════════════════════
+            TECHNOLOGIES — Sleek tag layout
+            ═══════════════════════════════════════════ */}
         {service.technologies && (
           <section className="py-20">
             <div className="container mx-auto px-4">
               <SectionHeader
-                badge="Technologies"
-                title="Tools & Technologies"
-                description="Industry-leading technologies we work with."
+                badge="Tech Stack"
+                title="Technologies We Work With"
+                description="Industry-leading tools and platforms — vendor-agnostic, open-standards-first."
                 alignment="center"
               />
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
+              <div className="max-w-5xl mx-auto mt-14 space-y-6">
                 {service.technologies.map((tech, index) => (
-                  <AnimatedWrapper key={tech.category} animation="scale-in" delay={index * 0.1}>
-                    <GlassCard className="p-4 h-full min-h-[160px] hover:scale-105 transition-transform duration-300">
-                      <h4 className="font-bold text-purple-400 mb-3">{tech.category}</h4>
-                      <ul className="space-y-1">
-                        {tech.items.map((item) => (
-                          <li key={item} className="text-sm text-gray-400 flex items-center gap-2">
-                            <Check className="w-3 h-3 text-green-400 flex-shrink-0" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </GlassCard>
-                  </AnimatedWrapper>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Case Study Highlights */}
-        {service.caseStudies && service.caseStudies.length > 0 && (
-          <section className="py-20 bg-gray-900/30">
-            <div className="container mx-auto px-4">
-              <SectionHeader
-                badge="Results"
-                title="Client Success Stories"
-                description="Real results from real engagements."
-                alignment="center"
-              />
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
-                {service.caseStudies.map((study, index) => (
-                  <AnimatedWrapper key={study.title} animation="slide-up" delay={index * 0.15}>
-                    <GlassCard className="p-6 h-full hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300">
-                      <span className="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full mb-4">
-                        {study.industry}
+                  <AnimatedWrapper key={tech.category} animation="fade-up" delay={index * 0.08}>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                      <span className="flex-shrink-0 w-32 text-xs font-semibold uppercase tracking-wider text-purple-400">
+                        {tech.category}
                       </span>
-                      <h3 className="text-xl font-bold text-white mb-3">{study.title}</h3>
-                      <p className="text-gray-400 text-sm mb-4">{study.description}</p>
-                      <div className="grid grid-cols-3 gap-4">
-                        {study.metrics.map((metric) => (
-                          <div key={metric.label} className="text-center">
-                            <div className="text-xl font-bold bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
-                              {metric.value}
-                            </div>
-                            <div className="text-xs text-gray-500">{metric.label}</div>
-                          </div>
+                      <div className="flex flex-wrap gap-2">
+                        {tech.items.map((item) => (
+                          <span
+                            key={item}
+                            className="px-3 py-1.5 text-sm bg-gray-900/60 text-gray-300 border border-gray-800/60 rounded-lg hover:border-purple-500/30 hover:text-purple-300 transition-all duration-200"
+                          >
+                            {item}
+                          </span>
                         ))}
                       </div>
-                    </GlassCard>
+                    </div>
                   </AnimatedWrapper>
                 ))}
               </div>
@@ -302,34 +360,90 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
           </section>
         )}
 
-        {/* FAQ Section */}
+
+        {/* ═══════════════════════════════════════════
+            CASE STUDIES — Prominent metrics cards
+            ═══════════════════════════════════════════ */}
+        {service.caseStudies && service.caseStudies.length > 0 && (
+          <section className="py-20 relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+            <div className="container mx-auto px-4 relative z-10">
+              <SectionHeader
+                badge="Proven Results"
+                title="Client Success Stories"
+                description="Measurable impact from real enterprise engagements."
+                alignment="center"
+              />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14 max-w-6xl mx-auto">
+                {service.caseStudies.map((study, index) => (
+                  <AnimatedWrapper key={study.title} animation="float-up" delay={index * 0.1}>
+                    <div className="group relative h-full">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 flex flex-col">
+                        <div className="flex items-center gap-2 mb-4">
+                          <span className="px-2.5 py-1 bg-blue-500/15 text-blue-400 text-xs font-medium rounded-full border border-blue-500/20">
+                            {study.industry}
+                          </span>
+                        </div>
+                        <h3 className="text-lg font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">{study.title}</h3>
+                        <p className="text-sm text-gray-500 mb-6 flex-1 leading-relaxed">{study.description}</p>
+                        
+                        {/* Metrics bar */}
+                        <div className="grid grid-cols-3 gap-3 pt-4 border-t border-gray-800/50">
+                          {study.metrics.map((metric) => (
+                            <div key={metric.label} className="text-center">
+                              <div className="text-lg font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+                                {metric.value}
+                              </div>
+                              <div className="text-[10px] text-gray-600 uppercase tracking-wider mt-0.5">{metric.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </AnimatedWrapper>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ═══════════════════════════════════════════
+            FAQ — Clean accordion
+            ═══════════════════════════════════════════ */}
         {service.faqs && service.faqs.length > 0 && (
           <section className="py-20">
             <div className="container mx-auto px-4">
               <SectionHeader
                 badge="FAQ"
                 title="Frequently Asked Questions"
-                description="Common questions about our service."
+                description="Expert answers to common questions."
                 alignment="center"
               />
               
-              <div className="max-w-3xl mx-auto mt-12 space-y-4">
+              <div className="max-w-3xl mx-auto mt-14 space-y-3">
                 {service.faqs.map((faq, index) => (
-                  <AnimatedWrapper key={index} animation="slide-right" delay={index * 0.08}>
-                    <GlassCard className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <AnimatedWrapper key={index} animation="fade-up" delay={index * 0.05}>
+                    <div className={`border rounded-xl transition-all duration-300 ${
+                      openFaq === index 
+                        ? "border-purple-500/30 bg-purple-950/20" 
+                        : "border-gray-800/50 bg-gray-900/30 hover:border-gray-700/50"
+                    }`}>
                       <button
                         onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                        className="w-full p-6 text-left flex items-center justify-between"
+                        className="w-full p-5 text-left flex items-center justify-between gap-4"
+                        aria-expanded={openFaq === index}
                       >
-                        <span className="font-bold text-white">{faq.question}</span>
-                        <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} />
+                        <span className="font-medium text-white text-sm">{faq.question}</span>
+                        <ChevronDown className={`w-4 h-4 text-gray-500 flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180 text-purple-400' : ''}`} />
                       </button>
-                      {openFaq === index && (
-                        <div className="px-6 pb-6 text-gray-400 animate-in slide-in-from-top-2 duration-300">
+                      <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                        <div className="px-5 pb-5 text-sm text-gray-400 leading-relaxed">
                           {faq.answer}
                         </div>
-                      )}
-                    </GlassCard>
+                      </div>
+                    </div>
                   </AnimatedWrapper>
                 ))}
               </div>
@@ -337,47 +451,52 @@ export function ServicePageTemplate({ service }: ServicePageTemplateProps) {
           </section>
         )}
 
-        {/* Related Content Section */}
+        {/* ═══════════════════════════════════════════
+            RELATED — Minimal link cards
+            ═══════════════════════════════════════════ */}
         {service.relatedContent && service.relatedContent.length > 0 && (
-          <section className="py-16 bg-gray-900/30">
+          <section className="py-16">
             <div className="container mx-auto px-4">
-              <SectionHeader
-                badge="Related"
-                title="Explore More"
-                description="Discover related products and solutions."
-                alignment="center"
-              />
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
-                {service.relatedContent.map((content, index) => (
-                  <AnimatedWrapper key={content.title} animation="flip-up" delay={index * 0.12}>
-                    <Link to={content.href}>
-                      <GlassCard variant="hover" className="p-6 h-full min-h-[120px] group hover:scale-105 transition-transform duration-300">
-                        <span className="text-xs text-purple-400 uppercase tracking-wider">
-                          {content.type.replace("-", " ")}
-                        </span>
-                        <h3 className="text-lg font-bold text-white mt-2 group-hover:text-purple-400 transition-colors">
-                          {content.title}
-                        </h3>
-                        <ArrowRight className="w-5 h-5 text-gray-400 mt-4 group-hover:translate-x-2 transition-transform duration-300" />
-                      </GlassCard>
-                    </Link>
-                  </AnimatedWrapper>
-                ))}
+              <div className="max-w-5xl mx-auto">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-600 mb-6 text-center">Explore Related</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {service.relatedContent.map((content, index) => (
+                    <AnimatedWrapper key={content.title} animation="scale-in" delay={index * 0.08}>
+                      <Link to={content.href} className="group block">
+                        <div className="bg-gray-900/40 border border-gray-800/40 rounded-xl p-5 hover:border-purple-500/30 hover:bg-gray-900/60 transition-all duration-300">
+                          <span className="text-[10px] text-purple-500 uppercase tracking-widest font-medium">
+                            {content.type.replace("-", " ")}
+                          </span>
+                          <h4 className="text-sm font-semibold text-white mt-1.5 group-hover:text-purple-300 transition-colors flex items-center gap-2">
+                            {content.title}
+                            <ArrowRight className="w-3.5 h-3.5 text-gray-600 group-hover:translate-x-1 group-hover:text-purple-400 transition-all duration-300" />
+                          </h4>
+                        </div>
+                      </Link>
+                    </AnimatedWrapper>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
         )}
 
-        {/* CTA Section */}
-        <section className="py-24">
-          <div className="container mx-auto px-4">
-            <AnimatedWrapper animation="zoom-in" className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+        {/* ═══════════════════════════════════════════
+            CTA — Bold closing section
+            ═══════════════════════════════════════════ */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-950/30 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 right-[20%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
+            <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent leading-tight">
                 Ready to Get Started?
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Let's discuss how we can help transform your business.
+              <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
+                Let's discuss how we can help transform your {service.category.toLowerCase()} capabilities.
               </p>
               <GradientButton size="lg" onClick={() => navigate('/contact')}>
                 <Calendar className="w-5 h-5 mr-2" />

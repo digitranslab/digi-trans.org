@@ -1,24 +1,15 @@
 /**
- * SolutionPageTemplate Component
+ * SolutionPageTemplate Component — Premium Redesign
  * 
- * Reusable template for industry solution pages including:
- * - Industry-specific hero
- * - Key challenges section
- * - Relevant services grid
- * - Compliance considerations (conditional)
- * - Case studies
- * - Contact CTA
- * 
- * Requirements: 12.2, 12.3
+ * Reusable template for industry solution pages.
+ * Redesigned with premium visual language matching MegamindPage/ServicePageTemplate.
  */
 
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as LucideIcons from "lucide-react";
-import { ArrowRight, CheckCircle, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { GlassCard } from "@/components/ui/glass-card";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
@@ -29,10 +20,9 @@ interface SolutionPageTemplateProps {
   solution: SolutionData;
 }
 
-// Helper to get Lucide icon by name
-const getIcon = (iconName: string) => {
+const getIcon = (iconName: string, className: string = "w-6 h-6") => {
   const Icon = (LucideIcons as any)[iconName];
-  return Icon ? <Icon className="w-6 h-6" /> : null;
+  return Icon ? <Icon className={className} /> : null;
 };
 
 export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
@@ -41,113 +31,105 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
-      
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-          
+        {/* ═══════════════════════════════════════════
+            HERO — Immersive gradient with floating orbs
+            ═══════════════════════════════════════════ */}
+        <section className="relative pt-36 pb-24 overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
+            <div className="absolute top-0 left-0 w-full h-full">
+              <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
+              <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+              <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
+            </div>
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }} />
+          </div>
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
-              <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
+              <span className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30 backdrop-blur-sm">
+                <Sparkles className="w-3.5 h-3.5" />
                 {solution.hero.badge}
               </span>
-              
-              <TypewriterGradientText 
-                text={solution.hero.title}
-                className="text-4xl md:text-6xl font-bold mb-6"
-                duration={1.8}
-              />
-              
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                {solution.hero.description}
-              </p>
+              <TypewriterGradientText text={solution.hero.title} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" duration={1.8} />
+              <p className="text-lg md:text-xl text-gray-300/90 mb-10 max-w-3xl mx-auto leading-relaxed">{solution.hero.description}</p>
+              <GradientButton size="lg" onClick={() => navigate("/contact")}>
+                <Calendar className="w-5 h-5 mr-2" />
+                {solution.ctaText}
+              </GradientButton>
+            </AnimatedWrapper>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
+        </section>
 
-              {solution.hero.image && (
-                <div className="mt-8 max-w-3xl mx-auto rounded-xl overflow-hidden border border-purple-500/20 shadow-2xl shadow-purple-500/10">
-                  <img 
-                    src={solution.hero.image} 
-                    alt={solution.hero.title}
-                    className="w-full h-64 md:h-80 object-cover"
-                    loading="eager"
-                  />
+        {/* ═══════════════════════════════════════════
+            OVERVIEW — Accent panel
+            ═══════════════════════════════════════════ */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <AnimatedWrapper animation="fade-up-slow">
+              <div className="max-w-4xl mx-auto relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl blur-xl" />
+                <div className="relative bg-gray-900/60 backdrop-blur-sm border border-gray-800/60 rounded-2xl p-8">
+                  <p className="text-gray-300 leading-relaxed text-lg">{solution.overview}</p>
                 </div>
-              )}
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                <GradientButton size="lg" onClick={() => navigate('/contact')}>
-                  <Calendar className="w-5 h-5 mr-2" />
-                  {solution.ctaText}
-                </GradientButton>
               </div>
             </AnimatedWrapper>
           </div>
         </section>
 
-        {/* Overview Section */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <AnimatedWrapper animation="fade-in-blur" className="max-w-3xl mx-auto">
-              <p className="text-xl text-gray-300 leading-relaxed text-center">
-                {solution.overview}
-              </p>
-            </AnimatedWrapper>
-          </div>
-        </section>
-
-        {/* Challenges Section */}
-        <section className="py-16 bg-gray-900/30">
-          <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="Challenges"
-              title="Key Industry Challenges"
-              description="The unique challenges we help you overcome."
-              alignment="center"
-            />
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
-              {solution.challenges.map((challenge, index) => (
-                <AnimatedWrapper key={challenge.title} animation="slide-up" delay={index * 0.12}>
-                  <GlassCard className="h-full p-6 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400">
-                        {getIcon(challenge.icon)}
+        {/* ═══════════════════════════════════════════
+            CHALLENGES — Numbered cards grid
+            ═══════════════════════════════════════════ */}
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <SectionHeader badge="Challenges" title="Key Industry Challenges" description="The unique challenges we help you overcome." alignment="center" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-14 max-w-6xl mx-auto">
+              {solution.challenges.map((challenge, i) => (
+                <AnimatedWrapper key={challenge.title} animation="float-up" delay={i * 0.06}>
+                  <div className="group relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-5 hover:border-purple-500/30 transition-all duration-300">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400">
+                          {getIcon(challenge.icon, "w-5 h-5")}
+                        </div>
+                        <span className="text-xs font-mono text-gray-600">{String(i + 1).padStart(2, '0')}</span>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-white mb-2">{challenge.title}</h3>
-                        <p className="text-gray-400 text-sm">{challenge.description}</p>
-                      </div>
+                      <h3 className="text-base font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">{challenge.title}</h3>
+                      <p className="text-sm text-gray-500 leading-relaxed">{challenge.description}</p>
                     </div>
-                  </GlassCard>
+                  </div>
                 </AnimatedWrapper>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Services Section */}
-        <section className="py-16">
+        {/* ═══════════════════════════════════════════
+            SERVICES — How We Help cards
+            ═══════════════════════════════════════════ */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="Solutions"
-              title="How We Help"
-              description="Our services tailored for your industry."
-              alignment="center"
-            />
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
-              {solution.services.map((service, index) => (
-                <AnimatedWrapper key={service.title} animation="scale-up-bounce" delay={index * 0.1}>
-                  <Link to={service.href}>
-                    <GlassCard variant="hover" className="h-full p-6 min-h-[180px] hover:scale-105 transition-transform duration-300">
-                      <h3 className="text-lg font-bold text-white mb-2">{service.title}</h3>
-                      <p className="text-gray-400 text-sm mb-4">{service.description}</p>
-                      <span className="text-purple-400 text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-                        Learn more <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </GlassCard>
+            <SectionHeader badge="Solutions" title="How We Help" description="Our services tailored for your industry." alignment="center" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14 max-w-5xl mx-auto">
+              {solution.services.map((service, i) => (
+                <AnimatedWrapper key={service.title} animation="float-up" delay={i * 0.08}>
+                  <Link to={service.href} className="block h-full">
+                    <div className="group relative h-full">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300">
+                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">{service.title}</h3>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-4">{service.description}</p>
+                        <span className="text-purple-400 text-sm flex items-center gap-1.5">
+                          Learn more <ArrowRight className="w-3.5 h-3.5" />
+                        </span>
+                      </div>
+                    </div>
                   </Link>
                 </AnimatedWrapper>
               ))}
@@ -155,24 +137,21 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
           </div>
         </section>
 
-        {/* Compliance Section (conditional) */}
+        {/* ═══════════════════════════════════════════
+            COMPLIANCE — Conditional tag layout
+            ═══════════════════════════════════════════ */}
         {solution.compliance && solution.compliance.length > 0 && (
-          <section className="py-16 bg-gray-900/30">
-            <div className="container mx-auto px-4">
-              <SectionHeader
-                badge="Compliance"
-                title="Regulatory Expertise"
-                description="We understand your compliance requirements."
-                alignment="center"
-              />
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 max-w-5xl mx-auto items-stretch">
-                {solution.compliance.map((item, index) => (
-                  <AnimatedWrapper key={item.name} animation="flip-up" delay={index * 0.08} className="h-full">
-                    <GlassCard className="p-4 hover:scale-105 transition-transform duration-300 h-full flex flex-col">
-                      <h4 className="font-bold text-purple-400 mb-1">{item.name}</h4>
-                      <p className="text-xs text-gray-400 flex-grow">{item.description}</p>
-                    </GlassCard>
+          <section className="py-20 relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+            <div className="container mx-auto px-4 relative z-10">
+              <SectionHeader badge="Compliance" title="Regulatory Expertise" description="We understand your compliance requirements." alignment="center" />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-14 max-w-5xl mx-auto">
+                {solution.compliance.map((item, i) => (
+                  <AnimatedWrapper key={item.name} animation="scale-in" delay={i * 0.06}>
+                    <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-5 hover:border-purple-500/30 transition-all duration-300 h-full">
+                      <h4 className="font-semibold text-purple-400 mb-1.5 text-sm">{item.name}</h4>
+                      <p className="text-xs text-gray-500 leading-relaxed">{item.description}</p>
+                    </div>
                   </AnimatedWrapper>
                 ))}
               </div>
@@ -180,32 +159,31 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
           </section>
         )}
 
-        {/* Case Studies Section */}
-        {solution.caseStudies.length > 0 && (
-          <section className="py-16">
+        {/* ═══════════════════════════════════════════
+            CASE STUDIES — Prominent metrics cards
+            ═══════════════════════════════════════════ */}
+        {solution.caseStudies && solution.caseStudies.length > 0 && (
+          <section className="py-20">
             <div className="container mx-auto px-4">
-              <SectionHeader
-                badge="Success Stories"
-                title="Proven Results"
-                description="See how we've helped organisations like yours."
-                alignment="center"
-              />
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-12 max-w-7xl mx-auto items-stretch">
-                {solution.caseStudies.map((study, index) => (
-                  <AnimatedWrapper key={study.title} animation="float-up" delay={index * 0.15} className="h-full">
-                    <GlassCard variant="gradient" className="h-full p-5 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col">
-                      <h3 className="text-base font-bold text-white mb-2">{study.title}</h3>
-                      <p className="text-gray-400 text-xs mb-3 flex-grow">{study.description}</p>
-                      <div className="space-y-1.5">
-                        {study.results.map((result) => (
-                          <div key={result} className="flex items-center gap-2 text-xs">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-400 flex-shrink-0" />
-                            <span className="text-gray-300">{result}</span>
-                          </div>
-                        ))}
+              <SectionHeader badge="Proven Results" title="Client Success Stories" description="Measurable impact from real enterprise engagements." alignment="center" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14 max-w-5xl mx-auto">
+                {solution.caseStudies.map((study, i) => (
+                  <AnimatedWrapper key={study.title} animation="float-up" delay={i * 0.08}>
+                    <div className="group relative h-full">
+                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 flex flex-col">
+                        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">{study.title}</h3>
+                        <p className="text-sm text-gray-500 leading-relaxed mb-5 flex-1">{study.description}</p>
+                        <ul className="space-y-1.5 pt-4 border-t border-gray-800/50">
+                          {study.results.map((result) => (
+                            <li key={result} className="flex items-center gap-2 text-sm text-gray-400">
+                              <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />
+                              {result}
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    </GlassCard>
+                    </div>
                   </AnimatedWrapper>
                 ))}
               </div>
@@ -213,25 +191,31 @@ export function SolutionPageTemplate({ solution }: SolutionPageTemplateProps) {
           </section>
         )}
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gray-900/30">
-          <div className="container mx-auto px-4">
-            <AnimatedWrapper animation="zoom-in" className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                Ready to Get Started?
-              </h2>
-              <p className="text-gray-400 mb-8">
-                Let's discuss how we can help transform your {solution.hero.badge.toLowerCase()} operations.
-              </p>
-              <GradientButton size="lg" onClick={() => navigate('/contact')}>
+        {/* ═══════════════════════════════════════════
+            CTA — Bold closing section
+            ═══════════════════════════════════════════ */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-950/30 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 right-[20%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
+            <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent leading-tight">
                 {solution.ctaText}
-                <ArrowRight className="w-5 h-5 ml-2" />
+              </h2>
+              <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
+                Let's discuss how AI and data can transform your operations.
+              </p>
+              <GradientButton size="lg" onClick={() => navigate("/contact")}>
+                <Calendar className="w-5 h-5 mr-2" />
+                Schedule a Consultation
               </GradientButton>
             </AnimatedWrapper>
           </div>
         </section>
       </main>
-      
       <Footer />
     </div>
   );

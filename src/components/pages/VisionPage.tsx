@@ -1,12 +1,9 @@
 /**
- * Vision Page Component
+ * Vision Page Component — Premium Redesign
  *
- * Renders the Digitrans vision: next-generation business efficiency,
- * the wall of operationalization (80-85% stuck in POC), and the
- * full-service AI operator value proposition.
+ * Renders the Digitrans vision with premium visual language.
  */
 
-import React from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -18,10 +15,11 @@ import {
   TrendingUp,
   Play,
   Check,
+  Sparkles,
+  Calendar,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { GlassCard } from "@/components/ui/glass-card";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
@@ -36,7 +34,7 @@ const pillarIcons = [
   <TrendingUp className="w-6 h-6" />,
 ];
 
-const VisionPage: React.FC = () => {
+const VisionPage = () => {
   const { hero, efficiency, operationalizationWall, valueProposition, pillars, cta } = visionData;
 
   return (
@@ -50,187 +48,181 @@ const VisionPage: React.FC = () => {
       <Navbar />
 
       <main>
-        {/* Hero Section */}
-        <section className="relative pt-32 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-transparent to-transparent" />
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-
+        {/* ═══════════════════════════════════════════
+            HERO — Immersive gradient with floating orbs
+            ═══════════════════════════════════════════ */}
+        <section className="relative pt-36 pb-24 overflow-hidden">
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-black/80 to-black" />
+            <div className="absolute top-20 left-[10%] w-72 h-72 bg-purple-600/15 rounded-full blur-[100px] animate-pulse" />
+            <div className="absolute top-40 right-[15%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1.5s" }} />
+            <div className="absolute bottom-20 left-[30%] w-80 h-80 bg-indigo-600/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: "3s" }} />
+            <div className="absolute inset-0 opacity-[0.03]" style={{
+              backgroundImage: "linear-gradient(rgba(139,92,246,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.3) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }} />
+          </div>
           <div className="container mx-auto px-4 relative z-10">
             <AnimatedWrapper animation="fade-up-slow" className="max-w-4xl mx-auto text-center">
-              <span className="inline-block mb-4 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30">
+              <span className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 bg-purple-900/40 text-purple-300 text-sm rounded-full border border-purple-500/30 backdrop-blur-sm">
+                <Sparkles className="w-3.5 h-3.5" />
                 {hero.badge}
               </span>
-              <TypewriterGradientText
-                text={hero.title}
-                className="text-4xl md:text-6xl font-bold mb-6"
-                duration={1.8}
-              />
-              <p className="text-xl text-gray-300 mb-4 max-w-2xl mx-auto">{hero.subtitle}</p>
-              <p className="text-lg text-gray-400 max-w-3xl mx-auto">{hero.description}</p>
+              <TypewriterGradientText text={hero.title} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" duration={1.8} />
+              <p className="text-xl text-purple-200/80 mb-4 font-medium">{hero.subtitle}</p>
+              <p className="text-lg text-gray-300/90 max-w-3xl mx-auto leading-relaxed">{hero.description}</p>
             </AnimatedWrapper>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
         </section>
 
-        {/* Efficiency Section */}
-        <section className="py-20 relative">
+        {/* ═══════════════════════════════════════════
+            EFFICIENCY — Accent panel
+            ═══════════════════════════════════════════ */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="The Opportunity"
-              title={efficiency.title}
-              description=""
-              alignment="center"
-            />
-            <div className="max-w-3xl mx-auto mt-12 space-y-6">
-              {efficiency.paragraphs.map((paragraph, index) => (
-                <AnimatedWrapper key={index} animation="fade-up-slow" delay={index * 0.15}>
-                  <p className="text-gray-300 text-lg leading-relaxed">{paragraph}</p>
-                </AnimatedWrapper>
-              ))}
+            <SectionHeader badge="The Opportunity" title={efficiency.title} description="" alignment="center" />
+            <div className="max-w-4xl mx-auto mt-14">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl blur-xl" />
+                <div className="relative bg-gray-900/60 backdrop-blur-sm border border-gray-800/60 rounded-2xl p-8 space-y-5">
+                  {efficiency.paragraphs.map((paragraph: string, i: number) => (
+                    <AnimatedWrapper key={i} animation="fade-up-slow" delay={i * 0.1}>
+                      <p className="text-gray-300 text-lg leading-relaxed">{paragraph}</p>
+                    </AnimatedWrapper>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Wall of Operationalization Section */}
-        <section className="py-20 bg-gray-900/30 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-72 h-72 bg-red-500/5 rounded-full blur-3xl" />
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-              <AnimatedWrapper animation="slide-right">
+        {/* ═══════════════════════════════════════════
+            WALL OF OPERATIONALIZATION — Split layout
+            ═══════════════════════════════════════════ */}
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
+              <AnimatedWrapper animation="fade-up-slow">
                 <div>
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-red-500/20 to-orange-500/20 text-red-400">
-                      <AlertTriangle className="w-6 h-6" />
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center text-red-400">
+                      <AlertTriangle className="w-5 h-5" />
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white">
-                      {operationalizationWall.title}
-                    </h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white">{operationalizationWall.title}</h2>
                   </div>
-                  {operationalizationWall.paragraphs.map((paragraph, index) => (
-                    <p key={index} className="text-gray-400 mb-4 leading-relaxed">
-                      {paragraph}
-                    </p>
+                  {operationalizationWall.paragraphs.map((paragraph: string, i: number) => (
+                    <p key={i} className="text-gray-400 mb-4 leading-relaxed">{paragraph}</p>
                   ))}
                   <div className="mt-6 inline-flex items-baseline gap-2">
-                    <span className="text-5xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-                      {operationalizationWall.stat}
-                    </span>
-                    <span className="text-gray-400 text-lg">of companies stuck in POC</span>
+                    <span className="text-5xl font-bold bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">{operationalizationWall.stat}</span>
+                    <span className="text-gray-500 text-lg">of companies stuck in POC</span>
                   </div>
                 </div>
               </AnimatedWrapper>
-
-              <AnimatedWrapper animation="slide-left">
-                <GlassCard variant="gradient" className="p-8">
-                  <h3 className="text-xl font-bold text-white mb-6">
-                    The Hard Truths of AI Operationalization
-                  </h3>
-                  <ul className="space-y-4">
-                    {operationalizationWall.hardTruths.map((truth, index) => (
-                      <AnimatedWrapper key={index} animation="slide-up" delay={index * 0.08}>
-                        <li className="flex items-start gap-3 text-gray-300">
-                          <AlertTriangle className="w-5 h-5 text-orange-400 mt-0.5 flex-shrink-0" />
+              <AnimatedWrapper animation="fade-up-slow" delay={0.1}>
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-orange-500/5 rounded-2xl blur-xl" />
+                  <div className="relative bg-gray-900/60 backdrop-blur-sm border border-gray-800/60 rounded-2xl p-8">
+                    <h3 className="text-lg font-bold text-white mb-6">The Hard Truths of AI Operationalization</h3>
+                    <ul className="space-y-4">
+                      {operationalizationWall.hardTruths.map((truth: { text: string }, i: number) => (
+                        <li key={i} className="flex items-start gap-3 text-gray-300 text-sm">
+                          <AlertTriangle className="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" />
                           <span>{truth.text}</span>
                         </li>
-                      </AnimatedWrapper>
-                    ))}
-                  </ul>
-                </GlassCard>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </AnimatedWrapper>
             </div>
           </div>
         </section>
 
-        {/* Value Proposition Section */}
-        <section className="py-20 relative">
+        {/* ═══════════════════════════════════════════
+            VALUE PROPOSITION — Highlight panel
+            ═══════════════════════════════════════════ */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <AnimatedWrapper animation="zoom-in">
-                <GlassCard variant="gradient" className="p-10 text-center">
-                  <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400 w-fit mx-auto mb-6">
-                    <Lightbulb className="w-8 h-8" />
+              <AnimatedWrapper animation="fade-up-slow">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/15 to-blue-500/15 rounded-2xl blur-xl" />
+                  <div className="relative bg-gray-900/60 backdrop-blur-sm border border-gray-800/60 rounded-2xl p-10 text-center">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400 mx-auto mb-6">
+                      <Lightbulb className="w-7 h-7" />
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{valueProposition.title}</h2>
+                    <p className="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">{valueProposition.description}</p>
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                    {valueProposition.title}
-                  </h2>
-                  <p className="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
-                    {valueProposition.description}
-                  </p>
-                </GlassCard>
+                </div>
               </AnimatedWrapper>
             </div>
           </div>
         </section>
 
-        {/* Pillars Section */}
-        <section className="py-20 bg-gray-900/30">
-          <div className="container mx-auto px-4">
-            <SectionHeader
-              badge="Our Approach"
-              title="Making AI Work for You"
-              description="From ideation to operations, we support every stage of the digital lifecycle."
-              alignment="center"
-            />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-w-5xl mx-auto">
-              {pillars.map((pillar, index) => (
-                <AnimatedWrapper key={pillar.title} animation="scale-up-bounce" delay={index * 0.1}>
-                  <GlassCard className="h-full p-6 hover:scale-[1.02] transition-all duration-300">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 text-purple-400">
-                        {pillarIcons[index]}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-white mb-2">{pillar.title}</h3>
-                        <p className="text-gray-400 text-sm">{pillar.description}</p>
+        {/* ═══════════════════════════════════════════
+            PILLARS — Numbered cards
+            ═══════════════════════════════════════════ */}
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <SectionHeader badge="Our Approach" title="Making AI Work for You" description="From ideation to operations, we support every stage of the digital lifecycle." alignment="center" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14 max-w-5xl mx-auto">
+              {pillars.map((pillar: { title: string; description: string }, i: number) => (
+                <AnimatedWrapper key={pillar.title} animation="float-up" delay={i * 0.08}>
+                  <div className="group relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400">
+                          {pillarIcons[i]}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-2">
+                            <h3 className="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">{pillar.title}</h3>
+                            <span className="text-xs font-mono text-gray-700">{String(i + 1).padStart(2, '0')}</span>
+                          </div>
+                          <p className="text-sm text-gray-500 leading-relaxed">{pillar.description}</p>
+                        </div>
                       </div>
                     </div>
-                  </GlassCard>
+                  </div>
                 </AnimatedWrapper>
               ))}
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* ═══════════════════════════════════════════
+            CTA — Bold closing section
+            ═══════════════════════════════════════════ */}
         <section className="py-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-950/30 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 right-[20%] w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]" />
+          </div>
           <div className="container mx-auto px-4 relative z-10">
-            <AnimatedWrapper animation="zoom-in" className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+            <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent leading-tight">
                 {cta.title}
               </h2>
-              <p className="text-xl text-gray-300 mb-8">{cta.subtitle}</p>
+              <p className="text-lg text-gray-400 mb-10">{cta.subtitle}</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                 <GradientButton size="lg" asChild>
-                  <Link to={cta.buttonHref}>
-                    <Play className="w-5 h-5 mr-2" />
-                    {cta.buttonText}
-                  </Link>
+                  <Link to={cta.buttonHref}><Calendar className="w-5 h-5 mr-2" />{cta.buttonText}</Link>
                 </GradientButton>
                 <GradientButton variant="secondary" size="lg" asChild>
-                  <Link to="/services">
-                    Explore Our Services
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
+                  <Link to="/services">Explore Our Services <ArrowRight className="w-5 h-5 ml-2" /></Link>
                 </GradientButton>
               </div>
-              <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-                <span className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
-                  Full-Service AI Operator
-                </span>
-                <span className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
-                  You Own Your IP
-                </span>
-                <span className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-green-400" />
-                  24/7 Global Support
-                </span>
+              <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+                <span className="flex items-center gap-2"><Check className="w-4 h-4 text-green-400" />Full-Service AI Operator</span>
+                <span className="flex items-center gap-2"><Check className="w-4 h-4 text-green-400" />You Own Your IP</span>
+                <span className="flex items-center gap-2"><Check className="w-4 h-4 text-green-400" />24/7 Global Support</span>
               </div>
             </AnimatedWrapper>
           </div>

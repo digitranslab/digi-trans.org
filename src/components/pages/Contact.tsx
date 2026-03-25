@@ -302,7 +302,7 @@ export default function Contact() {
                           <option value="Data Engineering">Data Engineering</option>
                           <option value="Custom Development">Custom Development</option>
                           <option value="Product Inquiry - Allama">Product Inquiry - Allama</option>
-                          <option value="Product Inquiry - DBLOCK">Product Inquiry - DBLOCK</option>
+                          <option value="Product Inquiry - Dblock">Product Inquiry - Dblock</option>
                           <option value="Partnership">Partnership Opportunity</option>
                           <option value="Other">Other</option>
                         </select>

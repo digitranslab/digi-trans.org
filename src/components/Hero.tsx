@@ -85,12 +85,12 @@ const defaultServiceCards: ServiceCard[] = [
   },
   {
     title: "Products & Platforms",
-    description: "Allama AI automation and DBLOCK data platform",
+    description: "Allama AI automation and Dblock data platform",
     icon: <AppWindow className="w-12 h-12 text-white" />,
     story: {
       title: "Enterprise AI Products",
       description:
-        "Our flagship products—Allama for AI workflow automation and DBLOCK for next-gen data applications—accelerate your AI journey with production-ready platforms built on open standards.",
+        "Our flagship products—Allama for AI workflow automation and Dblock for next-gen data applications—accelerate your AI journey with production-ready platforms built on open standards.",
       metrics: [
         "Open Source",
         "Enterprise Ready",
@@ -242,15 +242,31 @@ const Hero = ({
           transition={{ duration: 0.8, delay: 1.2 }}
           className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl leading-relaxed"
         >
-          We build intelligent data platforms and AI solutions that help enterprises 
-          make faster decisions, automate operations, and unlock new revenue streams.
+          Creating digital capabilities for you, that last beyond us.
         </motion.p>
+
+        {/* Consultancy Services */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+          className="mb-8"
+        >
+          <p className="text-sm text-gray-500 uppercase tracking-wider mb-3">Consultancy services we offer</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {["Software engineering", "Digital product design", "Data science", "AI engineering"].map((service) => (
+              <span key={service} className="px-4 py-1.5 text-sm text-gray-300 bg-gray-800/50 border border-gray-700/50 rounded-full backdrop-blur-sm">
+                {service}
+              </span>
+            ))}
+          </div>
+        </motion.div>
 
         {/* CTA buttons with improved styling */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
         >
           <GradientButton

@@ -81,9 +81,9 @@ export interface AllamaData {
 
 // Hero Section Data
 export const heroData = {
-  tagline: "Open-Source AI Security Automation Platform",
-  headline: "Automate Your Security Operations",
-  description: "Allama transforms how security teams work. Our experts implement custom workflows, integrate your security stack, and deliver measurable ROI in weeks, not months.",
+  tagline: "Open-Source AI-Powered SOAR Platform",
+  headline: "AI-Driven Security Automation for the Modern SOC",
+  description: "In 2026, AI-driven security operations are the norm. Allama combines autonomous investigation, adaptive triage, and intelligent playbook orchestration — deployed by our security experts in weeks, not months. Open-source, enterprise-grade, and built for SOC teams that refuse to compromise.",
   primaryCTA: {
     label: "Schedule a Consultation",
     href: "/contact",
@@ -99,7 +99,7 @@ export const valuePropositions: ValueProposition[] = [
   {
     icon: "Rocket",
     title: "Rapid Implementation",
-    description: "Our security automation experts deploy Allama in your environment and build custom workflows tailored to your SOC processes. Go live in weeks, not months.",
+    description: "Our security automation experts deploy Allama in your environment and build custom AI-powered workflows tailored to your SOC processes. Production-ready in weeks — not the 6-12 months legacy SOAR vendors require.",
     metric: {
       value: "4-6",
       label: "Weeks to Production",
@@ -108,25 +108,25 @@ export const valuePropositions: ValueProposition[] = [
   {
     icon: "TrendingUp",
     title: "Proven ROI",
-    description: "Reduce mean time to respond by 80%. Our clients see measurable improvements in analyst efficiency and incident resolution within the first quarter.",
+    description: "Reduce mean time to respond by 90%. AI-powered triage eliminates alert fatigue while autonomous investigation handles tier-1 incidents without human intervention. Measurable improvements within the first quarter.",
     metric: {
-      value: "80%",
+      value: "90%",
       label: "Faster Response",
     },
   },
   {
-    icon: "Users",
-    title: "Expert Support",
-    description: "Dedicated security engineers who understand your environment. We don't just deploy software—we partner with your team to continuously optimize workflows.",
+    icon: "Brain",
+    title: "AI-Native Investigation",
+    description: "Unlike legacy SOAR that follows rigid playbooks, Allama's AI agents dynamically investigate alerts — enriching context, correlating events, and recommending actions. Adaptive triage that learns from your environment.",
     metric: {
-      value: "24/7",
-      label: "Expert Support",
+      value: "80%",
+      label: "Tier-1 Auto-Resolution",
     },
   },
   {
     icon: "Plug",
     title: "Seamless Integration",
-    description: "We integrate Allama with your existing SIEM, EDR, ticketing, and communication tools. Custom integrations built to your exact specifications.",
+    description: "We integrate Allama with your existing SIEM, EDR, XDR, identity, ticketing, and communication tools. 80+ pre-built connectors plus custom integrations built to your exact specifications.",
     metric: {
       value: "80+",
       label: "Integrations",
@@ -311,33 +311,39 @@ export const competitors: CompetitorComparison[] = [
 export const useCases: UseCase[] = [
   {
     title: "Phishing Response Automation",
-    problem: "Analysts spend 20+ minutes per phishing report, creating backlogs.",
-    solution: "We implement end-to-end phishing triage: extraction, threat intel enrichment, user notification, and remediation—all automated.",
-    result: "90% reduction in analyst time per incident.",
+    problem: "Analysts spend 20+ minutes per phishing report, creating backlogs of hundreds of unreviewed emails daily.",
+    solution: "End-to-end AI-powered phishing triage: header analysis, URL detonation, attachment sandboxing, threat intel enrichment, user notification, and automated remediation — all orchestrated in seconds.",
+    result: "90% reduction in analyst time per incident. Zero backlog.",
   },
   {
-    title: "SIEM Alert Enrichment",
-    problem: "Thousands of alerts with no context, leading to alert fatigue.",
-    solution: "Our team builds enrichment workflows that add user, asset, and threat context to every alert before it reaches your analysts.",
-    result: "Analysts make faster, better decisions.",
+    title: "AI-Powered Alert Triage",
+    problem: "Thousands of SIEM alerts with no context, leading to alert fatigue and missed critical threats.",
+    solution: "AI agents that autonomously investigate alerts — enriching with user, asset, and threat context, correlating across data sources, and scoring severity before any human sees them.",
+    result: "80% of tier-1 alerts resolved without human intervention.",
   },
   {
-    title: "Compliance Automation",
-    problem: "Manual evidence collection for audits takes weeks.",
-    solution: "Automated workflows that continuously collect, organize, and report compliance evidence across your security stack.",
-    result: "Audit-ready in hours, not weeks.",
+    title: "Compliance Evidence Automation",
+    problem: "Manual evidence collection for SOC2, ISO 27001, and PCI-DSS audits takes weeks of analyst time.",
+    solution: "Automated workflows that continuously collect, organize, and report compliance evidence across your entire security stack with full audit trails.",
+    result: "Audit-ready in hours, not weeks. Continuous compliance posture.",
   },
   {
-    title: "Threat Containment",
-    problem: "Slow response to confirmed threats increases blast radius.",
-    solution: "One-click or fully automated containment: isolate hosts, disable accounts, block IPs across your entire stack.",
-    result: "Contain threats in seconds, not hours.",
+    title: "Automated Threat Containment",
+    problem: "Slow response to confirmed threats increases blast radius and dwell time.",
+    solution: "One-click or fully automated containment: isolate hosts via EDR, disable accounts in IAM, block IPs at firewall, quarantine emails — all coordinated across your stack in seconds.",
+    result: "Contain threats in seconds. 95% reduction in dwell time.",
   },
   {
-    title: "Custom Integration Development",
-    problem: "Your security tools don't talk to each other.",
-    solution: "We build custom integrations for any tool with an API—internal systems, niche vendors, legacy platforms.",
-    result: "Unified security operations.",
+    title: "Vulnerability Prioritization",
+    problem: "Vulnerability scanners produce thousands of findings with no business context for prioritization.",
+    solution: "AI-driven vulnerability triage that correlates CVEs with asset criticality, exploit availability, threat intelligence, and compensating controls to produce actionable priority rankings.",
+    result: "Focus on the 5% of vulnerabilities that actually matter.",
+  },
+  {
+    title: "Insider Threat Detection",
+    problem: "Behavioral anomalies across identity, DLP, and access logs are difficult to correlate manually.",
+    solution: "Multi-source correlation workflows that aggregate signals from IAM, DLP, CASB, and endpoint telemetry to identify and investigate potential insider threats automatically.",
+    result: "Detect insider threats 10x faster with full evidence chain.",
   },
 ];
 

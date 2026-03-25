@@ -1,9 +1,9 @@
 /**
  * ProductsShowcaseSection Component
  * 
- * Displays product cards for Allama and DBLOCK:
+ * Displays product cards for Allama and Dblock:
  * - Allama: Live product with tagline, features, and "Learn More" CTA
- * - DBLOCK: Coming soon with badge and teaser description
+ * - Dblock: Coming soon with badge and teaser description
  * 
  * Uses gradient borders and glass morphism styling.
  * 

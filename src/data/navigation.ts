@@ -35,31 +35,45 @@ export interface NavigationConfig {
  * Main navigation items for the website
  * Structured according to the information architecture requirements
  * 
- * Services consolidated into 3 categories:
- * 1. Big Data Architecture & Engineering
- * 2. Agentic AI for Data Processing & Enrichment
- * 3. AI & Data Consulting and Strategy
+ * Services consolidated into 2 groups:
+ * 1. Data Architecture & Engineering — infrastructure, pipelines, and AI-driven data processing
+ * 2. Sovereign AI & Consulting — AI strategy, deployment, automation, and advisory
  */
 export const navigationItems: NavItem[] = [
   {
     label: "Services",
     href: "/services",
     description: "Data engineering, AI, and strategic consulting",
-    children: [
+    sections: [
       {
-        label: "Big Data Architecture & Engineering",
-        href: "/services/big-data-architecture",
-        description: "Medallion architecture, lakehouses, and real-time streaming",
+        title: "Data Architecture & Engineering",
+        items: [
+          {
+            label: "Big Data Architecture",
+            href: "/services/big-data-architecture",
+            description: "Medallion architecture, lakehouses, and real-time streaming",
+          },
+          {
+            label: "AI & Data Strategy",
+            href: "/services/ai-data-consulting",
+            description: "Roadmaps, governance, and data maturity advisory",
+          },
+        ],
       },
       {
-        label: "Agentic AI for Data",
-        href: "/services/agentic-ai-data",
-        description: "Autonomous AI agents for data processing and enrichment",
-      },
-      {
-        label: "AI & Data Consulting",
-        href: "/services/ai-data-consulting",
-        description: "Strategic advisory, roadmaps, and governance",
+        title: "Sovereign AI & Consulting",
+        items: [
+          {
+            label: "Agentic AI & Automation",
+            href: "/services/agentic-ai",
+            description: "Autonomous AI agents and workflow automation via MCP",
+          },
+          {
+            label: "Sovereign AI",
+            href: "/services/sovereign-ai",
+            description: "On-premise and air-gapped AI deployment",
+          },
+        ],
       },
     ],
   },
@@ -69,12 +83,17 @@ export const navigationItems: NavItem[] = [
     description: "Our innovative product offerings",
     children: [
       {
+        label: "Megamind",
+        href: "/products/megamind",
+        description: "Open-source AI platform — ChatGPT alternative with 4.5M+ downloads",
+      },
+      {
         label: "Allama",
         href: "/products/allama",
         description: "Open-source AI security automation platform (SOAR)",
       },
       {
-        label: "DBLOCK",
+        label: "Dblock",
         href: "/products/dblock",
         description: "Next-generation AI application platform",
         badge: "Coming Soon",

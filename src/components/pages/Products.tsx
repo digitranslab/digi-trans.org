@@ -1,7 +1,7 @@
 /**
  * Products Page
  * 
- * Showcases all Digitrans products: Allama and DBLOCK
+ * Showcases all Digitrans products: Allama and Dblock
  * with detailed information and CTAs.
  */
 
@@ -60,10 +60,10 @@ const products = [
     image: "/images/products/allama/parent-workflow.png",
   },
   {
-    name: "DBLOCK",
+    name: "Dblock",
     tagline: "AI-Powered Data Workflow Automation",
     description: "Build, deploy, and manage data applications with a visual workflow builder powered by AI. Create intelligent data pipelines without writing code.",
-    longDescription: "DBLOCK is a next-generation data platform that combines visual workflow design with AI assistance. Connect to 100+ data sources, transform data with natural language, and deploy production-ready pipelines in minutes.",
+    longDescription: "Dblock is a next-generation data platform that combines visual workflow design with AI assistance. Connect to 100+ data sources, transform data with natural language, and deploy production-ready pipelines in minutes.",
     benefits: [
       "Visual drag-and-drop workflow builder",
       "AI-assisted data transformations",
@@ -159,7 +159,7 @@ export default function Products() {
                 onClick={() => navigate('/products/dblock')}
                 rightIcon={<ArrowRight className="w-5 h-5" />}
               >
-                Discover DBLOCK
+                Discover Dblock
               </GradientButton>
             </div>
           </motion.div>
