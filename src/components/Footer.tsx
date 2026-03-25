@@ -25,8 +25,17 @@ const Footer = () => {
     <footer className="relative bg-black text-white" style={{ zIndex: 1 }}>
       {/* Get in Touch Banner */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 via-indigo-900/80 to-purple-900/80" />
-        <div className="absolute inset-0 opacity-[0.05]" style={{
+        {/* Slow morphing gradient background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(270deg, #1e1b4b, #4c1d95, #701a75, #1e3a5f, #312e81, #581c87, #1e1b4b)",
+            backgroundSize: "600% 100%",
+            animation: "aurora 12s ease-in-out infinite",
+          }}
+        />
+        <style>{`@keyframes aurora { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }`}</style>
+        <div className="absolute inset-0 opacity-[0.04]" style={{
           backgroundImage: "linear-gradient(rgba(139,92,246,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.4) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }} />
@@ -121,18 +130,25 @@ const Footer = () => {
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
                 <a href="/about" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">About</a>
                 <a href="/blog" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Blog</a>
-                <a href="/privacy" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Privacy</a>
-                <a href="/terms" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Terms</a>
-                <a href="/security" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Security</a>
               </div>
             </div>
           </div>
 
           {/* Bottom Bar */}
           <div className="border-t border-gray-800/40 mt-10 pt-6">
-            <p className="text-xs text-gray-600 text-center">
-              © 2026 Digitrans. All rights reserved.
-            </p>
+            <div className="flex flex-col md:flex-row justify-between items-start gap-4">
+              <p className="text-xs text-gray-600">
+                © 2026 Digitrans. All rights reserved.
+              </p>
+              <div className="flex flex-wrap gap-x-6 gap-y-1">
+                <a href="/cookies" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Cookies</a>
+                <a href="/privacy" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Privacy Policy</a>
+                <a href="/data-retention" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Data-retention Policy</a>
+                <a href="/data-protection-addendum" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Data Protection Addendum</a>
+                <a href="/code-of-conduct" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Code of Conduct</a>
+                <a href="/modern-slavery-statement" className="text-xs text-gray-600 hover:text-gray-400 transition-colors">Modern Slavery Statement</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

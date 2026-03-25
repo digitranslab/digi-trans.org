@@ -4,7 +4,7 @@ import PromoBanner from "./components/PromoBanner";
 import ScrollToTop from "./components/ScrollToTop";
 import { useRoutes, Routes, Route } from "react-router-dom";
 import Home from "./components/home";
-import Services from "./components/pages/Services";
+import OurServicesPage from "./components/pages/OurServicesPage";
 import Solutions from "./components/pages/Solutions";
 import Clients from "./components/pages/Clients";
 import Portfolio from "./components/pages/Portfolio";
@@ -36,6 +36,10 @@ import routes from "tempo-routes";
 import Privacy from "./components/pages/legal/Privacy";
 import Terms from "./components/pages/legal/Terms";
 import Cookies from "./components/pages/legal/Cookies";
+import DataRetention from "./components/pages/legal/DataRetention";
+import DataProtectionAddendum from "./components/pages/legal/DataProtectionAddendum";
+import CodeOfConduct from "./components/pages/legal/CodeOfConduct";
+import ModernSlavery from "./components/pages/legal/ModernSlavery";
 import Security from "./components/pages/legal/Security";
 import Ledger from "./components/pages/products/Ledger";
 import UTrack from "./components/pages/products/uTrack";
@@ -143,8 +147,11 @@ function App() {
       {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/solutions" element={<Solutions />} />
+        <Route path="/services" element={<OurServicesPage />} />
+        <Route path="/services/industries" element={<OurServicesPage />} />
+        <Route path="/services/use-cases" element={<OurServicesPage />} />
+        <Route path="/solutions" element={<Navigate to="/services/industries" replace />} />
+        <Route path="/industries" element={<Navigate to="/services/industries" replace />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/careers" element={<Navigate to="/contact" replace />} />
@@ -244,7 +251,7 @@ function App() {
         {/* Megamind AI Offering Routes */}
         <Route path="/products/megamind" element={<MegamindPage />} />
         <Route path="/services/ai-consulting" element={<AIConsultingPage />} />
-        <Route path="/services/sovereign-ai" element={<SovereignAIPage />} />
+        <Route path="/services/sovereign-ai" element={<Navigate to="/services/ai-data-consulting" replace />} />
         <Route path="/services/agentic-ai" element={<AgenticAIServicePage />} />
         <Route path="/models" element={<ModelsPage />} />
         <Route path="/platform/megamind" element={<Navigate to="/products/megamind" replace />} />
@@ -305,6 +312,10 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/cookies" element={<Cookies />} />
+        <Route path="/data-retention" element={<DataRetention />} />
+        <Route path="/data-protection-addendum" element={<DataProtectionAddendum />} />
+        <Route path="/code-of-conduct" element={<CodeOfConduct />} />
+        <Route path="/modern-slavery-statement" element={<ModernSlavery />} />
         <Route path="/security" element={<Security />} />
         <Route path="/applications" element={<Applications />} />
         

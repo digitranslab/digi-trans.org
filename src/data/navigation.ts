@@ -41,39 +41,24 @@ export interface NavigationConfig {
  */
 export const navigationItems: NavItem[] = [
   {
-    label: "Services",
+    label: "Our Services",
     href: "/services",
-    description: "Data engineering, AI, and strategic consulting",
-    sections: [
+    description: "What we do, by industry, and by use case",
+    children: [
       {
-        title: "Data Architecture & Engineering",
-        items: [
-          {
-            label: "Big Data Architecture",
-            href: "/services/big-data-architecture",
-            description: "Medallion architecture, lakehouses, and real-time streaming",
-          },
-          {
-            label: "AI & Data Strategy",
-            href: "/services/ai-data-consulting",
-            description: "Roadmaps, governance, and data maturity advisory",
-          },
-        ],
+        label: "What We Do",
+        href: "/services",
+        description: "Software & data engineering, AI strategy, and agentic automation",
       },
       {
-        title: "Sovereign AI & Consulting",
-        items: [
-          {
-            label: "Agentic AI & Automation",
-            href: "/services/agentic-ai",
-            description: "Autonomous AI agents and workflow automation via MCP",
-          },
-          {
-            label: "Sovereign AI",
-            href: "/services/sovereign-ai",
-            description: "On-premise and air-gapped AI deployment",
-          },
-        ],
+        label: "By Industry",
+        href: "/services/industries",
+        description: "Solutions tailored to your sector",
+      },
+      {
+        label: "By Use Case",
+        href: "/services/use-cases",
+        description: "Solve specific operational challenges",
       },
     ],
   },
@@ -97,109 +82,6 @@ export const navigationItems: NavItem[] = [
         href: "/products/dblock",
         description: "Next-generation AI application platform",
         badge: "Coming Soon",
-      },
-    ],
-  },
-  {
-    label: "Solutions",
-    href: "/industries",
-    description: "Solutions by industry and use case",
-    sections: [
-      {
-        title: "By Industry",
-        items: [
-          {
-            label: "Financial Services",
-            href: "/solutions/financial-services",
-            description: "AI solutions for banking and finance",
-          },
-          {
-            label: "Government",
-            href: "/solutions/government",
-            description: "Secure data platforms for the public sector",
-          },
-          {
-            label: "Retail & E-commerce",
-            href: "/solutions/retail",
-            description: "Customer 360, personalisation, and demand forecasting",
-          },
-          {
-            label: "Manufacturing",
-            href: "/solutions/manufacturing",
-            description: "Predictive maintenance, quality control AI, and smart factory analytics",
-          },
-          {
-            label: "Energy & Mining",
-            href: "/solutions/energy-mining",
-            description: "AI for safety, energy management, and operational efficiency",
-          },
-          {
-            label: "Smart City",
-            href: "/solutions/smart-city",
-            description: "AI for smart grids, water, waste management, and urban infrastructure",
-          },
-          {
-            label: "Transportation & Logistics",
-            href: "/solutions/transportation-logistics",
-            description: "Route optimisation, fleet management, and supply chain AI",
-          },
-          {
-            label: "Hydrogen",
-            href: "/solutions/hydrogen",
-            description: "Digital solutions for hydrogen production, storage, and transportation",
-          },
-        ],
-      },
-
-      {
-        title: "By Use Case",
-        items: [
-          {
-            label: "Data Integration",
-            href: "/use-cases/data-integration",
-            description: "Unified data pipelines and integration",
-          },
-          {
-            label: "Supply Chain Optimization",
-            href: "/use-cases/supply-chain",
-            description: "End-to-end supply chain intelligence",
-          },
-          {
-            label: "Flow Optimization",
-            href: "/use-cases/flow-optimization",
-            description: "Process flow analysis and improvement",
-          },
-          {
-            label: "Production Optimization",
-            href: "/use-cases/production-optimization",
-            description: "Maximize production output and quality",
-          },
-          {
-            label: "Process Control",
-            href: "/use-cases/process-control",
-            description: "Real-time process monitoring and control",
-          },
-          {
-            label: "Quality Control",
-            href: "/use-cases/quality-control",
-            description: "AI-powered quality assurance",
-          },
-          {
-            label: "Predictive Maintenance",
-            href: "/use-cases/predictive-maintenance",
-            description: "Anticipate and prevent equipment failures",
-          },
-          {
-            label: "Energy Management",
-            href: "/use-cases/energy-management",
-            description: "Optimize energy consumption and costs",
-          },
-          {
-            label: "Safety & Risk Detection",
-            href: "/use-cases/safety-risk-detection",
-            description: "Proactive safety monitoring and risk mitigation",
-          },
-        ],
       },
     ],
   },
