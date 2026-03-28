@@ -271,9 +271,93 @@ html.light .border-purple-500\/20 { border-color: rgba(5,150,105,0.18) !importan
 html.light .border-blue-500\/30 { border-color: rgba(13,148,136,0.25) !important; }
 html.light .border-green-500\/30 { border-color: rgba(34,197,94,0.25) !important; }
 
-/* ── Icon Containers — green tint ── */
-html.light .from-purple-500\/20 { --tw-gradient-from: rgba(5,150,105,0.1) !important; }
-html.light .to-blue-500\/20 { --tw-gradient-to: rgba(13,148,136,0.1) !important; }
+/* ── Icon Containers — outline only, no solid background ── */
+/* BOTH THEMES: Any rounded container with bg-gradient gets outline treatment */
+/* EXCLUDE buttons via data-gradient-button attribute */
+[class*="rounded-xl"][class*="bg-gradient-to-br"]:not(.gradient-btn),
+[class*="rounded-lg"][class*="bg-gradient-to-br"]:not(.gradient-btn),
+[class*="rounded-2xl"][class*="bg-gradient-to-br"]:not(.gradient-btn),
+[class*="rounded-xl"][class*="bg-gradient-to-r"]:not(.gradient-btn),
+[class*="rounded-lg"][class*="bg-gradient-to-r"]:not(.gradient-btn) {
+  background: transparent !important;
+  border: 1.5px solid rgba(139,92,246,0.35) !important;
+}
+/* Non-gradient icon containers */
+[class*="rounded-lg"][class*="bg-purple-500\/"],
+[class*="rounded-xl"][class*="bg-purple-500\/"],
+[class*="rounded-lg"][class*="bg-blue-500\/"],
+[class*="rounded-xl"][class*="bg-gray-900\/60"][class*="border"] {
+  background: transparent !important;
+  border: 1.5px solid rgba(139,92,246,0.3) !important;
+}
+
+/* LIGHT THEME: green borders */
+html.light .w-8[class*="rounded"][class*="bg-gradient"],
+html.light .w-9[class*="rounded"][class*="bg-gradient"],
+html.light .w-10[class*="rounded"][class*="bg-gradient"],
+html.light .w-11[class*="rounded"][class*="bg-gradient"],
+html.light .w-12[class*="rounded"][class*="bg-gradient"],
+html.light .w-14[class*="rounded"][class*="bg-gradient"],
+html.light [class~="p-2"][class*="rounded-xl"][class*="bg-gradient"]:not(.gradient-btn),
+html.light [class~="p-3"][class*="rounded-xl"][class*="bg-gradient"]:not(.gradient-btn),
+html.light [class~="p-4"][class*="rounded-2xl"][class*="bg-gradient"]:not(.gradient-btn),
+html.light [class~="p-5"][class*="rounded-2xl"][class*="bg-gradient"]:not(.gradient-btn),
+html.light [class*="rounded-lg"][class*="bg-purple-500\/"],
+html.light [class*="rounded-xl"][class*="bg-purple-500\/"],
+html.light [class*="rounded-lg"][class*="bg-blue-500\/"],
+html.light [class*="rounded-xl"][class*="bg-gray-900\/60"][class*="border"] {
+  background: transparent !important;
+  border: 1.5px solid rgba(5,150,105,0.3) !important;
+}
+
+/* EXCEPTIONS: Button styles — solid colors, no gradients — HIGHEST SPECIFICITY */
+.gradient-btn-primary.gradient-btn-primary.gradient-btn-primary {
+  background: #111827 !important;
+  border: 2px solid #4b5563 !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+.gradient-btn-primary.gradient-btn-primary:hover {
+  background: #1f2937 !important;
+  border-color: #9ca3af !important;
+}
+.gradient-btn-secondary.gradient-btn-secondary.gradient-btn-secondary {
+  background: transparent !important;
+  border: 2px solid #4b5563 !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+.gradient-btn-secondary.gradient-btn-secondary:hover {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: #9ca3af !important;
+}
+
+/* Light theme buttons — green — HIGHEST SPECIFICITY */
+html.light .gradient-btn-primary.gradient-btn-primary.gradient-btn-primary {
+  background: #059669 !important;
+  border: 2px solid #059669 !important;
+  color: white !important;
+}
+html.light .gradient-btn-primary.gradient-btn-primary:hover {
+  background: #047857 !important;
+  border-color: #047857 !important;
+}
+html.light .gradient-btn-secondary.gradient-btn-secondary.gradient-btn-secondary {
+  background: transparent !important;
+  border: 2px solid #059669 !important;
+  color: #059669 !important;
+}
+html.light .gradient-btn-secondary.gradient-btn-secondary:hover {
+  background: rgba(5,150,105,0.05) !important;
+  border-color: #047857 !important;
+  color: #047857 !important;
+}
+/* Card hover overlays (absolute positioned) */
+.absolute[class*="bg-gradient"][class*="opacity-0"] { background: revert !important; border: none !important; }
+/* Section-level gradient overlays */
+section > .absolute[class*="bg-gradient"] { background: transparent !important; border: none !important; }
+/* Cards themselves (not icon containers) */
+[class*="rounded-2xl"][class*="bg-gray-900"][class*="backdrop-blur"] { border: revert !important; }
 
 /* ── Hero Video — hide in light mode ── */
 html.light video { opacity: 0.08 !important; }

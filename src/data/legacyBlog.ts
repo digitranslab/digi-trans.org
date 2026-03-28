@@ -153,7 +153,7 @@ Building an automated workflow typically follows a pattern: trigger (email recei
 
 Sovereign AI is not about rejecting cloud technology — it is about ensuring that sensitive data never leaves organizational boundaries. When a government analyst uses ChatGPT to summarize classified documents, that data flows to external servers. When a hospital uses cloud AI for patient records, HIPAA compliance becomes a complex legal question. Sovereign AI eliminates these concerns by running everything locally: the AI models, the inference engine, the data storage, and the API server.
 
-Megamind, the open-source AI platform by digitranslab, makes sovereign AI practical. Licensed under Apache 2.0, it runs on consumer hardware (starting from 4GB RAM for the Lucy model) and supports fully air-gapped deployment. The platform includes local model management, an OpenAI-compatible API server, and MCP tool integrations — all operating within the organization's boundary. For compliance-heavy environments, this architecture satisfies GDPR, HIPAA, SOC2, and FedRAMP requirements by design, not by policy.`,
+Megamind, the open-source AI platform by digitranslab, makes sovereign AI practical. It runs on consumer hardware (starting from 4GB RAM for the Lucy model) and supports fully air-gapped deployment. The platform includes local model management, an OpenAI-compatible API server, and MCP tool integrations — all operating within the organization's boundary. For compliance-heavy environments, this architecture satisfies GDPR, HIPAA, SOC2, and FedRAMP requirements by design, not by policy.`,
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f2?w=800&q=80",
   },
   {

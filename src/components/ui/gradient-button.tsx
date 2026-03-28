@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils";
 const gradientButtonVariants = cva(
   // Base styles for all gradient buttons
   [
+    "gradient-btn",
     "inline-flex items-center justify-center",
     "whitespace-nowrap rounded-lg",
     "font-medium transition-all duration-300",
@@ -24,25 +25,15 @@ const gradientButtonVariants = cva(
   {
     variants: {
       variant: {
-        // Primary: Gradient from purple to blue with AI glow hover state
         primary: [
-          "bg-gradient-to-r from-purple-600 to-blue-600",
+          "gradient-btn-primary",
           "text-white",
-          "shadow-lg shadow-purple-500/25",
-          "hover:from-purple-500 hover:to-blue-500",
-          "hover:shadow-[0_0_25px_rgba(139,92,246,0.5),0_0_50px_rgba(139,92,246,0.3)]",
           "hover:scale-[1.02]",
           "active:scale-100",
         ].join(" "),
-        // Secondary: Dark filled style with AI glow border
         secondary: [
-          "bg-gray-900/80",
+          "gradient-btn-secondary",
           "text-white",
-          "border border-purple-500/40",
-          "shadow-md shadow-purple-500/10",
-          "hover:bg-gray-800/90",
-          "hover:border-purple-400/80",
-          "hover:shadow-[0_0_20px_rgba(139,92,246,0.4),0_0_40px_rgba(139,92,246,0.2)]",
           "hover:scale-[1.02]",
           "active:scale-100",
         ].join(" "),

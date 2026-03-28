@@ -91,14 +91,9 @@ export const navigationItems: NavItem[] = [
     description: "Learning resources and educational content",
     children: [
       {
-        label: "Tutorials",
-        href: "/university/tutorials",
-        description: "Step-by-step guides and video tutorials",
-      },
-      {
-        label: "Live Demos",
+        label: "Tutorials & Live Demos",
         href: "/university/live-demos",
-        description: "Recorded product demonstrations",
+        description: "Step-by-step guides, video tutorials, and product demos",
       },
       {
         label: "Webinars & Tech Talks",

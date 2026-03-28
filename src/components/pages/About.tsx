@@ -5,6 +5,7 @@
  * Floating gradient orbs, grid overlays, numbered cards, alternating layouts.
  */
 
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -18,7 +19,6 @@ import {
   Heart,
   TrendingUp,
   Rocket,
-  GitBranch,
   Cloud,
   Landmark,
   HeartPulse,
@@ -26,17 +26,14 @@ import {
   Cpu,
   Factory,
   Building,
-  Briefcase,
-  GraduationCap,
   Sparkles,
-  Calendar,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
-import LazyImage from "@/components/LazyImage";
+
 import SEO from "@/components/SEO";
 import { OrganizationSchema } from "@/components/JsonLd";
 import { TypewriterGradientText } from "@/components/ui/typewriter-text";
@@ -102,28 +99,7 @@ const expertiseAreas = [
   { title: "AI, Machine Learning & Deep Learning", skills: ["Time Series Forecasting", "Computer Vision", "NLP", "Physics-Informed ML", "Neural Networks & Transfer Learning"] },
 ];
 
-// Global Offices
-const offices = [
-  { city: "Dubai", country: "UAE", type: "Headquarters", description: "MENA operations hub", image: "/assets/offices/dubai.webp" },
-  { city: "London", country: "UK", type: "EMEA Hub", description: "European operations", image: "/assets/offices/london.webp" },
-  { city: "Paris", country: "France", type: "EU Office", description: "Continental Europe", image: "/assets/offices/paris.webp" },
-  { city: "Casablanca", country: "Morocco", type: "Africa Hub", description: "African operations", image: "/assets/offices/casa.webp" },
-];
 
-// Careers
-const careersContent = {
-  headline: "Shape the Future of Industry",
-  tagline: "Are you ready to be part of the future? Or better yet, build it?",
-  description: "Digitrans was born out of a need to improve the quality of information in industrial operations, and with dedication, hard work, and unwavering focus, we have been moving steadily towards that goal, day after day, year after year. We want to continue growing, improving, and bringing innovation to industrial operations, so it's important to us that we maintain the same dedication when it comes to our own team members and in-house operations.",
-  candidatesDescription: "We are on the lookout for talented, visionary, and creative people with strong backgrounds in engineering, math, and tech — people who are ready to evolve quickly and grow in their roles as we grow as a company.",
-  workEnvironment: "We work hard to cultivate a work environment that is inspiring, positive, and gives our team room to learn, improve their skills, and learn new ones. Join us in building the factories of the future.",
-  traits: [
-    { icon: <GraduationCap className="w-5 h-5" />, title: "Engineering & Math", description: "Strong analytical and technical foundations" },
-    { icon: <Code className="w-5 h-5" />, title: "Tech & Software", description: "Modern development and data engineering skills" },
-    { icon: <Sparkles className="w-5 h-5" />, title: "Creative & Visionary", description: "Innovative thinkers who push boundaries" },
-    { icon: <TrendingUp className="w-5 h-5" />, title: "Growth Mindset", description: "Ready to evolve and learn continuously" },
-  ],
-};
 
 const milestones = [
   { year: "2023", text: "Digitrans founded in March 2023 in Dubai by a team of data engineers and AI specialists with deep industrial experience. Immediate focus on sovereign AI consulting and data platform engineering for enterprise clients." },
@@ -134,6 +110,8 @@ const milestones = [
 ];
 
 const AboutPage = () => {
+  const [activePillar, setActivePillar] = useState(0);
+
   return (
     <div className="min-h-screen bg-black">
       <SEO
@@ -159,20 +137,6 @@ const AboutPage = () => {
               </span>
               <TypewriterGradientText text={heroData.headline} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" duration={1.8} />
               <p className="text-lg md:text-xl text-gray-300/90 mb-10 max-w-3xl mx-auto leading-relaxed">{heroData.description}</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <GradientButton size="lg" asChild>
-                  <Link to={heroData.primaryCTA.href}>
-                    <Calendar className="w-5 h-5 mr-2" />
-                    {heroData.primaryCTA.label}
-                  </Link>
-                </GradientButton>
-                <GradientButton variant="secondary" size="lg" asChild>
-                  <Link to={heroData.secondaryCTA.href}>
-                    <Rocket className="w-5 h-5 mr-2" />
-                    {heroData.secondaryCTA.label}
-                  </Link>
-                </GradientButton>
-              </div>
             </AnimatedWrapper>
           </div>
           <HeroBottomFade />
@@ -212,42 +176,56 @@ const AboutPage = () => {
         </section>
 
         {/* ═══════════════════════════════════════════
-            THREE PILLARS — Alternating left/right layouts
+            THREE PILLARS — Tab navigation
             ═══════════════════════════════════════════ */}
         <section className="py-20 relative">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
           <div className="container mx-auto px-4 relative z-10">
             <SectionHeader badge="What We Do" title="Three Pillars of Expertise" description="Consulting, Engineering, and Products to transform your business." alignment="center" />
-            <div className="space-y-20 mt-14 max-w-6xl mx-auto">
-              {pillars.map((pillar, index) => (
-                <AnimatedWrapper key={pillar.id} animation="fade-up-slow" delay={index * 0.1}>
-                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center`}>
-                    <div className={index % 2 === 1 ? "lg:order-2" : ""}>
-                      <div className="flex items-center gap-3 mb-5">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white">{pillar.icon}</div>
-                        <span className="text-xs font-mono text-gray-600">{String(index + 1).padStart(2, '0')}</span>
-                      </div>
-                      <h3 className="text-2xl font-bold text-white mb-4">{pillar.title}</h3>
-                      <p className="text-gray-400 mb-6 leading-relaxed">{pillar.description}</p>
-                      <ul className="space-y-2 mb-6">
-                        {pillar.capabilities.map((cap) => (
-                          <li key={cap} className="flex items-start gap-2 text-gray-300 text-sm">
-                            <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                            <span>{cap}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="text-purple-400 italic text-sm">"{pillar.marketingAngle}"</p>
-                    </div>
-                    <div className={index % 2 === 1 ? "lg:order-1" : ""}>
-                      <div className="relative rounded-2xl overflow-hidden border border-gray-800/50">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10" />
-                        <img src={pillar.image} alt={pillar.title} className="w-full h-64 lg:h-80 object-cover" loading="lazy" />
-                      </div>
-                    </div>
-                  </div>
-                </AnimatedWrapper>
+
+            {/* Tab buttons */}
+            <div className="flex justify-center gap-2 mt-10 mb-10">
+              {pillars.map((pillar, i) => (
+                <button
+                  key={pillar.id}
+                  onClick={() => setActivePillar(i)}
+                  className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activePillar === i
+                      ? "bg-gray-800 text-white border border-gray-700"
+                      : "text-gray-500 hover:text-gray-300 border border-transparent"
+                  }`}
+                >
+                  {pillar.title}
+                </button>
               ))}
+            </div>
+
+            {/* Active pillar content */}
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div>
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white">{pillars[activePillar].icon}</div>
+                    <h3 className="text-2xl font-bold text-white">{pillars[activePillar].title}</h3>
+                  </div>
+                  <p className="text-gray-400 mb-6 leading-relaxed">{pillars[activePillar].description}</p>
+                  <ul className="space-y-2 mb-6">
+                    {pillars[activePillar].capabilities.map((cap) => (
+                      <li key={cap} className="flex items-start gap-2 text-gray-300 text-sm">
+                        <Check className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span>{cap}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-purple-400 italic text-sm">"{pillars[activePillar].marketingAngle}"</p>
+                </div>
+                <div>
+                  <div className="relative rounded-2xl overflow-hidden border border-gray-800/50">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10" />
+                    <img src={pillars[activePillar].image} alt={pillars[activePillar].title} className="w-full h-64 lg:h-80 object-cover" loading="lazy" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -416,98 +394,8 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* ═══════════════════════════════════════════
-            CAREERS — Split layout
-            ═══════════════════════════════════════════ */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <SectionHeader badge="Careers" title={careersContent.headline} description={careersContent.tagline} alignment="center" />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-14 max-w-5xl mx-auto">
-              <AnimatedWrapper animation="fade-up-slow">
-                <div className="relative h-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl blur-xl" />
-                  <div className="relative h-full bg-gray-900/60 backdrop-blur-sm border border-gray-800/60 rounded-2xl p-8">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400 mb-4">
-                      <Briefcase className="w-5 h-5" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">Our Culture</h3>
-                    <p className="text-gray-300 leading-relaxed mb-4 text-sm">{careersContent.description}</p>
-                    <p className="text-gray-300 leading-relaxed text-sm">{careersContent.workEnvironment}</p>
-                  </div>
-                </div>
-              </AnimatedWrapper>
-              <AnimatedWrapper animation="fade-up-slow" delay={0.1}>
-                <div className="relative h-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-2xl blur-xl" />
-                  <div className="relative h-full bg-gray-900/60 backdrop-blur-sm border border-gray-800/60 rounded-2xl p-8">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-indigo-500/20 flex items-center justify-center text-blue-400 mb-4">
-                      <Users className="w-5 h-5" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4">Who We're Looking For</h3>
-                    <p className="text-gray-300 leading-relaxed mb-5 text-sm">{careersContent.candidatesDescription}</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {careersContent.traits.map((trait) => (
-                        <div key={trait.title} className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-gray-800/30">
-                          <div className="text-purple-400 mt-0.5">{trait.icon}</div>
-                          <div>
-                            <p className="text-white text-sm font-medium">{trait.title}</p>
-                            <p className="text-gray-500 text-xs">{trait.description}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </AnimatedWrapper>
-            </div>
-            <div className="mt-8 text-center">
-              <GradientButton size="lg" asChild>
-                <Link to="/contact"><Briefcase className="w-5 h-5 mr-2" />Get in Touch to Apply</Link>
-              </GradientButton>
-            </div>
-          </div>
-        </section>
 
-        {/* ═══════════════════════════════════════════
-            ISO CERTIFICATION — Compact banner
-            ═══════════════════════════════════════════ */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
-            <AnimatedWrapper animation="fade-up-slow" className="max-w-3xl mx-auto text-center">
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-green-900/30 rounded-full border border-green-500/30 mb-4">
-                <Check className="w-5 h-5 text-green-400" />
-                <span className="text-green-300 font-medium">ISO 27001 Certified</span>
-              </div>
-              <p className="text-gray-500 text-sm">Digitrans is ISO 27001 certified, a globally recognised standard for information security management. Your data and analytics are safe and secure with us.</p>
-            </AnimatedWrapper>
-          </div>
-        </section>
 
-        {/* ═══════════════════════════════════════════
-            GLOBAL PRESENCE — Office cards
-            ═══════════════════════════════════════════ */}
-        <section className="py-20 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
-          <div className="container mx-auto px-4 relative z-10">
-            <SectionHeader badge="Global Presence" title="Serving Clients Worldwide" description="Local expertise across continents." alignment="center" />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 max-w-4xl mx-auto">
-              {offices.map((office, i) => (
-                <AnimatedWrapper key={office.city} animation="float-up" delay={i * 0.08}>
-                  <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl overflow-hidden hover:border-purple-500/30 transition-all duration-300">
-                    <div className="h-28 overflow-hidden">
-                      <LazyImage src={office.image} alt={office.city} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="p-4 text-center">
-                      <h4 className="font-semibold text-white">{office.city}</h4>
-                      <p className="text-gray-500 text-sm">{office.country}</p>
-                      <p className="text-purple-400 text-xs mt-1">{office.type}</p>
-                    </div>
-                  </div>
-                </AnimatedWrapper>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* ═══════════════════════════════════════════
             CTA — Bold closing section
@@ -520,14 +408,6 @@ const AboutPage = () => {
                 Ready to Transform Your Business?
               </h2>
               <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">Let's discuss how Digitrans can help you harness the power of AI and data.</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <GradientButton size="lg" asChild>
-                  <Link to="/contact"><Calendar className="w-5 h-5 mr-2" />Schedule Consultation</Link>
-                </GradientButton>
-                <GradientButton variant="secondary" size="lg" asChild>
-                  <a href="https://github.com/digitranslab" target="_blank" rel="noopener noreferrer"><GitBranch className="w-5 h-5 mr-2" />View on GitHub</a>
-                </GradientButton>
-              </div>
               <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
                 <span className="flex items-center gap-2"><Check className="w-4 h-4 text-green-400" />Open Source Products</span>
                 <span className="flex items-center gap-2"><Check className="w-4 h-4 text-green-400" />Cloud Agnostic</span>

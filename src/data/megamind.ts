@@ -49,7 +49,7 @@ export interface CommunityStat {
 }
 
 export const heroData: MegamindHero = {
-  tagline: "Sovereign AI Platform — Apache 2.0",
+  tagline: "Sovereign AI Platform",
   headline: "Megamind: Self-Hosted AI for Enterprise",
   description: "Deploy AI entirely within your infrastructure. Megamind is the open-source platform powering sovereign AI implementations for regulated industries — on-premise, air-gapped, or private cloud. No data leaves your boundary.",
   primaryCTA: { label: "Schedule Consultation", href: "/contact" },

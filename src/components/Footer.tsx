@@ -1,21 +1,12 @@
-import { Linkedin, MapPin } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { GradientButton } from "./ui/gradient-button";
 
 const offices = [
-  {
-    city: "Dubai",
-    label: "HQ",
-    address: ["Dubai Internet City", "Building 1, Office 301", "Dubai, UAE"],
-  },
-  {
-    city: "London",
-    address: ["1 King's Cross Bridge", "London", "N1 9NW"],
-  },
-  {
-    city: "Casablanca",
-    address: ["Technopark, Route de Nouaceur", "Casablanca", "20000"],
-  },
+  { city: "Dubai", country: "UAE", type: "Headquarters" },
+  { city: "London", country: "UK", type: "EMEA Hub" },
+  { city: "Paris", country: "France", type: "EU Office" },
+  { city: "Casablanca", country: "Morocco", type: "Africa Hub" },
 ];
 
 const Footer = () => {
@@ -56,23 +47,12 @@ const Footer = () => {
             {/* Find Us */}
             <div className="lg:col-span-2">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-white mb-6">Find Us</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
                 {offices.map((office) => (
-                  <div key={office.city}>
-                    <div className="flex items-center gap-2 mb-2">
-                      <MapPin className="w-3.5 h-3.5 text-purple-400" />
-                      <span className="text-sm font-medium text-white">
-                        {office.city}
-                        {office.label && (
-                          <span className="text-purple-400 ml-1.5 text-xs">· {office.label}</span>
-                        )}
-                      </span>
-                    </div>
-                    <div className="space-y-0.5 pl-5.5">
-                      {office.address.map((line, i) => (
-                        <p key={i} className="text-xs text-gray-500">{line}</p>
-                      ))}
-                    </div>
+                  <div key={office.city} className="text-left">
+                    <p className="text-sm font-semibold text-white">{office.city}</p>
+                    <p className="text-xs text-gray-500">{office.country}</p>
+                    <p className="text-xs text-purple-400 mt-0.5">{office.type}</p>
                   </div>
                 ))}
               </div>

@@ -112,7 +112,7 @@ const industries = [
 
 const differentiators = [
   { icon: <Award className="w-5 h-5" />, label: "10+ years delivering enterprise AI" },
-  { icon: <GitBranch className="w-5 h-5" />, label: "Open-source first — Apache 2.0" },
+  { icon: <GitBranch className="w-5 h-5" />, label: "Open-source first" },
   { icon: <Shield className="w-5 h-5" />, label: "Sovereign AI — on-premise, air-gapped" },
   { icon: <Rocket className="w-5 h-5" />, label: "POC to production in 4–12 weeks" },
   { icon: <Sparkles className="w-5 h-5" />, label: "91.1% SimpleQA accuracy (Jan-v1)" },

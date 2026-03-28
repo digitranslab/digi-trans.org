@@ -331,7 +331,7 @@ Unit tests verify specific examples and edge cases:
 - **Blog post count**: Verify at least 6 new blog posts exist with the expected service-area categories
 - **SEO titles**: Verify each page component sets `document.title` containing the required keywords
 - **Redirect replacement**: Verify `/services/ai-consulting` no longer redirects to `/services/ai-data-consulting` but renders the AI Consulting page
-- **Specific content checks**: Verify Megamind page data references Apache 2.0, GitHub links; Sovereign AI data mentions GDPR, HIPAA, SOC2, FedRAMP; AI Consulting data references "60% work about work"
+- **Specific content checks**: Sovereign AI data mentions GDPR, HIPAA, SOC2, FedRAMP; AI Consulting data references "60% work about work"
 
 ### Property-Based Tests
 

@@ -5,13 +5,11 @@
  * certifications, and cloud partnership info with premium visual language.
  */
 
-import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Shield,
   Award,
   Cloud,
-  Play,
   Check,
   Star,
   Cpu,
@@ -19,11 +17,9 @@ import {
   Code,
   Brain,
   Sparkles,
-  Calendar,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { GradientButton } from "@/components/ui/gradient-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import { AnimatedWrapper } from "@/components/ui/animated-wrapper";
 import SEO from "@/components/SEO";
@@ -196,14 +192,6 @@ const WhyUsPage = () => {
                 {cta.title}
               </h2>
               <p className="text-lg text-gray-400 mb-10">{cta.subtitle}</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                <GradientButton size="lg" asChild>
-                  <Link to={cta.buttonHref}><Calendar className="w-5 h-5 mr-2" />{cta.buttonText}</Link>
-                </GradientButton>
-                <GradientButton variant="secondary" size="lg" asChild>
-                  <Link to="/services">Explore Our Services <ArrowRight className="w-5 h-5 ml-2" /></Link>
-                </GradientButton>
-              </div>
               <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
                 <span className="flex items-center gap-2"><Check className="w-4 h-4 text-green-400" />ISO 27001 Certified</span>
                 <span className="flex items-center gap-2"><Check className="w-4 h-4 text-green-400" />Kubernetes Specialists</span>

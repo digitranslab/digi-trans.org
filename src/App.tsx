@@ -295,7 +295,7 @@ function App() {
         
         {/* University Routes */}
         <Route path="/university" element={<UniversityHubPage />} />
-        <Route path="/university/tutorials" element={<TutorialsPage />} />
+        <Route path="/university/tutorials" element={<Navigate to="/university/live-demos" replace />} />
         <Route path="/university/live-demos" element={<LiveDemosPage />} />
         <Route path="/university/tech-talks" element={<Navigate to="/university/webinars" replace />} />
         <Route path="/university/webinars" element={<WebinarsPage />} />

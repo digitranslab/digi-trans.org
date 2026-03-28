@@ -34,15 +34,9 @@ export interface CategoryInfo {
 
 export const categories: CategoryInfo[] = [
   {
-    slug: "tutorials",
-    title: "Tutorials",
-    description: "Step-by-step video guides for Allama, Dblock, and general AI/Data topics.",
-    icon: "BookOpen",
-  },
-  {
     slug: "live-demos",
-    title: "Live Demos",
-    description: "Recorded product demonstrations and use case walkthroughs.",
+    title: "Tutorials & Live Demos",
+    description: "Step-by-step guides, video tutorials, and recorded product demonstrations.",
     icon: "Play",
   },
   {
@@ -187,8 +181,10 @@ export const contentItems: ContentItem[] = [
 // Helper functions
 export const getContentByCategory = (category: ContentCategory): ContentItem[] => {
   if (category === "webinars") {
-    // Merge webinars and tech-talks into one view
     return contentItems.filter((item) => item.category === "webinars" || item.category === "tech-talks");
+  }
+  if (category === "live-demos") {
+    return contentItems.filter((item) => item.category === "live-demos" || item.category === "tutorials");
   }
   return contentItems.filter((item) => item.category === category);
 };
