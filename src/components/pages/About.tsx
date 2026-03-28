@@ -27,6 +27,12 @@ import {
   Factory,
   Building,
   Sparkles,
+  Building2,
+  Star,
+  Quote,
+  Handshake,
+  Brain,
+  Shield,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -99,7 +105,37 @@ const expertiseAreas = [
   { title: "AI, Machine Learning & Deep Learning", skills: ["Time Series Forecasting", "Computer Vision", "NLP", "Physics-Informed ML", "Neural Networks & Transfer Learning"] },
 ];
 
+// Featured Industrial Customers
+const featuredCustomers = [
+  { name: "TotalEnergies", industry: "Energy", logo: "/images/legacy/partners/totalenergies.svg" },
+  { name: "SNCF", industry: "Transportation", logo: "/images/legacy/partners/sncf.svg" },
+  { name: "Groupe ADP", industry: "Aviation & Logistics", logo: "/images/legacy/partners/groupe-adp.svg" },
+  { name: "Suez", industry: "Environmental Services", logo: "/images/legacy/partners/suez.svg" },
+  { name: "Alperia", industry: "Energy", logo: "/images/legacy/partners/alperia.svg" },
+  { name: "Hummink", industry: "Advanced Manufacturing", logo: "/images/legacy/clients/logo-hummink.png" },
+];
 
+// Client Categories
+const clientCategories = [
+  { icon: <Building2 className="w-7 h-7" />, title: "Fortune 500", count: "50+", description: "Enterprise clients across finance, healthcare, and manufacturing" },
+  { icon: <Landmark className="w-7 h-7" />, title: "Government", count: "15+", description: "Federal and state agencies with compliance" },
+  { icon: <Rocket className="w-7 h-7" />, title: "Startups", count: "100+", description: "High-growth startups from seed to Series C" },
+];
+
+// Partnership Highlights
+const partnershipHighlights = [
+  { icon: <Handshake className="w-5 h-5" />, title: "Hands-On Partnership", description: "We work hand in hand with our customers to build, deploy, and operate solutions that harness the power of data and AI technology." },
+  { icon: <Brain className="w-5 h-5" />, title: "AI-Powered Operations", description: "Our AI solutions underpin critical industrial operations so our customers can count on them to run reliably, anywhere in the world." },
+  { icon: <Shield className="w-5 h-5" />, title: "Safety & Efficiency", description: "We streamline operations, boost efficiency, and make the workplace safer for everybody through advances in data and AI." },
+  { icon: <Factory className="w-5 h-5" />, title: "Industrial Expertise", description: "Deep domain knowledge across energy, mining, manufacturing, smart cities, and transportation enables us to deliver solutions that truly fit." },
+];
+
+// Testimonials
+const testimonials = [
+  { quote: "Digitrans transformed our security operations. What used to take hours now happens in seconds. The ROI was visible within the first month.", name: "Sarah Chen", title: "CISO", company: "Global Financial Corp", rating: 5 },
+  { quote: "Their AI expertise helped us build a personalization engine that increased our conversion rate by 70%. They're true partners, not just vendors.", name: "Marcus Weber", title: "CTO", company: "RetailTech Inc", rating: 5 },
+  { quote: "The team delivered our MVP in 10 weeks. We secured €2M in funding based on what they built. Couldn't have done it without them.", name: "Sophie Laurent", title: "Founder", company: "DataSync Pro", rating: 5 },
+];
 
 const milestones = [
   { year: "2023", text: "Digitrans founded in March 2023 in Dubai by a team of data engineers and AI specialists with deep industrial experience. Immediate focus on sovereign AI consulting and data platform engineering for enterprise clients." },
@@ -280,6 +316,115 @@ const AboutPage = () => {
                       <h4 className="font-semibold text-white text-sm">{industry.name}</h4>
                     </div>
                     <p className="text-xs text-gray-500">{industry.description}</p>
+                  </div>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            CLIENTS — Partnership approach + featured customers
+            ═══════════════════════════════════════════ */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <SectionHeader badge="Our Customers" title="Trusted by Industry Leaders" description="We work hand in hand with our customers to build, deploy, and operate AI solutions that power critical operations." alignment="center" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-14 max-w-5xl mx-auto">
+              {partnershipHighlights.map((highlight, i) => (
+                <AnimatedWrapper key={highlight.title} animation="float-up" delay={i * 0.08}>
+                  <div className="group relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400">
+                          {highlight.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-base font-semibold text-white mb-1.5 group-hover:text-purple-300 transition-colors">{highlight.title}</h3>
+                          <p className="text-sm text-gray-500 leading-relaxed">{highlight.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            FEATURED CUSTOMERS — Logo grid
+            ═══════════════════════════════════════════ */}
+        <section className="py-16 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-600 mb-8 text-center">Industrial Partners</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto mb-12">
+              {featuredCustomers.map((customer, i) => (
+                <AnimatedWrapper key={customer.name} animation="scale-in" delay={i * 0.06}>
+                  <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-5 hover:border-purple-500/30 transition-all duration-300 text-center">
+                    <div className="w-14 h-14 mx-auto mb-3 flex items-center justify-center">
+                      <img src={customer.logo} alt={customer.name} className="max-w-full max-h-full object-contain opacity-70 hover:opacity-100 transition-opacity" />
+                    </div>
+                    <h4 className="text-white font-medium text-sm">{customer.name}</h4>
+                    <p className="text-xs text-gray-600">{customer.industry}</p>
+                  </div>
+                </AnimatedWrapper>
+              ))}
+            </div>
+            <div className="max-w-4xl mx-auto">
+              <img src="/images/legacy/partners/all-logos.png" alt="Our clients and partners" className="w-full h-auto object-contain opacity-70" />
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            CLIENT CATEGORIES — Metric cards
+            ═══════════════════════════════════════════ */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+              {clientCategories.map((category, i) => (
+                <AnimatedWrapper key={category.title} animation="scale-in" delay={i * 0.08}>
+                  <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 text-center">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400 mx-auto mb-3">
+                      {category.icon}
+                    </div>
+                    <div className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-1">{category.count}</div>
+                    <h3 className="text-base font-semibold text-white mb-1">{category.title}</h3>
+                    <p className="text-xs text-gray-500">{category.description}</p>
+                  </div>
+                </AnimatedWrapper>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════
+            TESTIMONIALS — Quote cards
+            ═══════════════════════════════════════════ */}
+        <section className="py-20 relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/40 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <SectionHeader badge="Testimonials" title="What Our Clients Say" description="Hear from the leaders who've partnered with us." alignment="center" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14 max-w-5xl mx-auto">
+              {testimonials.map((testimonial, i) => (
+                <AnimatedWrapper key={testimonial.name} animation="float-up" delay={i * 0.08}>
+                  <div className="group relative h-full">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative h-full bg-gray-900/50 backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 flex flex-col">
+                      <Quote className="w-7 h-7 text-purple-500/30 mb-4" />
+                      <p className="text-gray-300 text-sm leading-relaxed mb-6 flex-1 italic">"{testimonial.quote}"</p>
+                      <div className="pt-4 border-t border-gray-800/50">
+                        <div className="flex mb-2">
+                          {[...Array(testimonial.rating)].map((_, j) => (
+                            <Star key={j} className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+                          ))}
+                        </div>
+                        <p className="font-semibold text-white text-sm">{testimonial.name}</p>
+                        <p className="text-xs text-gray-500">{testimonial.title}, {testimonial.company}</p>
+                      </div>
+                    </div>
                   </div>
                 </AnimatedWrapper>
               ))}

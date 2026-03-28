@@ -31,6 +31,7 @@ const getIcon = (iconName: string, className: string = "w-6 h-6") => {
 
 const DBlockPage: React.FC = () => {
   const navigate = useNavigate();
+  const [activeFeature, setActiveFeature] = useState(0);
 
   useEffect(() => {
     document.title = "Dblock — Enterprise AI Application Platform | Digitrans";
@@ -138,53 +139,66 @@ const DBlockPage: React.FC = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <SectionHeader badge="Services" title="AI Solutions We Deliver" description="End-to-end AI development from strategy to production." alignment="center" />
-            <div className="max-w-6xl mx-auto mt-14 space-y-20">
+
+            <div className="flex flex-wrap justify-center gap-2 mt-10 mb-10">
               {features.map((feature, i) => (
-                <AnimatedWrapper key={feature.id} animation={i % 2 === 0 ? "slide-right" : "slide-left"}>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                    <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                          {getIcon(feature.icon, "w-5 h-5")}
-                        </div>
-                        <h3 className="text-2xl font-bold text-white">{feature.title}</h3>
-                      </div>
-                      <p className="text-gray-400 mb-6 leading-relaxed">{feature.description}</p>
-                      <ul className="space-y-2.5 mb-6">
-                        {feature.capabilities.map((cap) => (
-                          <li key={cap} className="flex items-start gap-3 text-gray-300">
-                            <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-green-500/80 to-emerald-500/80 flex items-center justify-center">
-                              <Check className="w-3 h-3 text-white" />
-                            </div>
-                            <span>{cap}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="text-sm text-blue-400/80 italic border-l-2 border-blue-500/30 pl-4">"{feature.marketingAngle}"</p>
+                <button
+                  key={feature.id}
+                  onClick={() => setActiveFeature(i)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    activeFeature === i
+                      ? "bg-gray-800 text-white border border-gray-700"
+                      : "text-gray-500 hover:text-gray-300 border border-transparent"
+                  }`}
+                >
+                  {feature.title}
+                </button>
+              ))}
+            </div>
+
+            <div className="max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2.5 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                      {getIcon(features[activeFeature].icon, "w-5 h-5")}
                     </div>
-                    <div className={i % 2 === 1 ? "lg:order-1" : ""}>
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl blur-2xl" />
-                        <div className="relative bg-gray-900/70 backdrop-blur-sm border border-gray-800/50 rounded-3xl overflow-hidden">
-                          {feature.image ? (
-                            <img src={feature.image} alt={`${feature.title}`} className="w-full h-auto" />
-                          ) : (
-                            <div className="p-8 min-h-[280px] flex items-center justify-center">
-                              <div className="text-center">
-                                <div className="inline-flex p-5 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
-                                  {getIcon(feature.icon, "w-10 h-10 text-blue-400")}
-                                </div>
-                                <p className="text-lg font-semibold text-white mb-2">{feature.title}</p>
-                                <p className="text-sm text-gray-500">{feature.capabilities.length} capabilities</p>
-                              </div>
-                            </div>
-                          )}
+                    <h3 className="text-2xl font-bold text-white">{features[activeFeature].title}</h3>
+                  </div>
+                  <p className="text-gray-400 mb-6 leading-relaxed">{features[activeFeature].description}</p>
+                  <ul className="space-y-2.5 mb-6">
+                    {features[activeFeature].capabilities.map((cap) => (
+                      <li key={cap} className="flex items-start gap-3 text-gray-300">
+                        <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-green-500/80 to-emerald-500/80 flex items-center justify-center">
+                          <Check className="w-3 h-3 text-white" />
                         </div>
-                      </div>
+                        <span>{cap}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-sm text-blue-400/80 italic border-l-2 border-blue-500/30 pl-4">"{features[activeFeature].marketingAngle}"</p>
+                </div>
+                <div>
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl blur-2xl" />
+                    <div className="relative bg-gray-900/70 backdrop-blur-sm border border-gray-800/50 rounded-3xl overflow-hidden">
+                      {features[activeFeature].image ? (
+                        <img src={features[activeFeature].image} alt={features[activeFeature].title} className="w-full h-auto" />
+                      ) : (
+                        <div className="p-8 min-h-[280px] flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="inline-flex p-5 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 mb-4">
+                              {getIcon(features[activeFeature].icon, "w-10 h-10 text-blue-400")}
+                            </div>
+                            <p className="text-lg font-semibold text-white mb-2">{features[activeFeature].title}</p>
+                            <p className="text-sm text-gray-500">{features[activeFeature].capabilities.length} capabilities</p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </AnimatedWrapper>
-              ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>

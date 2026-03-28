@@ -447,6 +447,9 @@ html.light .border-white\/20 { border-color: rgba(5,150,105,0.15) !important; }
 /* ── Hover states — green ── */
 html.light .hover\:border-purple-500\/30:hover { border-color: rgba(5,150,105,0.3) !important; }
 html.light .hover\:bg-purple-500\/10:hover { background-color: rgba(5,150,105,0.08) !important; }
+
+/* ── Tab buttons — transparent bg + green border in light mode ── */
+html.light .bg-gray-800 { background-color: transparent !important; border-color: #059669 !important; color: #059669 !important; }
 html.light .hover\:text-purple-400:hover { color: #059669 !important; }
 html.light .group-hover\:text-purple-300 { color: #10b981 !important; }
 html.light .group-hover\:text-purple-400 { color: #059669 !important; }
